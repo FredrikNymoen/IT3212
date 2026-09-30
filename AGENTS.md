@@ -4,61 +4,155 @@ This file provides guidance to coding agents working with this repository.
 
 ## Project overview
 
-IT3212 (Data-Driven Software Engineering) Assignment 1: a data preprocessing pipeline built around
-`data/graduation_dataset.csv`, the UCI "Predict Students' Dropout and Academic Success" dataset (4,424 rows,
-35 columns). The target column is `Target`, with three classes: `Dropout`, `Enrolled`, `Graduate`. All other
-columns are numeric (demographic/socioeconomic fields, per-semester curricular unit stats, and macroeconomic
-indicators for unemployment rate, inflation rate, and GDP), including several that are categorical codes
-encoded as integers (e.g. `Marital status`, `Application mode`, `Course`, qualification/occupation codes).
+IT3212 (Data-Driven Software Engineering) is a course repository for all four assignments.
+Assignment 1 has an existing preprocessing implementation. Assignment 2 is the current focus and
+covers image processing. Assignments 3 and 4 will be added later; their requirements are not yet available.
+Do not assume that later assignments use the student graduation dataset or the Assignment 1 workflow.
 
-The assignment (see the grading breakdown below) is delivered as a single Jupyter notebook that takes the raw
-CSV through exploration, cleaning, outlier handling, transformation, and train/test splitting.
+The assignment PDFs in the repository root are the source of truth for grading and submission requirements.
+Read the relevant PDF before implementing an assignment. Distinguish assignment requirements from local
+implementation choices, and update this file when new briefs or repository structure are added.
 
-## Repository structure
+## Repository structure and conventions
 
-- `notebooks/student_graduation.ipynb` — the deliverable notebook. Currently empty; this is where the full
-  pipeline should be built.
-- `data/` — holds `graduation_dataset.csv`. This directory is gitignored (only `.gitkeep` is tracked), so the
-  dataset must be placed here manually and any cleaned/derived CSVs written here will not be committed.
-- `figures/` — intended output location for saved plots (currently only `.gitkeep`), unlike `data/` this
-  directory *is* tracked by git.
-- `requirements.txt` — present but currently empty; no dependencies are pinned yet.
+- `IT3212 - Assignment 1.pdf` - preprocessing brief, rubric, and submission requirements.
+- `IT3212 - Assignment 2.pdf` - image-processing brief and rubric.
+- `notebooks/student_graduation.ipynb` - populated Assignment 1 implementation, including optional PCA.
+  Preserve this work when starting later assignments.
+- `notebooks/` - use a separate, clearly named notebook for each new assignment; use
+  `assignment_2_image_processing.ipynb` for Assignment 2 when implementation begins.
+- `data/` - local datasets and derived data; everything except `.gitkeep` is gitignored.
+  Assignment 1 uses `data/graduation_dataset.csv`. Use assignment-specific subdirectories for new
+  datasets (for example, `data/assignment_2/`) and document their source and placement.
+- `figures/` - tracked plot outputs. Existing Assignment 1 plots are `01_continuous_boxplots.png`
+  and `02_pca_explained_variance.png`. Use assignment-specific subdirectories for new figures.
+- `requirements.txt` - shared Python dependencies with minimum versions.
+- `README.md` - currently empty; use for course navigation, setup, and dataset instructions when needed.
 
-## Environment
+Do not rename, move, or overwrite previous deliverables just to start the next assignment.
+Keep notebooks runnable from a fresh kernel, document working directories and data paths, and create
+output directories before saving figures. Existing Assignment 1 paths assume execution from `notebooks/`.
+Never commit local datasets unless explicitly requested.
 
-There is no build, lint, or test tooling configured in this repo yet, and `requirements.txt` has no entries.
-Working in the notebook will require at minimum pandas, numpy, matplotlib/seaborn, and scikit-learn — add them
-to `requirements.txt` as they're introduced rather than installing ad hoc.
+## Environment and validation
 
-## Assignment task breakdown
+`requirements.txt` contains pandas>=2.0, numpy>=1.24, matplotlib>=3.7, seaborn>=0.12,
+scikit-learn>=1.3, jupyter>=1.0, and ipykernel>=6.25. These are minimum constraints, not exact pins.
+Add new implementation dependencies (such as scikit-image, OpenCV, or Pillow) when introduced rather
+than installing them ad hoc. PDF-reading tools used only to inspect briefs are not runtime dependencies.
 
-The notebook is graded against these sections (points in parentheses):
+There is no configured build, lint, or test suite. For notebook changes, execute the affected notebook
+from top to bottom in a fresh kernel when the required data and dependencies are available. Check outputs,
+array shapes, numerical ranges, and saved plots; report missing inputs or unexecuted work honestly.
+Use fixed random seeds for sampling, noise generation, and splitting. Keep interpretations alongside
+results; do not invent observations before running code.
 
-1. **Data Exploration (10)**
-   a. Explore the dataset by displaying the first few rows, summary statistics, and data types of each column.
-   b. Identify missing values, outliers, and unique values in categorical columns.
-2. **Data Cleaning (20)**
-   a. Handling Missing Values
-   b. Choose appropriate methods to handle missing values (e.g., mean/median imputation for numerical data,
-      mode imputation for categorical data, or deletion of rows/columns).
-   c. Justify your choices for handling missing data.
-3. **Handling Outliers (20)**
-   a. Detect outliers using methods such as the IQR method or Z-score.
-   b. Decide whether to remove, cap, or transform the outliers. Justify your decisions.
-4. **Data Transformation (30)**
-   a. Encoding Categorical Data
-      i. Apply label encoding or one-hot encoding to transform categorical data into numerical form.
-      ii. Justify your choice of encoding method.
-   b. Feature Scaling
-      i. Apply feature scaling techniques such as normalization (Min-Max scaling) or standardization (Z-score
-         normalization) to the dataset.
-      ii. Explain why feature scaling is necessary and how it impacts the model.
-5. **Data Splitting (10)**
-   a. Split the preprocessed dataset into training and testing sets. Typically, an 80-20 or 70-30 split is used.
-   b. Explain the importance of splitting the data and how it prevents overfitting.
-6. **Bonus Task (Optional, 10)**
-   Apply dimensionality reduction techniques such as Principal Component Analysis (PCA) and discuss how it
-   affects the dataset.
+## Assignment 1: Data preprocessing
 
-Each section expects both the implementation and a written justification of the choices made (this is a
-grading criterion, not optional narration).
+### Dataset and existing implementation
+
+The input is the UCI "Predict Students' Dropout and Academic Success" dataset: 4,424 rows and 35 columns.
+The target is `Target`, with classes `Dropout`, `Enrolled`, and `Graduate`. Predictors are numeric,
+but several represent nominal integer codes (for example, marital status, course, and occupation).
+Do not treat those codes as continuous measurements.
+
+The notebook explores the data, implements median/mode missing-value handling, retains plausible outliers,
+applies `log1p` to strongly skewed curricular-unit counts, one-hot encodes nominal predictors, and uses
+a stratified 80/20 split with `random_state=42`. Continuous predictors are standardized using training
+statistics. The optional PCA section compares variance thresholds and selects 95%.
+
+For future modeling, split before fitting data-dependent preprocessing, including imputation, category
+discovery, skewness-based transform selection, scaling, and PCA. The existing notebook fits some earlier
+preprocessing steps on the full dataset; do not assume the entire workflow is leakage-free because its
+scaler and PCA use training data. Fit preprocessing inside training folds when cross-validating.
+Preserve the previous assignment unless changes to it are part of the requested task.
+
+### Rubric
+
+1. **Data exploration (10):** first rows, summary statistics, data types, missing values, outliers,
+   and unique categorical values.
+2. **Data cleaning (20):** choose and implement missing-value handling and justify the choices.
+3. **Handling outliers (20):** detect outliers (for example, IQR or Z-score), decide whether to remove,
+   cap, or transform them, and justify the decisions.
+4. **Data transformation (30):** encode categorical data and scale features; justify the encoding
+   and explain why scaling is necessary and how it affects models.
+5. **Data splitting (10):** create training/test sets and explain their role in evaluating
+   generalization and detecting overfitting.
+6. **Optional bonus (10):** apply dimensionality reduction such as PCA and discuss its effects.
+
+### Submission
+
+The brief requires a **PDF report**, not only a notebook. Include results and code only where necessary
+for the explanation. The word limit is **3,000**, excluding code and references but including table and
+figure captions. Be precise and concise. Missing a requested justification incurs a 10-mark deduction
+from that task. Assignment 1 datasets must come from those uploaded to Blackboard.
+
+## Assignment 2: Image processing (current focus)
+
+Passing requires **65 points**. Each task is assessed on **clarity of explanation (30%)**, **quality of
+results (30%)**, and **insight in discussion (40%)**. Include implementation, visual results, and discussion;
+code alone is insufficient. The supplied Assignment 2 PDF specifies neither a report word limit nor a
+submission file format; do not automatically carry over Assignment 1's submission rules.
+
+### Dataset requirements
+
+The general brief allows Blackboard image datasets or outside datasets with a basic description.
+However, blob detection specifically requires a provided Blackboard image dataset, and contour detection
+must use the **same dataset**. Follow this more specific requirement for those tasks.
+Document sources, selected examples, grayscale conversion, resizing, and normalization. If required
+Blackboard images are missing, request their location rather than silently substituting another dataset.
+Use multiple equally sized grayscale images for PCA.
+
+### Fourier transform (20 points)
+
+1. Apply the 2D DFT to a grayscale image. Show the original and magnitude spectrum with an explanation.
+2. Implement a frequency-domain low-pass filter to remove high-frequency noise. Compare original
+   and filtered images and analyze the results.
+3. Implement a high-pass filter to enhance edges. Show the filtered image and discuss its effects.
+4. Compress by retaining selected percentages of Fourier coefficients. Reconstruct at multiple
+   percentages and discuss image quality and compression ratio.
+
+Use an appropriate spectrum visualization (for example, centered log magnitude). Explain coefficient
+selection and filter masks, handle conjugate symmetry for real reconstructions, and distinguish
+retained-coefficient fractions from actual stored-file compression ratios.
+
+### PCA (25 points)
+
+Normalize grayscale pixels to `[0, 1]`. Write a Python PCA function implementing the requested steps:
+
+1. Form a matrix with one image per row and one pixel per column.
+2. Center the data and compute the covariance matrix.
+3. Calculate its eigenvalues and eigenvectors.
+4. Sort eigenvectors by descending eigenvalue.
+5. Select the top `k` eigenvectors.
+6. Project images into the lower-dimensional space.
+
+Reconstruct images (restoring the mean), compare originals and reconstructions for multiple `k` values,
+plot explained variance, and justify a component count balancing compression and quality. Compute MSE
+and discuss reconstruction error, visual information loss, and compression trade-offs.
+Do not replace the required manual steps with only a call to `sklearn.decomposition.PCA`.
+Choose a manageable image resolution: the pixel covariance matrix grows quadratically with pixel count.
+Document any resizing.
+
+### Image processing (55 points)
+
+- **HOG (12):** compute descriptors using a library such as OpenCV or scikit-image. Apply to at least
+  three images spanning simple and complex scenes. Show originals, gradient images, and HOG images.
+  Compare descriptors and discuss changes to cell size, block size, and number of orientation bins.
+- **LBP (13):** write a function for basic 8-neighbor grayscale LBP and a function for its histogram.
+  Produce LBP images and histograms for at least three different grayscale images (for example, a
+  natural scene, texture, and face). Explain texture information and compare histogram differences.
+  State neighbor order, threshold convention, and image-border handling.
+- **Blob detection (15):** implement a blob-detection algorithm on a Blackboard dataset. Mark detections
+  with circles or bounding boxes. Report per-image counts, sizes, and positions, and evaluate how
+  parameter choices affect detection.
+- **Contour detection (15):** implement contour detection on the same dataset. Mark contours with
+  different colors and report per-image counts, areas, and perimeters. Compare blob and contour results,
+  advantages and limitations, effects of parameters such as thresholds and filter sizes, and examples
+  where each method is more suitable.
+
+## Assignments 3 and 4
+
+Requirements are pending. When their PDFs become available, read them and add accurate summaries here.
+Keep each assignment's implementation, datasets, figures, and submission requirements identifiable,
+while reusing shared dependencies and utilities where useful.
