@@ -17,10 +17,11 @@ implementation choices, and update this file when new briefs or repository struc
 
 - `IT3212 - Assignment 1.pdf` - preprocessing brief, rubric, and submission requirements.
 - `IT3212 - Assignment 2.pdf` - image-processing brief and rubric.
-- `notebooks/student_graduation.ipynb` - populated Assignment 1 implementation, including optional PCA.
+- `notebooks/assignment1/student_graduation.ipynb` - populated Assignment 1 implementation, including optional PCA.
   Preserve this work when starting later assignments.
-- `notebooks/` - use a separate, clearly named notebook for each new assignment; use
-  `assignment_2_image_processing.ipynb` for Assignment 2 when implementation begins.
+- `notebooks/assignment1/` through `notebooks/assignment4/` - one directory per assignment.
+  Assignment 2-4 directories currently contain `.gitkeep` placeholders; remove each placeholder when
+  adding content. Use `notebooks/assignment2/image_processing.ipynb` when Assignment 2 implementation begins.
 - `data/` - local datasets and derived data; everything except `.gitkeep` is gitignored.
   Assignment 1 uses `data/graduation_dataset.csv`. Use assignment-specific subdirectories for new
   datasets (for example, `data/assignment_2/`) and document their source and placement.
@@ -31,7 +32,8 @@ implementation choices, and update this file when new briefs or repository struc
 
 Do not rename, move, or overwrite previous deliverables just to start the next assignment.
 Keep notebooks runnable from a fresh kernel, document working directories and data paths, and create
-output directories before saving figures. Existing Assignment 1 paths assume execution from `notebooks/`.
+output directories before saving figures. Run notebooks from their assignment directory; paths to root-level
+data and figures are `../../data/` and `../../figures/`. Assignment 1 uses this convention.
 Never commit local datasets unless explicitly requested.
 
 ## Environment and validation
