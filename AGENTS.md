@@ -20,11 +20,27 @@ implementation choices, and update this file when new briefs or repository struc
 - `notebooks/assignment1/student_graduation.ipynb` - populated Assignment 1 implementation, including optional PCA.
   Preserve this work when starting later assignments.
 - `notebooks/assignment1/` through `notebooks/assignment4/` - one directory per assignment.
-  Assignment 2-4 directories currently contain `.gitkeep` placeholders; remove each placeholder when
-  adding content. Use `notebooks/assignment2/image_processing.ipynb` when Assignment 2 implementation begins.
-- `data/` - local datasets and derived data; everything except `.gitkeep` is gitignored.
+  Assignment 3-4 directories currently contain `.gitkeep` placeholders; remove each when adding content.
+- `notebooks/assignment2/05_blob_detection.ipynb` - implemented and executed multiscale LoG blob
+  detection on the shared 10-image sample, with synthetic checks, circle overlays, per-blob/per-image
+  statistics, parameter experiments, and discussion. Numerical exports are gitignored under
+  `results/assignment2/blob_detection/`; plots are in `figures/assignment2/blob_detection/`.
+- `notebooks/assignment2/06_contour_detection.ipynb` - starter with working dataset inventory and
+  shared image selection; contour implementation and comparison remain pending. Both notebooks must
+  run independently. Match the blob notebook's EXIF orientation, aspect-preserving resize to maximum
+  side 512 (no upscaling), and grayscale preparation when implementing the comparison.
+- `notebooks/assignment2/detection_images.json` - shared image paths relative to the detection dataset.
+  Initially two images per class, selected by sorted filename. Update this manifest for both notebooks
+  when refining the sample. Put the blob/contour comparison in the contour notebook.
+  Other planned notebooks are `01_fourier.ipynb`, `02_pca.ipynb`, `03_hog.ipynb`, and `04_lbp.ipynb`;
+  create them when work on those topics begins.
+- `data/` - original datasets only; everything except `.gitkeep` is gitignored.
   Assignment 1 uses `data/graduation_dataset.csv`. Use assignment-specific subdirectories for new
-  datasets (for example, `data/assignment_2/`) and document their source and placement.
+  datasets and document their source and placement. The user-provided Assignment 2 detection dataset
+  is `data/vehicle-type-detection/`, with hatchback, motorcycle, pickup, sedan, and suv class folders.
+- `results/` - generated numerical results, derived datasets, and experiment configurations, organized
+  by assignment and task (for example, `results/assignment2/blob_detection/`). Everything except
+  `.gitkeep` is gitignored. Do not write generated results into `data/`.
 - `figures/` - tracked plot outputs. Existing Assignment 1 plots are `01_continuous_boxplots.png`
   and `02_pca_explained_variance.png`. Use assignment-specific subdirectories for new figures.
 - `requirements.txt` - shared Python dependencies with minimum versions.
@@ -39,7 +55,8 @@ Never commit local datasets unless explicitly requested.
 ## Environment and validation
 
 `requirements.txt` contains pandas>=2.0, numpy>=1.24, matplotlib>=3.7, seaborn>=0.12,
-scikit-learn>=1.3, jupyter>=1.0, and ipykernel>=6.25. These are minimum constraints, not exact pins.
+scikit-learn>=1.3, jupyter>=1.0, ipykernel>=6.25, scipy>=1.11, and Pillow>=10.0.
+These are minimum constraints, not exact pins. SciPy and Pillow support the image-processing notebook.
 Add new implementation dependencies (such as scikit-image, OpenCV, or Pillow) when introduced rather
 than installing them ad hoc. PDF-reading tools used only to inspect briefs are not runtime dependencies.
 
@@ -104,6 +121,13 @@ must use the **same dataset**. Follow this more specific requirement for those t
 Document sources, selected examples, grayscale conversion, resizing, and normalization. If required
 Blackboard images are missing, request their location rather than silently substituting another dataset.
 Use multiple equally sized grayscale images for PCA.
+
+The selected local detection dataset contains 1,310 JPG images: hatchback (181), motorcycle (122),
+pickup (478), sedan (400), and suv (129). Its original source/Blackboard attribution still needs to be
+documented. Class labels are vehicle types, not ground-truth blob or contour annotations; do not equate
+detected regions with vehicles or claim detection accuracy from these labels alone.
+Save detection figures under `figures/assignment2/blob_detection/` and
+`figures/assignment2/contour_detection/` respectively.
 
 ### Fourier transform (20 points)
 
