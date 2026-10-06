@@ -25,10 +25,14 @@ implementation choices, and update this file when new briefs or repository struc
   detection on the shared 10-image sample, with synthetic checks, circle overlays, per-blob/per-image
   statistics, parameter experiments, and discussion. Numerical exports are gitignored under
   `results/assignment2/blob_detection/`; plots are in `figures/assignment2/blob_detection/`.
-- `notebooks/assignment2/06_contour_detection.ipynb` - starter with working dataset inventory and
-  shared image selection; contour implementation and comparison remain pending. Both notebooks must
-  run independently. Match the blob notebook's EXIF orientation, aspect-preserving resize to maximum
-  side 512 (no upscaling), and grayscale preparation when implementing the comparison.
+- `notebooks/assignment2/06_contour_detection.ipynb` - implemented and executed threshold-based contour
+  detection using ContourPy, with colored boundaries, counts/areas/perimeters, geometry checks,
+  parameter experiments, and blob comparison. Results are in `results/assignment2/contour_detection/`
+  and plots in `figures/assignment2/contour_detection/`. Both notebooks run independently. The contour
+  notebook repeats the blob helper functions and recomputes the baseline; keep them synchronized when
+  changing algorithms. It matches EXIF orientation, aspect-preserving resize to maximum side 512
+  (no upscaling), and grayscale preparation. Contours include retained closed outer/hole loops;
+  open paths and loops below the minimum area are excluded and reported separately.
 - `notebooks/assignment2/detection_images.json` - shared image paths relative to the detection dataset.
   Initially two images per class, selected by sorted filename. Update this manifest for both notebooks
   when refining the sample. Put the blob/contour comparison in the contour notebook.
@@ -52,11 +56,17 @@ output directories before saving figures. Run notebooks from their assignment di
 data and figures are `../../data/` and `../../figures/`. Assignment 1 uses this convention.
 Never commit local datasets unless explicitly requested.
 
+Notebook headings must follow the assignment PDF's numbered tasks and subquestions so readers can
+identify exactly which requirement each section answers. Use supporting subsections within those
+points rather than assigning new task numbers to setup, preprocessing, or conclusions. In Assignment 2,
+blob detection uses points 1-4 and contour detection uses points 1-7. Apply the same convention to all
+other notebooks and retain point letters where the brief uses them.
+
 ## Environment and validation
 
 `requirements.txt` contains pandas>=2.0, numpy>=1.24, matplotlib>=3.7, seaborn>=0.12,
-scikit-learn>=1.3, jupyter>=1.0, ipykernel>=6.25, scipy>=1.11, and Pillow>=10.0.
-These are minimum constraints, not exact pins. SciPy and Pillow support the image-processing notebook.
+scikit-learn>=1.3, jupyter>=1.0, ipykernel>=6.25, scipy>=1.11, Pillow>=10.0, and contourpy>=1.1.
+These are minimum constraints, not exact pins. SciPy, Pillow, and ContourPy support the image-processing notebooks.
 Add new implementation dependencies (such as scikit-image, OpenCV, or Pillow) when introduced rather
 than installing them ad hoc. PDF-reading tools used only to inspect briefs are not runtime dependencies.
 
