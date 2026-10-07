@@ -21,10 +21,13 @@ implementation choices, and update this file when new briefs or repository struc
   Preserve this work when starting later assignments.
 - `notebooks/assignment1/` through `notebooks/assignment4/` - one directory per assignment.
   Assignment 3-4 directories currently contain `.gitkeep` placeholders; remove each when adding content.
-- `notebooks/assignment2/05_blob_detection.ipynb` - implemented and executed multiscale LoG blob
-  detection on the shared 10-image sample, with synthetic checks, circle overlays, per-blob/per-image
-  statistics, parameter experiments, and discussion. Numerical exports are gitignored under
-  `results/assignment2/blob_detection/`; plots are in `figures/assignment2/blob_detection/`.
+- `notebooks/assignment2/05_blob_detection.ipynb` - multiscale LoG blob detection over the entire
+  discovered image dataset for both baseline and all seven parameter settings. The 10-image manifest
+  selects display examples only. Full per-image/per-blob statistics and original-resolution numbered
+  overlays are gitignored under `results/assignment2/blob_detection/` (overlays in `overlays/`).
+  Tracked report figures show display examples and dataset-wide aggregates in
+  `figures/assignment2/blob_detection/`. Images are loaded per worker; parameter variants of the same
+  image reuse LoG responses, and vectorized overlap preserves the original suppression rule.
 - `notebooks/assignment2/06_contour_detection.ipynb` - implemented and executed threshold-based contour
   detection using ContourPy, with colored boundaries, counts/areas/perimeters, geometry checks,
   parameter experiments, and blob comparison. Results are in `results/assignment2/contour_detection/`
@@ -32,10 +35,13 @@ implementation choices, and update this file when new briefs or repository struc
   notebook repeats the blob helper functions and recomputes the baseline; keep them synchronized when
   changing algorithms. It matches EXIF orientation, aspect-preserving resize to maximum side 512
   (no upscaling), and grayscale preparation. Contours include retained closed outer/hole loops;
-  open paths and loops below the minimum area are excluded and reported separately.
-- `notebooks/assignment2/detection_images.json` - shared image paths relative to the detection dataset.
-  Initially two images per class, selected by sorted filename. Update this manifest for both notebooks
-  when refining the sample. Put the blob/contour comparison in the contour notebook.
+  open paths and loops below the minimum area are excluded and reported separately. Its current
+  analysis and comparison cover the 10 manifest images; distinguish this scope from the full-dataset
+  blob notebook until the contour analysis is extended.
+- `notebooks/assignment2/detection_images.json` - shared display-image paths relative to the detection
+  dataset, initially two images per class selected by sorted filename. It must not limit full-dataset
+  blob analysis. Update this manifest when refining display examples. The contour notebook currently
+  still uses it as its analysis subset. Put the blob/contour comparison in the contour notebook.
   Other planned notebooks are `01_fourier.ipynb`, `02_pca.ipynb`, `03_hog.ipynb`, and `04_lbp.ipynb`;
   create them when work on those topics begins.
 - `data/` - original datasets only; everything except `.gitkeep` is gitignored.
