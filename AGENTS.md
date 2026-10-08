@@ -60,6 +60,9 @@ implementation choices, and update this file when new briefs or repository struc
   and checks displayed results against CSV exports. The report explicitly distinguishes full-dataset
   blob analysis, ten-image table/contour scope, and two-image visual illustrations. Keep methods concise and
   use figures for measured results; the algorithm schematic is not included in the report.
+  The sections are condensed for the larger report: retain the four blob and seven contour question
+  headings, four result figures, and five inline tables. Introduce blob baseline parameters in prose
+  and avoid repeating limitations or narrating every table entry.
   Do not introduce custom path macros or external table inputs. See its README for integration.
   Report scope is 1,310 images for blobs and 10 for contours/comparison; update inline tables and
   prose when experiments change. The user confirmed that vehicle-type-detection was downloaded

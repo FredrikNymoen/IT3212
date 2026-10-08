@@ -103,12 +103,12 @@ def main():
             outputs[image_id, setting] = blobs
             print(image_id, setting, len(blobs))
 
-    fig, axes = plt.subplots(2, 2, figsize=(9, 7.4))
-    for row, image_id in enumerate(examples):
-        draw(axes[row, 0], records[image_id], title=f"{image_id} | original")
+    fig, axes = plt.subplots(1, 2, figsize=(10, 4.2))
+    for col, image_id in enumerate(examples):
         blobs = outputs[image_id, "baseline"]
-        draw(axes[row, 1], records[image_id], blobs, f"Baseline | {len(blobs)} blobs",
-             label_first_three=(row == 0))
+        draw(axes[col], records[image_id], blobs,
+             f"{image_id} | {len(blobs)} blobs",
+             label_first_three=(col == 0))
     save(fig, "blob_report_baseline.png")
 
     fig, axes = plt.subplots(2, 3, figsize=(11, 6.5))
