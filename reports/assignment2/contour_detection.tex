@@ -1,0 +1,218 @@
+\subsection{Contour Detection}
+\label{sec:contour-detection}
+
+\subsubsection{Apply contour detection to the same dataset}
+The blob detector represents local contrast with circles. Contour detection
+was used to examine the boundaries of intensity regions instead, using the
+same preprocessing. This analysis covers the ten fixed examples introduced
+in the blob section. The blob baseline was recomputed on these same inputs
+so that differences between methods are not caused by different image samples.
+All contour statistics and parameter experiments concern these ten images;
+the conclusions do not extend to a full-dataset contour evaluation.
+
+The baseline first smooths normalized grayscale intensities with a Gaussian
+filter ($\sigma=1$ pixel), then forms the binary mask in
+Equation~\eqref{eq:contour-mask}:
+\begin{equation}
+ M(x,y)=\begin{cases}1,&(G_1*I)(x,y)>0.5,\\0,&\text{otherwise}.\end{cases}
+ \label{eq:contour-mask}
+\end{equation}
+ContourPy's serial marching-squares engine traces the mask's 0.5 level,
+interpolating boundary positions between pixel centers. The implementation
+retains closed loops of area at least 25 square pixels and records excluded
+open and small paths. Open paths are not artificially closed across the frame.
+Outer boundaries and boundaries around holes are counted separately; the
+algorithm does not build an object hierarchy. Consequently, a contour is a
+boundary of a mask region, not necessarily a complete vehicle outline.
+
+Geometry checks verified a square's known area, perimeter, and centroid,
+extraction of a binary rectangle, exclusion of a frame-crossing open path,
+separate inner/outer ring boundaries, and no detections on a constant image.
+
+\subsubsection{Visualize contours using different colors}
+Figure~\ref{fig:contour-example} shows the prepared original, thresholded mask,
+and retained contours. Each contour has a distinct, deterministic hue within
+its image and an ID linked to its measurements. Colors do not denote vehicle
+classes or matching objects across different images.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=\linewidth]{Images/sedan_PIC_0_contours.png}
+ \caption{Contour baseline on \texttt{sedan/PIC\_0.jpg}: original, binary mask,
+ and 18 colored, numbered closed contours. Contour 3 follows a large rear-window
+ region; smaller loops include vehicle details and background patches.}
+ \label{fig:contour-example}
+\end{figure}
+
+The window loop follows an irregular region, but large dark portions of the
+car and surroundings merge in the mask. The retained loops therefore describe
+selected intensity regions rather than a complete vehicle silhouette. This
+difference between region boundaries and object boundaries also determines
+how the following measurements should be interpreted.
+
+\subsubsection{Calculate counts, areas, and perimeters}
+For ordered vertices $(x_i,y_i)$ of a closed loop, with vertex $n+1$ equal to
+vertex 1, Equation~\eqref{eq:contour-geometry} defines the area $A$ and
+perimeter $P$:
+\begin{equation}
+ A=\frac12\left|\sum_{i=1}^{n}(x_i y_{i+1}-x_{i+1}y_i)\right|,
+ \qquad
+ P=\sum_{i=1}^{n}\sqrt{(x_{i+1}-x_i)^2+(y_{i+1}-y_i)^2}.
+ \label{eq:contour-geometry}
+\end{equation}
+Area is measured in processed square pixels and perimeter in processed pixels.
+The baseline retains 158 contours (7--23 per image), with a contour-weighted
+mean area of 349.7 square pixels and mean perimeter of 95.1 pixels.
+Table~\ref{tab:detection-image-stats} gives every analyzed image's count and
+mean measurements. Individual loop areas, perimeters, and centroids are
+exported in \texttt{baseline\_contours.csv}. Boundary vertices are saved
+separately in the contour-results directory.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Contour baseline for all ten analyzed images. Area and perimeter means are calculated over retained loops within each image.}
+\label{tab:detection-image-stats}
+\begin{tabular}{lrrr}
+\toprule
+Image & Contours & Mean area (px$^2$) & Mean perimeter (px) \\
+\midrule
+hatchback/PIC\_0.jpg & 7 & 139.5 & 55.0 \\
+hatchback/PIC\_1.jpg & 21 & 289.9 & 98.3 \\
+motorcycle/PIC\_0.jpg & 19 & 93.1 & 46.0 \\
+motorcycle/PIC\_10.jpg & 7 & 92.1 & 42.8 \\
+pickup/PIC\_0.jpg & 14 & 521.2 & 140.4 \\
+pickup/PIC\_1.jpg & 20 & 224.3 & 105.6 \\
+sedan/PIC\_0.jpg & 18 & 197.8 & 52.8 \\
+sedan/PIC\_1.jpg & 23 & 649.6 & 114.8 \\
+suv/PIC\_0.jpg & 21 & 479.8 & 125.9 \\
+suv/PIC\_1.jpg & 8 & 677.6 & 135.8 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+There are also 166 excluded open paths and 436 excluded small or degenerate
+closed paths. Counts depend on these retention rules as well as image content.
+Nested loops measure individual enclosed regions; adding their areas would
+double-count overlaps rather than measure net foreground area.
+
+\subsubsection{Compare blob and contour detection}
+For the same ten images, the two baselines produce 695 blobs and 158 contours.
+This matched comparison excludes the remaining images from the full-dataset
+blob analysis.
+The larger blob count reflects a different feature definition, not greater
+accuracy. LoG summarizes local contrast using centers and scale estimates;
+contours follow the irregular boundaries of thresholded regions.
+
+In \texttt{pickup/PIC\_0.jpg}, there are 110 blobs but 14 contours
+(Figures~\ref{fig:blob-example} and~\ref{fig:contour-parameters}). Repeated
+circles follow window and bumper details, whereas individual contours can
+describe elongated window and bumper regions. Neither result identifies the
+whole pickup. A blob's $\pi r^2$ is a scale-based circular approximation,
+whereas contour area measures an enclosed polygon; these are not interchangeable
+estimates of the same object. Likewise, the contour brightness threshold of
+0.5 and LoG response threshold of 0.15 operate on different quantities.
+
+\subsubsection{Discuss advantages and limitations}
+LoG provides compact center-and-scale features and detects both bright and
+dark regions without choosing one global foreground brightness class. This
+representation provides approximate location and scale without tracing a
+boundary. A circle does not describe the outline of an elongated region, and edges,
+reflections, and background texture can generate multiple detections.
+The scale range and frame exclusion also restrict what can be found.
+
+Contours preserve irregular boundary geometry and support area and perimeter
+measurements. The measured boundaries depend on the segmentation: a global
+brightness threshold can merge unrelated regions or fragment one object.
+Discarding open paths removes frame-intersecting boundaries, and separate
+hole loops are not equivalent to separate objects. Illumination, perspective,
+occlusion, and resolution affect both approaches. Neither method uses the
+vehicle labels to recognize objects, and without boundary or blob annotations
+detection precision and recall cannot be calculated. The ten-image comparison
+also cannot establish performance across the full dataset.
+
+\subsubsection{Analyze threshold and filter-size effects}
+The dependence on segmentation was examined by varying brightness threshold,
+smoothing, and minimum retained area. Each variant changes one baseline
+parameter on all ten images. Table~\ref{tab:contour-parameters} reports the
+aggregate changes, while Figure~\ref{fig:contour-parameters} shows their effect
+on the pickup boundaries. The threshold changes which pixels enter the mask;
+smoothing changes local intensity variation; minimum area filters the resulting
+loops without changing their boundaries.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Contour experiments on the same ten images. Means are weighted over retained loops; area is in square pixels and perimeter in pixels. Other parameters remain at baseline.}
+\label{tab:contour-parameters}
+\begin{tabular}{llrrr}
+\toprule
+Setting & Value & Contours & Mean area & Mean perimeter \\
+\midrule
+Baseline & $t=0.5,\ \sigma=1,\ A_{\min}=25$ & 158 & 349.7 & 95.1 \\
+Lower threshold & $t=0.35$ & 182 & 343.5 & 93.2 \\
+Higher threshold & $t=0.65$ & 109 & 278.0 & 88.7 \\
+No smoothing & $\sigma=0$ & 230 & 342.6 & 101.8 \\
+Stronger smoothing & $\sigma=2$ & 96 & 328.6 & 88.1 \\
+Larger minimum area & $A_{\min}=100$ & 65 & 773.4 & 172.1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=\linewidth]{Images/contour_parameters_pickup_PIC_0.png}
+ \caption{Contour parameter experiments on \texttt{pickup/PIC\_0.jpg}.
+ Baseline and lower threshold both retain 14 contours, despite visibly different
+ boundaries. Colors are assigned independently per panel and do not track the
+ same contour across settings.}
+ \label{fig:contour-parameters}
+\end{figure}
+
+\textbf{Brightness threshold.} Thresholds 0.35, 0.5, and 0.65 produce
+182, 158, and 109 contours across the sample. The pickup counts are 14, 14,
+and 11. Lowering the threshold changes the window, bumper,
+and plate boundaries without changing the first two counts. At the high
+threshold, the broad window region is replaced by a narrow highlight.
+Thus, equal counts can conceal substantial changes in shape and position.
+Thresholding alters connectivity, so its effect on count is not generally
+monotonic even though the sample totals decrease here.
+
+\textbf{Smoothing.} Removing smoothing increases retained contours to 230
+and mean perimeter from 95.1 to 101.8 pixels. It produces 1,933 discarded small
+or degenerate loops, compared with 436 at baseline. The pickup has 27 retained
+contours with visibly more fragmented and jagged boundaries. Increasing
+$\sigma$ to 2 reduces the sample total to 96 and mean perimeter to 88.1 pixels.
+Small details disappear or merge, but the 13 pickup contours are not simply a
+subset of the baseline: smoothing can also change connectivity.
+
+\textbf{Minimum area.} Increasing the cutoff from 25 to 100 square pixels
+reduces the total from 158 to 65, while mean retained area rises from 349.7
+to 773.4 square pixels. This leaves the mask and surviving boundaries
+unchanged; it filters measurements rather than improving segmentation.
+The pickup retains 10 of its 14 baseline loops.
+
+These experiments show a trade-off between retaining fine detail and
+suppressing fragmented regions. They do not establish an optimal setting;
+that requires a target definition and annotated evaluation data.
+
+\subsubsection{Give examples of suitable applications}
+\textbf{Compact contrast features.} Candidate lamp details, reflective spots,
+or dark patches can be represented by a center
+and approximate scale. Figure~\ref{fig:blob-example} illustrates such local responses in the pickup,
+although a subsequent classifier or validation step would be needed to identify
+which responses actually belong to a desired vehicle component.
+
+\textbf{Shape measurements.} The sedan window region in
+Figure~\ref{fig:contour-example} has an irregular outline that is not
+represented by a single circle. When segmentation isolates the intended region, contours permit
+direct area and perimeter measurements. A controlled background with a brightness range distinct from the object
+would allow global thresholding to separate the silhouette. The present
+photographs contain shadows, reflections, and background regions that overlap
+the vehicle's brightness range.
+
+For whole-vehicle recognition in these scenes, neither baseline
+establishes one detection or one complete outline per vehicle. The results
+support choosing a method according to the required representation: local
+center/scale features or the geometry of adequately segmented boundaries.
+\FloatBarrier

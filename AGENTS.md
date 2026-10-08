@@ -53,6 +53,18 @@ implementation choices, and update this file when new briefs or repository struc
   `.gitkeep` is gitignored. Do not write generated results into `data/`.
 - `figures/` - tracked plot outputs. Existing Assignment 1 plots are `01_continuous_boxplots.png`
   and `02_pca_explained_variance.png`. Use assignment-specific subdirectories for new figures.
+- `reports/assignment2/` - exactly two English LaTeX section files for Overleaf, with question headings
+  matching the PDF and all tables written inline. Use literal `Images/filename.png` figure paths;
+  the accompanying `Images/` folder contains two contour notebook figures and two blob report figures with unique filenames.
+  `notebooks/assignment2/report_blob_figures.py` regenerates the blob figures using notebook functions
+  and checks displayed results against CSV exports. The report explicitly distinguishes full-dataset
+  blob analysis, ten-image table/contour scope, and two-image visual illustrations. Keep methods concise and
+  use figures for measured results; the algorithm schematic is not included in the report.
+  Do not introduce custom path macros or external table inputs. See its README for integration.
+  Report scope is 1,310 images for blobs and 10 for contours/comparison; update inline tables and
+  prose when experiments change. The user confirmed that vehicle-type-detection was downloaded
+  from Canvas. These sections occur late in a larger report: start with methods and results,
+  without repeating the general dataset introduction or adding provenance reminders.
 - `requirements.txt` - shared Python dependencies with minimum versions.
 - `README.md` - currently empty; use for course navigation, setup, and dataset instructions when needed.
 
@@ -139,8 +151,9 @@ Blackboard images are missing, request their location rather than silently subst
 Use multiple equally sized grayscale images for PCA.
 
 The selected local detection dataset contains 1,310 JPG images: hatchback (181), motorcycle (122),
-pickup (478), sedan (400), and suv (129). Its original source/Blackboard attribution still needs to be
-documented. Class labels are vehicle types, not ground-truth blob or contour annotations; do not equate
+pickup (478), sedan (400), and suv (129). The user confirmed that vehicle-type-detection was obtained
+from Canvas; use Canvas as its course download source even though the PDF names Blackboard.
+Class labels are vehicle types, not ground-truth blob or contour annotations; do not equate
 detected regions with vehicles or claim detection accuracy from these labels alone.
 Save detection figures under `figures/assignment2/blob_detection/` and
 `figures/assignment2/contour_detection/` respectively.
