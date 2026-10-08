@@ -2,41 +2,41 @@
 \label{sec:blob-detection}
 
 \subsubsection{Apply blob detection to the dataset}
-A multiscale Laplacian-of-Gaussian (LoG) detector was applied to all 1,310
-images. Images were EXIF-oriented, resized without enlargement to a maximum
-side of 512 pixels while preserving aspect ratio, and converted to grayscale
-intensities in $[0,1]$. All measurements use processed-image pixels.
+A blob is a region brighter or darker than its surroundings. A
+Laplacian-of-Gaussian (LoG) detector located blob centers and sizes in all
+1,310 images. Images were oriented using camera metadata, resized without
+enlargement to a maximum side of 512 pixels while preserving aspect ratio,
+and converted to grayscale values in $[0,1]$. Measurements use prepared-image pixels.
 
-For image $I$, the scale-normalized response is
+LoG smooths image $I$ with Gaussian filter $G_\sigma$, then measures intensity
+curvature at position $(x,y)$:
 \begin{equation}
  \boxed{R_\sigma(x,y)=-\sigma^2\nabla^2(G_\sigma*I)(x,y)}.
  \label{eq:blob-log}
 \end{equation}
-Here $(x,y)$ denotes pixel position, $G_\sigma$ a Gaussian filter of standard
-deviation $\sigma$, $*$ convolution, and $\nabla^2$ the sum of second spatial
-derivatives. Small scales examine fine detail; large scales examine broader
-regions. The factor $\sigma^2$ normalizes responses across scales, and the
-minus sign makes bright centers positive and dark centers negative.
+Here $\sigma$ is the filter's standard deviation in pixels, $*$ means
+convolution, and $\nabla^2$ sums second derivatives along both image axes.
+Small $\sigma$ examines fine detail; larger $\sigma$ examines broader regions.
+The factor $\sigma^2$ makes responses comparable across scales. Positive
+responses indicate bright centers and negative responses dark centers,
+called their \emph{polarity}.
 
-The implementation uses SciPy derivatives and identifies maxima of
-$|R_\sigma|$ in a $3\times3\times3$ spatial-scale neighborhood. Candidates
-above response threshold $\tau$ receive radius $r=\sqrt{2}\sigma$, an
-approximate feature scale. Frame-crossing circles are excluded; remaining
-candidates are processed strongest first, suppressing circles whose
-intersection exceeds a specified fraction of the smaller circle's area.
+Using SciPy filters, the detector finds peaks in magnitude $|R_\sigma|$
+within a $3\times3$ pixel window across three scale levels. Peaks above
+threshold $\tau$ receive estimated radius $r=\sqrt{2}\sigma$.
+Frame-crossing circles are excluded. Candidates are retained strongest first;
+a weaker circle is rejected when its intersection with a retained circle
+exceeds the overlap limit, measured relative to the smaller circle's area.
 
-The baseline uses 12 geometrically spaced scales from $\sigma_{\min}=4$ to
-$\sigma_{\max}=16$, $\tau=0.15$, and overlap limit 0.5. These parameters control
-feature size, response strength, and duplicate suppression, respectively.
-Additional pre-smoothing is disabled because LoG already includes Gaussian
-smoothing. This configuration provides the reference for the experiments below.
+The reference configuration, or \emph{baseline}, uses 12 scales with a
+constant ratio between $\sigma_{\min}=4$ and $\sigma_{\max}=16$,
+response threshold $\tau=0.15$, and overlap limit 0.5.
 
 \subsubsection{Visualize the detected blobs}
-Ten fixed display examples were chosen as the first two alphabetically sorted
-filenames from each of the five classes. This reproducible selection covers
-every class but is not a representative sample; all 1,310 images remain in
-the numerical analysis. Figure~\ref{fig:blob-example} uses two of these
-examples to contrast repeated pickup details with broader sedan regions.
+The first two alphabetically sorted filenames per class form ten reproducible
+display examples. This selection does not restrict the full-dataset analysis.
+Figure~\ref{fig:blob-example} contrasts two examples: repeated pickup details
+and broader sedan regions.
 
 \begin{figure}[H]
  \centering
@@ -52,9 +52,8 @@ regions also respond: the circles locate contrast features, not vehicle outlines
 
 \subsubsection{Calculate and display counts, sizes, and positions}
 The baseline produced 85,074 blobs with mean radius 7.40 pixels. Per-image
-counts range from 3 to 209, with median 63 and interquartile range 42--83.
-Table~\ref{tab:blob-image-stats} gives the ten display examples; CSV exports
-contain every image summary and every blob's position, radius, and polarity.
+counts range from 3 to 209, with median 63.
+Table~\ref{tab:blob-image-stats} gives the ten display examples.
 
 \begin{table}[H]
 \centering
@@ -100,9 +99,10 @@ ID & $x$ & $y$ & $r$ & Polarity \\
 \end{table}
 
 \subsubsection{Evaluate the effect of algorithm parameters}
-Six variants each change one baseline parameter on all 1,310 images
-(Table~\ref{tab:blob-parameters}). Figure~\ref{fig:blob-parameters} holds the
-pickup and sedan fixed to show which structures survive different thresholds.
+Six variants each change one parameter on all 1,310 images
+(Table~\ref{tab:blob-parameters}). Extra Gaussian smoothing before LoG uses
+standard deviation $\sigma_{\mathrm{pre}}$, set to zero in the baseline.
+Figure~\ref{fig:blob-parameters} holds both example images fixed across thresholds.
 
 \begin{table}[H]
 \centering
@@ -126,7 +126,7 @@ Extra smoothing & Pre-smoothing $\sigma_{\mathrm{pre}}=2$ & 44,825 & 9.42 \\
 
 \begin{figure}[H]
  \centering
- \includegraphics[width=\linewidth]{Images/blob_report_thresholds.png}
+ \includegraphics[width=0.92\linewidth]{Images/blob_report_thresholds.png}
  \caption{Pickup (top) and sedan (bottom) at increasing response thresholds;
  other parameters remain at baseline. Counts refer to each displayed image.}
  \label{fig:blob-parameters}
@@ -135,15 +135,13 @@ Extra smoothing & Pre-smoothing $\sigma_{\mathrm{pre}}=2$ & 44,825 & 9.42 \\
 \textbf{Threshold.} Lowering $\tau$ increases counts in every image; raising
 it decreases counts in every image. At the high threshold, repeated pickup
 window-edge responses remain, but the broad dark sedan window response
-disappears while bright reflections remain. A larger blob therefore need not
-have a stronger response. The increase in aggregate mean radius does not
-imply that each surviving feature is larger.
+disappears while bright reflections remain. Blob size therefore does not determine response strength.
 
 \textbf{Scale range.} Raising $\sigma_{\min}$ to 7 excludes radii below
 9.90 pixels, removing fine features and increasing mean radius. Raising
 $\sigma_{\max}$ to 30 permits broader features but slightly reduces the total.
-With 12 scales fixed, changing an endpoint also changes the intermediate
-sampling grid; this is not simply adding larger scales to the baseline.
+With 12 scales fixed, changing either limit also changes the intermediate
+scales, so existing detections can disappear.
 
 \textbf{Overlap and smoothing.} A stricter overlap limit removes more
 competing circles, potentially including nearby distinct features.

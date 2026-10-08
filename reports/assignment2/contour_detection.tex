@@ -2,22 +2,24 @@
 \label{sec:contour-detection}
 
 \subsubsection{Apply contour detection to the same dataset}
-Contour detection was applied to ten images from the same dataset: the first
-two alphabetically sorted filenames per vehicle class. All contour experiments
-and the matched blob comparison use this fixed subset. Images were
-EXIF-oriented, resized without enlargement to a maximum side of 512 pixels
-with preserved aspect ratio, and converted to grayscale intensities in $[0,1]$.
+A contour follows a region's boundary. All experiments use the ten fixed
+display images, with the blob baseline recomputed on identical inputs.
 
-The baseline smooths image $I$ with Gaussian filter $G_\sigma$, using
-$\sigma=1$ pixel, then thresholds brightness at $t=0.5$:
+The grayscale image $I$ is smoothed by Gaussian filter $G_\sigma$, whose
+standard deviation $\sigma$ controls smoothing strength. Brightness threshold
+$t$ separates pixels into a binary mask $M$:
 \begin{equation}
  M(x,y)=\begin{cases}1,&(G_\sigma*I)(x,y)>t,\\0,&\text{otherwise}.\end{cases}
  \label{eq:contour-mask}
 \end{equation}
-ContourPy's marching-squares engine traces the binary mask's 0.5 level.
-The implementation retains closed loops of area $A\geq25$ square pixels;
-open paths are excluded rather than closed across the frame. Outer and hole
-boundaries are counted separately, without constructing an object hierarchy.
+Here $(x,y)$ is pixel position and $*$ denotes convolution. This separation
+is called \emph{segmentation}; the baseline uses $\sigma=1$ pixel and $t=0.5$.
+
+ContourPy's marching-squares algorithm traces boundaries between mask values
+0 and 1 at level 0.5. This fixed tracing level differs from the adjustable
+image threshold $t$. Only closed curves (loops) of area at least
+$A_{\min}=25$ square pixels are retained. Open curves are excluded;
+outer boundaries and boundaries around holes count separately.
 
 \subsubsection{Visualize contours using different colors}
 Figure~\ref{fig:contour-example} shows the mask and retained boundaries.
@@ -35,19 +37,19 @@ intensity regions rather than a complete vehicle silhouette.
 \end{figure}
 
 \subsubsection{Calculate counts, areas, and perimeters}
-For ordered loop vertices $(x_i,y_i)$, with vertex $n+1$ equal to vertex 1,
-area $A$ and perimeter $P$ are
+A loop's $n$ ordered boundary points $(x_i,y_i)$ form a polygon. Area $A$
+is calculated from adjacent coordinates; perimeter $P$ sums segment lengths:
 \begin{equation}
  A=\frac12\left|\sum_{i=1}^{n}(x_i y_{i+1}-x_{i+1}y_i)\right|,
  \qquad
  P=\sum_{i=1}^{n}\sqrt{(x_{i+1}-x_i)^2+(y_{i+1}-y_i)^2}.
  \label{eq:contour-geometry}
 \end{equation}
-Measurements use processed pixels. The baseline retains 158 contours and
-excludes 166 open paths and 436 small or degenerate closed paths.
-Table~\ref{tab:detection-image-stats} reports every analyzed image; individual
-measurements and vertices are exported separately. Hole and outer-loop areas
-overlap, so summing them would not give net foreground area.
+The loop closes with $(x_{n+1},y_{n+1})=(x_1,y_1)$. Area uses square pixels
+and perimeter pixels. The baseline retains 158 contours; 166 open curves and
+436 undersized or invalid closed curves are excluded.
+Table~\ref{tab:detection-image-stats} covers all ten images. Overlapping hole
+and outer-loop areas cannot be summed to obtain net foreground area.
 
 \begin{table}[H]
 \centering
@@ -73,29 +75,25 @@ suv/PIC\_1.jpg & 8 & 677.6 & 135.8 \\
 \end{table}
 
 \subsubsection{Compare blob and contour detection}
-Recomputing the blob baseline on these same ten images gives 695 blobs,
-compared with 158 contours. The pickup has 110 blobs and 14 contours:
-repeated local responses along window and bumper details can correspond to
-only a few elongated region boundaries. The higher blob count does not
-indicate greater accuracy. Blob radius estimates contrast scale; contour
-area measures an enclosed polygon, so their sizes are not interchangeable.
+The same ten images produce 695 blobs and 158 contours. The pickup has
+110 blobs but 14 contours: repeated responses along window and bumper
+details correspond to fewer elongated boundaries. Higher counts do not imply
+greater accuracy. Blob radius estimates contrast scale, whereas contour
+area measures an enclosed polygon.
 
 \subsubsection{Discuss advantages and limitations}
-LoG provides compact center-and-scale features for both bright and dark
-regions, but circles do not preserve irregular shape and can respond repeatedly
-to edges and reflections. Contours preserve boundary geometry and support
-area and perimeter measurements, but depend on segmentation: global
-thresholding can merge unrelated regions or fragment one object. Excluding
-open paths also removes frame-intersecting boundaries. Neither method
-recognizes vehicles from these measurements. Without detection annotations,
-precision and recall cannot be calculated; the ten-image comparison also
-cannot establish full-dataset performance.
+LoG locates bright and dark features but cannot describe irregular outlines;
+edges and reflections can produce repeated detections. Contours preserve
+shape, but a single brightness threshold can merge unrelated regions or split
+one object. Excluding open curves also removes frame-intersecting boundaries.
+Without annotated detections, accuracy cannot be established, and ten images
+cannot establish performance across the full dataset.
 
 \subsubsection{Analyze threshold and filter-size effects}
-Each experiment changes one baseline parameter on all ten images.
-Table~\ref{tab:contour-parameters} summarizes the results;
-Figure~\ref{fig:contour-parameters} illustrates boundary changes on one fixed
-pickup so that image content does not vary between settings.
+Each experiment changes brightness threshold $t$, smoothing strength
+$\sigma$, or minimum area $A_{\min}$ on all ten images
+(Table~\ref{tab:contour-parameters}). Figure~\ref{fig:contour-parameters}
+shows the changes on one fixed pickup image.
 
 \begin{table}[H]
 \centering
@@ -118,7 +116,7 @@ Larger minimum area & $A_{\min}=100$ & 65 & 773.4 & 172.1 \\
 
 \begin{figure}[H]
  \centering
- \includegraphics[width=\linewidth]{Images/contour_parameters_pickup_PIC_0.png}
+ \includegraphics[width=0.92\linewidth]{Images/contour_parameters_pickup_PIC_0.png}
  \caption{Pickup contour experiments. Baseline and lower threshold both
  retain 14 loops despite different boundaries. Colors do not track loops
  between panels.}
@@ -129,18 +127,17 @@ Larger minimum area & $A_{\min}=100$ & 65 & 773.4 & 172.1 \\
 but the pickup retains 14 loops at both $t=0.35$ and $t=0.5$, with different
 window and bumper boundaries. At $t=0.65$, the broad window region becomes
 a narrow highlight. Equal counts therefore conceal changes in shape and
-position; connectivity changes also make counts non-monotonic in general.
+position. Changing the threshold can split or join regions, so increasing it
+does not always reduce the number of contours.
 
 \textbf{Smoothing.} Without smoothing, fragmented detail raises the total
-to 230 and mean perimeter to 101.8 pixels. Increasing $\sigma$ to 2 reduces
-the total to 96 and mean perimeter to 88.1 pixels. Smoothing suppresses fine
-structure but may also merge regions, so it changes more than boundary roughness.
+to 230; $\sigma=2$ reduces it to 96. Smoothing removes fine structure but
+can also merge regions, changing both their boundaries and their number.
 
 \textbf{Minimum area.} Raising $A_{\min}$ from 25 to 100 reduces the total
 to 65 and increases mean retained area to 773.4 square pixels. This filters
 existing loops without changing the mask or surviving boundaries; it does
-not improve segmentation. Parameter selection therefore depends on the
-required detail and target region, rather than minimizing detection counts.
+not improve segmentation. Parameter selection must reflect the required detail and target region.
 
 \subsubsection{Give examples of suitable applications}
 LoG is suitable for locating candidate lamp details or reflective spots when
@@ -148,4 +145,3 @@ position and approximate scale are required. Contours support measurements
 of irregular regions, such as the sedan window, if segmentation isolates the
 boundary. Silhouette measurements require a contrasting background; shadows
 and reflections limit this application in the present photographs.
-\FloatBarrier
