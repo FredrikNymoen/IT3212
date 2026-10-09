@@ -1,42 +1,69 @@
 # Detection sections for Overleaf
 
-All text, equations, tables, and figure environments are contained in two files:
+All prose, equations, tables, and figure environments are inline in two files:
 
 - `blob_detection.tex`: paste into `Sections/Blob_detection.tex`.
 - `contour_detection.tex`: paste into `Sections/Contour_detection.tex`.
 
-Upload the four PNGs from this folder's `Images/` directly into your Overleaf project's `Images/` folder. Paths are literal `Images/filename.png`, relative to `main.tex`. Parameter figures have distinct filenames to avoid collisions.
+Upload these four PNGs from `Images/` into the Overleaf project's `Images/` folder:
 
-Ensure these standard packages are loaded in `packages.sty` or your preamble:
+- `blob_report_baseline.png`
+- `blob_report_thresholds.png`
+- `blob_contour_window_comparison.png`
+- `contour_parameters_pickup_PIC_0.png`
 
-```tex
-\usepackage{graphicx,booktabs,amsmath,placeins,float}
-```
+The matched comparison replaces the earlier `sedan_PIC_0_contours.png` in the report.
+It shows both methods on the same sedan, with the rear-window region marked by identical dashed boxes.
+The boxes are visual guides, not ground-truth boundaries or an accuracy assessment.
 
-Include the sections from your main document or existing image-processing section:
+Load the standard packages `graphicx`, `booktabs`, `amsmath`, `placeins`, and `float`.
+Figure paths are literal `Images/filename.png`, relative to `main.tex`. Include the sections with:
 
 ```tex
 \input{Sections/Blob_detection.tex}
 \input{Sections/Contour_detection.tex}
 ```
 
-There are no custom path commands or external table files. Each section contains its own image-statistics table and introduces its own analysis scope. Compile twice to resolve references.
+There are no custom path macros or external table inputs. Headings use `\subsubsection{}` in the
+assignment's question order; figures use `[H]`. Compile twice to resolve references. The sections
+occur late in the full report and avoid repeating the general dataset introduction. Keep them concise,
+with a target of 7-8 pages together in the user's Overleaf layout; local preview pagination can differ.
 
-The two contour figures are notebook outputs. The two blob figures are regenerated from the exact notebook implementation and checked against the existing CSV exports. The algorithm schematic is not included in the report. Blob results cover 1,310 images; contour results and the matched comparison cover 10. The user confirmed that vehicle-type-detection was downloaded from Canvas. These sections appear late in the full report and begin with methods and results without repeating the general dataset introduction. Update inline tables and discussion if experiments change.
+## Analysis and display scope
 
-Headings use numbered `\subsubsection{}` in the order of the assignment questions. All figures use `[H]`, which requires the standard `float` package. The text uses impersonal reporting of methods, observations, and limitations.
+Both detectors' baselines, all parameter experiments, and their matched comparison cover all
+1,310 discovered images. The ten paths in `detection_images.json` are display examples only, selected
+as the first two alphabetically sorted filenames per class. The report's blob image table is an excerpt;
+the contour table summarizes all images by class. Detailed per-image and per-contour statistics remain
+in CSV exports. Areas and perimeters are measurements of mask boundaries, not vehicle sizes or accuracy.
+The dataset was downloaded from Canvas.
 
-## Current figure files
+Run `06_contour_detection.ipynb` from its assignment directory in a fresh kernel. It independently
+recomputes LoG on every image and checks against prior blob exports when those are available.
+Full contour outputs under `results/assignment2/contour_detection/` include:
 
-Upload these four files from `Images/`:
+- `baseline_summary.csv`: counts, exclusions, and mean area/perimeter for every image, including zeros.
+- `baseline_contours.csv`: individual contour areas, perimeters, centroids, and vertex counts.
+- `baseline_vertices/<class>/<image>.json.gz`: complete retained baseline boundary coordinates.
+- `class_summary.csv`: full-dataset baseline aggregates by class.
+- `parameter_experiments.csv` and `parameter_aggregate.csv`: per-image and aggregate results for all six settings.
+- `contours_<setting>.csv`: individual measurements for each non-baseline parameter setting.
+- `blob_contour_comparison.csv`: matched full-dataset statistics for the two detectors.
 
-- `blob_report_baseline.png`
-- `blob_report_thresholds.png`
-- `sedan_PIC_0_contours.png`
-- `contour_parameters_pickup_PIC_0.png`
+Per-loop means are weighted over individual retained contours, not over per-image means. Empty-image
+means are undefined. Inner and outer loops are retained separately, so enclosed areas must not be summed
+as net foreground area. Update inline report values and discussion when experiments change.
 
-The blob baseline figure shows two overlays side by side without separate original-image panels. The blob figures show pickup/PIC_0.jpg and sedan/PIC_0.jpg, selected from the existing manifest to contrast local structures. The threshold figure holds the two inputs fixed across three thresholds. This display selection does not limit the 1,310-image baseline or seven-setting experiment. The ten-image table is a reproducible display subset; the contour analysis currently covers only those ten images. These different scopes are explicitly explained in the report.
+## Regenerate report figures
 
-Regenerate the two blob figures with `.venv/Scripts/python.exe notebooks/assignment2/report_blob_figures.py`. The script reads the required function declarations from the blob notebook, recomputes six displayed results, checks baseline measurements and parameter counts against the CSV exports, and copies the figures to `Images/`. It also checks full-dataset per-image threshold changes and reports baseline quartiles. It does not change the notebook or the dataset-wide exports.
+After executing the notebooks, run from the repository root:
 
-The sections have been condensed for the full report: all four blob questions and seven contour questions remain, with four result figures and five inline tables in total. Blob baseline parameters are introduced in the method text; parameter experiments retain their measured results and interpretation.
+```powershell
+.venv/Scripts/python.exe notebooks/assignment2/report_blob_figures.py
+.venv/Scripts/python.exe notebooks/assignment2/report_contour_figures.py
+```
+
+Both scripts load required function declarations from the notebooks, recompute only illustrated inputs,
+and check results against CSV exports. They copy the report PNGs to `Images/`. The contour script also
+copies the notebook's pickup parameter figure. Neither script modifies dataset-wide measurements.
+The algorithm schematic is not included in the report.

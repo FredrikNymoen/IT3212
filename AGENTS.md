@@ -28,22 +28,22 @@ implementation choices, and update this file when new briefs or repository struc
   Tracked report figures show display examples and dataset-wide aggregates in
   `figures/assignment2/blob_detection/`. Images are loaded per worker; parameter variants of the same
   image reuse LoG responses, and vectorized overlap preserves the original suppression rule.
-- `notebooks/assignment2/06_contour_detection.ipynb` - implemented and executed threshold-based contour
-  detection using ContourPy, with colored boundaries, counts/areas/perimeters, geometry checks,
-  parameter experiments, and blob comparison. Results are in `results/assignment2/contour_detection/`
-  and plots in `figures/assignment2/contour_detection/`. Both notebooks run independently. The contour
-  notebook repeats the blob helper functions and recomputes the baseline; keep them synchronized when
-  changing algorithms. It matches EXIF orientation, aspect-preserving resize to maximum side 512
-  (no upscaling), and grayscale preparation. Contours include retained closed outer/hole loops;
-  open paths and loops below the minimum area are excluded and reported separately. Its current
-  analysis and comparison cover the 10 manifest images; distinguish this scope from the full-dataset
-  blob notebook until the contour analysis is extended.
+- `notebooks/assignment2/06_contour_detection.ipynb` - threshold-based contour detection using
+  ContourPy, with full-dataset baseline statistics, all six parameter settings, and a matched LoG
+  comparison on every discovered image. The ten manifest images select illustrations only.
+  Results are in `results/assignment2/contour_detection/` and plots in
+  `figures/assignment2/contour_detection/`. Both notebooks run independently; the contour notebook
+  repeats the exact blob helpers and recomputes the full baseline. Keep these functions synchronized.
+  Preparation matches EXIF orientation, aspect-preserving resize to maximum side 512 (no upscaling),
+  and grayscale normalization. Retained contours include closed outer/hole loops; open paths and
+  loops below the minimum area are excluded and counted separately. Images are loaded per worker;
+  full per-image/per-contour CSVs and per-image gzip JSON boundary vertices are exported without
+  retaining all image arrays or experiment paths in memory. Only display paths stay in memory.
 - `notebooks/assignment2/detection_images.json` - shared display-image paths relative to the detection
-  dataset, initially two images per class selected by sorted filename. It must not limit full-dataset
-  blob analysis. Update this manifest when refining display examples. The contour notebook currently
-  still uses it as its analysis subset. Put the blob/contour comparison in the contour notebook.
-  Other planned notebooks are `01_fourier.ipynb`, `02_pca.ipynb`, `03_hog.ipynb`, and `04_lbp.ipynb`;
-  create them when work on those topics begins.
+  dataset, initially two images per class selected by sorted filename. It must not limit either
+  full-dataset analysis. Update it when refining illustrations. Put the blob/contour comparison in
+  the contour notebook. Other planned notebooks are `01_fourier.ipynb`, `02_pca.ipynb`, `03_hog.ipynb`,
+  and `04_lbp.ipynb`; create them when work on those topics begins.
 - `data/` - original datasets only; everything except `.gitkeep` is gitignored.
   Assignment 1 uses `data/graduation_dataset.csv`. Use assignment-specific subdirectories for new
   datasets and document their source and placement. The user-provided Assignment 2 detection dataset
@@ -55,16 +55,19 @@ implementation choices, and update this file when new briefs or repository struc
   and `02_pca_explained_variance.png`. Use assignment-specific subdirectories for new figures.
 - `reports/assignment2/` - exactly two English LaTeX section files for Overleaf, with question headings
   matching the PDF and all tables written inline. Use literal `Images/filename.png` figure paths;
-  the accompanying `Images/` folder contains two contour notebook figures and two blob report figures with unique filenames.
+  the accompanying `Images/` folder contains two blob figures, one matched blob/contour comparison,
+  and one contour parameter figure with unique filenames.
   `notebooks/assignment2/report_blob_figures.py` regenerates the blob figures using notebook functions
-  and checks displayed results against CSV exports. The report explicitly distinguishes full-dataset
-  blob analysis, ten-image table/contour scope, and two-image visual illustrations. Keep methods concise and
+  and checks displayed results against CSV exports. `report_contour_figures.py` regenerates and
+  checks the matched sedan comparison, highlighting the same rear-window region in both panels.
+  Both methods and all parameter settings cover the full dataset; ten fixed paths select
+  illustrations only. The contour report table summarizes each class rather than listing all images. Keep methods concise and
   use figures for measured results; the algorithm schematic is not included in the report.
   The sections are condensed for the larger report: retain the four blob and seven contour question
   headings, four result figures, and five inline tables. Introduce blob baseline parameters in prose
   and avoid repeating limitations or narrating every table entry.
   Do not introduce custom path macros or external table inputs. See its README for integration.
-  Report scope is 1,310 images for blobs and 10 for contours/comparison; update inline tables and
+  Report scope is 1,310 images for both methods and their comparison; update inline tables and
   prose when experiments change. The user confirmed that vehicle-type-detection was downloaded
   from Canvas. These sections occur late in a larger report: start with methods and results,
   without repeating the general dataset introduction or adding provenance reminders.
