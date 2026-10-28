@@ -5,16 +5,19 @@ All prose, equations, tables, and figure environments are inline in two files:
 - `blob_detection.tex`: paste into `Sections/Blob_detection.tex`.
 - `contour_detection.tex`: paste into `Sections/Contour_detection.tex`.
 
-Upload these four PNGs from `Images/` into the Overleaf project's `Images/` folder:
+Upload these five PNGs from `Images/` into the Overleaf project's `Images/` folder:
 
 - `blob_report_baseline.png`
 - `blob_report_thresholds.png`
-- `blob_contour_window_comparison.png`
+- `contour_report_baseline.png`
+- `blob_contour_detail_comparison.png`
 - `contour_parameters_pickup_PIC_0.png`
 
-The matched comparison replaces the earlier `sedan_PIC_0_contours.png` in the report.
-It shows both methods on the same sedan, with the rear-window region marked by identical dashed boxes.
-The boxes are visual guides, not ground-truth boundaries or an accuracy assessment.
+The contour-only figure uses pickup/PIC_1.jpg and belongs under question 2. The separate matched
+comparison under question 4 enlarges the same windshield-frame and headlamp regions in both methods.
+The dashed boxes are visual guides rather than ground-truth boundaries. This replaces the earlier
+`blob_contour_window_comparison.png` in the report. The advantages/limitations and suitable-application
+paragraphs discuss concrete observed regions, without adding separate illustrative figures.
 
 Load the standard packages `graphicx`, `booktabs`, `amsmath`, `placeins`, and `float`.
 Figure paths are literal `Images/filename.png`, relative to `main.tex`. Include the sections with:
@@ -35,7 +38,7 @@ Both detectors' baselines, all parameter experiments, and their matched comparis
 1,310 discovered images. The ten paths in `detection_images.json` are display examples only, selected
 as the first two alphabetically sorted filenames per class. The report's blob image table is an excerpt;
 the contour table summarizes all images by class. Detailed per-image and per-contour statistics remain
-in CSV exports. Areas and perimeters are measurements of mask boundaries, not vehicle sizes or accuracy.
+in internal CSV exports. Only the report is submitted, with no code or CSV attachments. Areas and perimeters are measurements of mask boundaries, not vehicle sizes or accuracy.
 The dataset was downloaded from Canvas.
 
 Run `06_contour_detection.ipynb` from its assignment directory in a fresh kernel. It independently

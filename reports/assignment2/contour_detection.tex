@@ -3,9 +3,8 @@
 
 \subsubsection{Apply contour detection to the same dataset}
 A contour follows a region's boundary. The baseline, all parameter experiments,
-and the matched blob comparison cover all 1,310 images. The ten fixed display
-examples are used only for illustrations, with identical prepared inputs for
-both methods.
+and the matched blob comparison cover all 1,310 images. Both methods use
+identical prepared inputs.
 
 The grayscale image $I$ is smoothed by Gaussian filter $G_\sigma$, whose
 standard deviation $\sigma$ controls smoothing strength. Brightness threshold
@@ -15,32 +14,30 @@ $t$ separates pixels into a binary mask $M$:
  \label{eq:contour-mask}
 \end{equation}
 Here $(x,y)$ is pixel position and $*$ denotes convolution. This separation
-is called \emph{segmentation}; the baseline uses $\sigma=1$ pixel and $t=0.5$.
+is called \emph{segmentation}. The baseline uses $\sigma=1$ pixel and $t=0.5$.
 
 ContourPy's marching-squares algorithm traces boundaries between mask values
 0 and 1 at level 0.5. This fixed tracing level differs from the adjustable
 image threshold $t$. Only closed curves (loops) of area at least
-$A_{\min}=25$ square pixels are retained. Open curves are excluded;
-outer boundaries and boundaries around holes count separately.
+$A_{\min}=25$ square pixels are retained. Open curves are excluded.
+Outer boundaries and boundaries around holes count separately.
 
 \subsubsection{Visualize contours using different colors}
-Figure~\ref{fig:contour-example} overlays both methods on the same sedan.
-Each contour has a distinct color, independent of vehicle class. Dashed boxes
-mark the same rear-window region to support a direct comparison; they are
-visual guides rather than annotated object boundaries.
+Figure~\ref{fig:contour-example} shows the retained contours on the original
+pickup image. Each loop has a different color, independent of vehicle class.
+The windshield frame, mirror, and bumper illustrate the range of boundary shapes.
 
 \begin{figure}[H]
  \centering
- \includegraphics[width=\linewidth]{Images/blob_contour_window_comparison.png}
- \caption{Matched sedan example: 27 blobs (left) and 18 closed contours (right).
- Yellow/cyan circles mark bright/dark blobs; contour colors distinguish loops.
- Dashed boxes identify the same rear-window region.}
+ \includegraphics[width=0.64\linewidth]{Images/contour_report_baseline.png}
+ \caption{The 20 retained closed contours in \texttt{pickup/PIC\_1.jpg}.
+ Colors distinguish individual boundaries, including small details and background regions.}
  \label{fig:contour-example}
 \end{figure}
 
 \subsubsection{Calculate counts, areas, and perimeters}
 A loop's $n$ ordered boundary points $(x_i,y_i)$ form a polygon. Area $A$
-is calculated from adjacent coordinates; perimeter $P$ sums segment lengths:
+is calculated from adjacent coordinates. Perimeter $P$ sums segment lengths:
 \begin{equation}
  A=\frac12\left|\sum_{i=1}^{n}(x_i y_{i+1}-x_{i+1}y_i)\right|,
  \qquad
@@ -49,10 +46,9 @@ is calculated from adjacent coordinates; perimeter $P$ sums segment lengths:
 \end{equation}
 The loop closes with $(x_{n+1},y_{n+1})=(x_1,y_1)$. Area uses square pixels
 and perimeter pixels. The baseline retains 19,468 contours, with 0--63 per
-image and median 14; three images have none. It excludes 21,604 open curves
+image and median 14. Three images have none. It excludes 21,604 open curves
 and 44,907 undersized or invalid closed curves.
-Table~\ref{tab:detection-image-stats} summarizes the full dataset by class;
-CSV exports retain counts for every image and measurements for every contour.
+Table~\ref{tab:detection-image-stats} summarizes the full dataset by class.
 Overlapping hole and outer-loop areas cannot be summed as net foreground area.
 
 \begin{table}[H]
@@ -78,22 +74,36 @@ Total & 1,310 & 19,468 & 358.8 & 94.3 \\
 
 \subsubsection{Compare blob and contour detection}
 On the same 1,310 images, the baselines produce 85,074 blobs and 19,468 contours.
-In the highlighted window of Figure~\ref{fig:contour-example}, a large cyan
-circle summarizes the dark region by a center and radius. The green contour
-follows its irregular mask boundary, extending below the glass where similar
-intensities join. Smaller reflections produce additional local responses.
-This shows the distinction between contrast scale and segmented shape:
-neither representation guarantees the physical window boundary. Higher counts
-do not indicate greater accuracy, and blob circle area and contour polygon
-area are not interchangeable measurements.
+The pickup in Figure~\ref{fig:blob-contour-comparison} contains 106 blobs and
+20 contours in the full image.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=\linewidth]{Images/blob_contour_detail_comparison.png}
+ \caption{Matching crops from \texttt{pickup/PIC\_1.jpg}: LoG blobs (left) and
+ closed contours (right). Dashed boxes mark common regions. Yellow/cyan circles
+ indicate bright/dark responses. Both methods were applied to the full image.}
+ \label{fig:blob-contour-comparison}
+\end{figure}
+
+LoG produces multiple circles along the windshield, while the red contour follows
+the bright frame. Near the headlamp, blob circles overlap the housing and adjacent
+bodywork without isolating the lamp. Contours capture only small bright patches.
+Blob radii represent contrast scale, whereas contour areas measure segmented
+regions, including the frame rather than the glass.
 
 \subsubsection{Discuss advantages and limitations}
-LoG locates bright and dark features but cannot describe irregular outlines;
-edges and reflections can produce repeated detections. Contours preserve
-shape, but a single brightness threshold can merge unrelated regions or split
-one object. Excluding open curves also removes frame-intersecting boundaries.
-Full-dataset coverage quantifies these methods' behavior; annotated detections
-would still be required to establish accuracy.
+\textbf{Blob detection.} LoG provides centers and approximate sizes for bright
+and dark features at several scales. Circles cannot preserve irregular outlines.
+Nearby edges and background contrast can generate multiple candidates, and the
+scale range limits detectable sizes.
+
+\textbf{Contour detection.} Contours provide outlines for measuring area and
+perimeter, but depend on segmentation. A threshold can omit or
+fragment a component. Excluding open curves removes boundaries that intersect
+the image edge, while separate inner and outer loops can inflate component counts.
+Neither method identifies vehicle components or establishes accuracy without
+annotated detections.
 
 \subsubsection{Analyze threshold and filter-size effects}
 Each experiment changes brightness threshold $t$, smoothing strength
@@ -105,7 +115,7 @@ shows the changes on one fixed pickup image.
 \centering
 \small
 \caption{Contour parameter sensitivity across all 1,310 images. Means are
-calculated over retained loops; area is in square pixels and perimeter in pixels.}
+calculated over retained loops. Area is in square pixels and perimeter in pixels.}
 \label{tab:contour-parameters}
 \begin{tabular}{llrrr}
 \toprule
@@ -137,7 +147,7 @@ The pickup also illustrates why counts alone are insufficient: $t=0.35$ and
 $t=0.5$ both retain 14 contours but produce different boundaries.
 
 \textbf{Smoothing.} Without smoothing, fragmented detail raises the total
-to 27,079; $\sigma=2$ reduces it to 12,066 and increases mean area from
+to 27,079. Increasing $\sigma$ to 2 reduces it to 12,066 and increases mean area from
 358.8 to 450.9 square pixels. Fine regions disappear or merge, changing both
 boundary geometry and the size distribution.
 
@@ -147,9 +157,18 @@ without changing the mask or surviving boundaries. Parameter selection must
 reflect the required detail and target region.
 
 \subsubsection{Give examples of suitable applications}
-LoG is suitable for locating candidate lamp details or reflective spots when
-position and approximate scale are required. Contours support measurements
-of irregular regions, such as the sedan window, if segmentation isolates the
-boundary. Silhouette measurements require a contrasting background; shadows
-and reflections limit this application in the present photographs.
+\textbf{Locating surface defects.} LoG can be used to locate isolated bright or
+dark spots on a uniform surface, for example approximately round stains in an
+inspection image. Each detection provides a center and an estimated radius,
+which can support counting candidates and selecting regions for closer
+inspection. Contours are preferable when the defect's full outline is needed
+to measure its area.
+
+\textbf{Measuring shape.} Contours are suitable for measuring the outline,
+area, or perimeter of an isolated region or manufactured part. The windshield
+frame illustrates how an elongated region can be represented more closely than
+by circles. Measuring the glass would require a mask that isolates the glass
+instead. A controlled, contrasting background would make part measurements
+more reliable. For shape measurement, a correctly separated region matters more
+than a high number of detections.
 \FloatBarrier

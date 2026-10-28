@@ -5,9 +5,10 @@ This file provides guidance to coding agents working with this repository.
 ## Project overview
 
 IT3212 (Data-Driven Software Engineering) is a course repository for all four assignments.
-Assignment 1 has an existing preprocessing implementation. Assignment 2 is the current focus and
-covers image processing. Assignments 3 and 4 will be added later; their requirements are not yet available.
-Do not assume that later assignments use the student graduation dataset or the Assignment 1 workflow.
+Assignment 1 has an existing preprocessing implementation. Assignment 2 covers image processing.
+Assignment 3 is the current focus and covers a justified machine-learning workflow; the user selected
+the student graduation dataset for this assignment. Assignment 4 requirements are not yet available.
+Do not assume that Assignment 4 uses the same dataset or workflow.
 
 The assignment PDFs in the repository root are the source of truth for grading and submission requirements.
 Read the relevant PDF before implementing an assignment. Distinguish assignment requirements from local
@@ -17,10 +18,39 @@ implementation choices, and update this file when new briefs or repository struc
 
 - `IT3212 - Assignment 1.pdf` - preprocessing brief, rubric, and submission requirements.
 - `IT3212 - Assignment 2.pdf` - image-processing brief and rubric.
+- `IT3212-2026-Assignment 3.pdf` - machine-learning brief, 200 points with 130 required to pass.
+- `workshops/workshop1/Monday-Workshop (1).pdf` - classification workshop brief;
+  start with UCI Dry Bean (602), then repeat with another listed dataset.
+  The original CSV and UCI metadata are gitignored at `workshops/workshop1/dry_bean.csv`
+  and `workshops/workshop1/dry_bean_metadata.json` (the user's chosen location).
+  Source, loading instructions, and
+  verified dimensions (13,611 rows, 16 numerical features, seven classes; target
+  `Class`) are documented in `workshops/workshop1/README.md`.
+  `workshops/workshop1/workshop1_classification.ipynb` follows all 11 workshop
+  points with PyTorch neural networks, controlled hyperparameter grids, a scaling
+  comparison, random-forest tuning, and the repeated workflow on bundled Wine.
+  The CSV retains all 13,611 rows; modeling removes 68 exact duplicates before
+  splitting (13,543 unique rows) to prevent identical records across partitions.
+  Run from `workshops/workshop1/`; use training-only preprocessing and validation
+  for selection, reserving test evaluation until each dataset's settings are fixed.
 - `notebooks/assignment1/student_graduation.ipynb` - populated Assignment 1 implementation, including optional PCA.
   Preserve this work when starting later assignments.
 - `notebooks/assignment1/` through `notebooks/assignment4/` - one directory per assignment.
-  Assignment 3-4 directories currently contain `.gitkeep` placeholders; remove each when adding content.
+  Assignment 4 currently contains a `.gitkeep` placeholder; remove it when adding content.
+- `notebooks/assignment3/student_dropout_classification.ipynb` - self-contained English answers
+  to Assignment 3 points 1-10. Uses the original `data/graduation_dataset.csv`, both semesters,
+  three-class prediction and dropout ranking for an illustrative 20% student-support capacity.
+  Run from `notebooks/assignment3/`. Results go to `results/assignment3/` (gitignored), figures
+  to `figures/assignment3/`. A stratified 60/20/20 train/validation/test split fits all learned
+  preprocessing and feature ranking on training data only; validation selects models and neural
+  stopping epochs; test evaluation occurs only in point 10 after choices are locked.
+  Three basic algorithms are KNN, decision tree and RBF SVM. Boosting uses shallow trees;
+  bagging uses KNN, satisfying the requirement for different base algorithms. Point 8 interprets
+  the unspecified transfer comparison as training-only autoencoder encoder transfer to classification,
+  with a matched scratch control; it explicitly distinguishes this from cross-domain transfer.
+  Point 9 tunes a three-hidden-layer PyTorch DNN. The CSV has no dropout dates or timestamped
+  administrative fields: this is retrospective feasibility analysis, not validated prospective
+  warning before dropout. Keep `Enrolled` distinct from confirmed graduation.
 - `notebooks/assignment2/05_blob_detection.ipynb` - multiscale LoG blob detection over the entire
   discovered image dataset for both baseline and all seven parameter settings. The 10-image manifest
   selects display examples only. Full per-image/per-blob statistics and original-resolution numbered
@@ -55,22 +85,28 @@ implementation choices, and update this file when new briefs or repository struc
   and `02_pca_explained_variance.png`. Use assignment-specific subdirectories for new figures.
 - `reports/assignment2/` - exactly two English LaTeX section files for Overleaf, with question headings
   matching the PDF and all tables written inline. Use literal `Images/filename.png` figure paths;
-  the accompanying `Images/` folder contains two blob figures, one matched blob/contour comparison,
-  and one contour parameter figure with unique filenames.
+  the accompanying `Images/` folder contains two blob figures, one contour-only overlay,
+  one matched blob/contour detail comparison, and one contour parameter figure with unique filenames.
   `notebooks/assignment2/report_blob_figures.py` regenerates the blob figures using notebook functions
   and checks displayed results against CSV exports. `report_contour_figures.py` regenerates and
-  checks the matched sedan comparison, highlighting the same rear-window region in both panels.
+  checks the pickup/PIC_1.jpg contour-only overlay and detail comparison, marking the same windshield-frame
+  and headlamp regions in both comparison panels. Keep the pure contour figure under question 2
+  and the matched comparison under question 4. Questions 5 and 7 discuss measured examples and
+  suitable applications, with enough explanation to distinguish representation from segmentation.
   Both methods and all parameter settings cover the full dataset; ten fixed paths select
   illustrations only. The contour report table summarizes each class rather than listing all images. Keep methods concise and
   use figures for measured results; the algorithm schematic is not included in the report.
   The sections are condensed for the larger report: retain the four blob and seven contour question
-  headings, four result figures, and five inline tables. Introduce blob baseline parameters in prose
+  headings, five result figures, and five inline tables. Introduce blob baseline parameters in prose
   and avoid repeating limitations or narrating every table entry.
   Do not introduce custom path macros or external table inputs. See its README for integration.
   Report scope is 1,310 images for both methods and their comparison; update inline tables and
   prose when experiments change. The user confirmed that vehicle-type-detection was downloaded
   from Canvas. These sections occur late in a larger report: start with methods and results,
   without repeating the general dataset introduction or adding provenance reminders.
+  The user confirmed that only the report will be submitted, with no code or CSV attachments.
+  Keep the report self-contained and do not refer readers to exported files or notebooks for results.
+  Local CSV exports and code remain internal analysis and reproducibility artifacts.
 - `requirements.txt` - shared Python dependencies with minimum versions.
 - `README.md` - currently empty; use for course navigation, setup, and dataset instructions when needed.
 
@@ -89,7 +125,9 @@ other notebooks and retain point letters where the brief uses them.
 ## Environment and validation
 
 `requirements.txt` contains pandas>=2.0, numpy>=1.24, matplotlib>=3.7, seaborn>=0.12,
-scikit-learn>=1.3, jupyter>=1.0, ipykernel>=6.25, scipy>=1.11, Pillow>=10.0, and contourpy>=1.1.
+scikit-learn>=1.3, jupyter>=1.0, ipykernel>=6.25, scipy>=1.11, Pillow>=10.0,
+contourpy>=1.1, torch>=2.6 (Workshop 1 and Assignment 3 neural networks), and
+threadpoolctl>=3.1 (bounded numerical threads for Assignment 3 timing comparisons).
 These are minimum constraints, not exact pins. SciPy, Pillow, and ContourPy support the image-processing notebooks.
 Add new implementation dependencies (such as scikit-image, OpenCV, or Pillow) when introduced rather
 than installing them ad hoc. PDF-reading tools used only to inspect briefs are not runtime dependencies.
@@ -140,7 +178,7 @@ for the explanation. The word limit is **3,000**, excluding code and references 
 figure captions. Be precise and concise. Missing a requested justification incurs a 10-mark deduction
 from that task. Assignment 1 datasets must come from those uploaded to Blackboard.
 
-## Assignment 2: Image processing (current focus)
+## Assignment 2: Image processing
 
 Passing requires **65 points**. Each task is assessed on **clarity of explanation (30%)**, **quality of
 results (30%)**, and **insight in discussion (40%)**. Include implementation, visual results, and discussion;
@@ -212,8 +250,39 @@ Document any resizing.
   advantages and limitations, effects of parameters such as thresholds and filter sizes, and examples
   where each method is more suitable.
 
-## Assignments 3 and 4
+## Assignment 3: Machine learning (current focus)
 
-Requirements are pending. When their PDFs become available, read them and add accurate summaries here.
-Keep each assignment's implementation, datasets, figures, and submission requirements identifiable,
-while reusing shared dependencies and utilities where useful.
+Source of truth: `IT3212-2026-Assignment 3.pdf`. Total 200 points, passing mark 130.
+The supplied one-page brief specifies neither submission format nor word limit. The point allocations
+shown below follow the PDF; point 2 has no separate displayed allocation.
+
+1. Develop a real-world and machine-learning problem statement, connecting the selected dataset
+   and learning task to a real scenario (10).
+2. Implement and justify preprocessing; Assignment 1 preprocessing may be reused.
+3. Extract features and justify the methods (20; 10 without justification).
+4. Select features or reduce dimensionality and justify the method, or justify using neither
+   (20; 10 without justification).
+5. Implement and justify three of KNN, linear/polynomial regression, additive model, decision trees,
+   Naive Bayes, kernel SVM, or neural network (30; 10 without justification).
+6. Compare and explain the three algorithms' performance in relation to the problem
+   (20; 10 without explanation).
+7. Implement boosting and bagging, explain the steps, and use different base algorithms with
+   justification (20).
+8. Compare basic, boosting, bagging and transfer approaches in relation to the learning problem
+   (20; 10 without explanation). The brief does not define the transfer source/task; state the
+   chosen interpretation explicitly rather than silently omitting it or claiming external transfer.
+9. Implement a CNN or deep neural network with justified hyperparameter tuning (30). The brief
+   explicitly permits using data directly after preprocessing for this point.
+10. Compare complexity, computation time and classification performance, relating the results
+    to both the machine-learning and real-world problems (30).
+
+The selected problem concerns advisor prioritization using background and first-year results.
+Maintain the distinction between recorded status and future dropout after an intervention date.
+No evidence that support reduces dropout can be inferred from classification metrics alone.
+Retain Assignment 1 deliverables; fix preprocessing leakage in the new workflow rather than
+assuming its earlier full-dataset transformations are safe for model evaluation.
+
+## Assignment 4
+
+Requirements are pending. When the PDF becomes available, read it and add an accurate summary here.
+Keep its implementation, datasets, figures, and submission requirements identifiable.

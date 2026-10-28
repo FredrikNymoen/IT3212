@@ -8,15 +8,17 @@ Laplacian-of-Gaussian (LoG) detector located blob centers and sizes in all
 enlargement to a maximum side of 512 pixels while preserving aspect ratio,
 and converted to grayscale values in $[0,1]$. Measurements use prepared-image pixels.
 
-LoG smooths image $I$ with Gaussian filter $G_\sigma$, then measures intensity
-curvature at position $(x,y)$:
+LoG examines image $I$ at several \emph{scales}. Each scale is a value of
+$\sigma$, the Gaussian filter's standard deviation in pixels, which controls
+the size of detail examined. At each scale, filter $G_\sigma$ smooths the image
+before the Laplacian measures intensity curvature at position $(x,y)$:
 \begin{equation}
  \boxed{R_\sigma(x,y)=-\sigma^2\nabla^2(G_\sigma*I)(x,y)}.
  \label{eq:blob-log}
 \end{equation}
-Here $\sigma$ is the filter's standard deviation in pixels, $*$ means
-convolution, and $\nabla^2$ sums second derivatives along both image axes.
-Small $\sigma$ examines fine detail; larger $\sigma$ examines broader regions.
+Here $*$ means convolution, and $\nabla^2$ sums second derivatives along
+both image axes. Small $\sigma$ examines fine detail. Larger $\sigma$
+examines broader regions.
 The factor $\sigma^2$ makes responses comparable across scales. Positive
 responses indicate bright centers and negative responses dark centers,
 called their \emph{polarity}.
@@ -24,25 +26,24 @@ called their \emph{polarity}.
 Using SciPy filters, the detector finds peaks in magnitude $|R_\sigma|$
 within a $3\times3$ pixel window across three scale levels. Peaks above
 threshold $\tau$ receive estimated radius $r=\sqrt{2}\sigma$.
-Frame-crossing circles are excluded. Candidates are retained strongest first;
-a weaker circle is rejected when its intersection with a retained circle
+Frame-crossing circles are excluded. Candidates are retained strongest first.
+A weaker circle is rejected when its intersection with a retained circle
 exceeds the overlap limit, measured relative to the smaller circle's area.
 
-The reference configuration, or \emph{baseline}, uses 12 scales with a
-constant ratio between $\sigma_{\min}=4$ and $\sigma_{\max}=16$,
-response threshold $\tau=0.15$, and overlap limit 0.5.
+The reference configuration, or \emph{baseline}, tests 12 values of
+$\sigma$ between the minimum $\sigma_{\min}=4$ and maximum
+$\sigma_{\max}=16$. Successive values have a constant ratio.
+It uses response threshold $\tau=0.15$ and overlap limit 0.5.
 
 \subsubsection{Visualize the detected blobs}
-The first two alphabetically sorted filenames per class form ten reproducible
-display examples. This selection does not restrict the full-dataset analysis.
-Figure~\ref{fig:blob-example} contrasts two examples: repeated pickup details
-and broader sedan regions.
+Figure~\ref{fig:blob-example} contrasts two illustrations: repeated pickup
+details and broader sedan regions. Both images are drawn from the full-dataset analysis.
 
 \begin{figure}[H]
  \centering
  \includegraphics[width=\linewidth]{Images/blob_report_baseline.png}
- \caption{Baseline detections overlaid on the original images. Yellow marks bright centers;
- cyan marks dark centers. All circles are shown, with pickup IDs 1--3 labeled.}
+ \caption{Baseline detections overlaid on the original images. Yellow marks bright centers.
+ Cyan marks dark centers. All circles are shown, with pickup IDs 1--3 labeled.}
  \label{fig:blob-example}
 \end{figure}
 
@@ -53,12 +54,13 @@ regions also respond: the circles locate contrast features, not vehicle outlines
 \subsubsection{Calculate and display counts, sizes, and positions}
 The baseline produced 85,074 blobs with mean radius 7.40 pixels. Per-image
 counts range from 3 to 209, with median 63.
-Table~\ref{tab:blob-image-stats} gives the ten display examples.
+Table~\ref{tab:blob-image-stats} presents selected per-image measurements,
+using the first two alphabetically sorted filenames per class.
 
 \begin{table}[H]
 \centering
 \small
-\caption{Baseline measurements for the ten display examples; full analysis covers 1,310 images.}
+\caption{Baseline measurements for selected images. Full analysis covers all 1,310 images.}
 \label{tab:blob-image-stats}
 \begin{tabular}{lrr}
 \toprule
@@ -80,12 +82,12 @@ suv/PIC\_1.jpg & 55 & 8.21 \\
 
 Table~\ref{tab:blob-positions} links three pickup detections to the overlay.
 Coordinates start at the top-left, with $x$ increasing rightward and $y$
-downward; radius describes image-feature scale, not physical vehicle size.
+downward. Radius describes image-feature scale, not physical vehicle size.
 
 \begin{table}[H]
 \centering
 \small
-\caption{Pickup IDs 1--3 from Figure~\ref{fig:blob-example}; positions and radii are in pixels.}
+\caption{Pickup IDs 1--3 from Figure~\ref{fig:blob-example}. Positions and radii are in pixels.}
 \label{tab:blob-positions}
 \begin{tabular}{rrrrl}
 \toprule
@@ -107,7 +109,7 @@ Figure~\ref{fig:blob-parameters} holds both example images fixed across threshol
 \begin{table}[H]
 \centering
 \small
-\caption{Parameter sensitivity across all 1,310 images. Each variant changes one parameter; mean radius is calculated over individual blobs (pixels).}
+\caption{Parameter sensitivity across all 1,310 images. Each variant changes one parameter. Mean radius is calculated over individual blobs (pixels).}
 \label{tab:blob-parameters}
 \begin{tabular}{llrr}
 \toprule
@@ -127,12 +129,12 @@ Extra smoothing & Pre-smoothing $\sigma_{\mathrm{pre}}=2$ & 44,825 & 9.42 \\
 \begin{figure}[H]
  \centering
  \includegraphics[width=0.92\linewidth]{Images/blob_report_thresholds.png}
- \caption{Pickup (top) and sedan (bottom) at increasing response thresholds;
+ \caption{Pickup (top) and sedan (bottom) at increasing response thresholds.
  other parameters remain at baseline. Counts refer to each displayed image.}
  \label{fig:blob-parameters}
 \end{figure}
 
-\textbf{Threshold.} Lowering $\tau$ increases counts in every image; raising
+\textbf{Threshold.} Lowering $\tau$ increases counts in every image. Raising
 it decreases counts in every image. At the high threshold, repeated pickup
 window-edge responses remain, but the broad dark sedan window response
 disappears while bright reflections remain. Blob size therefore does not determine response strength.

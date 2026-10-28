@@ -51,7 +51,7 @@ def notebook_functions():
 def main():
     blob_implementation = report_blob_figures.notebook_functions()
     contour_implementation = notebook_functions()
-    image_id = "sedan/PIC_0.jpg"
+    image_id = "pickup/PIC_1.jpg"
     record = blob_implementation["load_image"](image_id)
     blobs = blob_implementation["detect_blobs"](record["gray"], **blob_implementation["BASELINE"])
     contours = contour_implementation["detect_contours"](record["gray"], **contour_implementation["CONTOUR_BASELINE"])
@@ -59,33 +59,49 @@ def main():
     exported = pd.read_csv(RESULT_DIR / "baseline_contours.csv")
     expected = exported.loc[exported.image == image_id, contours["statistics"].columns].reset_index(drop=True)
     pd.testing.assert_frame_equal(contours["statistics"], expected, check_dtype=False, rtol=1e-10, atol=1e-10)
+    exported_blobs = pd.read_csv(ROOT / "results/assignment2/blob_detection/baseline_blobs.csv")
+    expected_blobs = exported_blobs.loc[exported_blobs.image == image_id, blobs.columns].reset_index(drop=True)
+    pd.testing.assert_frame_equal(blobs, expected_blobs, check_dtype=False, rtol=1e-10, atol=1e-10)
     comparison = pd.read_csv(RESULT_DIR / "blob_contour_comparison.csv").set_index("image")
     assert len(blobs) == comparison.loc[image_id, "n_blobs"]
     assert len(contours["contours"]) == comparison.loc[image_id, "n_contours"]
 
-    fig, axes = plt.subplots(1, 2, figsize=(9.5, 4.1))
-    report_blob_figures.draw(axes[0], record, blobs, f"LoG blobs: {len(blobs)}")
-    contour_implementation["draw_contours"](axes[1], record, contours, f"Closed contours: {len(contours['contours'])}")
-    # Contour 3 encloses the illustrated rear-window region. The same box is a
-    # visual guide in both panels, not a ground-truth boundary or a matching score.
-    window = contours["contours"][2]
-    left, top = window.min(axis=0) - 3
-    right, bottom = window.max(axis=0) + 3
+    def save_report_figure(fig, name):
+        FIGURE_DIR.mkdir(parents=True, exist_ok=True)
+        REPORT_IMAGES.mkdir(parents=True, exist_ok=True)
+        fig.savefig(FIGURE_DIR / name, dpi=220, bbox_inches="tight", facecolor="white")
+        plt.close(fig)
+        shutil.copy2(FIGURE_DIR / name, REPORT_IMAGES / name)
+
+    # Task 2: a single original-image overlay showing only colored contours.
+    fig, ax = plt.subplots(figsize=(6.4, 4.1))
+    contour_implementation["draw_contours"](ax, record, contours, "", annotate=False)
+    fig.tight_layout(pad=.2)
+    save_report_figure(fig, "contour_report_baseline.png")
+
+    # Task 4: identical zoomed views, without resizing/re-running the detectors.
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.5))
+    report_blob_figures.draw(axes[0], record, blobs, "LoG blobs")
+    contour_implementation["draw_contours"](axes[1], record, contours, "Closed contours")
     for ax in axes:
-        ax.add_patch(Rectangle((left, top), right - left, bottom - top,
-                               fill=False, edgecolor="white", linestyle="--", linewidth=1.5))
-        ax.text(left, top - 3, "Rear-window region", color="white", fontsize=9,
-                va="bottom", bbox=dict(facecolor="black", alpha=.75, edgecolor="none", pad=1.5))
+        ax.set_xlim(130, record["width"] - .5)
+        ax.set_ylim(151, 10)
+        # These manually chosen boxes are common visual guides only.
+        for left, top, width, height, label in [
+            (140, 19, 183, 64, "Windshield frame"),
+            (175, 103, 70, 40, "Headlamp"),
+        ]:
+            ax.add_patch(Rectangle((left, top), width, height, fill=False,
+                                   edgecolor="white", linestyle="--", linewidth=1.2))
+            label_y = top - 2 if label == "Windshield frame" else top + height + 2
+            ax.text(left, label_y, label, color="white", fontsize=9,
+                    va="bottom" if label == "Windshield frame" else "top",
+                    bbox=dict(facecolor="black", alpha=.8, edgecolor="none", pad=1.0))
     fig.legend(handles=[Line2D([], [], color=color, lw=2, label=label.capitalize())
                         for label, color in report_blob_figures.COLORS.items()],
                loc="lower center", ncol=2, frameon=False, fontsize=10)
-    fig.tight_layout(rect=(0, .06, 1, 1), pad=.8, w_pad=1.5)
-    name = "blob_contour_window_comparison.png"
-    FIGURE_DIR.mkdir(parents=True, exist_ok=True)
-    REPORT_IMAGES.mkdir(parents=True, exist_ok=True)
-    fig.savefig(FIGURE_DIR / name, dpi=220, bbox_inches="tight", facecolor="white")
-    plt.close(fig)
-    shutil.copy2(FIGURE_DIR / name, REPORT_IMAGES / name)
+    fig.tight_layout(rect=(0, .08, 1, 1), pad=.5, w_pad=1.5)
+    save_report_figure(fig, "blob_contour_detail_comparison.png")
     parameter_name = "contour_parameters_pickup_PIC_0.png"
     shutil.copy2(FIGURE_DIR / "parameters_pickup_PIC_0.png", REPORT_IMAGES / parameter_name)
     print(f"Verified report comparison: {image_id}, {len(blobs)} blobs and {len(contours['contours'])} contours.")
