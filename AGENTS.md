@@ -37,6 +37,25 @@ implementation choices, and update this file when new briefs or repository struc
   Preserve this work when starting later assignments.
 - `notebooks/assignment1/` through `notebooks/assignment4/` - one directory per assignment.
   Assignment 4 currently contains a `.gitkeep` placeholder; remove it when adding content.
+- `notebooks/assignment3/student_dropout_combined.ipynb` - combined binary Assignment 3 workflow
+  on branch `assignment3-combined`, with English answers to points 1-10. This is the current
+  synthesis; the earlier three-class notebook is retained as a separate reference. Positive class
+  is `Dropout=1`, negative is `Graduate=0`; 794 unresolved `Enrolled` records are excluded from
+  supervised fitting/evaluation and receive only explicitly unvalidated scores after development.
+  Excludes `Debtor` and `Tuition fees up to date` from the main experiment because their recording
+  time is unverified. Uses an approximately 80/20 resolved-outcome development/test split and five-fold
+  stratified group CV: identical retained-predictor profiles stay in one partition even with different
+  outcomes (one such pair appears after administrative fields are excluded). No records are deleted.
+  Preprocessing, log selection, rare-category pooling and reduction are fitted inside training folds.
+  Compares explicit ANOVA counts, PCA and binary LDA jointly with classifier settings. Required
+  ensemble pair is tree AdaBoost and KNN bagging; extra tree bagging has a single-tree control.
+  Transfer adapts source-course network weights to the largest development course, with a matched
+  scratch arm and a separate target-course test table. PyTorch DNN tuning uses internal stopping
+  splits with training-only preprocessing, then refits on every outer training row for the selected
+  epoch count. AP selects models; 20% capacity and OOF F2 thresholds are distinct policies fixed
+  before testing. Calibration, conditional uncertainty, costs and limited subgroup diagnostics
+  are reported. Results and figures use `results/assignment3/combined/` (gitignored) and
+  `figures/assignment3/combined/`, preserving earlier outputs. See `notebooks/assignment3/README.md`.
 - `notebooks/assignment3/student_dropout_classification.ipynb` - self-contained English answers
   to Assignment 3 points 1-10. Uses the original `data/graduation_dataset.csv`, both semesters,
   three-class prediction and dropout ranking for an illustrative 20% student-support capacity.
@@ -277,7 +296,10 @@ shown below follow the PDF; point 2 has no separate displayed allocation.
     to both the machine-learning and real-world problems (30).
 
 The selected problem concerns advisor prioritization using background and first-year results.
-Maintain the distinction between recorded status and future dropout after an intervention date.
+The combined workflow uses resolved binary outcomes and explicitly limits inference to that
+population; it must not treat unresolved students as known non-dropouts. The earlier notebook
+remains a three-class registered-status analysis. Maintain the distinction between recorded
+status and future dropout after an intervention date.
 No evidence that support reduces dropout can be inferred from classification metrics alone.
 Retain Assignment 1 deliverables; fix preprocessing leakage in the new workflow rather than
 assuming its earlier full-dataset transformations are safe for model evaluation.
