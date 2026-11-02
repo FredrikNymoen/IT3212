@@ -1,0 +1,20 @@
+\section{Feature extraction and justification}
+\label{sec:feature-extraction}
+
+\emph{Writing prompt: use one compact table to define the eleven engineered
+features and their purpose: progress relative to workload, semester changes and
+activity flags. State the zero-denominator convention and ambiguity of zero
+grades. Explain why the no-evaluation rate and financial combinations were omitted.}
+
+\begin{equation}
+    \operatorname{ApprovalRate}_{s}
+    = \frac{\operatorname{Approved}_{s}}{\operatorname{Enrolled}_{s}},
+    \qquad \operatorname{Enrolled}_{s}>0.
+    \label{eq:approval-rate}
+\end{equation}
+
+\emph{Writing prompt: report the fixed-tree ablation with and without these
+features under identical folds. Give CV AP and variation, and limit conclusions
+to the measured experiment. Refer to Section~\ref{sec:preprocessing} for fitting.}
+
+% Evidence: feature_engineering_ablation.csv.

@@ -1,0 +1,24 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{packages}[2026/10/28 Assignment 3 report settings]
+
+% Minimal settings for this standalone scaffold. The Sections/ files can also be
+% imported into the original NTNU template with its own packages.sty.
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage{lmodern}
+\RequirePackage[english]{babel}
+\RequirePackage[a4paper,margin=25mm]{geometry}
+\RequirePackage{microtype}
+\RequirePackage{import}
+\RequirePackage{graphicx}
+\RequirePackage{amsmath,amssymb}
+\RequirePackage{booktabs}
+\RequirePackage{tabularx}
+\RequirePackage{csquotes}
+\RequirePackage[backend=biber,style=ieee,sorting=none]{biblatex}
+\addbibresource{references.bib}
+\RequirePackage[hidelinks]{hyperref}
+
+% article does not provide these commands; retain the user's main.tex structure.
+\providecommand{\frontmatter}{\clearpage\pagenumbering{roman}}
+\providecommand{\mainmatter}{\clearpage\pagenumbering{arabic}}

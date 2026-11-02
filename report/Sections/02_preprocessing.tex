@@ -1,0 +1,19 @@
+\section{Preprocessing and justification}
+\label{sec:preprocessing}
+
+\subsection{Data checks and transformations}
+\emph{Writing prompt: combine missing-value, range and duplicate checks with the
+resulting decisions. Justify retaining plausible extremes and supplied zeros,
+normalizing the nationality column name, and excluding debtor/payment fields
+whose timing is unverified. Explain one-hot encoding, numerical scaling,
+training-fitted rare-category pooling and the measured log-transform ablation.}
+
+\subsection{Evaluation design and leakage prevention}
+\emph{Writing prompt: describe the seeded 2,904/726 development/test split and
+five-fold stratified group CV. Group identical retained predictor profiles,
+including the conflicting-label pair without assuming it represents duplicate
+students. Explain once how all learned preprocessing and selection are fitted
+inside training folds and how test data are reserved until choices are locked.
+Later sections should refer here instead of repeating this protocol.}
+
+% Evidence: preprocessing_ablation.csv and partition_membership.csv.

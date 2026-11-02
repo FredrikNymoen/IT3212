@@ -102,6 +102,17 @@ implementation choices, and update this file when new briefs or repository struc
   `.gitkeep` is gitignored. Do not write generated results into `data/`.
 - `figures/` - tracked plot outputs. Existing Assignment 1 plots are `01_continuous_boxplots.png`
   and `02_pca_explained_variance.png`. Use assignment-specific subdirectories for new figures.
+- `report/` - Assignment 3 English LaTeX writing scaffold requested by the user, separate from
+  the existing Assignment 2 report. `main.tex` imports ten files from `Sections/` in task order,
+  using the supplied frontmatter/mainmatter layout. Includes a minimal compatible `packages.sty`,
+  placeholder title page, bibliography, optional appendix and six exact figure copies in `Images/`.
+  Keep the structure compact: shared evaluation protocol in point 2, methods in 5/7,
+  development comparisons in 6/8 and one final test/cost comparison in 10. Two figures
+  are enabled in the main text; four supporting figures are in the disabled appendix.
+  Italic writing prompts are author guidance and must be replaced before submission; this is not
+  yet a completed report. Keep all required answers and numerical tables in the report itself,
+  and refresh figure copies/numbers from the combined binary workflow when experiments change.
+  See `report/README.md` for integration into Overleaf or the user's existing NTNU template.
 - `reports/assignment2/` - exactly two English LaTeX section files for Overleaf, with question headings
   matching the PDF and all tables written inline. Use literal `Images/filename.png` figure paths;
   the accompanying `Images/` folder contains two blob figures, one contour-only overlay,

@@ -1,0 +1,41 @@
+% Document structure supplied by the user.
+% Original template credit: Jon Arnt Karstad, NTNU IMT.
+\documentclass[a4paper,11pt]{article}
+
+% Document settings and packages.
+\usepackage{packages}
+
+\begin{document}
+
+\hypersetup{pageanchor=false}
+\import{./}{title.tex}
+
+\frontmatter
+\hypersetup{pageanchor=true}
+\tableofcontents
+\listoffigures
+\listoftables
+
+\mainmatter
+
+% Sections 1--10 correspond to the ten Assignment 3 tasks.
+% This is a writing scaffold. Replace the italic writing prompts before submission.
+\import{Sections/}{01_problem_statement.tex}
+\import{Sections/}{02_preprocessing.tex}
+\import{Sections/}{03_feature_extraction.tex}
+\import{Sections/}{04_feature_selection.tex}
+\import{Sections/}{05_classification_algorithms.tex}
+\import{Sections/}{06_basic_model_comparison.tex}
+\import{Sections/}{07_boosting_and_bagging.tex}
+\import{Sections/}{08_transfer_and_ensemble_comparison.tex}
+\import{Sections/}{09_deep_neural_network.tex}
+\import{Sections/}{10_final_evaluation.tex}
+
+\clearpage
+\printbibliography[heading=bibintoc,title={Bibliography}]
+
+% Optional appendix. Enable both lines when supplementary material is ready.
+% \appendix
+% \import{Appendices/}{additional_results.tex}
+
+\end{document}

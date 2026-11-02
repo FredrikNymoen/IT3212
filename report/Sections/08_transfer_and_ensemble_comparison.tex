@@ -1,0 +1,23 @@
+\section{Comparison of basic, ensemble and transfer approaches}
+\label{sec:transfer-comparison}
+
+\subsection{Basic models versus ensembles}
+\emph{Writing prompt: extend the development comparison from
+Section~\ref{sec:basic-comparison} with boosting, bagged KNN, bagged trees and the
+tree control. Give only the additional rows, explain gains or declines and
+acknowledge differences in representation and search budgets. Avoid repeating
+algorithm descriptions or the final test table.}
+
+\subsection{Cross-course transfer and its matched control}
+\emph{Writing prompt: explicitly define transfer as source-course pretraining
+followed by adaptation to the largest development course. Explain source-fitted
+preprocessing, weight initialization, target validation and fixed epoch budgets.
+The scratch arm shares source preprocessing, so this isolates weight transfer.}
+
+\emph{Writing prompt: compare both arms on identical target-course test students
+using the paired AP difference and interval. Clearly identify these held-out
+results and the smaller population; do not rank them directly against full-test
+metrics. Explain whether the evidence supports a gain.}
+
+% Evidence: development_models.csv, transfer_validation.csv,
+% target_course_test.csv and summary.json.
