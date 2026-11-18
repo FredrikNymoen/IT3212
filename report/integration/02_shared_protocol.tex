@@ -1,0 +1,37 @@
+% Proposed replacement for the full report's Section 2, to align it with the
+% combined notebook and sections 3--10. No new section numbering is introduced.
+\section{Preprocessing and evaluation protocol}
+\label{sec:shared-protocol}
+
+We use the original student data and retain the 3,630 records with resolved
+outcomes: \texttt{Dropout}=1 and \texttt{Graduate}=0. The 794 \texttt{Enrolled}
+records are not treated as known graduates or used to assess predictive accuracy.
+\texttt{Debtor} and \texttt{Tuition fees up to date} are excluded because their
+recording times cannot be verified. No missing values or exact duplicate rows
+were found. Identical retained predictor profiles are kept together, including
+one pair with different outcome labels, without deleting either record.
+
+A seeded, stratified group split reserves 726 students for testing and leaves
+2,904 for development. The same five stratified group folds are used for model
+selection. Grouping prevents identical retained profiles from crossing a split;
+stratification approximately preserves the outcome proportions. The split seed
+is 42. Every learned transformation is fitted on the relevant training rows,
+then applied to validation or test rows.
+
+Nominal codes are one-hot encoded, numerical measurements are standardized,
+and binary flags remain 0/1. Development comparisons selected rare-category
+pooling at a training frequency below 1\% and no log transformation. Thus the
+final workflow does not apply all Assignment 1 transformations unchanged.
+Constant columns are removed. Engineered features and candidate feature
+selection/reduction are compared within development folds. The DNN instead uses
+preprocessed original retained features. Internal neural stopping groups are
+described in Section 9.
+
+Mean development average precision (AP) selects settings within each model
+family. The LDA recommendation also considers development contact-budget
+performance and explainability, as described in Section 8. Each alert threshold
+maximizes F2 on development cross-validation predictions and is fixed before
+that model's test scoring. The top-20\% contact list is a separate budget rule.
+Development reuse means these selected CV scores are not nested-CV
+generalization estimates. The test split was revisited during model development,
+so the comparisons are exploratory and require independent validation.

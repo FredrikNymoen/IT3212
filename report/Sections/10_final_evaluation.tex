@@ -1,34 +1,167 @@
-\section{Complexity, computation time and classification performance}
+\section{Classification performance, complexity and computation time}
 \label{sec:final-evaluation}
 
-\subsection{Common held-out comparison and computational cost}
-\emph{Writing prompt: identify the recommendation locked before test evaluation.
-Use compact tables for held-out AP, ROC-AUC and classification/capacity metrics,
-and for model size, search/refit time and prediction time. Explain unequal search budgets
-and connect storage, tree paths, support vectors and neural parameters to cost.
-Separate the preselected model from any descriptive test leader.}
+\subsection{Classification performance}
+All models were evaluated on the same 726 test students: 284 recorded dropouts
+and 442 graduates. LDA is the recommended model because of the development
+trade-off between ranking, advisor contact performance and explainability.
+Section~\ref{sec:transfer-comparison} explains this selection in relation to advisor prioritisation.
+LDA's settings and alert cutoff were determined from development data.
+Table~\ref{tab:final-performance} reports test AP and two measures for each
+model's alert rule. \emph{Alert precision} is the percentage of alerted students
+who are recorded dropouts. \emph{Alert recall} is the percentage of all recorded
+dropouts who are alerted.
 
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=\linewidth]{Images/04_test_classification.png}
-    \caption{Held-out confusion matrix at the selected model's fixed F2 threshold
-    and precision--recall curves for the evaluated model families.}
-    \label{fig:test-classification}
+For the alert rule, we used F2, which gives more weight to recall than precision.
+We assumed that missing a dropout case was more serious than raising an
+unnecessary alert. This is a priority chosen for our scenario, not a measured
+cost comparison. AP selects settings within each model family. F2 selects the
+alert threshold, while the final model preference also considers explainability.
+
+\begin{table}[H]
+\centering
+\small
+\caption[Held-out classification performance]{Test results. AP is a ranking score, not a percentage. Precision and
+recall describe alerts, not the separate appointment budget.}
+\label{tab:final-performance}
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Model & Test AP & Alert precision (\%) & Alert recall (\%) \\
+\midrule
+Constant baseline & 0.391 & 39.1 & 100.0 \\
+KNN & 0.932 & 76.4 & 88.7 \\
+Decision tree & 0.919 & 66.3 & 92.3 \\
+RBF SVM & 0.943 & 78.2 & 89.4 \\
+AdaBoost & 0.947 & 79.1 & 90.5 \\
+Bagged KNN & 0.931 & 72.4 & 89.4 \\
+Single-tree control & 0.900 & 62.8 & 95.1 \\
+Bagged trees & 0.945 & 81.7 & 88.0 \\
+DNN & 0.943 & 73.7 & 91.9 \\
+\textbf{LDA} & \textbf{0.945} & \textbf{78.3} & \textbf{90.1} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+LDA achieved test AP 0.945, compared with 0.947 for AdaBoost and 0.943 for the
+DNN. AdaBoost has slightly higher alert precision and recall than LDA.
+We accept this measured trade-off for a simpler decision rule. The small
+differences do not establish that the models are equivalent on new students.
+The constant baseline alerts everyone: its 100\% recall comes with only 39.1\%
+precision. This illustrates why recall alone is insufficient.
+
+Tree bagging improved on the matched single-tree control, consistent with
+averaging reducing unstable decisions. Bagging KNN did not improve on KNN:
+neighbour averaging already smooths predictions, so repeating it need not help.
+Models also used different feature sets. The results compare complete workflows,
+not only algorithm names.
+\subsection{Model complexity}
+Table~\ref{tab:costs} shows the size of each fitted model. LDA uses 114 linear
+coefficients and one intercept.
+Its score can be explained through contributions from the encoded and
+engineered features, although these associations do not establish causes.
+A decision tree follows
+one short path and is relatively easy to explain. AdaBoost and bagged trees
+combine many trees, making their full decisions harder to inspect. KNN retains
+training students and searches for similar cases when predicting. Bagged KNN
+repeats that work across 30 models, increasing storage and prediction work.
+SVM uses 897 stored reference points, called support vectors. The DNN instead
+uses its 23,714 learned parameters. These counts describe different structures
+and are not directly comparable memory sizes.
+
+\subsection{Computation time}
+All models in Table~\ref{tab:costs} were timed on the same Intel Core Ultra 7 258V CPU.
+\emph{Search} includes CV fitting, scoring and the selected fit. It excludes
+extra alert-threshold and seed-sensitivity runs. \emph{Final fit} includes
+preprocessing and, for the DNN, internal stopping plus fresh training.
+
+Prediction uses three warm-up calls, then 25 complete test-batch calls per
+model, each including preprocessing. We report the median time per student
+and its interquartile range (IQR): the middle half of the measurements.
+These are batch timings, not individual-request response times.
+
+\begin{table}[H]
+\centering\small
+\setlength{\tabcolsep}{3pt}
+\caption[Model size and computation time]{CPU costs. Prediction is the median of
+25 warmed-up batch timings, with [lower quartile, upper quartile], in ms/student.}
+\label{tab:costs}
+\begin{tabularx}{\linewidth}{@{}lrrlX@{}}
+\toprule
+Model & Search (s) & Final fit (s) & Predict median [IQR] & Model size \\
+\midrule
+KNN & 18.1 & 0.041 & 0.0307 [0.0291, 0.0327] & 2,904 stored students \\
+Decision tree & 15.0 & 0.062 & 0.0151 [0.0136, 0.0162] & 85 nodes, depth 8 \\
+RBF SVM & 53.7 & 0.260 & 0.0909 [0.0880, 0.0929] & 897 support vectors \\
+AdaBoost & 20.7 & 0.930 & 0.0459 [0.0393, 0.0479] & 80 trees, 502 nodes \\
+Bagged KNN & 25.1 & 0.165 & 0.6717 [0.6645, 0.6760] & 30 KNN models \\
+Single-tree control & 0.8 & 0.043 & 0.0150 [0.0142, 0.0156] & 57 nodes, depth 5 \\
+Bagged trees & 18.5 & 0.921 & 0.0319 [0.0308, 0.0343] & 60 trees, 3,100 nodes \\
+DNN & 113.9 & 2.346 & 0.0143 [0.0132, 0.0183] & 23,714 parameters \\
+LDA & 2.9 & 0.059 & 0.0180 [0.0169, 0.0200] & 114 coefficients, 1 intercept \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+LDA's eight-setting search took about 2.9 seconds, compared with 21 seconds
+for AdaBoost and 114 seconds for the DNN. SVM tested 48 settings, while LDA,
+AdaBoost and DNN each tested eight. Different budgets and the DNN's two-stage
+fit prevent interpreting search time as pure algorithm speed.
+
+LDA and AdaBoost were timed together. LDA's
+final fit took 0.059 seconds versus 0.930 seconds for AdaBoost. Their median
+batch prediction times were 0.018 and 0.046 ms/student, respectively.
+Bagged KNN is much slower at 0.672 ms/student.
+All models are below one ms/student at this scale, so appointment capacity
+matters more than these small delays.
+
+\subsection{Meaning for student support}
+The ML task is to rank recorded dropout cases above graduates. The practical
+task is to use that ranking to allocate limited advisor appointments.
+A 20\% contact budget allows 146 appointments among the 726 test students.
+LDA's top-ranked 146 students were all recorded dropouts. This reached
+146 of the 284 dropout cases (51.4\%), leaving 138 outside the contact list.
+Even perfect ranking cannot reach every case with this budget. Seven models,
+including AdaBoost and the DNN, reached the same number of cases.
+The budget result alone therefore does not favour LDA, but it supports using
+explainability to choose between models with this contact yield.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.70\linewidth]{Images/10_advisor_contact_capacity.pdf}
+\caption[LDA advisor contact capacity]{Share of recorded dropout cases reached by LDA as the contact budget increases. The orange point shows the chosen 20\% budget.}
+\label{fig:advisor-capacity}
 \end{figure}
 
-\subsection{Practical interpretation, uncertainty and limitations}
-\emph{Writing prompt: translate the contact budget into students contacted,
-recorded dropout cases reached and cases missed. Summarize capacity sensitivity,
-conditional bootstrap intervals and calibration (Brier score/log-loss), referring
-to optional supporting plots only when needed. Subgroup diagnostics do not
-establish fairness; unresolved students have no verified final labels.}
+For the confusion matrix, an \emph{alert} means that LDA predicts
+\texttt{Dropout}. A dropout score at or above the cutoff 0.0614 (rounded)
+gives \texttt{Dropout}/alert. A lower score gives \texttt{Graduate}/no alert.
+We tried cutoffs on cross-validation predictions from the development data and
+selected the one with the highest F2 score. The resulting cutoff was then kept
+fixed for testing. It is a model-score cutoff, not a verified probability of leaving.
 
-\emph{Writing prompt: answer the question in Section~\ref{sec:problem-statement}.
-Build on its scope limitations, adding random rather than temporal evaluation,
-development reuse, limited grids and one-course transfer. Explain the need for
-prospective and intervention validation without repeating earlier methods.}
+This rule produced 327 alerts: 256 recorded dropouts and 71 graduates.
+It missed 28 dropout cases. In Figure~\ref{fig:alert-confusion}, rows show
+recorded outcomes and columns show model predictions. The 327 alerts exceed
+the separate 146-appointment budget. An alert does not automatically imply
+an appointment.
 
-% Evidence: test_metrics.csv, capacity_sensitivity.csv,
-% conditional_test_intervals.csv, probability_reliability.csv,
-% limited_subgroup_diagnostic.csv and summary.json.
-% Keep essential numerical evidence in the main report; write tables inline.
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.68\linewidth]{Images/10_alert_confusion_matrix.pdf}
+\caption[LDA alert confusion matrix]{LDA classification of the 726
+test students. Rows show recorded outcomes and columns show predictions.
+Correct predictions lie on the diagonal. The off-diagonal counts are 71 false
+alerts and 28 missed dropout cases.}
+\label{fig:alert-confusion}
+\end{figure}
+
+
+LDA is the model recommended for further validation. Its slightly lower AP
+and alert performance than AdaBoost are accepted in exchange for a linear,
+more explainable score and low computation cost. The DNN adds substantial
+complexity without improving the contact yield. These are retrospective
+results for students with resolved outcomes.
+\texttt{Enrolled} students were excluded. Missing dropout dates mean we cannot
+show that warnings would arrive before students leave. Testing on later,
+timestamped cohorts is needed before real use, and classification results do
+not show that advisor support prevents dropout.

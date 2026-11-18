@@ -7,8 +7,8 @@ This file provides guidance to coding agents working with this repository.
 IT3212 (Data-Driven Software Engineering) is a course repository for all four assignments.
 Assignment 1 has an existing preprocessing implementation. Assignment 2 covers image processing.
 Assignment 3 is the current focus and covers a justified machine-learning workflow; the user selected
-the student graduation dataset for this assignment. Assignment 4 requirements are not yet available.
-Do not assume that Assignment 4 uses the same dataset or workflow.
+the student graduation dataset for this assignment. Assignment 4 covers reinforcement learning;
+its brief is now available. Do not assume it uses Assignment 3's dataset or workflow.
 
 The assignment PDFs in the repository root are the source of truth for grading and submission requirements.
 Read the relevant PDF before implementing an assignment. Distinguish assignment requirements from local
@@ -19,6 +19,8 @@ implementation choices, and update this file when new briefs or repository struc
 - `IT3212 - Assignment 1.pdf` - preprocessing brief, rubric, and submission requirements.
 - `IT3212 - Assignment 2.pdf` - image-processing brief and rubric.
 - `IT3212-2026-Assignment 3.pdf` - machine-learning brief, 200 points with 130 required to pass.
+- `IT3212 - Assignment 4.pdf` - reinforcement-learning brief, Q-learning versus PPO,
+  with six assessed parts and separate prediction, experiment, evidence and review records.
 - `workshops/workshop1/Monday-Workshop (1).pdf` - classification workshop brief;
   start with UCI Dry Bean (602), then repeat with another listed dataset.
   The original CSV and UCI metadata are gitignored at `workshops/workshop1/dry_bean.csv`
@@ -56,6 +58,34 @@ implementation choices, and update this file when new briefs or repository struc
   before testing. Calibration, conditional uncertainty, costs and limited subgroup diagnostics
   are reported. Results and figures use `results/assignment3/combined/` (gitignored) and
   `figures/assignment3/combined/`, preserving earlier outputs. See `notebooks/assignment3/README.md`.
+- `notebooks/assignment3/check_lda_vs_adaboost.py` - development-only review of
+  LDA as a classifier against the original locked AdaBoost. Reuses exact notebook
+  split/preprocessing definitions, compares eight LDA settings on the same five
+  grouped folds, and verifies that AdaBoost reproduces its original fold AP.
+  Separate outputs under `results/assignment3/model_choice_review/` include OOF
+  capacity/alert results, coefficients, fresh batch timings and conditional paired
+  bootstrap differences. No held-out test is scored and the original notebook,
+  model registry, test exports and report choice are not changed by this script.
+  This is an exploratory follow-up after original test inspection, not a new
+  independent test or proof of equivalence. See the assignment README.
+- `notebooks/assignment3/finalize_lda_report.py` - current report finalization
+  after the user chose LDA for explainability and development contact yield.
+  Repeats the eight-setting LDA search on the same folds, freezes settings and
+  OOF F2 threshold, and adds LDA's evaluation on the original test population.
+  This is an exploratory revision after the original test report was known.
+  Results go to `results/assignment3/lda_selected/`; vector figures are saved directly
+  in `report/Images/`, with local gitignored PNG previews under
+  `figures/assignment3/lda_selected/`. LDA/AdaBoost refit and batch timings are
+  measured together; other costs retain the original-run provenance.
+  The figure helper prefers finalized LDA exports when present. Report sections
+  7--10 now recommend LDA, with AP selecting settings within families, rather
+  than claiming LDA has the highest AP. Original combined exports are preserved.
+- `notebooks/assignment3/report_model_comparison.py` refreshes the section-8
+  `08_model_comparison_AP.pdf` from the same finalized development exports.
+  It preserves the model-family bar-chart layout, uses actual mean AP/fold SD,
+  and writes the PDF directly to `report/Images/`, with a local gitignored PNG preview.
+  The finalizer calls it after the eight
+  task-9/10 plots. Section 8 uses this figure instead of the duplicate AP table.
 - `notebooks/assignment3/student_dropout_classification.ipynb` - self-contained English answers
   to Assignment 3 points 1-10. Uses the original `data/graduation_dataset.csv`, both semesters,
   three-class prediction and dropout ranking for an illustrative 20% student-support capacity.
@@ -102,17 +132,73 @@ implementation choices, and update this file when new briefs or repository struc
   `.gitkeep` is gitignored. Do not write generated results into `data/`.
 - `figures/` - tracked plot outputs. Existing Assignment 1 plots are `01_continuous_boxplots.png`
   and `02_pca_explained_variance.png`. Use assignment-specific subdirectories for new figures.
-- `report/` - Assignment 3 English LaTeX writing scaffold requested by the user, separate from
+- `report/` - Assignment 3 English LaTeX report project requested by the user, separate from
   the existing Assignment 2 report. `main.tex` imports ten files from `Sections/` in task order,
   using the supplied frontmatter/mainmatter layout. Includes a minimal compatible `packages.sty`,
-  placeholder title page, bibliography, optional appendix and six exact figure copies in `Images/`.
+  placeholder title page, bibliography, optional appendix and figure copies in `Images/`.
   Keep the structure compact: shared evaluation protocol in point 2, methods in 5/7,
-  development comparisons in 6/8 and one final test/cost comparison in 10. Two figures
-  are enabled in the main text; four supporting figures are in the disabled appendix.
-  Italic writing prompts are author guidance and must be replaced before submission; this is not
-  yet a completed report. Keep all required answers and numerical tables in the report itself,
+  development comparisons in 6/8 and one final test/cost comparison in 10. Sections 9/10 are
+  completed English report text with five main figures and inline tables. Three
+  separate comparison plots that repeat tables are in the disabled optional
+  `Appendices/task_09_10_extra_figures.tex`.
+  Each task-9/10 figure contains one plot with its own number/caption; do not combine
+  these plots into lettered subpanels. At the user's request, show the DNN training-loss
+  and internal-validation plots side by side, retaining separate figure numbers/captions.
+  Make requirement coverage explicit: 9.1 implementation,
+  9.2 justified tuning, 9.3 measured tuning/training results; 10.1 classification,
+  10.2 complexity, 10.3 computation time, 10.4 machine-learning/real-world implications.
+  Interpret measured trade-offs rather than only listing scores; do not claim a guaranteed grade.
+  Keep tasks 9/10 concise and use plain English. State the model, evaluation split,
+  metric and unit when quoting a number. Explain AP as a ranking score, distinguish
+  alert precision/recall from the appointment budget, and avoid unnecessary formulas
+  or repeated diagnostics. Retain separate single-plot figures and criterion headings.
+  Explain the alert rule before its confusion matrix: predicted Dropout raises
+  an alert when the model score is at least the development-selected threshold
+  (0.0614 rounded for the recommended LDA). This is separate from the top-20% contact list.
+  Distinguish the reasons for the scores: AP selects ranking models; F2 selects
+  alert thresholds because the scenario prioritizes finding dropout cases over
+  avoiding every false alert. State this as a project assumption, not measured costs.
+  The cutoff maximizes F2 on development cross-validation predictions, then stays fixed on test.
+  Matrix rows are recorded outcomes and columns are predicted Graduate/Dropout;
+  show student counts with correct/false-alert/missed-dropout labels, without
+  row percentages that can be confused with precision.
+  `tasks_09_10.tex`
+  imports those same sections for a standalone preview build. Obsolete preview PDFs and
+  Overleaf ZIP snapshots were removed during cleanup; use current sources and assets. Sections 1--6
+  remain a scaffold whose italic prompts must be replaced before submission. Point 8
+  documents the common CV comparison and the group's decision to omit transfer
+  learning as outside the pooled-population scenario. The revised recommendation
+  is LDA, with its added classification, cost and contact-budget results. Explain
+  the trade-off and exploratory revision from the initial AP-only AdaBoost choice.
+  Sections 9/10 omit transfer results, costs and cross-references. Use fewer
+  semicolons and prefer clear sentences. The earlier notebook transfer experiment
+  and its exports remain internal analysis unless the user requests code changes.
+  Keep the computation-time environment description to one brief sentence naming
+  the shared Intel Core Ultra 7 258V CPU. Software versions, thread settings and
+  timing provenance go in the enabled computational-environment appendix.
+  The user requests LaTeX and updated figure assets only. Do not compile report
+  PDFs or create report ZIP snapshots unless requested.
+  Seven figures are enabled, including the section-8 model comparison,
+  in the main text and three older supporting figures are in the disabled appendix.
+  `notebooks/assignment3/report_tasks_09_10.py` reads fixed exports, checks advisor counts,
+  renders the new PDF/PNG figures and refreshes report image copies without retraining or
+  selecting models. The notebook calls it after all numerical exports; DNN metadata and
+  stopping/refit histories are saved separately. Keep report tables synchronized after reruns;
+  the figure script does not overwrite authored report text. Keep all required numerical evidence in the report itself,
   and refresh figure copies/numbers from the combined binary workflow when experiments change.
   See `report/README.md` for integration into Overleaf or the user's existing NTNU template.
+- `IT3212___Assignment_3.pdf` - user-supplied assembled group report (20 physical pages),
+  preserved unchanged. It is a review input, not a new assignment brief. Its full Overleaf
+  sources are absent locally. The review found missing AdamW/AP bibliography entries,
+  an undocumented transfer comparison, LDA/AdaBoost recommendation disagreement,
+  stale figure-7 image content and inconsistent preprocessing descriptions.
+  `report/tasks_08_10.tex` previews coordinated corrected sections; `report/integration/`
+  contains bibliography additions, a shared-protocol replacement and merge instructions.
+  Do not claim the complete group PDF was rebuilt just because the local excerpt compiles.
+  The revised notebook records actual CPU/software/threads, 25 prediction repeats after
+  3 warm-ups with median/IQR, three development-only DNN seeds (42/7/2026), and full
+  transfer/paired-bootstrap metadata. Original locked choices and test quality metrics
+  are unchanged; all reported costs must use the newly measured timing tables.
 - `reports/assignment2/` - exactly two English LaTeX section files for Overleaf, with question headings
   matching the PDF and all tables written inline. Use literal `Images/filename.png` figure paths;
   the accompanying `Images/` folder contains two blob figures, one contour-only overlay,
@@ -138,7 +224,31 @@ implementation choices, and update this file when new briefs or repository struc
   Keep the report self-contained and do not refer readers to exported files or notebooks for results.
   Local CSV exports and code remain internal analysis and reproducibility artifacts.
 - `requirements.txt` - shared Python dependencies with minimum versions.
-- `README.md` - currently empty; use for course navigation, setup, and dataset instructions when needed.
+- `README.md` - course navigation, Python setup, local dataset paths and housekeeping policy.
+
+### Post-Assignment 3 cleanup
+
+Obsolete Assignment 3 notebook-build/review scratch files, report render/build files,
+temporary PDF tools, package-download caches, local report previews and ZIP snapshots
+were removed. Keep scientific Python dependencies in the selected environment, not
+under `tmp/`; the maintained scripts no longer add scratch packages to `sys.path`.
+The section-8 figure renderer no longer creates a one-off backup in `tmp/report_build/`.
+Two unused report image copies (`03_deep_network_learning.png` and
+`04_test_classification.png`) were removed from `report/Images/`; original plots
+remain under `figures/assignment3/combined/`. Do not regenerate unused report copies.
+LaTeX intermediates and local report preview/bundle names are now gitignored.
+Generated task-9/10 plots and the section-8 comparison now have one versioned
+vector PDF per figure in `report/Images/`. Duplicate PDFs under `figures/`,
+obsolete task-9/10 plots from the initial combined report and duplicate report
+PNGs were removed. Renderers save PDFs directly in the report and regenerate
+gitignored PNG notebook previews under `figures/assignment3/combined/` (09/10 only)
+or `figures/assignment3/lda_selected/`. Keep the earlier six tracked combined
+overview plots and their referenced report assets. Do not commit regenerated
+preview copies as additional report assets.
+Original data, numerical experiment exports, notebooks, report sources, required
+figure assets, the supplied group PDF, lecture/workshop work and previous assignment
+deliverables are preserved. Keep the numerical exports: timings and revision provenance
+cannot be recovered exactly by rerunning an experiment.
 
 Do not rename, move, or overwrite previous deliverables just to start the next assignment.
 Keep notebooks runnable from a fresh kernel, document working directories and data paths, and create
@@ -317,5 +427,53 @@ assuming its earlier full-dataset transformations are safe for model evaluation.
 
 ## Assignment 4
 
-Requirements are pending. When the PDF becomes available, read it and add an accurate summary here.
-Keep its implementation, datasets, figures, and submission requirements identifiable.
+Source of truth: `IT3212 - Assignment 4.pdf` (six pages). Compare off-policy
+Q-learning with on-policy actor-critic PPO. Listed options are MsPacMan, Breakout
+and SpaceInvaders. The brief also refers to maps, terminal success and compatible
+state/action representations; clarify how these apply to the team's option before
+choosing an environment or altering the required settings.
+
+1. **Predictions before training (30):** mandatory timestamped prediction sheet,
+   stated due date Friday 13 November. Main submission is not considered without
+   it. Predict budget efficiency, seed variation, stochastic behaviour, step-penalty
+   effects, training/evaluation differences and the initial recommendation. Include
+   three states with expected actions, reasons and falsifying observations. Preserve
+   original predictions; never reconstruct them after seeing results.
+2. **Learning settings (20):** A deterministic transitions/terminal success reward;
+   B stochastic transitions with other conditions fixed; C add a step penalty to B;
+   D evaluate B agents on an unseen map without further training. Justify a common
+   interaction budget and equal tuning allowance. Use common training seeds where
+   practical, separate evaluation seeds and at least 200 evaluation episodes per
+   trained agent. Disable evaluation updates, specify the evaluation policy and keep
+   held-out evaluation out of tuning. Record success/failure rates, mean return,
+   successful/failed episode lengths, interactions, runtime/hardware and variation
+   across trained seeds. Plot learning against interactions and document smoothing
+   and evaluation frequency. Do not treat pooled episodes as independent training
+   replications or compare returns directly across different reward definitions.
+3. **Mechanisms (20):** vary one main factor at a time: Q-learning epsilon schedule,
+   discount factor, PPO entropy, learning rate and PPO update epochs. Use at least
+   five seeds per tested configuration. Revisit predictions, inspect a contrary
+   case, propose an alternative explanation and run a diagnostic that distinguishes
+   explanations rather than merely increasing the budget.
+4. **Episode inspection (20):** select ten recorded episodes: three typical successes,
+   three typical failures, two surprising successes and two surprising failures.
+   Justify selection using outcome distributions. Annotate three decisions per
+   episode with state/actions, chosen action and Q-values or policy probabilities,
+   observed transition/outcome and an alternative action with its uncertainty.
+   Distinguish bad actions from unlucky outcomes and explain an aggregate limitation.
+5. **Human review (30):** team review identifies strongest evidence, an overreaching
+   claim and an alternative explanation, and compares these with original predictions.
+6. **Recommendations (30):** choose an approach/configuration for a rapid explainable
+   demonstration, repeated uncertain operation where failures matter, and changed
+   environments. Each needs two experimental supports, an observed weakness, a
+   reversal condition and another experiment before use beyond simulation. A conclusion
+   that neither approach is supported is allowed; avoid universal superiority claims.
+
+Submit executable notebooks/scripts with a documented reproduction command; experiment
+configurations, raw logs, seeds, software versions and episode traces; original and
+annotated prediction sheets; an evidence brief of at most 2,000 words excluding tables
+and figure captions; and a review record of at most 1,000 words. Every figure must
+identify source runs. A short record of consequential AI assistance, accepted/rejected
+suggestions and verification is mandatory but ungraded. Do not fabricate runs,
+predictions, peer feedback or observations. Keep Assignment 4's implementation,
+datasets, figures and submission records distinct from prior assignments.

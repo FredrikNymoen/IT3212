@@ -1,16 +1,113 @@
 \section{Boosting and bagging}
 \label{sec:boosting-bagging}
 
-\subsection{Boosting with shallow trees}
-\emph{Writing prompt: explain initialization of observation weights, sequential
-fitting, emphasis on errors and weighted combination in discrete SAMME AdaBoost.
-Justify tree depth, stage count and learning rate.}
+Ensemble learning combines several models and can improve performance compared
+with an individual model. Boosting trains learners sequentially, while bagging
+trains them independently on bootstrap samples.
 
-\subsection{Bagging with KNN and the additional tree control}
-\emph{Writing prompt: explain bootstrap sampling, feature subsampling and
-averaging independent KNN members. Justify ensemble size and sampling settings;
-explicitly identify KNN as a different base algorithm from the boosting trees.
-Briefly explain the additional tree-bagging experiment and its matched single-tree
-control. Compare measured effects in Section~\ref{sec:transfer-comparison}.}
+We used AdaBoost with shallow trees and bagging with KNN, satisfying the
+requirement for different base algorithms. Tree bagging provides an additional
+comparison. All settings were evaluated on the same five stratified group
+folds, with preprocessing fitted inside each training fold. Mean validation AP
+selected each configuration.
+
+\subsection{Boosting with shallow trees}
+
+Boosting trains models sequentially, where each subsequent model places greater emphasis on observations that were incorrectly classified by previous models. The goal is to progressively correct classification errors and improve overall predictive performance.
+
+For the student graduation dataset, we chose AdaBoost with decision trees as the base estimators. Decision trees were selected because of their ability to capture non-linear relationships and interactions between features. By restricting their depth, they can act as relatively simple weak learners, allowing AdaBoost to combine several learners into a stronger classifier. Table~\ref{tab:adaboost-hyperparameters} shows the selected hyperparameters for tuning.
+
+\begin{table}[H]
+    \centering
+    \caption[AdaBoost tuning grid]{AdaBoost hyperparameters and candidate values.}
+    \label{tab:adaboost-hyperparameters}
+    \begin{tabularx}{\linewidth}{@{}l l X@{}}
+        \hline
+        \textbf{Hyperparameter} & \textbf{Values} & \textbf{Justification} \\
+        \hline
+        Maximum tree depth & 1, 2 &
+        Compare simple decision stumps with slightly more complex trees. \\
+
+        Number of estimators & 40, 80 &
+        Investigate whether increasing the number of sequential learners improves performance. \\
+
+        Learning rate & 0.3, 1.0 &
+        Compare a more gradual boosting process with a higher learning rate. \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+The SAMME algorithm was used for AdaBoost, which was applied to the binary classification task. Initially, all training observations receive equal weights. After each estimator is trained, the observation weights are updated based on its classification errors, increasing the influence of incorrectly classified observations in subsequent iterations. The final prediction is obtained through a weighted combination of the individual learners, allowing the ensemble to progressively focus on observations that are more difficult to classify.
+
+The eight combinations selected 80 trees of maximum depth 2 and learning rate
+0.3.
+
+\subsection{Bagging with KNN}
+
+Bagging trains multiple models independently using different bootstrap samples of the training data. Their predictions are then combined to reduce variance and improve model stability and generalization. KNN was selected because it is a non-parametric, distance-based classifier that can capture complex decision boundaries.
+
+The optimized KNN settings were reused: 31 neighbours with uniform weights.
+However, the basic KNN uses 25 ANOVA-selected features, while bagging uses the
+full preprocessed feature set, including engineered features. This comparison
+therefore does not isolate bagging alone.
+Table~\ref{tab:bagged-knn-hyperparameters} lists the candidate settings.
+
+\begin{table}[H]
+    \centering
+    \caption[Bagged KNN tuning grid]{Bagged KNN hyperparameters and candidate values.}
+    \label{tab:bagged-knn-hyperparameters}
+    \begin{tabularx}{\linewidth}{@{}l l X@{}}
+        \hline
+        \textbf{Hyperparameter} & \textbf{Values} & \textbf{Justification} \\
+        \hline
+        Number of estimators & 10, 30 &
+        Compare smaller and larger ensembles to investigate the effect of combining more KNN models. \\
+
+        Maximum samples & 0.7, 1.0 &
+        Investigate the effect of using different bootstrap sample sizes for each estimator. \\
+
+        Maximum features & 0.8, 1.0 &
+        Investigate whether using subsets of features introduces useful diversity between the individual models. \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+Each member draws a bootstrap sample, optionally uses a random subset of
+features and estimates class probabilities from its neighbours. The ensemble
+averages these probabilities to rank students. Of the eight configurations,
+validation selected 30 members, a sample fraction of 1.0 and a feature fraction
+of 0.8. A bootstrap sample of size 1.0 still contains repeated rows and omits
+some original students.
+
+\subsection{Bagging with trees}
+
+Bagging was also implemented using decision trees as base estimators. Decision trees were selected because they can be sensitive to variations in the training data, making them suitable candidates for bagging.
+
+In contrast to the shallow trees used in AdaBoost, the bagged trees allowed for greater individual tree complexity. This is because bagging aims to reduce variance by combining independently trained trees rather than sequentially correcting classification errors. The hyperparameters shown in Table~\ref{tab:bagged-tree-hyperparameters} were therefore selected to investigate the effects of ensemble size and tree complexity.
+
+
+\begin{table}[H]
+    \centering
+    \caption[Tree-bagging tuning grid]{Tree-bagging hyperparameters and candidate values.}
+    \label{tab:bagged-tree-hyperparameters}
+    \begin{tabularx}{\linewidth}{@{}l l X@{}}
+        \hline
+        \textbf{Hyperparameter} & \textbf{Values} & \textbf{Justification} \\
+        \hline
+        Number of estimators & 30, 60 &
+        Compare smaller and larger ensembles to investigate the effect of combining more decision trees. \\
+
+        Maximum tree depth & 5, None &
+        Compare restricted and unrestricted trees to investigate the effect of individual tree complexity. \\
+        \hline
+    \end{tabularx}
+\end{table}
+
+
+The four combinations selected 60 trees of maximum depth 5. Each tree uses at
+least five training observations per leaf. A separate single-tree control uses
+the same leaf restriction, preprocessing and candidate depths. This control
+provides a closer comparison for tree bagging than the differently tuned basic
+tree in Section 5. Tree probabilities are averaged for the final ranking.
 
 % Evidence: ensemble search CSVs and locked_choices.json.

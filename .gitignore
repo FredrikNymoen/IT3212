@@ -23,6 +23,31 @@ __pycache__/
 # Jupyter autosave checkpoints (keep the actual notebooks and their outputs)
 .ipynb_checkpoints/
 
+# LaTeX build intermediates (keep source files and PDF figure assets)
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+/report/*.log
+
+# Local report previews and upload bundles; current sources live in report/
+/report/main.pdf
+/report/tasks_*.pdf
+/report/overleaf_tasks_*.zip
+
+# Reproducible Assignment 3 notebook previews; report/Images/ keeps final PDFs
+/figures/assignment3/combined/09_*
+/figures/assignment3/combined/10_*
+/figures/assignment3/lda_selected/
+
 # Local environment variables (keep shareable example files)
 .env
 .env.*

@@ -1,0 +1,31 @@
+\section{Computational environment}
+\label{app:computational-environment}
+
+The timing experiment used Windows 11 and CPU execution on an Intel Core
+Ultra 7 258V. Table~\ref{tab:software-versions} lists the recorded software
+versions. Numerical libraries were limited to at most two threads. PyTorch
+used two intra-operation threads and one inter-operation thread. Model
+searches and bagging used one worker (\texttt{n\_jobs=1}).
+
+Timing measurements were collected in two runs on the same computer.
+LDA and AdaBoost were refitted and their batch prediction times measured
+together. Search times refer to each model's development search.
+
+\begin{table}[H]
+    \centering\small
+    \caption[Software versions for timing]{Software versions recorded during
+    the timing experiment.}
+    \label{tab:software-versions}
+    \begin{tabular}{@{}ll@{}}
+        \toprule
+        Software & Version \\
+        \midrule
+        Python & 3.13.7 \\
+        NumPy & 2.5.4 \\
+        pandas & 3.0.5 \\
+        SciPy & 1.18.1 \\
+        scikit-learn & 1.9.0 \\
+        PyTorch & 2.14.1+cpu \\
+        \bottomrule
+    \end{tabular}
+\end{table}
