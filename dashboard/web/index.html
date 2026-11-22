@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="nb">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>MsPacMan Lab – Resultater</title>
+  <link rel="stylesheet" href="/style.css">
+  <script type="module" src="/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="wordmark" href="/" aria-label="MsPacMan Lab, startsiden">
+        <span class="brand-icon" aria-hidden="true"></span>
+        <span>MsPacMan <b>Lab</b></span>
+      </a>
+      <div class="run-picker">
+        <label for="experiment">Kjøring</label>
+        <select id="experiment" aria-label="Velg kjøring" disabled></select>
+        <button id="refresh" class="outline" type="button">Oppdater<span class="desktop-only"> liste</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-heading" aria-labelledby="page-title">
+      <div>
+        <p class="eyebrow">Assignment 4 · Part 2</p>
+        <h1 id="page-title">Resultatoversikt</h1>
+        <p class="subtitle" id="intro">Sammenlign DQN og PPO, og spill av de lagrede testepisodene.</p>
+      </div>
+      <a class="outline download" id="download" download="summary.csv" hidden>Last ned CSV</a>
+    </section>
+
+    <p id="notice" class="notice" role="status">Leter etter kjøringer …</p>
+
+    <div id="dashboard" hidden>
+      <nav id="settings" class="tabs" aria-label="Eksperimentinnstilling"></nav>
+      <p id="setting-detail" class="setting-detail"></p>
+
+      <section class="stats" id="stats" aria-label="Nøkkeltall"></section>
+
+      <div class="workbench">
+        <section class="panel replay-panel" aria-labelledby="replay-heading">
+          <div class="panel-heading">
+            <div>
+              <h2 id="replay-heading">Gameplay</h2>
+              <p>Se en testepisode fra den valgte modellen.</p>
+            </div>
+            <span id="outcome" class="outcome" hidden></span>
+          </div>
+          <div class="replay-selects">
+            <label for="model">Modell<select id="model"></select></label>
+            <label for="episode">Testepisode<select id="episode"></select></label>
+          </div>
+          <div class="screen" id="screen">
+            <img id="poster" alt="Skjermbilde fra den valgte testepisoden" width="160" height="210" hidden>
+            <video id="video" controls playsinline preload="metadata" aria-label="Avspilling av testepisoden" hidden></video>
+            <button id="play" class="play" type="button" aria-label="Spill av testepisoden" hidden>
+              <span aria-hidden="true"></span>Spill av
+            </button>
+            <p id="screen-message" role="status" hidden></p>
+          </div>
+          <dl class="replay-data" id="replay-data"></dl>
+          <p class="inline-error" id="replay-error" role="status" hidden></p>
+        </section>
+
+        <section class="panel chart-panel" aria-labelledby="chart-heading">
+          <div class="panel-heading">
+            <div>
+              <h2 id="chart-heading">Læringskurve</h2>
+              <p>Evaluering underveis i treningen</p>
+            </div>
+            <label class="sr-only" for="metric">Måling i læringskurven</label>
+            <select id="metric">
+              <option value="mean_raw_score">Spillpoeng</option>
+              <option value="score_1000_rate">Minst 1 000 poeng</option>
+              <option value="success_rate">Suksessrate</option>
+              <option value="mean_return">Retur</option>
+            </select>
+          </div>
+          <div class="chart-stage">
+            <canvas id="curve" role="img" aria-label="Læringskurve per algoritme"></canvas>
+            <p id="chart-empty" class="chart-empty" hidden></p>
+          </div>
+          <div id="chart-legend" class="legend"></div>
+          <p id="chart-detail" class="chart-detail"></p>
+        </section>
+      </div>
+
+      <section class="panel comparison" aria-labelledby="comparison-heading">
+        <div class="panel-heading">
+          <div>
+            <h2 id="comparison-heading">Sluttevaluering</h2>
+            <p>Velg en modell i tabellen for å se episodene dens.</p>
+          </div>
+        </div>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Resultattabell per modell">
+          <table>
+            <thead><tr><th scope="col">Modell</th><th scope="col">Frø</th><th scope="col">≥ 1 000</th><th scope="col">Suksess</th><th scope="col">Feilrate</th><th scope="col">Spillpoeng</th><th scope="col">Retur</th><th scope="col">Steg ved suksess</th><th scope="col">Steg ved feil</th><th scope="col">Treningstid</th></tr></thead>
+            <tbody id="agent-rows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <details class="panel run-details">
+        <summary>Kjøringsdetaljer</summary>
+        <div id="run-details" class="detail-grid"></div>
+      </details>
+    </div>
+  </main>
+</body>
+</html>

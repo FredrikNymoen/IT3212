@@ -1,0 +1,32 @@
+{
+  "run_id": "A-PPO-s44",
+  "train_setting": "A",
+  "algorithm": "PPO",
+  "train_seed": 44,
+  "training_interactions": 16384,
+  "training_seconds": 12.452298700000938,
+  "optimizer_updates": 1024,
+  "completed_training_episodes": 26,
+  "params": {
+    "lr": 0.00025,
+    "rollout_steps": 64,
+    "gae_lambda": 0.95,
+    "clip": 0.2,
+    "epochs": 4,
+    "batch_size": 64,
+    "entropy_coef": 0.01,
+    "value_coef": 0.5,
+    "max_grad_norm": 0.5
+  },
+  "env_seeds": [
+    44000,
+    44001,
+    44002,
+    44003,
+    44004,
+    44005,
+    44006,
+    44007
+  ],
+  "checkpoint": "A-PPO-s44/model.pt"
+}

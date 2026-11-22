@@ -1,0 +1,7 @@
+contrast,train_seed,mean_raw_score,score_1000_rate,success_rate,failure_length
+Q-table-pellet minus Q-table,42,294.75,0.09999999999999999,-0.005,98.912311557789
+Q-table-pellet minus Q-table,43,726.85,0.285,0.05,-0.0473684210526244
+Q-table-pellet minus Q-table,44,-120.0,-0.07500000000000001,0.0,-103.38000000000005
+PPO-low-lr minus PPO,42,-187.25,-0.1,0.0,-15.470000000000027
+PPO-low-lr minus PPO,43,76.95000000000005,0.0,0.0,58.0
+PPO-low-lr minus PPO,44,59.849999999999966,0.020000000000000004,0.0,21.92999999999995

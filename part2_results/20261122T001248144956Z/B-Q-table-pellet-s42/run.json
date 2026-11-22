@@ -1,0 +1,31 @@
+{
+  "run_id": "B-Q-table-pellet-s42",
+  "train_setting": "B",
+  "algorithm": "Q-table-pellet",
+  "train_seed": 42,
+  "training_interactions": 65536,
+  "training_seconds": 25.751055200005794,
+  "optimizer_updates": 65536,
+  "completed_training_episodes": 116,
+  "params": {
+    "alpha": 0.15,
+    "epsilon_start": 1.0,
+    "epsilon_end": 0.1,
+    "exploration_steps": 12288,
+    "position_bin": 12,
+    "ghost_radius": 24,
+    "pellet_direction": true
+  },
+  "env_seeds": [
+    42000,
+    42001,
+    42002,
+    42003,
+    42004,
+    42005,
+    42006,
+    42007
+  ],
+  "checkpoint": "B-Q-table-pellet-s42/checkpoints/65536.npz",
+  "q_table_states": 2676
+}

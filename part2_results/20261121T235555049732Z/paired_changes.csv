@@ -1,0 +1,7 @@
+contrast,train_seed,success_rate,mean_raw_score,failure_length
+PPO minus Q-table at equal budget,42,0.0,257.54999999999995,229.03999999999996
+PPO minus Q-table at equal budget,43,0.005,23.0,167.7141708542714
+PPO minus Q-table at equal budget,44,0.0,172.2,81.10000000000002
+"Q-table versus historical score bonus at 16,384",42,0.0,73.6,3.7100000000000364
+"Q-table versus historical score bonus at 16,384",43,0.0,287.15,-31.779999999999973
+"Q-table versus historical score bonus at 16,384",44,0.0,62.0,13.769999999999982

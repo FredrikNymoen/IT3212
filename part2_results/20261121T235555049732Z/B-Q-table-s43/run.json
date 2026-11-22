@@ -1,0 +1,30 @@
+{
+  "run_id": "B-Q-table-s43",
+  "train_setting": "B",
+  "algorithm": "Q-table",
+  "train_seed": 43,
+  "training_interactions": 32768,
+  "training_seconds": 12.497073199992883,
+  "optimizer_updates": 32768,
+  "completed_training_episodes": 48,
+  "params": {
+    "alpha": 0.15,
+    "epsilon_start": 1.0,
+    "epsilon_end": 0.1,
+    "exploration_steps": 12288,
+    "position_bin": 12,
+    "ghost_radius": 24
+  },
+  "env_seeds": [
+    43000,
+    43001,
+    43002,
+    43003,
+    43004,
+    43005,
+    43006,
+    43007
+  ],
+  "checkpoint": "B-Q-table-s43/q_table.npz",
+  "q_table_states": 872
+}

@@ -1,0 +1,32 @@
+{
+  "run_id": "B-PPO-s43",
+  "train_setting": "B",
+  "algorithm": "PPO",
+  "train_seed": 43,
+  "training_interactions": 32768,
+  "training_seconds": 25.10868830000254,
+  "optimizer_updates": 2048,
+  "completed_training_episodes": 48,
+  "params": {
+    "lr": 0.00025,
+    "rollout_steps": 64,
+    "gae_lambda": 0.95,
+    "clip": 0.2,
+    "epochs": 4,
+    "batch_size": 64,
+    "entropy_coef": 0.01,
+    "value_coef": 0.5,
+    "max_grad_norm": 0.5
+  },
+  "env_seeds": [
+    43000,
+    43001,
+    43002,
+    43003,
+    43004,
+    43005,
+    43006,
+    43007
+  ],
+  "checkpoint": "B-PPO-s43/model.pt"
+}

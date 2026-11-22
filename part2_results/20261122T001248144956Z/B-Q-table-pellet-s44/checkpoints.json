@@ -1,0 +1,281 @@
+[
+  {
+    "run_id": "B-Q-table-pellet-s44",
+    "train_setting": "B",
+    "algorithm": "Q-table-pellet",
+    "train_seed": 44,
+    "training_interactions": 0,
+    "training_seconds": 0.0,
+    "optimizer_updates": 0,
+    "completed_training_episodes": 0,
+    "params": {
+      "alpha": 0.15,
+      "epsilon_start": 1.0,
+      "epsilon_end": 0.1,
+      "exploration_steps": 12288,
+      "position_bin": 12,
+      "ghost_radius": 24,
+      "pellet_direction": true
+    },
+    "env_seeds": [
+      44000,
+      44001,
+      44002,
+      44003,
+      44004,
+      44005,
+      44006,
+      44007
+    ],
+    "checkpoint": "B-Q-table-pellet-s44/checkpoints/0.npz",
+    "q_table_states": 0
+  },
+  {
+    "run_id": "B-Q-table-pellet-s44",
+    "train_setting": "B",
+    "algorithm": "Q-table-pellet",
+    "train_seed": 44,
+    "training_interactions": 8192,
+    "training_seconds": 3.2591279999978724,
+    "optimizer_updates": 8192,
+    "completed_training_episodes": 13,
+    "params": {
+      "alpha": 0.15,
+      "epsilon_start": 1.0,
+      "epsilon_end": 0.1,
+      "exploration_steps": 12288,
+      "position_bin": 12,
+      "ghost_radius": 24,
+      "pellet_direction": true
+    },
+    "env_seeds": [
+      44000,
+      44001,
+      44002,
+      44003,
+      44004,
+      44005,
+      44006,
+      44007
+    ],
+    "checkpoint": "B-Q-table-pellet-s44/checkpoints/8192.npz",
+    "q_table_states": 874
+  },
+  {
+    "run_id": "B-Q-table-pellet-s44",
+    "train_setting": "B",
+    "algorithm": "Q-table-pellet",
+    "train_seed": 44,
+    "training_interactions": 16384,
+    "training_seconds": 6.596604999998817,
+    "optimizer_updates": 16384,
+    "completed_training_episodes": 29,
+    "params": {
+      "alpha": 0.15,
+      "epsilon_start": 1.0,
+      "epsilon_end": 0.1,
+      "exploration_steps": 12288,
+      "position_bin": 12,
+      "ghost_radius": 24,
+      "pellet_direction": true
+    },
+    "env_seeds": [
+      44000,
+      44001,
+      44002,
+      44003,
+      44004,
+      44005,
+      44006,
+      44007
+    ],
+    "checkpoint": "B-Q-table-pellet-s44/checkpoints/16384.npz",
+    "q_table_states": 1252
+  },
+  {
+    "run_id": "B-Q-table-pellet-s44",
+    "train_setting": "B",
+    "algorithm": "Q-table-pellet",
+    "train_seed": 44,
+    "training_interactions": 24576,
+    "training_seconds": 9.815511899996636,
+    "optimizer_updates": 24576,
+    "completed_training_episodes": 46,
+    "params": {
+      "alpha": 0.15,
+      "epsilon_start": 1.0,
+      "epsilon_end": 0.1,
+      "exploration_steps": 12288,
+      "position_bin": 12,
+      "ghost_radius": 24,
+      "pellet_direction": true
+    },
+    "env_seeds": [
+      44000,
+      44001,
+      44002,
+      44003,
+      44004,
+      44005,
+      44006,
+      44007
+    ],
+    "checkpoint": "B-Q-table-pellet-s44/checkpoints/24576.npz",
+    "q_table_states": 1504
+  },
+  {
+    "run_id": "B-Q-table-pellet-s44",
+    "train_setting": "B",
+    "algorithm": "Q-table-pellet",
+    "train_seed": 44,
+    "training_interactions": 32768,
+    "training_seconds": 13.118181599998934,
+    "optimizer_updates": 32768,
+    "completed_training_episodes": 61,
+    "params": {
+      "alpha": 0.15,
+      "epsilon_start": 1.0,
+      "epsilon_end": 0.1,
+      "exploration_steps": 12288,
+      "position_bin": 12,
+      "ghost_radius": 24,
+      "pellet_direction": true
+    },
+    "env_seeds": [
+      44000,
+      44001,
+      44002,
+      44003,
+      44004,
+      44005,
+      44006,
+      44007
+    ],
+    "checkpoint": "B-Q-table-pellet-s44/checkpoints/32768.npz",
+    "q_table_states": 1712
+  },
+  {
+    "run_id": "B-Q-table-pellet-s44",
+    "train_setting": "B",
+    "algorithm": "Q-table-pellet",
+    "train_seed": 44,
+    "training_interactions": 40960,
+    "training_seconds": 16.46736199999941,
+    "optimizer_updates": 40960,
+    "completed_training_episodes": 76,
+    "params": {
+      "alpha": 0.15,
+      "epsilon_start": 1.0,
+      "epsilon_end": 0.1,
+      "exploration_steps": 12288,
+      "position_bin": 12,
+      "ghost_radius": 24,
+      "pellet_direction": true
+    },
+    "env_seeds": [
+      44000,
+      44001,
+      44002,
+      44003,
+      44004,
+      44005,
+      44006,
+      44007
+    ],
+    "checkpoint": "B-Q-table-pellet-s44/checkpoints/40960.npz",
+    "q_table_states": 1840
+  },
+  {
+    "run_id": "B-Q-table-pellet-s44",
+    "train_setting": "B",
+    "algorithm": "Q-table-pellet",
+    "train_seed": 44,
+    "training_interactions": 49152,
+    "training_seconds": 20.1490077999988,
+    "optimizer_updates": 49152,
+    "completed_training_episodes": 93,
+    "params": {
+      "alpha": 0.15,
+      "epsilon_start": 1.0,
+      "epsilon_end": 0.1,
+      "exploration_steps": 12288,
+      "position_bin": 12,
+      "ghost_radius": 24,
+      "pellet_direction": true
+    },
+    "env_seeds": [
+      44000,
+      44001,
+      44002,
+      44003,
+      44004,
+      44005,
+      44006,
+      44007
+    ],
+    "checkpoint": "B-Q-table-pellet-s44/checkpoints/49152.npz",
+    "q_table_states": 1996
+  },
+  {
+    "run_id": "B-Q-table-pellet-s44",
+    "train_setting": "B",
+    "algorithm": "Q-table-pellet",
+    "train_seed": 44,
+    "training_interactions": 57344,
+    "training_seconds": 24.168486700000358,
+    "optimizer_updates": 57344,
+    "completed_training_episodes": 109,
+    "params": {
+      "alpha": 0.15,
+      "epsilon_start": 1.0,
+      "epsilon_end": 0.1,
+      "exploration_steps": 12288,
+      "position_bin": 12,
+      "ghost_radius": 24,
+      "pellet_direction": true
+    },
+    "env_seeds": [
+      44000,
+      44001,
+      44002,
+      44003,
+      44004,
+      44005,
+      44006,
+      44007
+    ],
+    "checkpoint": "B-Q-table-pellet-s44/checkpoints/57344.npz",
+    "q_table_states": 2129
+  },
+  {
+    "run_id": "B-Q-table-pellet-s44",
+    "train_setting": "B",
+    "algorithm": "Q-table-pellet",
+    "train_seed": 44,
+    "training_interactions": 65536,
+    "training_seconds": 27.448287600000185,
+    "optimizer_updates": 65536,
+    "completed_training_episodes": 124,
+    "params": {
+      "alpha": 0.15,
+      "epsilon_start": 1.0,
+      "epsilon_end": 0.1,
+      "exploration_steps": 12288,
+      "position_bin": 12,
+      "ghost_radius": 24,
+      "pellet_direction": true
+    },
+    "env_seeds": [
+      44000,
+      44001,
+      44002,
+      44003,
+      44004,
+      44005,
+      44006,
+      44007
+    ],
+    "checkpoint": "B-Q-table-pellet-s44/checkpoints/65536.npz",
+    "q_table_states": 2283
+  }
+]

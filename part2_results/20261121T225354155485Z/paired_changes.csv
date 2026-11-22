@@ -1,0 +1,4 @@
+contrast,train_seed,success_rate,mean_raw_score,failure_length,known_state_rate
+Score bonus minus original B,42,0.0,100.0,-55.98000000000002,0.0021176903038273576
+Score bonus minus original B,43,0.0,150.85,58.89999999999998,0.009998511778049224
+Score bonus minus original B,44,0.0,186.3,32.33000000000004,0.10457999864949385

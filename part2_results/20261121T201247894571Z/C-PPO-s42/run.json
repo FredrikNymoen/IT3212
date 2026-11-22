@@ -1,0 +1,32 @@
+{
+  "run_id": "C-PPO-s42",
+  "train_setting": "C",
+  "algorithm": "PPO",
+  "train_seed": 42,
+  "training_interactions": 16384,
+  "training_seconds": 11.76138069999979,
+  "optimizer_updates": 1024,
+  "completed_training_episodes": 23,
+  "params": {
+    "lr": 0.00025,
+    "rollout_steps": 64,
+    "gae_lambda": 0.95,
+    "clip": 0.2,
+    "epochs": 4,
+    "batch_size": 64,
+    "entropy_coef": 0.01,
+    "value_coef": 0.5,
+    "max_grad_norm": 0.5
+  },
+  "env_seeds": [
+    42000,
+    42001,
+    42002,
+    42003,
+    42004,
+    42005,
+    42006,
+    42007
+  ],
+  "checkpoint": "C-PPO-s42/model.pt"
+}

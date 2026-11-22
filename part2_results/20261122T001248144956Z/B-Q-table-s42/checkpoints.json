@@ -1,0 +1,272 @@
+[
+  {
+    "run_id": "B-Q-table-s42",
+    "train_setting": "B",
+    "algorithm": "Q-table",
+    "train_seed": 42,
+    "training_interactions": 0,
+    "training_seconds": 0.0,
+    "optimizer_updates": 0,
+    "completed_training_episodes": 0,
+    "params": {
+      "alpha": 0.15,
+      "epsilon_start": 1.0,
+      "epsilon_end": 0.1,
+      "exploration_steps": 12288,
+      "position_bin": 12,
+      "ghost_radius": 24
+    },
+    "env_seeds": [
+      42000,
+      42001,
+      42002,
+      42003,
+      42004,
+      42005,
+      42006,
+      42007
+    ],
+    "checkpoint": "B-Q-table-s42/checkpoints/0.npz",
+    "q_table_states": 0
+  },
+  {
+    "run_id": "B-Q-table-s42",
+    "train_setting": "B",
+    "algorithm": "Q-table",
+    "train_seed": 42,
+    "training_interactions": 8192,
+    "training_seconds": 3.1056482999993023,
+    "optimizer_updates": 8192,
+    "completed_training_episodes": 11,
+    "params": {
+      "alpha": 0.15,
+      "epsilon_start": 1.0,
+      "epsilon_end": 0.1,
+      "exploration_steps": 12288,
+      "position_bin": 12,
+      "ghost_radius": 24
+    },
+    "env_seeds": [
+      42000,
+      42001,
+      42002,
+      42003,
+      42004,
+      42005,
+      42006,
+      42007
+    ],
+    "checkpoint": "B-Q-table-s42/checkpoints/8192.npz",
+    "q_table_states": 627
+  },
+  {
+    "run_id": "B-Q-table-s42",
+    "train_setting": "B",
+    "algorithm": "Q-table",
+    "train_seed": 42,
+    "training_interactions": 16384,
+    "training_seconds": 6.331319100001565,
+    "optimizer_updates": 16384,
+    "completed_training_episodes": 25,
+    "params": {
+      "alpha": 0.15,
+      "epsilon_start": 1.0,
+      "epsilon_end": 0.1,
+      "exploration_steps": 12288,
+      "position_bin": 12,
+      "ghost_radius": 24
+    },
+    "env_seeds": [
+      42000,
+      42001,
+      42002,
+      42003,
+      42004,
+      42005,
+      42006,
+      42007
+    ],
+    "checkpoint": "B-Q-table-s42/checkpoints/16384.npz",
+    "q_table_states": 877
+  },
+  {
+    "run_id": "B-Q-table-s42",
+    "train_setting": "B",
+    "algorithm": "Q-table",
+    "train_seed": 42,
+    "training_interactions": 24576,
+    "training_seconds": 9.373761800001375,
+    "optimizer_updates": 24576,
+    "completed_training_episodes": 41,
+    "params": {
+      "alpha": 0.15,
+      "epsilon_start": 1.0,
+      "epsilon_end": 0.1,
+      "exploration_steps": 12288,
+      "position_bin": 12,
+      "ghost_radius": 24
+    },
+    "env_seeds": [
+      42000,
+      42001,
+      42002,
+      42003,
+      42004,
+      42005,
+      42006,
+      42007
+    ],
+    "checkpoint": "B-Q-table-s42/checkpoints/24576.npz",
+    "q_table_states": 985
+  },
+  {
+    "run_id": "B-Q-table-s42",
+    "train_setting": "B",
+    "algorithm": "Q-table",
+    "train_seed": 42,
+    "training_interactions": 32768,
+    "training_seconds": 12.58435830000235,
+    "optimizer_updates": 32768,
+    "completed_training_episodes": 56,
+    "params": {
+      "alpha": 0.15,
+      "epsilon_start": 1.0,
+      "epsilon_end": 0.1,
+      "exploration_steps": 12288,
+      "position_bin": 12,
+      "ghost_radius": 24
+    },
+    "env_seeds": [
+      42000,
+      42001,
+      42002,
+      42003,
+      42004,
+      42005,
+      42006,
+      42007
+    ],
+    "checkpoint": "B-Q-table-s42/checkpoints/32768.npz",
+    "q_table_states": 1118
+  },
+  {
+    "run_id": "B-Q-table-s42",
+    "train_setting": "B",
+    "algorithm": "Q-table",
+    "train_seed": 42,
+    "training_interactions": 40960,
+    "training_seconds": 15.572657800003071,
+    "optimizer_updates": 40960,
+    "completed_training_episodes": 70,
+    "params": {
+      "alpha": 0.15,
+      "epsilon_start": 1.0,
+      "epsilon_end": 0.1,
+      "exploration_steps": 12288,
+      "position_bin": 12,
+      "ghost_radius": 24
+    },
+    "env_seeds": [
+      42000,
+      42001,
+      42002,
+      42003,
+      42004,
+      42005,
+      42006,
+      42007
+    ],
+    "checkpoint": "B-Q-table-s42/checkpoints/40960.npz",
+    "q_table_states": 1212
+  },
+  {
+    "run_id": "B-Q-table-s42",
+    "train_setting": "B",
+    "algorithm": "Q-table",
+    "train_seed": 42,
+    "training_interactions": 49152,
+    "training_seconds": 18.604176100001496,
+    "optimizer_updates": 49152,
+    "completed_training_episodes": 83,
+    "params": {
+      "alpha": 0.15,
+      "epsilon_start": 1.0,
+      "epsilon_end": 0.1,
+      "exploration_steps": 12288,
+      "position_bin": 12,
+      "ghost_radius": 24
+    },
+    "env_seeds": [
+      42000,
+      42001,
+      42002,
+      42003,
+      42004,
+      42005,
+      42006,
+      42007
+    ],
+    "checkpoint": "B-Q-table-s42/checkpoints/49152.npz",
+    "q_table_states": 1262
+  },
+  {
+    "run_id": "B-Q-table-s42",
+    "train_setting": "B",
+    "algorithm": "Q-table",
+    "train_seed": 42,
+    "training_interactions": 57344,
+    "training_seconds": 21.91015740000148,
+    "optimizer_updates": 57344,
+    "completed_training_episodes": 97,
+    "params": {
+      "alpha": 0.15,
+      "epsilon_start": 1.0,
+      "epsilon_end": 0.1,
+      "exploration_steps": 12288,
+      "position_bin": 12,
+      "ghost_radius": 24
+    },
+    "env_seeds": [
+      42000,
+      42001,
+      42002,
+      42003,
+      42004,
+      42005,
+      42006,
+      42007
+    ],
+    "checkpoint": "B-Q-table-s42/checkpoints/57344.npz",
+    "q_table_states": 1313
+  },
+  {
+    "run_id": "B-Q-table-s42",
+    "train_setting": "B",
+    "algorithm": "Q-table",
+    "train_seed": 42,
+    "training_interactions": 65536,
+    "training_seconds": 24.998113900004682,
+    "optimizer_updates": 65536,
+    "completed_training_episodes": 113,
+    "params": {
+      "alpha": 0.15,
+      "epsilon_start": 1.0,
+      "epsilon_end": 0.1,
+      "exploration_steps": 12288,
+      "position_bin": 12,
+      "ghost_radius": 24
+    },
+    "env_seeds": [
+      42000,
+      42001,
+      42002,
+      42003,
+      42004,
+      42005,
+      42006,
+      42007
+    ],
+    "checkpoint": "B-Q-table-s42/checkpoints/65536.npz",
+    "q_table_states": 1350
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "run_id": "B-DQN-s44",
+  "train_setting": "B",
+  "algorithm": "DQN",
+  "train_seed": 44,
+  "training_interactions": 16384,
+  "training_seconds": 13.71205209999971,
+  "optimizer_updates": 1985,
+  "completed_training_episodes": 27,
+  "params": {
+    "lr": 0.00025,
+    "replay_size": 8192,
+    "warmup": 512,
+    "batch_size": 32,
+    "epsilon_start": 1.0,
+    "epsilon_end": 0.1,
+    "exploration_steps": 12288,
+    "target_sync": 512,
+    "max_grad_norm": 10.0
+  },
+  "env_seeds": [
+    44000,
+    44001,
+    44002,
+    44003,
+    44004,
+    44005,
+    44006,
+    44007
+  ],
+  "checkpoint": "B-DQN-s44/model.pt"
+}

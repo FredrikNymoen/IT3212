@@ -1,0 +1,290 @@
+[
+  {
+    "run_id": "B-PPO-low-lr-s42",
+    "train_setting": "B",
+    "algorithm": "PPO-low-lr",
+    "train_seed": 42,
+    "training_interactions": 0,
+    "training_seconds": 0.0,
+    "optimizer_updates": 0,
+    "completed_training_episodes": 0,
+    "params": {
+      "lr": 0.000125,
+      "rollout_steps": 64,
+      "gae_lambda": 0.95,
+      "clip": 0.2,
+      "epochs": 4,
+      "batch_size": 64,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5
+    },
+    "env_seeds": [
+      42000,
+      42001,
+      42002,
+      42003,
+      42004,
+      42005,
+      42006,
+      42007
+    ],
+    "checkpoint": "B-PPO-low-lr-s42/checkpoints/0.pt"
+  },
+  {
+    "run_id": "B-PPO-low-lr-s42",
+    "train_setting": "B",
+    "algorithm": "PPO-low-lr",
+    "train_seed": 42,
+    "training_interactions": 8192,
+    "training_seconds": 6.014575499997591,
+    "optimizer_updates": 512,
+    "completed_training_episodes": 15,
+    "params": {
+      "lr": 0.000125,
+      "rollout_steps": 64,
+      "gae_lambda": 0.95,
+      "clip": 0.2,
+      "epochs": 4,
+      "batch_size": 64,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5
+    },
+    "env_seeds": [
+      42000,
+      42001,
+      42002,
+      42003,
+      42004,
+      42005,
+      42006,
+      42007
+    ],
+    "checkpoint": "B-PPO-low-lr-s42/checkpoints/8192.pt"
+  },
+  {
+    "run_id": "B-PPO-low-lr-s42",
+    "train_setting": "B",
+    "algorithm": "PPO-low-lr",
+    "train_seed": 42,
+    "training_interactions": 16384,
+    "training_seconds": 13.202009199998429,
+    "optimizer_updates": 1024,
+    "completed_training_episodes": 28,
+    "params": {
+      "lr": 0.000125,
+      "rollout_steps": 64,
+      "gae_lambda": 0.95,
+      "clip": 0.2,
+      "epochs": 4,
+      "batch_size": 64,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5
+    },
+    "env_seeds": [
+      42000,
+      42001,
+      42002,
+      42003,
+      42004,
+      42005,
+      42006,
+      42007
+    ],
+    "checkpoint": "B-PPO-low-lr-s42/checkpoints/16384.pt"
+  },
+  {
+    "run_id": "B-PPO-low-lr-s42",
+    "train_setting": "B",
+    "algorithm": "PPO-low-lr",
+    "train_seed": 42,
+    "training_interactions": 24576,
+    "training_seconds": 19.14601549999861,
+    "optimizer_updates": 1536,
+    "completed_training_episodes": 41,
+    "params": {
+      "lr": 0.000125,
+      "rollout_steps": 64,
+      "gae_lambda": 0.95,
+      "clip": 0.2,
+      "epochs": 4,
+      "batch_size": 64,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5
+    },
+    "env_seeds": [
+      42000,
+      42001,
+      42002,
+      42003,
+      42004,
+      42005,
+      42006,
+      42007
+    ],
+    "checkpoint": "B-PPO-low-lr-s42/checkpoints/24576.pt"
+  },
+  {
+    "run_id": "B-PPO-low-lr-s42",
+    "train_setting": "B",
+    "algorithm": "PPO-low-lr",
+    "train_seed": 42,
+    "training_interactions": 32768,
+    "training_seconds": 24.84765399999742,
+    "optimizer_updates": 2048,
+    "completed_training_episodes": 53,
+    "params": {
+      "lr": 0.000125,
+      "rollout_steps": 64,
+      "gae_lambda": 0.95,
+      "clip": 0.2,
+      "epochs": 4,
+      "batch_size": 64,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5
+    },
+    "env_seeds": [
+      42000,
+      42001,
+      42002,
+      42003,
+      42004,
+      42005,
+      42006,
+      42007
+    ],
+    "checkpoint": "B-PPO-low-lr-s42/checkpoints/32768.pt"
+  },
+  {
+    "run_id": "B-PPO-low-lr-s42",
+    "train_setting": "B",
+    "algorithm": "PPO-low-lr",
+    "train_seed": 42,
+    "training_interactions": 40960,
+    "training_seconds": 30.673732899998868,
+    "optimizer_updates": 2560,
+    "completed_training_episodes": 68,
+    "params": {
+      "lr": 0.000125,
+      "rollout_steps": 64,
+      "gae_lambda": 0.95,
+      "clip": 0.2,
+      "epochs": 4,
+      "batch_size": 64,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5
+    },
+    "env_seeds": [
+      42000,
+      42001,
+      42002,
+      42003,
+      42004,
+      42005,
+      42006,
+      42007
+    ],
+    "checkpoint": "B-PPO-low-lr-s42/checkpoints/40960.pt"
+  },
+  {
+    "run_id": "B-PPO-low-lr-s42",
+    "train_setting": "B",
+    "algorithm": "PPO-low-lr",
+    "train_seed": 42,
+    "training_interactions": 49152,
+    "training_seconds": 36.41554939999696,
+    "optimizer_updates": 3072,
+    "completed_training_episodes": 80,
+    "params": {
+      "lr": 0.000125,
+      "rollout_steps": 64,
+      "gae_lambda": 0.95,
+      "clip": 0.2,
+      "epochs": 4,
+      "batch_size": 64,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5
+    },
+    "env_seeds": [
+      42000,
+      42001,
+      42002,
+      42003,
+      42004,
+      42005,
+      42006,
+      42007
+    ],
+    "checkpoint": "B-PPO-low-lr-s42/checkpoints/49152.pt"
+  },
+  {
+    "run_id": "B-PPO-low-lr-s42",
+    "train_setting": "B",
+    "algorithm": "PPO-low-lr",
+    "train_seed": 42,
+    "training_interactions": 57344,
+    "training_seconds": 42.02912439999636,
+    "optimizer_updates": 3584,
+    "completed_training_episodes": 92,
+    "params": {
+      "lr": 0.000125,
+      "rollout_steps": 64,
+      "gae_lambda": 0.95,
+      "clip": 0.2,
+      "epochs": 4,
+      "batch_size": 64,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5
+    },
+    "env_seeds": [
+      42000,
+      42001,
+      42002,
+      42003,
+      42004,
+      42005,
+      42006,
+      42007
+    ],
+    "checkpoint": "B-PPO-low-lr-s42/checkpoints/57344.pt"
+  },
+  {
+    "run_id": "B-PPO-low-lr-s42",
+    "train_setting": "B",
+    "algorithm": "PPO-low-lr",
+    "train_seed": 42,
+    "training_interactions": 65536,
+    "training_seconds": 47.854332499999146,
+    "optimizer_updates": 4096,
+    "completed_training_episodes": 105,
+    "params": {
+      "lr": 0.000125,
+      "rollout_steps": 64,
+      "gae_lambda": 0.95,
+      "clip": 0.2,
+      "epochs": 4,
+      "batch_size": 64,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5
+    },
+    "env_seeds": [
+      42000,
+      42001,
+      42002,
+      42003,
+      42004,
+      42005,
+      42006,
+      42007
+    ],
+    "checkpoint": "B-PPO-low-lr-s42/checkpoints/65536.pt"
+  }
+]

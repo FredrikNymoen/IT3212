@@ -1,0 +1,290 @@
+[
+  {
+    "run_id": "B-PPO-s43",
+    "train_setting": "B",
+    "algorithm": "PPO",
+    "train_seed": 43,
+    "training_interactions": 0,
+    "training_seconds": 0.0,
+    "optimizer_updates": 0,
+    "completed_training_episodes": 0,
+    "params": {
+      "lr": 0.00025,
+      "rollout_steps": 64,
+      "gae_lambda": 0.95,
+      "clip": 0.2,
+      "epochs": 4,
+      "batch_size": 64,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5
+    },
+    "env_seeds": [
+      43000,
+      43001,
+      43002,
+      43003,
+      43004,
+      43005,
+      43006,
+      43007
+    ],
+    "checkpoint": "B-PPO-s43/checkpoints/0.pt"
+  },
+  {
+    "run_id": "B-PPO-s43",
+    "train_setting": "B",
+    "algorithm": "PPO",
+    "train_seed": 43,
+    "training_interactions": 8192,
+    "training_seconds": 6.09694859999945,
+    "optimizer_updates": 512,
+    "completed_training_episodes": 13,
+    "params": {
+      "lr": 0.00025,
+      "rollout_steps": 64,
+      "gae_lambda": 0.95,
+      "clip": 0.2,
+      "epochs": 4,
+      "batch_size": 64,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5
+    },
+    "env_seeds": [
+      43000,
+      43001,
+      43002,
+      43003,
+      43004,
+      43005,
+      43006,
+      43007
+    ],
+    "checkpoint": "B-PPO-s43/checkpoints/8192.pt"
+  },
+  {
+    "run_id": "B-PPO-s43",
+    "train_setting": "B",
+    "algorithm": "PPO",
+    "train_seed": 43,
+    "training_interactions": 16384,
+    "training_seconds": 12.088150700001279,
+    "optimizer_updates": 1024,
+    "completed_training_episodes": 24,
+    "params": {
+      "lr": 0.00025,
+      "rollout_steps": 64,
+      "gae_lambda": 0.95,
+      "clip": 0.2,
+      "epochs": 4,
+      "batch_size": 64,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5
+    },
+    "env_seeds": [
+      43000,
+      43001,
+      43002,
+      43003,
+      43004,
+      43005,
+      43006,
+      43007
+    ],
+    "checkpoint": "B-PPO-s43/checkpoints/16384.pt"
+  },
+  {
+    "run_id": "B-PPO-s43",
+    "train_setting": "B",
+    "algorithm": "PPO",
+    "train_seed": 43,
+    "training_interactions": 24576,
+    "training_seconds": 18.858809800003655,
+    "optimizer_updates": 1536,
+    "completed_training_episodes": 35,
+    "params": {
+      "lr": 0.00025,
+      "rollout_steps": 64,
+      "gae_lambda": 0.95,
+      "clip": 0.2,
+      "epochs": 4,
+      "batch_size": 64,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5
+    },
+    "env_seeds": [
+      43000,
+      43001,
+      43002,
+      43003,
+      43004,
+      43005,
+      43006,
+      43007
+    ],
+    "checkpoint": "B-PPO-s43/checkpoints/24576.pt"
+  },
+  {
+    "run_id": "B-PPO-s43",
+    "train_setting": "B",
+    "algorithm": "PPO",
+    "train_seed": 43,
+    "training_interactions": 32768,
+    "training_seconds": 25.39964950000285,
+    "optimizer_updates": 2048,
+    "completed_training_episodes": 48,
+    "params": {
+      "lr": 0.00025,
+      "rollout_steps": 64,
+      "gae_lambda": 0.95,
+      "clip": 0.2,
+      "epochs": 4,
+      "batch_size": 64,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5
+    },
+    "env_seeds": [
+      43000,
+      43001,
+      43002,
+      43003,
+      43004,
+      43005,
+      43006,
+      43007
+    ],
+    "checkpoint": "B-PPO-s43/checkpoints/32768.pt"
+  },
+  {
+    "run_id": "B-PPO-s43",
+    "train_setting": "B",
+    "algorithm": "PPO",
+    "train_seed": 43,
+    "training_interactions": 40960,
+    "training_seconds": 32.01415460000135,
+    "optimizer_updates": 2560,
+    "completed_training_episodes": 61,
+    "params": {
+      "lr": 0.00025,
+      "rollout_steps": 64,
+      "gae_lambda": 0.95,
+      "clip": 0.2,
+      "epochs": 4,
+      "batch_size": 64,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5
+    },
+    "env_seeds": [
+      43000,
+      43001,
+      43002,
+      43003,
+      43004,
+      43005,
+      43006,
+      43007
+    ],
+    "checkpoint": "B-PPO-s43/checkpoints/40960.pt"
+  },
+  {
+    "run_id": "B-PPO-s43",
+    "train_setting": "B",
+    "algorithm": "PPO",
+    "train_seed": 43,
+    "training_interactions": 49152,
+    "training_seconds": 38.296566600001825,
+    "optimizer_updates": 3072,
+    "completed_training_episodes": 72,
+    "params": {
+      "lr": 0.00025,
+      "rollout_steps": 64,
+      "gae_lambda": 0.95,
+      "clip": 0.2,
+      "epochs": 4,
+      "batch_size": 64,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5
+    },
+    "env_seeds": [
+      43000,
+      43001,
+      43002,
+      43003,
+      43004,
+      43005,
+      43006,
+      43007
+    ],
+    "checkpoint": "B-PPO-s43/checkpoints/49152.pt"
+  },
+  {
+    "run_id": "B-PPO-s43",
+    "train_setting": "B",
+    "algorithm": "PPO",
+    "train_seed": 43,
+    "training_interactions": 57344,
+    "training_seconds": 44.87496220000321,
+    "optimizer_updates": 3584,
+    "completed_training_episodes": 83,
+    "params": {
+      "lr": 0.00025,
+      "rollout_steps": 64,
+      "gae_lambda": 0.95,
+      "clip": 0.2,
+      "epochs": 4,
+      "batch_size": 64,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5
+    },
+    "env_seeds": [
+      43000,
+      43001,
+      43002,
+      43003,
+      43004,
+      43005,
+      43006,
+      43007
+    ],
+    "checkpoint": "B-PPO-s43/checkpoints/57344.pt"
+  },
+  {
+    "run_id": "B-PPO-s43",
+    "train_setting": "B",
+    "algorithm": "PPO",
+    "train_seed": 43,
+    "training_interactions": 65536,
+    "training_seconds": 51.209582800001954,
+    "optimizer_updates": 4096,
+    "completed_training_episodes": 98,
+    "params": {
+      "lr": 0.00025,
+      "rollout_steps": 64,
+      "gae_lambda": 0.95,
+      "clip": 0.2,
+      "epochs": 4,
+      "batch_size": 64,
+      "entropy_coef": 0.01,
+      "value_coef": 0.5,
+      "max_grad_norm": 0.5
+    },
+    "env_seeds": [
+      43000,
+      43001,
+      43002,
+      43003,
+      43004,
+      43005,
+      43006,
+      43007
+    ],
+    "checkpoint": "B-PPO-s43/checkpoints/65536.pt"
+  }
+]
