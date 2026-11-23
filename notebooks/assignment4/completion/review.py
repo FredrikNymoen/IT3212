@@ -1,4 +1,4 @@
-"""Substantive Part5 draft; never invent members' actual rankings or feedback."""
+"""Part5 review using the rankings, rationale and broad support supplied by the team."""
 import json
 from pathlib import Path
 
@@ -6,15 +6,16 @@ ROOT=Path(__file__).resolve().parents[3]
 
 def render_review(report):
     state=json.loads((report/'review_input.json').read_text())
-    assert state['status']=='draft','Preserve the actual reviewed text; do not regenerate an approved review as a proposal.'
-    assert state['actual_negotiation_record'] is None
-    assert all(v is None for v in state['initial_rankings'].values())
+    assert state['status']=='reviewed'
+    codes={'Failure avoidance':'F','Robustness to change':'R','Explainability':'E','Time efficiency':'T'}
+    assert all(len(v)==4 and set(v)==set(codes) for v in state['initial_rankings'].values())
+    assert len(state['final_priorities'])==4 and set(state['final_priorities'])==set(codes)
+    assert state['actual_negotiation_record'] and state['group_rationale_norwegian'] and state['assessment_endorsement_norwegian']
     text=r'''
-\section*{Part 5: Human review draft}
-\noindent\textbf{Status.} The team named Fredrik, Johan, Elling and Mats as
-participants. The assessment below is a proposed review for their validation,
-not verified minutes. Individual initial rankings and the actual negotiation
-have not been supplied; no personal opinions or agreement are invented.
+\section*{Part 5: Human review}
+The review participants were Fredrik, Johan, Elling and Mats. The group
+broadly supported the evidence assessments below and considered the final
+priorities well justified.
 
 \subsection*{Strongest supporting evidence}
 The strongest support for preferring PPO in the uncertain simulation is the
@@ -62,23 +63,30 @@ premise behind the frightened-ghost prediction. The initial preference for
 PPO therefore becomes conditional: it is preferable for further B simulation,
 while neither workflow is supported for consequential autonomous operation.
 
-\subsection*{Priorities proposed for discussion}
-A reasonable proposed order for consequential operation is failure avoidance,
-robustness to change, explainability, then time efficiency. The first two
-follow from the observed failure rates; explainability helps diagnose failures,
-while speed should not compensate for missing the goal. A classroom
-demonstration can give explainability and short setup time greater weight.
-This is a proposal, not a claim that the four members negotiated this order.
+\subsection*{Initial rankings and final priorities}
+The members reported the following initial rankings, from most to least
+important: F denotes failure avoidance, R robustness to change,
+E explainability and T time efficiency.
+__RANKING_TABLE__
+The final group order was __FINAL_ORDER__.
+Three members initially placed failure avoidance first; Johan placed
+robustness first. Explainability and time efficiency also differed in rank.
+The group resolved these trade-offs by prioritising avoidance of failures
+and stable operation, with explainability and time efficiency less decisive.
+The final order therefore places failure avoidance first and robustness
+second, while retaining explainability ahead of time efficiency.
 
-\begin{center}\begin{tabular}{ll}\toprule
-Member & Actual initial ranking\\\midrule
-Fredrik & Not supplied\\
-Johan & Not supplied\\
-Elling & Not supplied\\
-Mats & Not supplied\\\bottomrule
-\end{tabular}\end{center}
-Before finalising, each member must record their actual initial ranking;
-the group must state its adopted final order and how disagreements were
-resolved. These cannot be reconstructed as historical views from this draft.
+This reliability-first ordering supports the conditional recommendation:
+PPO is the stronger B workflow for further simulation, but neither tested
+workflow is adequately supported for consequential autonomous operation.
+Explainability remains useful for diagnosing why decisions fail; shorter
+runtime does not compensate for the observed failure rates. A classroom
+demonstration can weight these secondary priorities differently from deployment.
 '''
+    table=[r'\begin{center}\begin{tabular}{ll}\toprule',r'Member & Initial priority order\\\midrule']
+    for name in state['members_named_by_user']:
+        table.append(name+r' & $'+'>'.join(codes[x] for x in state['initial_rankings'][name])+r'$\\')
+    table.extend([r'\bottomrule\end{tabular}\end{center}'])
+    text=text.replace('__RANKING_TABLE__','\n'.join(table))
+    text=text.replace('__FINAL_ORDER__','$'+'>'.join(codes[x] for x in state['final_priorities'])+'$')
     return state,text

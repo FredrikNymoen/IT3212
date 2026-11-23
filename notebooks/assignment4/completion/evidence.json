@@ -3479,8 +3479,10 @@
     },
     "conservative_brief_words": 1888,
     "counting_rule": "Excludes table and longtable contents and figure captions; includes headings, inline mathematics/numbers and conservative title allowance.",
-    "human_review": "Substantive draft for team validation; actual initial rankings and negotiation not provided.",
-    "review_words": 583,
+    "human_review": "Completed using member rankings, final group priorities, rationale and broad support supplied by the user.",
+    "review_words": 623,
+    "review_input_sha256": "11701adffacd10566f5479a6c6209e9bfb0f23d696ab486c8c66c0ca9f203754",
+    "review_text_sha256": "cfbae8e5ecc64b7eaa6f14428ee456c13b7fd13fc46c14cac0bc43f886fbc3b0",
     "report_hashes": {
       "reports\\assignment4\\main.tex": "f3e16d5bea5607c5ad8277a23ef702afb7d5d8074a9ed77e52da688f14b49d5b",
       "reports\\assignment4\\Sections\\02_learning_settings.tex": "94651b6420a74bbf2dac01e0e992d54fe69cb96e3297f726aedcea61421bda85",
@@ -3488,7 +3490,7 @@
       "reports\\assignment4\\Sections\\04_episode_inspection.tex": "3ccf2f6a882f0526b859203bf8acbc435a33dcd2e90c92abddf0dedf6793ae23",
       "reports\\assignment4\\Sections\\06_recommendations.tex": "011abd02527077295306fe81c896ac455e288eef54b5b410565c999f498d3d2a"
     },
-    "verifier_sha256": "543d23baf539cdbb4ea99608b3b0e84a0a8dc077d3a4f622e1a5f46f3dc78fb6"
+    "verifier_sha256": "a2269d4856ff596befe3124874936e121bba69f018fb4b7a3a79be7bba3d447f"
   },
   "trace_audit": {
     "primary_decisions": 13581678,
@@ -3668,5 +3670,5 @@
     ],
     "complete_archive_trace_files": 115
   },
-  "scope": "Derived compact evidence; raw episode logs, models and ten analyzed full traces accompany the ZIP. Human review draft requires actual participant rankings/negotiation."
+  "scope": "Derived compact evidence; raw episode logs, models and ten analyzed full traces accompany the ZIP. Human review includes user-supplied initial rankings, group priorities, rationale and broad support."
 }

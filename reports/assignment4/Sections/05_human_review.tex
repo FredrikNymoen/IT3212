@@ -1,8 +1,7 @@
-\section*{Part 5: Human review draft}
-\noindent\textbf{Status.} The team named Fredrik, Johan, Elling and Mats as
-participants. The assessment below is a proposed review for their validation,
-not verified minutes. Individual initial rankings and the actual negotiation
-have not been supplied; no personal opinions or agreement are invented.
+\section*{Part 5: Human review}
+The review participants were Fredrik, Johan, Elling and Mats. The group
+broadly supported the evidence assessments below and considered the final
+priorities well justified.
 
 \subsection*{Strongest supporting evidence}
 The strongest support for preferring PPO in the uncertain simulation is the
@@ -50,21 +49,28 @@ premise behind the frightened-ghost prediction. The initial preference for
 PPO therefore becomes conditional: it is preferable for further B simulation,
 while neither workflow is supported for consequential autonomous operation.
 
-\subsection*{Priorities proposed for discussion}
-A reasonable proposed order for consequential operation is failure avoidance,
-robustness to change, explainability, then time efficiency. The first two
-follow from the observed failure rates; explainability helps diagnose failures,
-while speed should not compensate for missing the goal. A classroom
-demonstration can give explainability and short setup time greater weight.
-This is a proposal, not a claim that the four members negotiated this order.
-
+\subsection*{Initial rankings and final priorities}
+The members reported the following initial rankings, from most to least
+important: F denotes failure avoidance, R robustness to change,
+E explainability and T time efficiency.
 \begin{center}\begin{tabular}{ll}\toprule
-Member & Actual initial ranking\\\midrule
-Fredrik & Not supplied\\
-Johan & Not supplied\\
-Elling & Not supplied\\
-Mats & Not supplied\\\bottomrule
-\end{tabular}\end{center}
-Before finalising, each member must record their actual initial ranking;
-the group must state its adopted final order and how disagreements were
-resolved. These cannot be reconstructed as historical views from this draft.
+Member & Initial priority order\\\midrule
+Fredrik & $F>R>E>T$\\
+Johan & $R>F>T>E$\\
+Elling & $F>E>R>T$\\
+Mats & $F>R>T>E$\\
+\bottomrule\end{tabular}\end{center}
+The final group order was $F>R>E>T$.
+Three members initially placed failure avoidance first; Johan placed
+robustness first. Explainability and time efficiency also differed in rank.
+The group resolved these trade-offs by prioritising avoidance of failures
+and stable operation, with explainability and time efficiency less decisive.
+The final order therefore places failure avoidance first and robustness
+second, while retaining explainability ahead of time efficiency.
+
+This reliability-first ordering supports the conditional recommendation:
+PPO is the stronger B workflow for further simulation, but neither tested
+workflow is adequately supported for consequential autonomous operation.
+Explainability remains useful for diagnosing why decisions fail; shorter
+runtime does not compensate for the observed failure rates. A classroom
+demonstration can weight these secondary priorities differently from deployment.

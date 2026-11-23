@@ -124,15 +124,22 @@ def main():
     review=(REPORT/'Sections/05_human_review.tex').read_text()
     review_state=json.loads((REPORT/'review_input.json').read_text())
     review_words=len(re.findall(r"[A-Za-z0-9]+(?:[.'-][A-Za-z0-9]+)*",re.sub(r'\\[A-Za-z]+','',review)))
-    assert review_words<=1000 and review_state['status']=='draft'
-    assert all(value is None for value in review_state['initial_rankings'].values())
+    assert review_words<=1000 and review_state['status']=='reviewed'
+    codes={'Failure avoidance':'F','Robustness to change':'R','Explainability':'E','Time efficiency':'T'}
+    for name,ranking in review_state['initial_rankings'].items():
+        assert len(ranking)==4 and set(ranking)==set(codes)
+        assert name+' & $'+'>'.join(codes[x] for x in ranking)+'$' in review
+    assert '$'+'>'.join(codes[x] for x in review_state['final_priorities'])+'$' in review
+    assert review_state['actual_negotiation_record'] and review_state['group_rationale_norwegian']
+    assert review_state['assessment_endorsement_norwegian']
     assert all(name in review for name in review_state['members_named_by_user'])
-    assert 'not verified minutes' in review and 'Not supplied' in review
+    assert 'broadly supported' in review and 'Not supplied' not in review and 'review draft' not in review
     result=dict(primary_tables_independently_recomputed=True,all_training_roots_retained=True,decisions=30,original_predictions_unchanged=True,
         calendar_dates_absent_from_report=True,parallel_A_B_C_D_sections=True,paired_D_table_verified=True,
         prose_words_by_part=prose_counts,conservative_brief_words=sum(prose_counts.values())+20,
         counting_rule='Excludes table and longtable contents and figure captions; includes headings, inline mathematics/numbers and conservative title allowance.',
-        human_review='Substantive draft for team validation; actual initial rankings and negotiation not provided.',review_words=review_words,
+        human_review='Completed using member rankings, final group priorities, rationale and broad support supplied by the user.',review_words=review_words,
+        review_input_sha256=sha(REPORT/'review_input.json'),review_text_sha256=sha(REPORT/'Sections/05_human_review.tex'),
         report_hashes={str(p.relative_to(ROOT)):sha(p) for p in active},verifier_sha256=sha(Path(__file__)))
     (OUT/'report_verification.json').write_text(json.dumps(result,indent=2)+'\n'); print(json.dumps(result,indent=2))
 if __name__=='__main__':main()

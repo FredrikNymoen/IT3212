@@ -49,11 +49,13 @@ Preserve original results/models and Part1. Old sources can be inspected with
   despite this clarification mentioning traces for six. One ZIP can contain
   multiple deliverables. Never fabricate original timestamps or human review.
 - `notebooks/assignment4/completion/` is the user-authorised full remaining
-  assignment work. Part5 was initially deferred; the user now requests it.
-  The user named Fredrik/Johan/Elling/Mats; actual opinions were not supplied.
-  `review.py`/`reports/assignment4/review_input.json` provide a substantive,
-  explicitly labelled review DRAFT. Do not invent actual individual initial
-  rankings, negotiated priorities or group feedback. Those remain unprovided.
+  assignment work. The user supplied the completed Part5 group inputs:
+  Fredrik F>R>E>T, Johan R>F>T>E, Elling F>E>R>T, Mats F>R>T>E;
+  final F>R>E>T, prioritising failure avoidance and stable operation over
+  explainability/time. F=failure avoidance, R=robustness, E=explainability,
+  T=time efficiency. The group broadly supports the draft's evidence assessments.
+  `review.py`/`reports/assignment4/review_input.json` preserve and render those
+  facts. Do not invent member-specific arguments, quotations or voting procedure.
   The user requested PAUSE and subsequently explicitly resumed. All11 workflow
   processes were verified by PID creation time and resumed successfully on
   23November2026. The pause ledger is in
@@ -65,7 +67,7 @@ Preserve original results/models and Part1. Old sources can be inspected with
   ten-episode/30-decision inspection is verified. All45 mechanism models and
   9000 primary episodes,4000 clarified-D episodes and1000 secondary diagnostic
   episodes are complete. The report covers Parts2/3/4/6; Part5 is a separate
-  evidence-based draft awaiting actual human rankings/negotiation. Predictions
+  completed review using user-supplied rankings/rationale/endorsement. Predictions
   are unchanged, with separate post-experiment annotations.
   See README for the prespecified45-model five-seed Part3 study, fixed cap262144,
   common seeds17/29/101/314/2718 and fresh final episodes1500000--1500199.

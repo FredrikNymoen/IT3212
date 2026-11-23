@@ -33,7 +33,10 @@ def required_traces():
     return set(result)
 def verify():
     with zipfile.ZipFile(TARGET) as z:
-        assert 'DRAFT for team validation' in z.read('START_HERE.md').decode()
+        assert 'member-supplied rankings and final priorities' in z.read('START_HERE.md').decode()
+        review_state=json.loads(z.read('reports/assignment4/review_input.json'))
+        assert review_state['status']=='reviewed' and review_state['actual_negotiation_record']
+        assert all(value for value in review_state['initial_rankings'].values())
         manifest=json.loads(z.read('submission_manifest.json'));names=set(z.namelist())
         assert len(names)==len(z.namelist())
         assert names=={x['path'] for x in manifest['files']}|{'submission_manifest.json','START_HERE.md'}
@@ -60,7 +63,7 @@ def verify():
             assert hashlib.sha256(z.read(key)).hexdigest()==r['evaluation_csv_sha256']
     receipt=dict(zip=str(TARGET.relative_to(ROOT)),bytes=TARGET.stat().st_size,sha256=digest(TARGET),
                  entries=len(names),primary_episode_tables=95,primary_episodes=19000,
-                 required_full_trace_files=8,required_analyzed_episodes=10,all_entries_SHA256_verified=True,human_review='draft awaiting actual group record')
+                 required_full_trace_files=8,required_analyzed_episodes=10,all_entries_SHA256_verified=True,human_review='completed using user-supplied group record')
     TARGET.with_suffix('.verification.json').write_text(json.dumps(receipt,indent=2)+'\n')
     print(json.dumps(receipt,indent=2));return receipt
 
@@ -75,7 +78,7 @@ def build():
     snapshot=dict(summary=summary,agents=agents,report_verification=report_check,
                   trace_audit=dict(primary_decisions=records['primary_decisions'],secondary_decisions=records['secondary_decisions'],
                                    native_replays=records['native_replays'],complete_archive_trace_files=115),
-                  scope='Derived compact evidence; raw episode logs, models and ten analyzed full traces accompany the ZIP. Human review draft requires actual participant rankings/negotiation.')
+                  scope='Derived compact evidence; raw episode logs, models and ten analyzed full traces accompany the ZIP. Human review includes user-supplied initial rankings, group priorities, rationale and broad support.')
     (ROOT/'notebooks/assignment4/completion/evidence.json').write_text(json.dumps(snapshot,indent=2,allow_nan=False)+'\n')
     files=set();suffixes={'.py','.ipynb','.json','.md','.txt','.tex','.png','.pdf'}
     for directory in [ROOT/'notebooks/assignment4',ROOT/'reports/assignment4',ROOT/'output/pdf']:
@@ -104,10 +107,10 @@ def build():
     manifest=dict(created_utc=datetime.now(timezone.utc).isoformat(),files=file_rows,
         primary_episodes=19000,secondary_episodes=1000,required_analyzed_episodes=10,annotated_decisions=30,
         omitted='Optional step-level arrays for non-analyzed models; complete local full-audit SHA receipt retained.',
-        submission_status='Part5 is an evidence-based draft; actual individual initial rankings and negotiated priorities are not supplied. Do not present this as verified group minutes.')
+        submission_status='Part5 records user-supplied individual initial rankings, final priorities, group rationale and broad support for the evidence assessments. No additional discussion details are invented.')
     start='''# Assignment 4 evidence package\n\nOpen output/pdf/assignment4_evidence_brief.pdf first. The original predictions\nplus later annotations and the AI record are separate PDFs. The human review\nis explicitly DEFERRED at the team\'s request: complete the actual discussion,\nindividual priority rankings and negotiated priorities before submission.\nRetain the original prediction submission timestamp separately.\n\nFor code, reproduction, exact run mapping and all limitations, read\nnotebooks/assignment4/completion/README.md and reports/assignment4/README.md.\nThe actual algorithms are q_learning.py and ppo.py. No DQN is used.\n\nPrimary D is the instructor-clarified fixed OBJECT-FEATURE observation\nobstruction, not historical forced-map D. The game stays unchanged.\nThe package retains full step traces for all TEN analyzed episodes and raw\nepisode-level metrics for all19,000 primary and1,000 secondary episodes.\nOptional full traces for other episodes remain in the local archive; their\nchecksums and the complete independent verification receipt are included.\n\nExact dependency versions are recorded; no virtual environment, credentials,\n.git directory or ALE ROM is included. Reproduce from the extracted root on\nthe documented Windows CPU environment. Supplied seeds reproduce existing\nexperiments, not independent new tests. The canonical report is never tuned\nor overwritten by the training reproduction command.\n'''
-    start=start.replace("is explicitly DEFERRED at the team's request: complete the actual discussion,",
-        'is a substantive DRAFT for team validation: supply the actual discussion,')
+    start=start.replace("is explicitly DEFERRED at the team's request: complete the actual discussion,\nindividual priority rankings and negotiated priorities before submission.",
+        'records member-supplied rankings and final priorities, the group rationale,\nand broad support for the evidence assessments. No detailed minutes are invented.')
     TARGET.parent.mkdir(parents=True,exist_ok=True);temporary=TARGET.with_suffix('.partial.zip')
     with zipfile.ZipFile(temporary,'w',allowZip64=True) as z:
         z.writestr('START_HERE.md',start,compress_type=zipfile.ZIP_DEFLATED)

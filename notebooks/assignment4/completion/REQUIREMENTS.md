@@ -24,7 +24,7 @@ in the repository root. This is an audit map, not a grade guarantee.
 | Bad action vs unlucky outcome | Missed immediate score, productive actions in failures, zero-value absent key, non-unique realised inputs; one coupled fork does not estimate expected survival. |
 | Three contextual recommendations | Fixed configuration or neither, two experimental supports each, observed weakness, explicit reversal condition and specific further test before beyond-simulation use. |
 | <=2000-word evidence brief | Parts2/3/4/6 only; conservative full-brief counter includes headings/math/numbers, excludes tables/captions. Compiled separately from predictions/review/AI record. |
-| Real human review <=1000 words | A583-word evidence-based draft names the four members provided by the user. Actual initial rankings and negotiation were not supplied; these remain pending. Proposed analysis/priorities are labelled as proposals, not invented group feedback. |
+| Real human review <=1000 words | Completed review uses the four actual initial rankings, final priorities, group rationale and broad support supplied by the user. The input record is preserved and all four ranking rows/final order are verified; no additional discussion details are invented. |
 | Reproducible code/records | Actual Q/PPO in two Python files; documented75-model selected-config command, original search command separately; exact versions/configs, models, all episode CSVs, ten analyzed full traces and fingerprints in one ZIP. |
 | Consequential AI assistance | Separate honest record of suggested/implemented work, accepted/rejected choices, checks, limitations and outstanding human ownership. |
 

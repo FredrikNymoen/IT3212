@@ -491,7 +491,7 @@ learning. No final-test winner is promoted into the original comparison.
     review_state,review_text=render_review(REPORT)
     write(REPORT/'Sections/05_human_review.tex',review_text)
     write(REPORT/'review.tex',preamble+r'''
-\title{IT3212 Assignment 4: Human Review Draft}\author{MsPacMan team}\date{}
+\title{IT3212 Assignment 4: Human Review}\author{MsPacMan team}\date{}
 \begin{document}\maketitle\input{Sections/05_human_review.tex}\end{document}
 ''')
     write(REPORT/'ai_assistance.tex',r'''
@@ -530,18 +530,18 @@ A/B/C/D. Codex added parallel subsections, a four-setting figure and a paired
 D outcome table, verified against the original records without new training.
 Raw provenance timestamps and the original prediction sheet remain intact.
 
-The team subsequently requested a Part5 draft and supplied the four member
-names. Actual individual rankings and negotiated outcomes were not supplied.
-Codex supplied an evidence-based proposal, separated from actual group feedback.
-No discussion, individual initial ranking or negotiated agreement is claimed.
-The final prose and recommendations are AI-assisted drafts requiring the
-authors' ownership and review. This record does not claim they have already
-approved every conclusion or completed the outstanding human review.
+Codex initially supplied an evidence-based Part5 proposal. The team then
+provided Fredrik, Johan, Elling and Mats's individual initial rankings, its
+final priority order and rationale, and broad support for the draft's
+evidence assessments. Codex incorporated those reported inputs into the
+review. Broad support is not presented as unqualified agreement with every
+interpretation. No member-specific arguments, voting procedure or meeting
+date were invented. The authors remain responsible for the final claims.
 ''')
     write(REPORT/'ai_record.tex',preamble+r'''
 \title{IT3212 Assignment 4: AI Assistance}\author{MsPacMan team}\date{}
 \begin{document}\maketitle\input{ai_assistance.tex}\end{document}
 ''')
-    print('Evidence brief, annotated predictions, review draft and AI record written.')
+    print('Evidence brief, annotated predictions, completed group review and AI record written.')
 
 if __name__=='__main__':main()

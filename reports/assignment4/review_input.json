@@ -1,8 +1,16 @@
 {
-  "status": "draft",
+  "status": "reviewed",
   "members_named_by_user": ["Fredrik", "Johan", "Elling", "Mats"],
-  "initial_rankings": {"Fredrik": null, "Johan": null, "Elling": null, "Mats": null},
-  "actual_negotiation_record": null,
-  "proposed_final_priorities": ["Failure avoidance", "Robustness to change", "Explainability", "Time efficiency"],
-  "provenance": "The user supplied member names but no actual individual rankings or negotiated outcome. The substantive analysis is an AI-assisted proposal, not verified group feedback or an account of a completed discussion."
+  "initial_rankings": {
+    "Fredrik": ["Failure avoidance", "Robustness to change", "Explainability", "Time efficiency"],
+    "Johan": ["Robustness to change", "Failure avoidance", "Time efficiency", "Explainability"],
+    "Elling": ["Failure avoidance", "Explainability", "Robustness to change", "Time efficiency"],
+    "Mats": ["Failure avoidance", "Robustness to change", "Time efficiency", "Explainability"]
+  },
+  "final_priorities": ["Failure avoidance", "Robustness to change", "Explainability", "Time efficiency"],
+  "actual_negotiation_record": "The group prioritised avoiding failures and stable operation, treating explainability and time efficiency as less decisive.",
+  "group_rationale_norwegian": "Vi mener det viktigste er å unngå feil og sikre at løsningen fungerer stabilt, mens forklarbarhet og tidsbruk er mindre avgjørende.",
+  "assessment_endorsement_norwegian": "Vi støtter i hovedsak de faglige vurderingene i utkastet og mener prioriteringene er godt begrunnet.",
+  "assessment_endorsement_scope": "Broad support, not a claim that every interpretation received unqualified or unanimous approval.",
+  "provenance": "The user supplied all four initial rankings, the final group ranking, the group's rationale and broad support for the draft's evidence assessments. No member-specific arguments, voting procedure or meeting date were supplied or invented."
 }

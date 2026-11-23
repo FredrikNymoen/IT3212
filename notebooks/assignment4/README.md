@@ -3,7 +3,8 @@
 **23 November completion:** start with [completion/README.md](completion/README.md)
 for the complete Parts 2/3/4/6 evidence brief, five-seed mechanisms, ten inspected
 episodes, annotated predictions and clarified observation-robustness D.
-Part 5 has a substantive draft awaiting actual member rankings/negotiation.
+Part 5 now incorporates the initial rankings, final priorities, rationale and
+broad support supplied by the group.
 The instructions below describe the preserved
 earlier Part 2/map-transfer snapshot. In particular, the readable agents'
 legacy `evaluate --setting D` uses that old map protocol; use the completion
@@ -97,4 +98,4 @@ Git commit `714c0cb`. See [ARCHIVE.md](ARCHIVE.md). Numerical results and exact
 source snapshots remain in their original ignored results directories.
 The historical Part2 snapshot above is superseded for the current report by
 the completion guide. Parts3/4/6 are now implemented and measured there;
-the Part5 draft still requires actual human rankings and negotiation.
+Part5 records the actual group inputs supplied by the user.
