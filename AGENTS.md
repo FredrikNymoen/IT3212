@@ -628,7 +628,7 @@ Preserve original results/models and Part1. Old sources can be inspected with
   lower means, and the92.5%B PPO model achieves2%D. Preserve the one-censored
   Q transfer bound4.5--4.6%. Current archived text, analysis and verifier are
   under `results/assignment4/part2_quality_review_20261123/`; run its
-  `verify_quality.py` for the three-table revision. Earlier two-table report
+  `verify_quality.py` for the previous three-table revision. Earlier two-table report
   generators/checkers are historical and must not replace this text.
   Earlier review records and archived pre-edit text are under
   `results/assignment4/section2_review_20261123/`. Do not run historical report
@@ -639,6 +639,31 @@ Preserve original results/models and Part1. Old sources can be inspected with
   remain distinct submission components. Respect the separate 2,000-word evidence
   and 1,000-word review limits. See its README for Overleaf and extraction details.
   The selected environment is MsPacMan. Keep actual run IDs on all figures.
+- `notebooks/assignment4/synthesis/` and `02_part2_synthesis.ipynb` are the
+  Part 2-only integration on branch `assignment4-part2-synthesis`, reviewed
+  against fixed Johan/Elling/Mats/Fredrik Git commits. Read `COMPARISON.md`
+  before combining implementations or numbers. The user explicitly excludes
+  DQN; retain ordinary single-table Q-learning and PPO. No foreign training
+  code or unmatched performance numbers are imported into the primary report.
+  The notebook/evidence API adopts a common interface; the standalone overview
+  and native recorded-action viewer adapt per-agent exploration/inspection
+  ideas, with strict source/model/trace hashes and portable archived paths.
+  `evidence.json` is a compact derived snapshot of all40cells/8000episodes,
+  150 development checkpoints and179input hashes, not the raw archive.
+  `part2_evidence.py build` rebuilds from the original local records;
+  `check --full` requires all originals. `compare_branches.py` rechecks Git
+  sources and comparison facts without executing other branches' code.
+  `verify.py` executes the notebook, checks rejection/portability and directly
+  replays eight fixed cases plus the sole censor:7301native decisions.
+  The report adds Table4 with all five training replications, retaining
+  Tables1/2 numbers and Part1 bytes. Q/D seed314 has the only censored episode,
+  giving that agent a7.0--7.5%bound and the aggregate4.5--4.6%bound.
+  Run maintained `report_review/analyse.py` and `verify_quality.py` for the
+  four-table,1128-prose-word report. No registered runtime/model changes,
+  training, new evaluation outcomes, retrospective best-test-model selection,
+  report PDF or ZIP generation are part of this synthesis. Other parts remain
+  separate. Later high PPO scores in Mats' warm-start/temperature/multi-map
+  studies are documented research leads, not matched primary A--D evidence.
 - `README.md` - course navigation, Python setup, local dataset paths and housekeeping policy.
 
 ### Post-Assignment 3 cleanup

@@ -8,7 +8,7 @@ python notebooks/assignment4/report_review/verify_quality.py
 ```
 
 The analysis uses the same five trained seeds, with no training or selection.
-The verifier checks the three-table report against raw episode CSVs, source
+The verifier checks all four report tables against raw episode CSVs, source
 and model hashes, paired-seed statements, original predictions, LaTeX references
 and the absence of visible file paths in Part2. Outputs go to the ignored
 `results/assignment4/report_review_current/` directory.

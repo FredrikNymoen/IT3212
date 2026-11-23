@@ -7,11 +7,19 @@ D uses the same frozen B models with the November 23 boundary protocol.
 
 ## Entry points
 
+On `assignment4-part2-synthesis`, start with
+[the common Part 2 notebook](02_part2_synthesis.ipynb) and
+[the four-branch comparison/inspection guide](synthesis/README.md).
+The common interface combines reviewed ideas from Johan, Elling and Mats
+while preserving the registered ordinary-Q/PPO experiment and original
+predictions. No DQN implementation or results are imported.
+
 | Purpose | Guide / implementation |
 |---|---|
 | Matched search and A/B/C training/evaluation | [three_hour](three_hour/README.md) |
 | Frozen transfer evaluation with explicit censoring | [transfer_evaluation](transfer_evaluation/README.md) |
 | Current report/analysis validation | [report_review](report_review/README.md) |
+| Common notebook, evidence overview and native recorded-episode viewer | [synthesis](synthesis/README.md) |
 | Report sources and submission limits | [Report guide](../../reports/assignment4/README.md) |
 
 The `current/environment.py`, `improvements/agents.py`, `pilot/` core modules

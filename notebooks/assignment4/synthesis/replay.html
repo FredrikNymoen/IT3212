@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MsPacMan · recorded decision inspection</title>
+<style>
+body{font:16px/1.5 system-ui,sans-serif;color:#1b3444;background:#f2f5f7;max-width:1050px;margin:auto;padding:24px}
+h1{font-size:1.8rem}main{display:grid;grid-template-columns:320px 1fr;gap:28px;background:white;padding:24px;border:1px solid #dce4e9;border-radius:12px}
+img{width:100%;image-rendering:pixelated;background:#000}button{font:inherit;padding:7px 16px;margin:8px 8px 8px 0;cursor:pointer}
+input{width:100%}th,td{text-align:right;padding:7px 12px;border-bottom:1px solid #dce4e9}th:first-child,td:first-child{text-align:left}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}.chosen{background:#dcf2ed}.notice{border-left:4px solid #b16b19;padding:12px;background:#fff5e6}
+pre{white-space:pre-wrap;word-break:break-word}.muted{color:#526a79;font-size:.9rem}@media(max-width:700px){main{grid-template-columns:1fr}img{max-width:320px}}
+</style>
+<h1>Recorded decision inspection</h1><p id="identity"></p>
+<p class="notice">The screen is immediately before the action. Values describe the recorded policy; they do not establish what an alternative action would have caused.</p>
+<main><div><img id="screen" alt="Native MsPacMan screen before the selected action"><p class="muted">Native RGB reconstructed by replaying every recorded action. RAM, rewards and score registers are checked at every decision.</p></div>
+<div><h2 id="decision"></h2><p id="transition"></p><table><thead><tr><th>Available action</th><th id="valueHeading"></th><th>Chosen</th></tr></thead><tbody id="choices"></tbody></table>
+<label for="position">Recorded frame</label><input type="range" id="position" min="0" value="0"><div><button id="previous">Previous</button><button id="play">Play</button><button id="next">Next</button></div>
+<p id="progress" class="muted"></p><details><summary>Recorded observation (61 values)</summary><pre id="observation"></pre></details></div></main>
+<details><summary>Outcome and provenance</summary><pre id="provenance"></pre></details>
+<script>
+const replay = /* REPLAY_DATA */null;
+const ids=['identity','screen','decision','transition','choices','valueHeading','position','previous','play','next','progress','observation','provenance'];
+const ui=Object.fromEntries(ids.map(id=>[id,document.getElementById(id)]));
+let timer=null;
+ui.identity.textContent=`${replay.case.condition} / ${replay.case.algorithm} / training seed ${replay.case.training_seed} / evaluation seed ${replay.evaluation_seed}`;
+ui.valueHeading.textContent=replay.case.algorithm==='PPO'?'Action probability':'Q-value (training reward scale)';
+ui.position.max=replay.frames.length-1;
+ui.provenance.textContent=JSON.stringify({case:replay.case,outcome:replay.outcome,verified_native_decisions:replay.verified_native_decisions,disclaimer:replay.disclaimer},null,2);
+function show(){let i=Number(ui.position.value),f=replay.frames[i];
+ ui.screen.src='data:image/png;base64,'+f.rgb;ui.decision.textContent=`Decision ${f.decision} / ${replay.verified_native_decisions}`;
+ ui.transition.textContent=`${replay.labels[f.action]} → native reward ${f.raw_reward}; task reward ${f.task_reward.toFixed(1)}; score ${f.score_before} → ${f.score_after}.`;
+ ui.choices.innerHTML=replay.labels.map((a,n)=>`<tr class="${n===f.action?'chosen':''}"><td>${a}</td><td>${replay.case.algorithm==='PPO'?(100*f.values[n]).toFixed(2)+'%':f.values[n].toFixed(5)}</td><td>${n===f.action?'●':''}</td></tr>`).join('');
+ ui.observation.textContent=JSON.stringify(f.observation.map(x=>Number(x.toFixed(5))));
+ ui.progress.textContent=`Frame ${i+1} of ${replay.frames.length}. Display stride: ${replay.stride} decisions; all intervening decisions were replayed and verified.`;
+ ui.previous.disabled=i===0;ui.next.disabled=i===replay.frames.length-1;
+}
+function stop(){clearInterval(timer);timer=null;ui.play.textContent='Play'}
+ui.position.oninput=()=>{stop();show()};
+ui.previous.onclick=()=>{stop();ui.position.value=Math.max(0,Number(ui.position.value)-1);show()};
+ui.next.onclick=()=>{stop();ui.position.value=Math.min(replay.frames.length-1,Number(ui.position.value)+1);show()};
+ui.play.onclick=()=>{if(timer){stop();return}if(Number(ui.position.value)===replay.frames.length-1)ui.position.value=0;ui.play.textContent='Pause';timer=setInterval(()=>{if(Number(ui.position.value)>=replay.frames.length-1){stop();return}ui.position.value=Number(ui.position.value)+1;show()},200)};
+show();
+</script></html>

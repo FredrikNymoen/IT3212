@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assignment 4 · Part 2 evidence</title>
+<style>
+  :root{font-family:system-ui,sans-serif;color:#172d3a;background:#f2f5f7}
+  body{max-width:1120px;margin:auto;padding:32px 24px}h1{font-size:2rem;margin:0 0 8px}
+  p{max-width:92ch;line-height:1.6}.muted{color:#4c6574}.notice{border-left:4px solid #b16b19;padding:12px 18px;background:#fff5e6}
+  section{background:white;border:1px solid #dce4e9;border-radius:12px;padding:22px;margin:22px 0}
+  select{padding:8px 12px;border-radius:6px;border:1px solid #8298a5;font:inherit;margin:0 24px 0 8px}
+  .scroll{overflow:auto}table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+  th,td{text-align:right;padding:11px 12px;border-bottom:1px solid #e2e8ec;white-space:nowrap}
+  th:first-child,td:first-child{text-align:left}th{font-size:.85rem;color:#435e6e}td.bar{min-width:130px}
+  .track{height:7px;background:#eaf0f4;border-radius:3px;margin-top:6px}.fill{height:100%;background:#007a83;border-radius:3px}
+  code{font-size:.88rem}summary{cursor:pointer}svg{max-width:100%;height:auto}.chartLabel{font:13px system-ui;fill:#304c5e}
+</style>
+<header><p class="muted">IT3212 / MsPacMan / Q-learning and PPO</p><h1>Part 2 evidence</h1>
+<p>One controlled comparison, five training seeds, 200 frozen episodes per agent and condition.
+This overview preserves the reported policies and includes every trained agent.</p></header>
+<p class="notice">D is frozen B-to-transfer evaluation. One Q episode is censored at a native map exit.
+Success bounds describe unresolved outcomes, not confidence intervals. C returns include a step penalty.</p>
+<section><h2>Compare conditions</h2>
+<label>Condition<select id="condition"><option value="all">All</option><option>A</option><option>B</option><option>C</option><option>D</option></select></label>
+<label>Agent<select id="algorithm"><option value="all">Both</option><option>Q-learning</option><option>PPO</option></select></label>
+<div class="scroll"><table><thead><tr><th>Condition / agent</th><th>Success · mean ± SD</th><th>Known failure</th><th>Return · mean ± SD</th><th>Success length</th><th>Failure length</th></tr></thead><tbody id="summary"></tbody></table></div>
+<p class="muted">Means and sample SD are across five trained agents. Conditional lengths omit agents with no such outcome.
+Failure length for PPO/A describes one agent. Length is measured in decisions.</p></section>
+<section><h2>What the average hides</h2><div class="scroll"><table><thead><tr><th>Training seed / agent</th><th>A success</th><th>B success</th><th>C success</th><th>D observed success</th></tr></thead><tbody id="seeds"></tbody></table></div>
+<p class="muted">These rows are the training replications. Each cell evaluates 200 episodes; deterministic A can repeat the same trajectory. † One censored D episode.</p></section>
+<section><h2>Development learning curves</h2><div id="curves"></div>
+<p class="muted">Source: 22 November 2026 main experiment, seeds 17/29/101/314/2718.
+Unsmoothed mean success on ten development episodes at 0 and every 65,536 interactions. Final tests are excluded.
+Selected checkpoints can precede 262,144; all training runs consume the full cap.</p></section>
+<section><h2>Per-agent resource accounting</h2><div class="scroll"><table><thead><tr><th>Condition / agent / seed</th><th>Train interactions</th><th>Selected updates / steps</th><th>Train seconds</th><th>Evaluate seconds</th><th>Censored episodes</th></tr></thead><tbody id="costs"></tbody></table></div>
+<p class="muted">D adds zero training and inherits B's selected weights. Q has one Bellman update per transition; PPO's selected count is collected transitions.
+Timings share CPU resources and do not prove an isolated speed advantage.</p></section>
+<details><summary>Protocol and source provenance</summary><pre id="provenance" style="white-space:pre-wrap"></pre></details>
+<script>
+const evidence = /* EVIDENCE_DATA */null;
+const [condition,algorithm,summary,seeds,costs,curves,provenance]=['condition','algorithm','summary','seeds','costs','curves','provenance'].map(id=>document.getElementById(id));
+const percent=v=>(100*v).toFixed(1)+'%';
+const fmt=v=>v===null?'—':v.toFixed(1);
+const eligible=r=>(condition.value==='all'||r.condition===condition.value)&&(algorithm.value==='all'||r.algorithm===algorithm.value);
+const algorithms=['Q-learning','PPO'], colours={'Q-learning':'#936021','PPO':'#007a83'};
+function render(){
+ summary.innerHTML=evidence.summaries.filter(eligible).map(r=>`<tr><td>${r.condition} / ${r.algorithm}</td><td class="bar">${percent(r.success_rate)} ± ${(100*r.success_rate_sd).toFixed(1)} pp<div class="track"><div class="fill" style="width:${100*r.success_rate}%"></div></div>${r.condition==='D'&&r.algorithm==='Q-learning'?'<small>Bound 4.5–4.6%</small>':''}</td><td>${percent(r.failure_rate)}</td><td>${fmt(r.mean_return)} ± ${fmt(r.mean_return_sd)}</td><td>${fmt(r.success_length)}</td><td>${fmt(r.failure_length)}</td></tr>`).join('');
+ seeds.innerHTML=evidence.training_seeds.flatMap(seed=>algorithms.filter(a=>algorithm.value==='all'||a===algorithm.value).map(a=>`<tr><td>${seed} / ${a}</td>${['A','B','C','D'].map(c=>{let r=evidence.agents.find(x=>x.condition===c&&x.algorithm===a&&x.training_seed===seed);return `<td>${percent(r.success_rate)}${r.censored?' †':''}</td>`}).join('')}</tr>`)).join('');
+ costs.innerHTML=evidence.agents.filter(eligible).map(r=>`<tr><td>${r.condition} / ${r.algorithm} / ${r.training_seed}</td><td>${r.training_interactions.toLocaleString('en')}</td><td>${r.checkpoint_interactions.toLocaleString('en')}</td><td>${fmt(r.training_seconds)}</td><td>${fmt(r.evaluation_seconds)}</td><td>${r.censored}</td></tr>`).join('');
+ curves.innerHTML=['A','B','C'].filter(c=>condition.value==='all'||condition.value===c).map(c=>{
+   let lines=algorithms.filter(a=>algorithm.value==='all'||algorithm.value===a).map(a=>{
+    let xy=[0,65536,131072,196608,262144].map(n=>{let r=evidence.curves.filter(x=>x.condition===c&&x.algorithm===a&&x.interactions===n);return [45+n/262144*270,185-r.reduce((s,x)=>s+x.success_rate,0)/r.length*150]});
+    return `<polyline points="${xy.map(p=>p.join(',')).join(' ')}" fill="none" stroke="${colours[a]}" stroke-width="2.5"/>`+xy.map(p=>`<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="${colours[a]}"/>`).join('');
+   }).join('');
+   return `<svg viewBox="0 0 340 240" width="340" role="img" aria-label="${c} development success"><text x="45" y="18" class="chartLabel">Setting ${c}</text><path d="M45 35V185H315" fill="none" stroke="#8ba0ad"/><text x="6" y="40" class="chartLabel">100%</text><text x="22" y="190" class="chartLabel">0%</text><text x="43" y="207" class="chartLabel">0</text><text x="260" y="207" class="chartLabel">262,144</text><text x="95" y="230" class="chartLabel">Training interactions</text>${lines}</svg>`;
+ }).join('')+'<p><span style="color:#936021">● Q-learning</span> &nbsp; <span style="color:#007a83">● PPO</span></p>';
+}
+condition.onchange=algorithm.onchange=render;
+provenance.textContent=JSON.stringify({studies:evidence.source_studies,policy:evidence.policy,inference_unit:evidence.inference_unit,censoring:evidence.censoring,input_sha256:evidence.inputs},null,2);
+render();
+</script>
+</html>

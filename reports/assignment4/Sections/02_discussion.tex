@@ -1,5 +1,29 @@
 % Evidence-focused interpretation; original predictions are unchanged.
 \subsection{What changes across the four settings?}
+Table~\ref{tab:part2-seeds} exposes the training variation behind the means.
+
+\begin{table}[htbp]
+\centering\small\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}r*{4}{rr}@{}}
+\toprule
+& \multicolumn{2}{c}{A} & \multicolumn{2}{c}{B} & \multicolumn{2}{c}{C} & \multicolumn{2}{c}{D} \\
+Training seed & Q & PPO & Q & PPO & Q & PPO & Q & PPO \\
+\midrule
+17   & 0 & 100 & 23 & 41 & 6 & 38 & 1 & 5 \\
+29   & 100 & 100 & 29 & 74.5 & 23.5 & 22 & 8 & 42.5 \\
+101  & 31.5 & 100 & 9 & 64.5 & 42 & 75.5 & 3 & 4 \\
+314  & 14.5 & 0 & 33.5 & 92.5 & 36.5 & 97 & 7 & 2 \\
+2718 & 18.5 & 100 & 66.5 & 64.5 & 26.5 & 31 & 3.5 & 20 \\
+\bottomrule
+\end{tabular}
+\caption{Success percentages for every trained agent: 22 November 2026
+main experiment for A/B/C; 23 November 2026 frozen-transfer evaluation for D.
+Each cell has 200 evaluation episodes. Q/D seed 314 has one censored episode,
+so its completed-task success bound is 7.0--7.5\%; other cells have no censoring.
+D uses the identical selected B checkpoint in the same row.}
+\label{tab:part2-seeds}
+\end{table}
+
 \paragraph{A: Predictable environment.}
 At 65,536 interactions, PPO reaches 20\% development success against Q's 2\%
 in A. B instead gives Q a small early lead, 6\% against 0\%. This does not
@@ -32,7 +56,8 @@ $1873.4\pm283.5$ for PPO; penalised returns are not directly comparable to B.
 \paragraph{D: Transfer.}
 Food-relative Q keys and shared PPO action scores retain meaning on the new
 maze, aided by geometry-based feature extraction. Familiar compact keys can
-still merge different situations. Every B agent's observed success declines
+still merge different situations; approximate corridors omit wrap links,
+and the capped power signal loses timing information. Every B agent's observed success declines
 on D. The PPO policy selected on B development achieves 92.5\% in B but only
 2\% in D, illustrating why source performance cannot certify transfer.
 

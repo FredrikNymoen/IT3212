@@ -1,0 +1,233 @@
+{
+  "scope": "Part 2 only; ordinary tabular Q-learning versus PPO; no DQN code/results imported.",
+  "sources": {
+    "johan": {
+      "ref": "origin/johan",
+      "commit": "09c262cfffc84d79a01d09c2ab9e4193de4be824",
+      "files": [
+        {
+          "path": "notebooks/assignment4/RL-API-final.ipynb",
+          "size": 477217,
+          "object": "6d9bef8e4fd33cde8f091a12cb615ef2dad98bc3",
+          "sha256": "53d7e736100a0efe64cecf9713ee33f6f0aeeb15ffc512f9713aeded53dec923"
+        },
+        {
+          "path": "notebooks/assignment4/RL-policy-based(1).ipynb",
+          "size": 897948,
+          "object": "24614c2ecedf3ceb35987f7d9a5bdfc5f8f1ce74",
+          "sha256": "ab5523fa17af13290e18b13ed311698a9a800b11a2a30b9a1956eac7af968e0b"
+        }
+      ]
+    },
+    "elling": {
+      "ref": "origin/elling-assignment4",
+      "commit": "1261b3ad170a0f7b7781f0c829b5ae091bdd8da2",
+      "files": [
+        {
+          "path": "Assignment 4 - Part 2 - MsPacMan - Forbedringsforsok.ipynb",
+          "size": 260002,
+          "object": "57eb375232051f6d73eed8e8117352e07d420b89",
+          "sha256": "0a32361cffebbfdcff070ab8bd322194b992d446f06240628237d8e28b323b3d"
+        },
+        {
+          "path": "Assignment 4 - Part 2 - MsPacMan - Poengbonus - Lengre trening.ipynb",
+          "size": 149750,
+          "object": "6c7927de3135e6792c461eb48b98007198318fdb",
+          "sha256": "6e84660db4081359ab2aa90068c525447ca87735ed6d4c0ea45b02a776213bc9"
+        },
+        {
+          "path": "Assignment 4 - Part 2 - MsPacMan - Poengbonus.ipynb",
+          "size": 116701,
+          "object": "a6f91a3a6fc8054c6f835d7ef7487532daf207af",
+          "sha256": "b923f1b27ebfdb280e3761d7026f567082ca93ac51bd6edde7b94e3bdd7c8b7b"
+        },
+        {
+          "path": "Assignment 4 - Part 2 - MsPacMan - Q-table.ipynb",
+          "size": 339942,
+          "object": "96a85bf9299a2e0c08740361660041cc9c93b594",
+          "sha256": "942caa76184e7e446d391440683a95f0113bbd973a4d4c2c0f2ec23b645b825f"
+        },
+        {
+          "path": "Assignment 4 - Part 2 - MsPacMan.ipynb",
+          "size": 349863,
+          "object": "955a7282009390439d9319a91d5ee0013b0168cb",
+          "sha256": "63acb6cd7efac902c99f714f33ccdefaceb6dc29cffe2c00c56de00782045525"
+        },
+        {
+          "path": "RL-API-final.ipynb",
+          "size": 537314,
+          "object": "5b822bc38356a809b2b70bac64ea0b12647e6e99",
+          "sha256": "c5dd028b4208749499fc7bb7d5b1bd296eac5d307e4b705bc90e1f405556a0d6"
+        },
+        {
+          "path": "RL-policy-based.ipynb",
+          "size": 897948,
+          "object": "24614c2ecedf3ceb35987f7d9a5bdfc5f8f1ce74",
+          "sha256": "ab5523fa17af13290e18b13ed311698a9a800b11a2a30b9a1956eac7af968e0b"
+        },
+        {
+          "path": "dashboard/server.py",
+          "size": 16229,
+          "object": "dc47993198e5d9c74312561e83bc6402aa506442",
+          "sha256": "040d478a3937db316d4e20697e7013cc9b8c85b79bc46f313626375635bef318"
+        },
+        {
+          "path": "mspacman_pellets.py",
+          "size": 4455,
+          "object": "f95d57ba2be57586a11498b36f32e2f9341edc6d",
+          "sha256": "ca7c14c7b02a7cb2db53c606bad3b1705390b76f38997cad87fb5c387ae295bb"
+        }
+      ]
+    },
+    "mats": {
+      "ref": "origin/mats-øving-4",
+      "commit": "c59c25ca62d0fa562ae119c394894fdd142e0b2c",
+      "files": [
+        {
+          "path": "øv4/FIXES.md",
+          "size": 2253,
+          "object": "b6ed07e9611a22c37f564b73b5b57159cecd1a8a",
+          "sha256": "f5963ecd334bf241697c3b28ba21d38ddd2042b60979893ea18838d754dfed74"
+        },
+        {
+          "path": "øv4/README.md",
+          "size": 14655,
+          "object": "6cc7ae01bdb24be0412540bedb65601201f63e4a",
+          "sha256": "b1aa536a163f1a2360439d8ec203b71ebf6aa30d597c5fee742457178fd69ab6"
+        },
+        {
+          "path": "øv4/code/mspacman.py",
+          "size": 12813,
+          "object": "73ff8cda5434fe097a28a89be50f5647fa0079bd",
+          "sha256": "efd8dc1212c08e88ca2cdcf26eb01d312e1cf67210aa2e4815a1ccf0a2e0fca4"
+        },
+        {
+          "path": "øv4/code/part2_run.py",
+          "size": 37817,
+          "object": "fff005ace3c2ff951a8683239f68920c407e13a9",
+          "sha256": "8b1eebd4c17c6ae48ae340a6b13c0653f71fd902a150e3d38712ffa93d27247a"
+        },
+        {
+          "path": "øv4/code/part2_tables.py",
+          "size": 13981,
+          "object": "2266e490d1748cae8340e24f6fc9575b282bc84f",
+          "sha256": "7af410ea7f8b131d9e9a6b2da5751e8ca9fe52522ab0e314fa247d2bb456b0b0"
+        },
+        {
+          "path": "øv4/code/tests/test_observations.py",
+          "size": 3069,
+          "object": "4f3ade848eecdcfda661cba6bbc417adc7b50d5f",
+          "sha256": "8eae1b2e8e82e4b44997be7d7cf8142426c572b37df1567d5c521cda3e8c2945"
+        },
+        {
+          "path": "øv4/code_wall_fix/compare_navigation.py",
+          "size": 6685,
+          "object": "e5a4a5d6d92230c56b091338e9e0b6097313c267",
+          "sha256": "bcf9e2083ff456c3cd14fdc326b382aa3c96c9dc10f9020c2c67ce4de3ae6666"
+        },
+        {
+          "path": "øv4/code_wall_fix/improve_ppo_session.py",
+          "size": 10843,
+          "object": "dec2c29410fbbb301b1d9e9f9e5497ae64197d6b",
+          "sha256": "39e837cb57794562592c668021b81ee636003bad46e8853e296f34b1880a2abf"
+        },
+        {
+          "path": "øv4/code_wall_fix/train_cool_ppo.py",
+          "size": 6747,
+          "object": "760181c2e56018adff494b2bb8fb8dae52787ccf",
+          "sha256": "77272c4897c83a8cd82caeb88a3dbc6d31a62b79602b8451b9b0823001f2ced4"
+        },
+        {
+          "path": "øv4/code_wall_fix/watch_best.py",
+          "size": 22952,
+          "object": "1cb923a0f4ada0966f1f832bd60d8e03c8cc4717",
+          "sha256": "fd21b4d2f0e239e18a6d6154140132f038a6c35fab18f6e9a930747dd1e79f42"
+        },
+        {
+          "path": "øv4/code_wall_fix/freeze_transfer.py",
+          "size": 5702,
+          "object": "e6fa0fcda18636a3f471efef0193dda7590f71b5",
+          "sha256": "101441a4def95929c497e44fdae76fb1c5e93c448121a46efd4fca5f89518170"
+        },
+        {
+          "path": "øv4/code_wall_fix/refine_transfer.py",
+          "size": 9856,
+          "object": "123a713da4088111be4f72c82149a42fb8bfef0f",
+          "sha256": "60fb610db79d0858f857fc23b979d1e0ec65f69d80408504a47399728b1f6d20"
+        },
+        {
+          "path": "øv4/code_wall_fix/late_average.py",
+          "size": 3246,
+          "object": "1cba46ec55d10aa984907deed40f28b3932b0091",
+          "sha256": "d495964b4029d5a14e2faf1a40fb3a61c1b0564d0256115060f5914f7e369eff"
+        },
+        {
+          "path": "øv4/results/assignment4_ppo_hour_frontier_B/comparison.json",
+          "size": 11880,
+          "object": "0613c0578b8fd3abf77c482a63d6175ef00b4207",
+          "sha256": "1a01e1348985469d29a4dd43209b94f1e1b43e0efd32ecae3dcc5234a2baf173"
+        },
+        {
+          "path": "øv4/results/assignment4_late_averaged_confirmation/comparison.json",
+          "size": 3177,
+          "object": "1f43b65ca13fab534b7bc9b769f1f842d0860461",
+          "sha256": "8e9f02aa510c8633330f936926fd7ae40429e3041cd149dbc6ed9fe297487a65"
+        }
+      ]
+    },
+    "fredrik": {
+      "ref": "assignment4",
+      "commit": "1a7fb642c08866aa9acffffac0df31e1c9fd68de",
+      "files": [
+        {
+          "path": "notebooks/assignment4/README.md",
+          "size": 2320,
+          "object": "9be3cc51b93280f6913c8129b29f5c28922d1cd6",
+          "sha256": "604d448d657cfb6f79ec143248e2dca1cdd8c9d6213dc269caac5f8c86123671"
+        },
+        {
+          "path": "notebooks/assignment4/pilot/tabular_q.py",
+          "size": 3623,
+          "object": "aa07864bc602d41e14e565a6133c9c4cab7996d1",
+          "sha256": "9192836fd0ec61b963fef1dd346d09f61250c74978bfd1456f5f53d9cfa3de62"
+        },
+        {
+          "path": "notebooks/assignment4/three_hour/candidates.py",
+          "size": 6469,
+          "object": "970a6f938d64719dd0f89f33bde069ea3427dab2",
+          "sha256": "27c03b301ddfa6250747555bca129980b2c77becf218c804bd2d64465df761d1"
+        },
+        {
+          "path": "notebooks/assignment4/three_hour/evaluate_final.py",
+          "size": 6622,
+          "object": "93472bcb9c76278161efc4fc8473bf96d5edcb28",
+          "sha256": "c1ba29b66d1e046f7d72485ba0454d03fc610a11efb21d0eafee7874d7c69674"
+        },
+        {
+          "path": "notebooks/assignment4/three_hour/reproduce.py",
+          "size": 4028,
+          "object": "7987d8622ba24c1fc892ae609f43afff2bdc8ed8",
+          "sha256": "2071282f77fbe5aa66fa83f69d45ec227045af13c6b56fb05ae479ba72faf331"
+        },
+        {
+          "path": "notebooks/assignment4/transfer_evaluation/boundary_env.py",
+          "size": 3498,
+          "object": "5139882339523b76084a9c82522af8ebf8831566",
+          "sha256": "ca410cabc2c02f329732fe58f2eb2bd25dbccb983ac37a3577b8b2e5bd3a1739"
+        },
+        {
+          "path": "reports/assignment4/Sections/02_discussion.tex",
+          "size": 3291,
+          "object": "3867afa81055d3df74dcd146eb32e4cb752bfd47",
+          "sha256": "b0e120316819a239c164c98f8355674f739e3bfc137ac966c78f10112b204e7e"
+        },
+        {
+          "path": "reports/assignment4/Sections/02_learning_settings.tex",
+          "size": 8532,
+          "object": "05508cbb245172b54602a2e3c87010b08ad23fe6",
+          "sha256": "083be4f092dcc2eca608b326d7a92fd65111b65932c945a66e41bfe6ef4615b3"
+        }
+      ]
+    }
+  }
+}

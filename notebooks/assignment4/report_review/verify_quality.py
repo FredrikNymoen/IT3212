@@ -1,4 +1,4 @@
-"""Audit the concise Part 2 revision and every new analytical statement."""
+"""Audit Part 2 against raw episodes, including all training replications."""
 import hashlib
 import json
 from pathlib import Path
@@ -78,6 +78,21 @@ q_ab=next(row for row in analysis['setting_changes'] if row['algorithm']=='Q-lea
 assert min(q_ab['per_seed'].values())==-71 and np.isclose(max(q_ab['per_seed'].values()),48)
 assert np.isclose(q_ab['mean_percentage_points'],-.7)
 raw_pairs=frame.pivot(index=['seed','algorithm'],columns='condition',values='success')
+seed_tables=tables(discussion)
+assert len(seed_tables)==1 and '\\label{tab:part2-seeds}' in discussion
+seed_rows=[]
+for line in seed_tables[0].splitlines():
+    if re.match(r'^\s*(17|29|101|314|2718)\s*&',line):
+        cells=[cell.strip() for cell in line.strip().removesuffix('\\\\').split('&')]
+        seed=int(cells[0]);values=list(map(float,cells[1:]))
+        expected=[raw_pairs.loc[(seed,algorithm),condition] for condition in 'ABCD' for algorithm in ['Q-learning','PPO']]
+        assert len(values)==8 and np.allclose(values,expected)
+        seed_rows.append(seed)
+assert seed_rows==[17,29,101,314,2718]
+censored=frame[frame.censored.gt(0)]
+assert len(censored)==1 and int(censored.iloc[0].seed)==314 and censored.iloc[0].algorithm=='Q-learning'
+assert np.isclose(censored.iloc[0].success,7) and np.isclose(censored.iloc[0].censored,.5)
+assert '7.0--7.5' in discussion and 'Q/D seed 314' in discussion
 raw_gap=raw_pairs.xs('PPO',level='algorithm').B-raw_pairs.xs('Q-learning',level='algorithm').B
 assert np.isclose(raw_gap.mean(),analysis['B_PPO_minus_Q_mean_percentage_points'])
 for seed in raw_gap.index:
@@ -130,6 +145,7 @@ requirements={
     'limitations':'Five training replications,small development checks,unequal earlier search,power proxy,post-inspection boundary repair and non-independent domain disclosed.',
 }
 receipt=dict(requirements=requirements,raw_csv_table_arithmetic_verified=True,numerical_rows_unchanged=True,
+    all_training_replications_displayed_and_verified=True,
     paired_seed_analysis_verified=True,all_40_conditions_have_200_evaluation_episodes=True,
     D_censored_Q_episodes=1,no_visible_file_references=True,latex_structure_refs_assets_verified=True,
     original_predictions_runtime_sources_and_models_unchanged=True,part2_prose_words=words,

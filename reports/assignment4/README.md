@@ -56,13 +56,25 @@ or filenames; the figure identifies the 22 November main experiment by its
 date, settings, configuration and training seeds. That experiment maps to
 `three_hour_20261122/main_v1` for training/curves and `final_v1` for frozen
 evaluation. Include both Part 2 input lines when extracting the evidence brief.
-The current concise revision has approximately 1,100 prose words, with
+The current concise revision has 1,128 prose words, with
 outcomes and costs as Tables 1/2 and a compact configuration comparison as
-Table 3. Return is retained without a duplicate game-score column; C raw
+Table 3. The Part 2 synthesis adds Table 4 with all five training seeds,
+including the exact Q/D censoring cell and its 7.0--7.5% success bound.
+Return is retained without a duplicate game-score column; C raw
 scores remain in prose. Maze names and arbitrary seed identifiers are
 explained. The interpretation answers A--D directly, checks paired-seed
 sensitivity and distinguishes lower observed D success from its censoring
 bound. All existing outcome/cost table numbers are unchanged.
+
+The `assignment4-part2-synthesis` branch compares the fixed Johan, Elling,
+Mats and Fredrik revisions in
+[the synthesis review](../../notebooks/assignment4/synthesis/COMPARISON.md).
+Its [common notebook](../../notebooks/assignment4/02_part2_synthesis.ipynb)
+provides the reviewed protocol, portable evidence snapshot, per-seed overview
+and native recorded-episode inspection. Only ordinary Q-learning and PPO are
+used. Incompatible rewards, representations, budgets and PPO policies are
+not pooled into these tables. Registered sources/models and Part 1 stay
+unchanged; the synthesis adds no training or new evaluation outcomes.
 
 This is an editorial revision of verified exports. Historical numerical and
 discussion generators do not preserve it and must not overwrite these sections.
