@@ -12,6 +12,10 @@ Do not invent further discussion details. Preserve Part1.
 **Completion status, 23 November:** all 45 models, 9,000 Part 3 primary
 episodes, 4,000 clarified-D episodes and 1,000 diagnostic episodes are finished.
 The current report covers Parts 2/3/4/6 and separately annotated predictions.
+`reports/assignment4/main.tex` combines Parts2/3/4/5/6 in that order; the
+compiled `output/pdf/assignment4_report.pdf` includes the human review.
+`evidence_brief.tex` retains a separate Parts2/3/4/6 export. The2,000-word
+evidence limit and1,000-word review limit are checked independently.
 Part5 is completed using the four members' rankings, group priorities,
 rationale and broad endorsement supplied by the user. Those inputs are
 preserved separately. Registered sources below remain

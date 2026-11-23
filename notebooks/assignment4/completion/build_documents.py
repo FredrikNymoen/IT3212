@@ -4,6 +4,7 @@ import hashlib
 import json
 import shutil
 import subprocess
+import re
 from pypdf import PdfReader
 
 ROOT=Path(__file__).resolve().parents[3]
@@ -16,7 +17,7 @@ def main():
     for path in report.rglob('*'):
         if path.is_file() and (path.suffix in {'.tex','.png'} or path.parent==report/'Images' and path.suffix=='.pdf'):
             dest=build/path.relative_to(report);dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(path,dest)
-    documents={'main':'evidence_brief','predictions':'predictions','review':'review_status','ai_record':'ai_record'}
+    documents={'main':'report','evidence_brief':'evidence_brief','predictions':'predictions','review':'review_status','ai_record':'ai_record'}
     result=[]
     for source,target in documents.items():
         for iteration in range(2):
@@ -29,6 +30,11 @@ def main():
         dest=output/f'assignment4_{target}.pdf';shutil.copy2(build/f'{source}.pdf',dest)
         reader=PdfReader(dest);texts=[page.extract_text() for page in reader.pages]
         assert all(text.strip() for text in texts) and all('??' not in text for text in texts)
+        visible=re.sub(r'\s+',' ',' '.join(texts))
+        if source=='main':
+            assert visible.count('Part 5: Human review')==1
+            assert visible.index('Inspect what aggregate scores hide')<visible.index('Part 5: Human review')<visible.index('Make three recommendations')
+        if source=='evidence_brief':assert 'Part 5: Human review' not in visible
         subprocess.run(['pdftoppm','-r','75','-png',str(dest),str(previews/target)],check=True,stdout=subprocess.DEVNULL)
         result.append(dict(document=source,pdf=str(dest.relative_to(ROOT)),pages=len(reader.pages),
                            sha256=hashlib.sha256(dest.read_bytes()).hexdigest(),latex_errors=False))

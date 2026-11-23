@@ -1,13 +1,16 @@
 # Assignment 4 deliverables
 
 Read both root PDFs, including `clarification-assingment4 (1).pdf`.
-The evidence brief is **Parts 2, 3, 4 and 6 only**, below the 2,000-word
-limit excluding tables and figure captions. The original predictions plus
-post-experiment annotations, human review and AI record are separate documents.
+The combined report includes Parts2,3,4,5 and6, with the human review between
+Parts4 and6. Within it, Parts2/3/4/6 form the evidence brief (maximum2,000 words,
+excluding tables/captions); Part5 is the review record (maximum1,000 words).
+Separate evidence-brief and review exports remain available. Original
+predictions with annotations and the AI record are separate documents.
 
 | Document | Editable source | Compiled output |
 |---|---|---|
-| Evidence brief | `main.tex`, Sections 02/03/04/06 | `../../output/pdf/assignment4_evidence_brief.pdf` |
+| Combined report, including Part5 | `main.tex`, Sections 02/03/04/05/06 | `../../output/pdf/assignment4_report.pdf` |
+| Evidence brief only | `evidence_brief.tex`, Sections 02/03/04/06 | `../../output/pdf/assignment4_evidence_brief.pdf` |
 | Original predictions + later annotations | `predictions.tex`, Sections 01 | `../../output/pdf/assignment4_predictions.pdf` |
 | Human review | `review.tex`, Section 05, `review_input.json` | `../../output/pdf/assignment4_review_status.pdf` |
 | Consequential AI assistance | `ai_record.tex`, `ai_assistance.tex` | `../../output/pdf/assignment4_ai_record.pdf` |

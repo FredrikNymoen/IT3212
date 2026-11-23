@@ -397,6 +397,19 @@ and Stable-Baselines3 2.9.2.
 \renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
 '''
     write(REPORT/'main.tex',preamble+r'''
+\title{IT3212 Assignment 4: Report\\MsPacMan}
+\author{MsPacMan team}\date{}
+\begin{document}\maketitle
+\input{Sections/02_learning_settings.tex}
+\input{Sections/03_mechanisms.tex}
+\input{Sections/04_episode_inspection.tex}
+\clearpage
+\input{Sections/05_human_review.tex}
+\clearpage
+\input{Sections/06_recommendations.tex}
+\end{document}
+''')
+    write(REPORT/'evidence_brief.tex',preamble+r'''
 \title{IT3212 Assignment 4: Evidence Brief\\MsPacMan}
 \author{MsPacMan team}\date{}
 \begin{document}\maketitle

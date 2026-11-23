@@ -101,7 +101,11 @@ def main():
         prose_counts[name]=len(re.findall(r"[A-Za-z0-9]+(?:[.'-][A-Za-z0-9]+)*",text))
     # Conservative count includes headings, reference labels, inline math and numeric tokens.
     assert sum(prose_counts.values())+20<=2000,prose_counts
-    active=[REPORT/'main.tex',*[REPORT/'Sections'/f'{x}.tex' for x in names]]
+    main=(REPORT/'main.tex').read_text();brief=(REPORT/'evidence_brief.tex').read_text()
+    combined_sections=['02_learning_settings','03_mechanisms','04_episode_inspection','05_human_review','06_recommendations']
+    assert re.findall(r'\\input\{Sections/([^}]+)\.tex\}',main)==combined_sections
+    assert re.findall(r'\\input\{Sections/([^}]+)\.tex\}',brief)==names
+    active=[REPORT/'main.tex',REPORT/'evidence_brief.tex',REPORT/'Sections/05_human_review.tex',*[REPORT/'Sections'/f'{x}.tex' for x in names]]
     labels=[];refs=[]
     for path in active:
         text=path.read_text();assert not re.search(r'\[(?:Describe|Insert|Recommendation|Author)',text)
@@ -136,6 +140,7 @@ def main():
     assert 'broadly supported' in review and 'Not supplied' not in review and 'review draft' not in review
     result=dict(primary_tables_independently_recomputed=True,all_training_roots_retained=True,decisions=30,original_predictions_unchanged=True,
         calendar_dates_absent_from_report=True,parallel_A_B_C_D_sections=True,paired_D_table_verified=True,
+        human_review_in_combined_report=True,separate_evidence_brief_retained=True,
         prose_words_by_part=prose_counts,conservative_brief_words=sum(prose_counts.values())+20,
         counting_rule='Excludes table and longtable contents and figure captions; includes headings, inline mathematics/numbers and conservative title allowance.',
         human_review='Completed using member rankings, final group priorities, rationale and broad support supplied by the user.',review_words=review_words,

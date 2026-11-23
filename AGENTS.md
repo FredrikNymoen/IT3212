@@ -66,8 +66,11 @@ Preserve original results/models and Part1. Old sources can be inspected with
   pause instruction is superseded by the user's later "fortsett". The
   ten-episode/30-decision inspection is verified. All45 mechanism models and
   9000 primary episodes,4000 clarified-D episodes and1000 secondary diagnostic
-  episodes are complete. The report covers Parts2/3/4/6; Part5 is a separate
-  completed review using user-supplied rankings/rationale/endorsement. Predictions
+  episodes are complete. `reports/assignment4/main.tex` combines Parts2/3/4/5/6
+  in order, including the completed user-supplied review. The canonical combined
+  PDF is `output/pdf/assignment4_report.pdf`. `evidence_brief.tex` retains a
+  separate Parts2/3/4/6 export; count its2000-word limit independently of
+  Part5's1000-word limit. Predictions
   are unchanged, with separate post-experiment annotations.
   See README for the prespecified45-model five-seed Part3 study, fixed cap262144,
   common seeds17/29/101/314/2718 and fresh final episodes1500000--1500199.
