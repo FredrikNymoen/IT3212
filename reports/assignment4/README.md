@@ -74,9 +74,11 @@ The latest prose/claim audit and archived previous version are under
 does not tune or retrain models. The current validation command is:
 
 ```powershell
-python results/assignment4/part2_quality_review_20261123/verify_quality.py
+python notebooks/assignment4/report_review/analyse.py
+python notebooks/assignment4/report_review/verify_quality.py
 ```
 
+Outputs of these maintained checks go to `results/assignment4/report_review_current/`.
 The older authoring/validation scripts assume the previous two-table layout;
 their outputs remain historical and must not overwrite the concise revision.
 The original experiment manifests retain their historical report hashes.
@@ -122,8 +124,9 @@ Record every figure's source configuration/run IDs in its caption. Create
 
 Assignment 4 code belongs in `notebooks/assignment4/`, numerical logs and traces
 in `results/assignment4/`, and generated plots in `figures/assignment4/`.
-Part 2 keeps its PNG learning curve in this report's `Images/` directory and
-in `figures/assignment4/three_hour/`.
+Part 2 keeps its canonical PNG learning curve in this report's `Images/`
+directory. Duplicate generated previews are ignored; older images remain
+available in Git checkpoint `714c0cb` and the local cleanup archive.
 Results are gitignored, so explicitly include the required experiment records
 when preparing the submission. The report folder alone is not the complete
 Assignment 4 submission.

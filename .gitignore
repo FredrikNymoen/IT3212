@@ -50,6 +50,9 @@ __pycache__/
 /figures/assignment3/combined/10_*
 /figures/assignment3/lda_selected/
 
+# Assignment 4 generated previews; the current report keeps its canonical image.
+/figures/assignment4/
+
 # Local environment variables (keep shareable example files)
 .env
 .env.*

@@ -17,6 +17,22 @@ implementation choices, and update this file when new briefs or repository struc
 
 ## Repository structure and conventions
 
+### Active layout after the 23 November repository cleanup
+
+The current Assignment4 entry points are documented in `notebooks/assignment4/README.md`:
+`three_hour/` for the reported search/A/B/C workflow, `transfer_evaluation/` for
+frozen D, and `report_review/` for the current three-table report audit. Shared
+core files retain their original paths and registered byte hashes. Earlier
+baselines, rejected experiments, obsolete figure copies and one-off helpers
+are preserved in Git checkpoint `714c0cb` and the ignored local archive at
+`results/assignment4/repository_cleanup_20261123/`, rather than the active tree.
+Historical structure entries below refer to that checkpoint when a file is
+no longer present; do not recreate or rewrite them as current implementations.
+Use `notebooks/assignment4/report_review/analyse.py` and `verify_quality.py`
+for current report checks; their output goes to `results/assignment4/report_review_current/`.
+Preserve original results/models and Part1. Old sources can be inspected with
+`git show 714c0cb:<original-path>`. See `notebooks/assignment4/ARCHIVE.md`.
+
 - `IT3212 - Assignment 1.pdf` - preprocessing brief, rubric, and submission requirements.
 - `IT3212 - Assignment 2.pdf` - image-processing brief and rubric.
 - `IT3212-2026-Assignment 3.pdf` - machine-learning brief, 200 points with 130 required to pass.

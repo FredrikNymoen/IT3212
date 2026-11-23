@@ -11,16 +11,15 @@ report, not an assignment brief.
 | Assignment 1: preprocessing | [Notebook](notebooks/assignment1/student_graduation.ipynb) | No separate report stored locally |
 | Assignment 2: image processing | `notebooks/assignment2/` | [Overleaf sections](reports/assignment2/README.md) |
 | Assignment 3: classification | [Workflow and reproduction](notebooks/assignment3/README.md) | [Current LaTeX sources](report/README.md) |
-| Assignment 4: reinforcement learning | [Current five-seed MsPacMan study](notebooks/assignment4/three_hour/README.md) | [LaTeX writing project](reports/assignment4/README.md) |
+| Assignment 4: reinforcement learning | [Current workflow and reproduction](notebooks/assignment4/README.md) | [LaTeX writing project](reports/assignment4/README.md) |
 | Workshop 1: classification | [Instructions](workshops/workshop1/README.md) | Notebook |
 | Lecture examples | `lecture/` | Not assignment deliverables |
 
-Assignment 4's current A--D runner compares ordinary single-table Q-learning
-with PPO and refreshes Part 2 only from verified full-run exports. The
-[ordinary-Q pilot](notebooks/assignment4/pilot/SINGLE_Q.md) preceded that study.
-The [earlier investigation](notebooks/assignment4/pilot/FURTHER_EXPLORATION.md)
-also includes archived Double Q/replay variants; those rates must not be
-substituted for the ordinary Q-learning described in the original predictions.
+Assignment 4 compares ordinary single-table Q-learning with PPO. The five-seed
+A/B/C study and frozen D evaluation have separate, documented entry points.
+Earlier baselines and exploratory variants are preserved in Git history; see
+[the archive guide](notebooks/assignment4/ARCHIVE.md). The reviewed report is
+validated against the measured records rather than overwritten by old renderers.
 
 Assignment 3's current report recommends LDA. Reproduce it by running the
 combined notebook, `check_lda_vs_adaboost.py`, then `finalize_lda_report.py`.

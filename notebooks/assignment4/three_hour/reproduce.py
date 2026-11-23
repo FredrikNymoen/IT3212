@@ -20,6 +20,10 @@ def run(script,*args):
     subprocess.run(command,cwd=ROOT,check=True)
 
 def main(args):
+    if args.update_report:
+        report=ROOT/'reports/assignment4/Sections/02_learning_settings.tex'
+        if report.exists() and report.read_text(encoding='utf-8').startswith('% Evidence-focused'):
+            raise ValueError('Preserve the reviewed report. Omit --update-report and use the report_review checks.')
     prefix=args.run_id.rstrip('/');directory=ROOT/'results/assignment4'/prefix
     if directory.exists():raise FileExistsError('Choose a new run prefix; historical records are preserved.')
     directory.mkdir(parents=True)
