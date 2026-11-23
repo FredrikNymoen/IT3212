@@ -37,6 +37,18 @@ def main():
         for i,(condition,algorithm) in enumerate((c,g) for c in 'ABCD' for g in ['Q-learning','PPO']):
             row=a[a.study.eq('D' if condition=='D' else 'P2')&a.condition.eq(condition)&a.algorithm.eq(algorithm)&a.seed.eq(seed)].iloc[0]
             check(cells[i+1],[row.success_rate*100])
+    paired=lines(tables(p2)[3])[1:];assert len(paired)==10
+    for cells,(alg,seed) in zip(paired,[(g,s) for g in ['Q-learning','PPO'] for s in [17,29,101,314,2718]]):
+        g=a[a.study.eq('D')&a.algorithm.eq(alg)&a.seed.eq(seed)].set_index('condition')
+        clean=pd.read_csv(ROOT/g.loc['D_clean','evaluation_csv']);masked=pd.read_csv(ROOT/g.loc['D','evaluation_csv'])
+        assert clean.evaluation_seed.tolist()==masked.evaluation_seed.tolist()==list(range(1600000,1600200))
+        assert cells[:2]==[alg,str(seed)]
+        check(cells[2],[100*clean.success.mean()]);check(cells[3],[100*masked.success.mean()])
+        check(cells[4],[100*(masked.success.mean()-clean.success.mean())])
+        check(cells[5],[int((clean.success.eq(1)&masked.success.eq(0)).sum())])
+        check(cells[6],[int((clean.success.eq(0)&masked.success.eq(1)).sum())])
+    assert all(r'\subsection{'+setting+':' in p2 for setting in 'ABCD')
+    assert 'Images/part2_all_settings.png' in p2
     mechanism=lines(tables(p3)[0])[1:];assert len(mechanism)==9
     for cells,arm in zip(mechanism,['Q_base','Q_fast_epsilon','Q_gamma99','Q_alpha05','PPO_base','PPO_gamma99','PPO_entropy0','PPO_lr1e4','PPO_epochs2']):
         row=next(r for r in summary['groups'] if r['study']=='M3' and r['arm']==arm)
@@ -74,6 +86,7 @@ def main():
     labels=[];refs=[]
     for path in active:
         text=path.read_text();assert not re.search(r'\[(?:Describe|Insert|Recommendation|Author)',text)
+        assert not re.search(r'\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\b|\b\d{4}-\d{2}-\d{2}\b',text)
         assert not re.search(r'(?:results/|notebooks/|\.py\b|\.csv\b|\.npz\b|\.pkl\b)',text)
         stack=[]
         for kind,env in re.findall(r'\\(begin|end)\{([^}]+)\}',text):
@@ -83,9 +96,14 @@ def main():
         labels+=re.findall(r'\\label\{([^}]+)\}',text);refs+=re.findall(r'\\ref\{([^}]+)\}',text)
         for img in re.findall(r'\\includegraphics(?:\[[^]]*\])?\{([^}]+)\}',text):assert (REPORT/img).exists()
     assert len(labels)==len(set(labels)) and not set(refs)-set(labels)
+    for path in REPORT.rglob('*.tex'):
+        if path.name=='01_predictions.tex':continue
+        text=path.read_text()
+        assert not re.search(r'\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\b|\\date\{[^}]+\}',text),path
     assert sha(REPORT/'Sections/01_predictions.tex')=='17fcfc5a3d12c7abca0f7bc0ec49a3e4972e413c2cb356039db435acbc27961a'
     proof=json.loads((OUT/'records_verification.json').read_text());assert proof['primary_episodes']==19000 and proof['secondary_episodes']==1000
     result=dict(primary_tables_independently_recomputed=True,all_training_roots_retained=True,decisions=30,original_predictions_unchanged=True,
+        calendar_dates_absent_from_report=True,parallel_A_B_C_D_sections=True,paired_D_table_verified=True,
         prose_words_by_part=prose_counts,conservative_brief_words=sum(prose_counts.values())+20,
         counting_rule='Excludes table and longtable contents and figure captions; includes headings, inline mathematics/numbers and conservative title allowance.',
         human_review='Explicitly deferred by user; no completed review claimed.',report_hashes={str(p.relative_to(ROOT)):sha(p) for p in active},verifier_sha256=sha(Path(__file__)))

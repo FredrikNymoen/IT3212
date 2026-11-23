@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import sys
 import numpy as np
+import pandas as pd
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -10,6 +11,42 @@ from PIL import Image
 
 HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[2]
 OUTPUT=ROOT/'results/assignment4/completion_figures'
+
+
+def learning_settings():
+    """Equal visual space for A--D; D is a frozen input contrast, not learning."""
+    original=ROOT/'results/assignment4/three_hour_20261122/main_v1'
+    agents=pd.read_csv(ROOT/'results/assignment4/completion_analysis_v1/agents.csv')
+    seeds=[17,29,101,314,2718]
+    fig,axes=plt.subplots(2,2,figsize=(10,6.0))
+    colors={'Q-learning':'#2476b9','PPO':'#d87426'}
+    for ax,condition in zip(axes.ravel()[:3],'ABC'):
+        for alg,color in colors.items():
+            rows=[pd.read_csv(original/f'{condition}_{alg}_{s}'/'curves.csv') for s in seeds]
+            assert all(r.interactions.tolist()==[0,65536,131072,196608,262144] and r.episodes.eq(10).all() for r in rows)
+            y=np.array([r.success_rate.to_numpy()*100 for r in rows]);x=rows[0].interactions.to_numpy()
+            mean=y.mean(axis=0);sd=y.std(axis=0,ddof=1)
+            ax.plot(x,mean,color=color,marker='o',markersize=3,label=alg)
+            ax.fill_between(x,np.maximum(0,mean-sd),np.minimum(100,mean+sd),color=color,alpha=.12)
+        ax.set_title(f'{condition}: '+{'A':'predictable dynamics','B':'transition uncertainty','C':'step penalty'}[condition],fontsize=11)
+        ax.set_xticks([0,131072,262144],['0','131k','262k']);ax.set_xlabel('Training interactions',fontsize=9)
+    ax=axes.ravel()[3];d=agents[agents.study.eq('D')]
+    for alg,color in colors.items():
+        y=[]
+        for seed in seeds:
+            g=d[d.algorithm.eq(alg)&d.seed.eq(seed)].set_index('condition')
+            values=g.loc[['D_clean','D'],'success_rate'].to_numpy()*100;y.append(values)
+            ax.plot([0,1],values,color=color,alpha=.25,linewidth=.9,marker='o',markersize=3)
+        ax.plot([0,1],np.mean(y,axis=0),color=color,linewidth=2.5,marker='o',markersize=5,label=alg)
+    ax.set_xticks([0,1],['Clean','Obstructed']);ax.set_xlim(-.15,1.15)
+    ax.set_xlabel('Frozen observation condition (no training)',fontsize=9)
+    ax.set_title('D: observation robustness',fontsize=11)
+    for ax in axes.ravel():
+        ax.set_ylim(0,100);ax.set_ylabel('Success (%)',fontsize=9);ax.grid(alpha=.2)
+    axes[0,0].legend(fontsize=9,loc='upper left');axes[1,1].legend(fontsize=9,loc='upper right')
+    fig.tight_layout(pad=1.4);OUTPUT.mkdir(parents=True,exist_ok=True)
+    fig.savefig(OUTPUT/'part2_all_settings.png',dpi=220,bbox_inches='tight');plt.close(fig)
+    return OUTPUT/'part2_all_settings.png'
 
 
 def episode_panels():
@@ -56,5 +93,6 @@ def mechanism_curves():
 
 
 if __name__=='__main__':
+    print(learning_settings())
     print(episode_panels())
     if (ROOT/'results/assignment4/completion_part3_v1/training_completed.json').exists():print(mechanism_curves())

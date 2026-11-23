@@ -1,5 +1,6 @@
 \setcounter{section}{1}
 \section{Compare learning settings}
+\subsection{Common task and controls}
 We compare ordinary tabular Q-learning with PPO in Gymnasium's native
 \texttt{ALE/MsPacman-v5}. Success means earning 2,000 new points before game
 over or 1,000 decisions, not clearing a level. The observable horizon is
@@ -38,15 +39,26 @@ verify no updates; native score registers verify earned points. Results
 average five trained agents, not pooled episodes as independent replications.
 Deterministic A can repeat trajectories; episode count does not replace retraining.
 
-PPO leads B by 35.2 percentage points, in four of five roots, but still
-fails 32.6\% of episodes. A's 80\% PPO mean hides four perfect agents and
-one zero-success agent. Early learning contradicts a general Q advantage:
-at 65,536 interactions, A development success is PPO 20\% versus Q 2\%;
-B instead gives Q 6\% versus PPO 0\%. Q varies more across seeds in B,
-but less in A/C. Sticky transitions reduce PPO success by 12.6 points;
-Q's mean change of $-0.7$ hides paired changes from $-71$ to $+48$.
-These outcomes neither confirm safer routes nor the predicted larger Q loss.
+\subsection{A: Learning under predictable dynamics}
+Does predictable movement permit efficient learning? At 65,536 interactions,
+PPO reaches 20\% development success versus Q's 2\%, contradicting a general
+early Q advantage. Final success is Q 32.9\%, PPO 80\%, but PPO comprises four
+perfect agents and one zero-success agent. Its larger across-root SD also
+contradicts our predicted lower PPO variability here. Determinism makes
+trajectory repetition possible, not retraining reliable. The learning curve
+therefore needs the individual-root outcomes, not only its average.
 
+\subsection{B: Learning under transition uncertainty}
+Does stickiness change performance? PPO leads Q by 35.2 percentage points,
+in four of five roots, but still fails 32.6\% of episodes. Early development
+instead gives Q 6\% versus PPO 0\%. Sticky transitions reduce PPO success by 12.6 points;
+Q's mean change of $-0.7$ hides paired changes from $-71$ to $+48$.
+Q varies more across roots in B, supporting that prediction only conditionally.
+These outcomes neither establish safer routes nor support the predicted
+larger Q loss; action timing and learned trajectories both matter.
+
+\subsection{C: Learning under changed incentives}
+Does a speed incentive preserve goal attainment?
 C reduces mean success by 5.3 points for Q and 14.7 for PPO, although two
 roots improve per method. Successful episodes shorten, but condition on
 different successes. With failure avoidance prioritised, this penalty is
@@ -54,17 +66,30 @@ unsupported; one magnitude cannot test the predicted dose dependence.
 Raw C scores are Q $1534.8\pm 201.0$, PPO $1873.4\pm 283.5$;
 penalised returns cannot be compared directly with B.
 
-D fixes a 32-by-32 region, $x\in[16,48),y\in[24,56)$, before outcomes.
+\subsection{D: Robustness without further learning}
+What survives missing observations? D fixes a32-by-32 playfield region,
+$x\in[16,48),y\in[24,56)$, before outcomes:3.05\% of the frame, avoiding
+a score-only change while bounding the intervention.
 Because policies consume objects rather than pixels, centres inside it are
 hidden before recomputing object features; an obscured player retains its
 last visible pose. Static geometry and nonspatial status remain available.
-This explicit object-feature analogue covers 3.05\% of the frame, affects
-policy input, and is not a pixel-CNN test. Engineering verified 1,600 unchanged
-native transitions and hidden-object noninterference. Paired clean success
-is Q 29.5\%, PPO 65.9\%; obstruction gives 23.2\% and 48.5\%.
-PPO retains the higher absolute rate but loses more points. Some roots improve:
-neither universal degradation nor unseen-map generalisation follows.
-Earlier forced-maze tests remain historical, outside primary D.
+Engineering verified 1,600 unchanged native transitions and hidden-object
+noninterference. This is an object-feature analogue, not a pixel-CNN test.
+
+The same ten B models receive 200 paired clean/obstructed episodes each;
+weights, native dynamics, rewards and action formats remain fixed.
+Clean success is Q 29.5\%, PPO 65.9\%; obstruction gives 23.2\% and 48.5\%.
+Table~\ref{tab:robustness-pairs} isolates these within-model changes; comparing
+against the separate B evaluation would mix observation and seed changes.
+PPO retains higher absolute success, while Q loses fewer percentage points.
+Neither ranking alone establishes reliability. Q root 2718 falls 49.5\% to 19\%,
+whereas PPO root 101 improves 64.5\% to 73\%: the mean conceals opposite responses.
+Information removal can redirect trajectories beneficially in particular
+policies; these improvements do not establish that less information helps
+generally. Changed visited states compete with simple loss-of-information
+explanations. Relative feature formats remain usable, but cannot recover
+hidden objects. This tests frozen observation robustness, not unseen-map
+generalisation; additional locations/durations need independent confirmation.
 \begin{table}[htbp]
 \centering\small
 \begin{tabular}{@{}llrr@{}}
@@ -81,7 +106,7 @@ D & Q-learning & $23.2 \pm 8.1$ & $1545.9 \pm 101.3$ \\
 D & PPO & $48.5 \pm 19.4$ & $1765.5 \pm 246.5$ \\
 \bottomrule
 \end{tabular}
-\caption{22 November main study A/B/C; 23 November clarified observation D. Mean $\pm$ sample SD across five trained agents, 200 episodes each. Failure is exactly 100\% minus success in every cell; there is no censoring in these primary conditions. D uses identical source-selected B models, not newly trained agents. Returns are points; C includes the penalty. SD is training variation, not a confidence interval.}
+\caption{Learning-settings study: A/B/C learning evaluation and D frozen observation-robustness evaluation. Mean $\pm$ sample SD across five trained agents, 200 episodes each. Failure is exactly 100\% minus success; there is no censoring. D uses identical source-selected B models. Returns are points; C includes the penalty. SD is training variation, not a confidence interval.}
 \label{tab:outcomes}
 \end{table}\begin{table}[htbp]
 \centering\small
@@ -117,18 +142,20 @@ Discount & $.995$ in both workflows & Rough discounted horizon $1/(1-\gamma)=200
 Monitoring/replication & Ten main-development episodes every 32 rollouts; 200 final episodes; five training roots & Bound monitoring cost; meet final-test requirement and expose retraining variability. Numeric seed ranges label disjoint phases, not statistical quality. \\
 \bottomrule
 \end{tabularx}
-\caption{22 November main-study configurations, held fixed across A/B/C; D reuses B weights. Constants are justified design choices, not independent optima. Main development seeds 1130000--1130009; search seeds 1110000--1110019 and 1120000--1120019.}
+\caption{Learning-settings study configurations, held fixed across A/B/C; D applies the same B policies to clean and obstructed observations. Constants are justified design choices, not independent optima. Main development seeds 1130000--1130009; search seeds 1110000--1110019 and 1120000--1120019.}
 \label{tab:config}
 \end{table}
 
-Runs used an Intel Core Ultra 7 258 V CPU, Windows 11, one numerical thread per
+\par\noindent\begin{minipage}{\linewidth}
+Runs used an Intel Core Ultra 7 258V CPU, Windows 11, one numerical thread per
 worker (up to 16 during historical phase overlap). Part 3 used up to 6 workers;
 D one. Equal interactions do not imply equal compute.
 Software was Python 3.13.7, Gymnasium 1.4.0, ALE 0.12.1, PyTorch 2.14.1+cpu
-and Stable-Baselines 3 2.9.2.
+and Stable-Baselines3 2.9.2.
+\end{minipage}\par
 \begin{figure}[htbp]\centering
-\includegraphics[width=\linewidth]{Images/part2_learning_curves_20261122.png}
-\caption{22 November main A/B/C development curves, configurations in Table~\ref{tab:config}, roots 17/29/101/314/2718. Unsmoothed ten-episode evaluations at zero and every 65,536 interactions; mean with one sample SD across agents, clipped to 0--100\%, not a confidence interval. Final tests excluded; Table~\ref{tab:outcomes} uses development-selected weights, which can precede the last point.}
+\includegraphics[width=\linewidth]{Images/part2_all_settings.png}
+\caption{Learning-settings study, configurations in Table~\ref{tab:config}, roots 17/29/101/314/2718. A/B/C: unsmoothed ten-episode development checks at zero and every 65,536 interactions; shading is one sample SD across agents, clipped to 0--100\%. Final tests excluded; Table~\ref{tab:outcomes} uses development-selected weights. D: the same frozen B weights under paired clean/obstructed observations, 200 final episodes/model/mode. Thin lines show individual agents; thick lines show across-root means. D has zero additional training, so its horizontal axis shows observation condition rather than interactions.}
 \end{figure}
 \begin{table}[htbp]
 \centering\small
@@ -145,4 +172,24 @@ Root & A/Q & A/PPO & B/Q & B/PPO & C/Q & C/PPO & D/Q & D/PPO \\
 \end{tabular}
 \caption{Every training root in the main A/B/C and clarified D studies; success percentages, 200 episodes/cell. D uses exactly the B checkpoint in that row. No root is omitted.}
 \label{tab:roots}
+\end{table}\begin{table}[htbp]
+\centering\small
+\begin{tabular}{@{}lrrrrrr@{}}
+\toprule
+Agent & Root & Clean S\% & Obstructed S\% & $\Delta$ (pp) & $S\to F$ & $F\to S$ \\
+\midrule
+Q-learning & 17 & 17.5 & 21 & +3.5 & 21 & 28 \\
+Q-learning & 29 & 23 & 27 & +4.0 & 21 & 29 \\
+Q-learning & 101 & 17.5 & 14 & -3.5 & 17 & 10 \\
+Q-learning & 314 & 40 & 35 & -5.0 & 36 & 26 \\
+Q-learning & 2718 & 49.5 & 19 & -30.5 & 77 & 16 \\
+PPO & 17 & 42.5 & 20 & -22.5 & 63 & 18 \\
+PPO & 29 & 74.5 & 42.5 & -32.0 & 90 & 26 \\
+PPO & 101 & 64.5 & 73 & +8.5 & 12 & 29 \\
+PPO & 314 & 91.5 & 54.5 & -37.0 & 79 & 5 \\
+PPO & 2718 & 56.5 & 52.5 & -4.0 & 42 & 34 \\
+\bottomrule
+\end{tabular}
+\caption{Frozen observation-robustness study D, paired seeds 1600000--1600199,200 episodes per model/mode. $\Delta$ is obstructed minus clean success. Final columns count episodes that change from success to failure and vice versa on the same seed; policies can visit different trajectories after inputs change. This is a within-model observation contrast, not a comparison of newly trained agents or an independent unseen-map test.}
+\label{tab:robustness-pairs}
 \end{table}

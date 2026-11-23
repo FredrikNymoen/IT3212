@@ -89,6 +89,12 @@ Preserve original results/models and Part1. Old sources can be inspected with
   brief tables, all30 decisions, word count and the prediction hash.
   `reproduce.py --plan` documents a fresh75-model reproduction. `report.py`
   regenerates current editorial files; preserve manual revisions first.
+  User requests no specific calendar dates in report prose, headings, titles
+  or captions; keep raw provenance timestamps in experiment records. Preserve
+  original Part1. Give A/B/C/D parallel analytical treatment: dedicated setting
+  subsections, the four-panel `part2_all_settings.png`, and D's paired clean/
+  obstructed outcomes table. D's frozen comparison has no training curve;
+  show observation condition on its horizontal axis rather than invented steps.
 - `workshops/workshop1/Monday-Workshop (1).pdf` - classification workshop brief;
   start with UCI Dry Bean (602), then repeat with another listed dataset.
   The original CSV and UCI metadata are gitignored at `workshops/workshop1/dry_bean.csv`

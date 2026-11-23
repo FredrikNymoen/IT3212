@@ -13,6 +13,10 @@ episodes, 4,000 clarified-D episodes and 1,000 diagnostic episodes are finished.
 The current report covers Parts 2/3/4/6 and separately annotated predictions.
 Part 5 remains deferred, not fabricated. Registered sources below remain
 immutable for reproducibility after completion as well.
+Report prose/captions omit specific calendar dates at the user's request;
+the raw records retain timestamps. A/B/C/D have parallel analytical subsections
+and a shared four-panel figure. D additionally reports clean/obstructed pairs,
+per-root success changes and both directions of episode outcome changes.
 
 The following commands have been launched on the original Part 2 host/software.
 Do not modify their worker sources or `q_learning.py`/`ppo.py` while they run:

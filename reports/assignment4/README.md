@@ -3,7 +3,7 @@
 Read both root PDFs, including `clarification-assingment4 (1).pdf`.
 The evidence brief is **Parts 2, 3, 4 and 6 only**, below the 2,000-word
 limit excluding tables and figure captions. The original predictions plus
-dated annotations, human review and AI record are separate documents.
+post-experiment annotations, human review and AI record are separate documents.
 
 | Document | Editable source | Compiled output |
 |---|---|---|
@@ -19,18 +19,21 @@ this project preserves the text but does not certify a timestamp.
 
 Use pdfLaTeX. In Overleaf select the appropriate main document above. The
 brief contains no visible source filenames/paths. The tables and captions
-identify dates, conditions, training roots and evaluation episodes. Exact
+identify source studies, conditions, training roots and evaluation episodes. Exact
 paths and fingerprints belong to the separate experiment records.
 
 ## Current evidence
 
-- **Part 2 A/B/C:** 22 November five-root study, 262,144 consumed interactions
+- **Part 2 A/B/C:** learning-settings five-root study,262,144 consumed interactions
   per run; checkpoints selected using source-setting development data only.
-- **Primary D:** 23 November fixed observation obstruction, all ten frozen B
+- **Primary D:** fixed observation obstruction, all ten frozen B
   models, clean/obstructed paired controls, 4,000 episodes, no learning.
   This explicitly tests a RAM/object-feature analogue of spatial occlusion,
   not unseen-map generalisation or a pixel encoder. Old map-selector D is
   preserved as historical supplementary evidence, not mixed into primary D.
+  A/B/C/D each have a dedicated analysis subsection and panel in the same
+  figure. D additionally shows every clean/obstructed model pair and both
+  directions of episode outcome changes, rather than only its overall mean.
 - **Part 3:** 45 fresh models, nine one-factor configurations, five roots each,
   fixed final 262,144-step weights; 9,000 primary episodes. All results retained.
   Ten baseline weights match their historical full-budget counterparts bitwise.

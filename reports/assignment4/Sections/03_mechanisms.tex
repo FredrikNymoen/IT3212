@@ -59,7 +59,7 @@ PPO LR $.0001\to .00005$ & $8.9 \pm 11.0$ & 27, 8, 9.5, 0, 0 & $593.0 \pm 8.2$ \
 PPO two epochs & $5.8 \pm 7.2$ & 9, 1, 17, 0, 2 & $493.5 \pm 53.5$ \\
 \bottomrule
 \end{tabular}
-\caption{23 November five-seed mechanism study, B, fixed 262,144-step weights;200 frozen final episodes/model. Root order 17/29/101/314/2718. All other settings match Table~\ref{tab:config}. Epsilon endpoints stay 1/.05; only decay duration changes. Zero entropy changes the single entropy-schedule factor. Training wall times exclude development and the logged user pause; they are concurrent-host costs, not isolated CPU benchmarks.}
+\caption{Five-seed mechanism study, B, fixed 262,144-step weights;200 frozen final episodes/model. Root order 17/29/101/314/2718. All other settings match Table~\ref{tab:config}. Epsilon endpoints stay 1/.05; only decay duration changes. Zero entropy changes the single entropy-schedule factor. Training wall times exclude development and the logged user pause; they are concurrent-host costs, not isolated CPU benchmarks.}
 \label{tab:mechanisms}
 \end{table}\begin{table}[htbp]
 \centering\small
@@ -73,10 +73,10 @@ PPO zero entropy & argmax & $66.4 \pm 27.1$ & 0.431 \\
 PPO zero entropy & sampled & $48.4 \pm 11.0$ & 0.439 \\
 \bottomrule
 \end{tabular}
-\caption{23 November frozen execution diagnostic: all five fixed-full-budget baseline and zero-entropy PPO agents, 50 fresh paired episodes/model/mode, 1,000 total. Success is mean $\pm$ sample SD across five models; entropy is mean visited-state action-distribution entropy in nats. This secondary mode has 50, not 200 episodes/model and supplies no policy selection.}
+\caption{Frozen execution diagnostic: all five fixed-full-budget baseline and zero-entropy PPO agents, 50 fresh paired episodes/model/mode, 1,000 total. Success is mean $\pm$ sample SD across five models; entropy is mean visited-state action-distribution entropy in nats. This secondary mode has 50, not 200 episodes/model and supplies no policy selection.}
 \label{tab:diagnostic}
 \end{table}
 \begin{figure}[htbp]\centering
 \includegraphics[width=\linewidth]{Images/part3_mechanism_curves.png}
-\caption{23 November mechanism study; B, nine configurations in Table~\ref{tab:mechanisms}, roots 17/29/101/314/2718. Each panel compares one factor to its own algorithm baseline. Unsmoothed ten-episode development checks at zero and every 65,536 interactions; mean $\pm$ sample SD across five training roots, clipped to 0--100\%. These development curves do not select Part 3 checkpoints; primary results use the fixed final cap.}
+\caption{Mechanism study; B, nine configurations in Table~\ref{tab:mechanisms}, roots 17/29/101/314/2718. Each panel compares one factor to its own algorithm baseline. Unsmoothed ten-episode development checks at zero and every 65,536 interactions; mean $\pm$ sample SD across five training roots, clipped to 0--100\%. These development curves do not select Part 3 checkpoints; primary results use the fixed final cap.}
 \end{figure}

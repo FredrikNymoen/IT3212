@@ -11,12 +11,17 @@ def main():
     report=ROOT/'reports/assignment4';build=ROOT/'results/assignment4/completion_latex_build'
     output=ROOT/'output/pdf';build.mkdir(parents=True,exist_ok=True);output.mkdir(parents=True,exist_ok=True)
     previews=ROOT/'results/assignment4/completion_pdf_preview';previews.mkdir(exist_ok=True)
+    # Build beside private auxiliary files. A stale main.aux in the editable
+    # report directory otherwise takes precedence over -output-directory.
+    for path in report.rglob('*'):
+        if path.is_file() and path.suffix in {'.tex','.png'}:
+            dest=build/path.relative_to(report);dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(path,dest)
     documents={'main':'evidence_brief','predictions':'predictions','review':'review_status','ai_record':'ai_record'}
     result=[]
     for source,target in documents.items():
         for iteration in range(2):
-            command=['pdflatex','-interaction=nonstopmode','-halt-on-error',f'-output-directory={build}',source+'.tex']
-            completed=subprocess.run(command,cwd=report,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,errors='replace')
+            command=['pdflatex','-interaction=nonstopmode','-halt-on-error',source+'.tex']
+            completed=subprocess.run(command,cwd=build,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True,errors='replace')
             (build/f'{source}_pass{iteration}.txt').write_text(completed.stdout,encoding='utf-8')
             assert completed.returncode==0,completed.stdout[-3000:]
         log=(build/f'{source}.log').read_text(errors='replace')

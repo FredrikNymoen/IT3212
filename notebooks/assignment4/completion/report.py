@@ -20,6 +20,7 @@ def write(p,s):
     s=s.replace('to(','to (').replace('position(','position (')
     s=s.replace('reward-','reward -')
     s=re.sub(r'([A-Za-z%]),(?=\d)',r'\1, ',s)
+    s=s.replace('IT 3212','IT3212').replace('258 V','258V').replace('Stable-Baselines 3','Stable-Baselines3').replace('a4 paper','a4paper')
     s=re.sub(r'@@(\d+)@@',lambda m:protected[int(m[1])],s)
     Path(p).write_text(s.strip()+'\n',encoding='utf-8')
 def pm(mean,sd,digits=1,scale=1):
@@ -31,6 +32,7 @@ def table(header,rows,caption,label,spec):
 P2=r"""
 \setcounter{section}{1}
 \section{Compare learning settings}
+\subsection{Common task and controls}
 We compare ordinary tabular Q-learning with PPO in Gymnasium's native
 \texttt{ALE/MsPacman-v5}. Success means earning 2,000 new points before game
 over or 1,000 decisions, not clearing a level. The observable horizon is
@@ -69,15 +71,26 @@ verify no updates; native score registers verify earned points. Results
 average five trained agents, not pooled episodes as independent replications.
 Deterministic A can repeat trajectories; episode count does not replace retraining.
 
-PPO leads B by 35.2 percentage points, in four of five roots, but still
-fails 32.6\% of episodes. A's 80\% PPO mean hides four perfect agents and
-one zero-success agent. Early learning contradicts a general Q advantage:
-at 65,536 interactions, A development success is PPO 20\% versus Q 2\%;
-B instead gives Q 6\% versus PPO 0\%. Q varies more across seeds in B,
-but less in A/C. Sticky transitions reduce PPO success by 12.6 points;
-Q's mean change of $-0.7$ hides paired changes from $-71$ to $+48$.
-These outcomes neither confirm safer routes nor the predicted larger Q loss.
+\subsection{A: Learning under predictable dynamics}
+Does predictable movement permit efficient learning? At 65,536 interactions,
+PPO reaches20\% development success versus Q's2\%, contradicting a general
+early Q advantage. Final success is Q32.9\%, PPO80\%, but PPO comprises four
+perfect agents and one zero-success agent. Its larger across-root SD also
+contradicts our predicted lower PPO variability here. Determinism makes
+trajectory repetition possible, not retraining reliable. The learning curve
+therefore needs the individual-root outcomes, not only its average.
 
+\subsection{B: Learning under transition uncertainty}
+Does stickiness change performance? PPO leads Q by35.2 percentage points,
+in four of five roots, but still fails32.6\% of episodes. Early development
+instead gives Q6\% versus PPO0\%. Sticky transitions reduce PPO success by12.6 points;
+Q's mean change of $-0.7$ hides paired changes from $-71$ to $+48$.
+Q varies more across roots in B, supporting that prediction only conditionally.
+These outcomes neither establish safer routes nor support the predicted
+larger Q loss; action timing and learned trajectories both matter.
+
+\subsection{C: Learning under changed incentives}
+Does a speed incentive preserve goal attainment?
 C reduces mean success by 5.3 points for Q and 14.7 for PPO, although two
 roots improve per method. Successful episodes shorten, but condition on
 different successes. With failure avoidance prioritised, this penalty is
@@ -85,17 +98,30 @@ unsupported; one magnitude cannot test the predicted dose dependence.
 Raw C scores are Q $1534.8\pm201.0$, PPO $1873.4\pm283.5$;
 penalised returns cannot be compared directly with B.
 
-D fixes a 32-by-32 region, $x\in[16,48),y\in[24,56)$, before outcomes.
+\subsection{D: Robustness without further learning}
+What survives missing observations? D fixes a32-by-32 playfield region,
+$x\in[16,48),y\in[24,56)$, before outcomes:3.05\% of the frame, avoiding
+a score-only change while bounding the intervention.
 Because policies consume objects rather than pixels, centres inside it are
 hidden before recomputing object features; an obscured player retains its
 last visible pose. Static geometry and nonspatial status remain available.
-This explicit object-feature analogue covers 3.05\% of the frame, affects
-policy input, and is not a pixel-CNN test. Engineering verified 1,600 unchanged
-native transitions and hidden-object noninterference. Paired clean success
-is Q 29.5\%, PPO 65.9\%; obstruction gives 23.2\% and 48.5\%.
-PPO retains the higher absolute rate but loses more points. Some roots improve:
-neither universal degradation nor unseen-map generalisation follows.
-Earlier forced-maze tests remain historical, outside primary D.
+Engineering verified1,600 unchanged native transitions and hidden-object
+noninterference. This is an object-feature analogue, not a pixel-CNN test.
+
+The same ten B models receive200 paired clean/obstructed episodes each;
+weights, native dynamics, rewards and action formats remain fixed.
+Clean success is Q29.5\%, PPO65.9\%; obstruction gives23.2\% and48.5\%.
+Table~\ref{tab:robustness-pairs} isolates these within-model changes; comparing
+against the separate B evaluation would mix observation and seed changes.
+PPO retains higher absolute success, while Q loses fewer percentage points.
+Neither ranking alone establishes reliability. Q root2718 falls49.5\% to19\%,
+whereas PPO root101 improves64.5\% to73\%: the mean conceals opposite responses.
+Information removal can redirect trajectories beneficially in particular
+policies; these improvements do not establish that less information helps
+generally. Changed visited states compete with simple loss-of-information
+explanations. Relative feature formats remain usable, but cannot recover
+hidden objects. This tests frozen observation robustness, not unseen-map
+generalisation; additional locations/durations need independent confirmation.
 """
 
 CONFIG=r"""
@@ -114,7 +140,7 @@ Discount & $.995$ in both workflows & Rough discounted horizon $1/(1-\gamma)=200
 Monitoring/replication & Ten main-development episodes every32 rollouts; 200 final episodes; five training roots & Bound monitoring cost; meet final-test requirement and expose retraining variability. Numeric seed ranges label disjoint phases, not statistical quality. \\
 \bottomrule
 \end{tabularx}
-\caption{22 November main-study configurations, held fixed across A/B/C; D reuses B weights. Constants are justified design choices, not independent optima. Main development seeds1130000--1130009; search seeds1110000--1110019 and1120000--1120019.}
+\caption{Learning-settings study configurations, held fixed across A/B/C; D applies the same B policies to clean and obstructed observations. Constants are justified design choices, not independent optima. Main development seeds1130000--1130009; search seeds1110000--1110019 and1120000--1120019.}
 \label{tab:config}
 \end{table}
 """
@@ -255,21 +281,23 @@ def main():
             outcomes.append([setting,alg,pm(row['success_rate'],row['success_rate_sd'],scale=100),pm(row['mean_return'],row['mean_return_sd'])])
             costs.append([setting,alg,pm(row['success_length'],row['success_length_sd'],0),pm(row['failure_length'],row['failure_length_sd'],0),pm(row['training_seconds'],row['training_seconds_sd']),pm(row['evaluation_seconds'],row['evaluation_seconds_sd'])])
     p2=P2+table(r'Setting & Agent & Success (\%) & Return',outcomes,
-        r'22 November main study A/B/C; 23 November clarified observation D. Mean $\pm$ sample SD across five trained agents, 200 episodes each. Failure is exactly100\% minus success in every cell; there is no censoring in these primary conditions. D uses identical source-selected B models, not newly trained agents. Returns are points; C includes the penalty. SD is training variation, not a confidence interval.',
+        r'Learning-settings study: A/B/C learning evaluation and D frozen observation-robustness evaluation. Mean $\pm$ sample SD across five trained agents,200 episodes each. Failure is exactly100\% minus success; there is no censoring. D uses identical source-selected B models. Returns are points; C includes the penalty. SD is training variation, not a confidence interval.',
         'tab:outcomes','llrr')
     p2+=table('Setting & Agent & Success length & Failure length & Train (s) & Eval. (s)',costs,
         r'Same studies/models as Table~\ref{tab:outcomes}. Lengths are conditional mean decisions per agent, then mean $\pm$ sample SD across agents with that outcome. A/PPO has only one failing agent. Training charges the full262,144 interactions, excluding tuning/development. D adds zero training. Evaluation covers200 episodes, native checks and trace collection; loading/compression excluded. Known user-suspension time is removed from derived D wall cost; raw timings remain recorded. Shared-host timings do not establish isolated computational speed.',
         'tab:costs','llrrrr')
     p2+=CONFIG
     p2+=r'''
+\par\noindent\begin{minipage}{\linewidth}
 Runs used an Intel Core Ultra7 258V CPU, Windows11, one numerical thread per
 worker (up to16 during historical phase overlap). Part3 used up to6 workers;
 D one. Equal interactions do not imply equal compute.
 Software was Python3.13.7, Gymnasium1.4.0, ALE0.12.1, PyTorch2.14.1+cpu
 and Stable-Baselines3 2.9.2.
+\end{minipage}\par
 \begin{figure}[htbp]\centering
-\includegraphics[width=\linewidth]{Images/part2_learning_curves_20261122.png}
-\caption{22 November main A/B/C development curves, configurations in Table~\ref{tab:config}, roots17/29/101/314/2718. Unsmoothed ten-episode evaluations at zero and every65,536 interactions; mean with one sample SD across agents, clipped to0--100\%, not a confidence interval. Final tests excluded; Table~\ref{tab:outcomes} uses development-selected weights, which can precede the last point.}
+\includegraphics[width=\linewidth]{Images/part2_all_settings.png}
+\caption{Learning-settings study, configurations in Table~\ref{tab:config}, roots17/29/101/314/2718. A/B/C: unsmoothed ten-episode development checks at zero and every65,536 interactions; shading is one sample SD across agents, clipped to0--100\%. Final tests excluded; Table~\ref{tab:outcomes} uses development-selected weights. D: the same frozen B weights under paired clean/obstructed observations,200 final episodes/model/mode. Thin lines show individual agents; thick lines show across-root means. D has zero additional training, so its horizontal axis shows observation condition rather than interactions.}
 \end{figure}
 '''
     rows=[]
@@ -283,6 +311,22 @@ and Stable-Baselines3 2.9.2.
     p2+=table(r'Root & A/Q & A/PPO & B/Q & B/PPO & C/Q & C/PPO & D/Q & D/PPO',rows,
         'Every training root in the main A/B/C and clarified D studies; success percentages,200 episodes/cell. D uses exactly the B checkpoint in that row. No root is omitted.',
         'tab:roots','rrrrrrrrr')
+    rows=[]
+    d=agents[agents.study.eq('D')]
+    for alg in ['Q-learning','PPO']:
+        for seed in [17,29,101,314,2718]:
+            selected=d[d.algorithm.eq(alg)&d.seed.eq(seed)].set_index('condition')
+            clean=pd.read_csv(ROOT/selected.loc['D_clean','evaluation_csv'])
+            masked=pd.read_csv(ROOT/selected.loc['D','evaluation_csv'])
+            assert clean.evaluation_seed.tolist()==masked.evaluation_seed.tolist()==list(range(1600000,1600200))
+            before=float(selected.loc['D_clean','success_rate']*100);after=float(selected.loc['D','success_rate']*100)
+            lost=int((clean.success.eq(1)&masked.success.eq(0)).sum());gained=int((clean.success.eq(0)&masked.success.eq(1)).sum())
+            assert np.isclose(after-before,(gained-lost)/2)
+            rows.append([alg,str(seed),f'{before:g}',f'{after:g}',f'{after-before:+.1f}',str(lost),str(gained)])
+    p2+=table(r'Agent & Root & Clean S\% & Obstructed S\% & $\Delta$ (pp) & $S\to F$ & $F\to S$',rows,
+        r'Frozen observation-robustness study D, paired seeds1600000--1600199,200 episodes per model/mode. $\Delta$ is obstructed minus clean success. Final columns count episodes that change from success to failure and vice versa on the same seed; policies can visit different trajectories after inputs change. This is a within-model observation contrast, not a comparison of newly trained agents or an independent unseen-map test.',
+        'tab:robustness-pairs','lrrrrrr')
+    shutil.copy2(BASE/'completion_figures/part2_all_settings.png',REPORT/'Images/part2_all_settings.png')
     write(REPORT/'Sections/02_learning_settings.tex',p2)
 
     labels={'Q_base':'Q baseline','Q_fast_epsilon':r'Q epsilon decay80\%$\to$20\%', 'Q_gamma99':r'Q $\gamma=.99$', 'Q_alpha05':r'Q $\alpha=.05$',
@@ -293,7 +337,7 @@ and Stable-Baselines3 2.9.2.
         row=group('M3','B',arm); per=agents[agents.study.eq('M3')&agents.arm.eq(arm)].set_index('seed')
         rows.append([label,pm(row['success_rate'],row['success_rate_sd'],scale=100),', '.join(f'{per.loc[s,"success_rate"]*100:g}' for s in [17,29,101,314,2718]),pm(row['training_seconds'],row['training_seconds_sd'])])
     p3=P3+table(r'Configuration & Success (\%) & Five roots (\%) & Train (s)',rows,
-        r'23 November five-seed mechanism study, B, fixed262,144-step weights;200 frozen final episodes/model. Root order17/29/101/314/2718. All other settings match Table~\ref{tab:config}. Epsilon endpoints stay1/.05; only decay duration changes. Zero entropy changes the single entropy-schedule factor. Training wall times exclude development and the logged user pause; they are concurrent-host costs, not isolated CPU benchmarks.',
+        r'Five-seed mechanism study, B, fixed262,144-step weights;200 frozen final episodes/model. Root order17/29/101/314/2718. All other settings match Table~\ref{tab:config}. Epsilon endpoints stay1/.05; only decay duration changes. Zero entropy changes the single entropy-schedule factor. Training wall times exclude development and the logged user pause; they are concurrent-host costs, not isolated CPU benchmarks.',
         'tab:mechanisms','lrlr')
     d=pd.DataFrame(summary['diagnostic']);rows=[]
     for arm in ['PPO_base','PPO_entropy0']:
@@ -301,13 +345,13 @@ and Stable-Baselines3 2.9.2.
             x=d[d.arm.eq(arm)&d['mode'].eq(mode)]
             rows.append([labels[arm],mode,pm(x.success_rate.mean(),x.success_rate.std(ddof=1),scale=100),f'{x.mean_action_entropy.mean():.3f}'])
     p3+=table(r'Training configuration & Execution & Success (\%) & Action entropy',rows,
-        r'23 November frozen execution diagnostic: all five fixed-full-budget baseline and zero-entropy PPO agents,50 fresh paired episodes/model/mode,1,000 total. Success is mean $\pm$ sample SD across five models; entropy is mean visited-state action-distribution entropy in nats. This secondary mode has50, not200 episodes/model and supplies no policy selection.',
+        r'Frozen execution diagnostic: all five fixed-full-budget baseline and zero-entropy PPO agents,50 fresh paired episodes/model/mode,1,000 total. Success is mean $\pm$ sample SD across five models; entropy is mean visited-state action-distribution entropy in nats. This secondary mode has50, not200 episodes/model and supplies no policy selection.',
         'tab:diagnostic','llrr')
     shutil.copy2(BASE/'completion_figures/part3_mechanism_curves.png',REPORT/'Images/part3_mechanism_curves.png')
     p3+=r'''
 \begin{figure}[htbp]\centering
 \includegraphics[width=\linewidth]{Images/part3_mechanism_curves.png}
-\caption{23 November mechanism study; B, nine configurations in Table~\ref{tab:mechanisms}, roots17/29/101/314/2718. Each panel compares one factor to its own algorithm baseline. Unsmoothed ten-episode development checks at zero and every65,536 interactions; mean $\pm$ sample SD across five training roots, clipped to0--100\%. These development curves do not select Part3 checkpoints; primary results use the fixed final cap.}
+\caption{Mechanism study; B, nine configurations in Table~\ref{tab:mechanisms}, roots17/29/101/314/2718. Each panel compares one factor to its own algorithm baseline. Unsmoothed ten-episode development checks at zero and every65,536 interactions; mean $\pm$ sample SD across five training roots, clipped to0--100\%. These development curves do not select Part3 checkpoints; primary results use the fixed final cap.}
 \end{figure}
 '''
     write(REPORT/'Sections/03_mechanisms.tex',p3)
@@ -318,7 +362,7 @@ and Stable-Baselines3 2.9.2.
         c=e['case'];j=c['job']
         rows.append([c['id'],c['category'].replace('surprising','rare'),('Q' if j['algorithm']=='Q-learning' else 'PPO')+'/'+j['condition'],str(j['seed']),str(c['evaluation_seed']),str(c['length']),f'{c["score"]:g}',f'{100*c["model_success_rate"]:g}'])
     p4=P4+table(r'ID & Category & Agent/setting & Root & Eval. seed & Length & Score & Model S\%',rows,
-        r'22 November recorded B/C episodes, development-selected configurations in Table~\ref{tab:config}. TS/TF denote typical success/failure; SS/SF denote rare success/failure. Model S\% uses all200 recorded episodes of that trained agent, making surprises relative to that model. Conditional medians determine typicality, not visual appeal.',
+        r'Learning-settings study recorded B/C episodes, development-selected configurations in Table~\ref{tab:config}. TS/TF denote typical success/failure; SS/SF denote rare success/failure. Model S\% uses all200 recorded episodes of that trained agent, making surprises relative to that model. Conditional medians determine typicality, not visual appeal.',
         'tab:episodes','lllrrrrr')
     shutil.copy2(BASE/'completion_figures/part4_native_decisions.png',REPORT/'Images/part4_native_decisions.png')
     p4+=r'''
@@ -368,7 +412,7 @@ Alternatives are single coupled-prefix steps; later outcomes remain unknown.
 '''
     write(REPORT/'main.tex',preamble+r'''
 \title{IT3212 Assignment 4: Evidence Brief\\MsPacMan}
-\author{MsPacMan team}\date{23 November 2026}
+\author{MsPacMan team}\date{}
 \begin{document}\maketitle
 \input{Sections/02_learning_settings.tex}
 \input{Sections/03_mechanisms.tex}
@@ -388,7 +432,7 @@ does not reconstruct or certify that timestamp.
 \end{document}
 ''')
     annotations=r'''
-\section*{Post-experiment annotations -- 23 November 2026}
+\section*{Post-experiment annotations}
 These annotations follow the results and do not replace prior predictions.
 The 2,000-point target is a task threshold, not verified level completion.
 The actual power feature is an imperfect capped proxy, not a precise timer.
@@ -472,12 +516,12 @@ explanation, and how these affect the unchanged initial predictions.
 The completed review has a separate maximum of1,000 words.
 ''')
     write(REPORT/'review.tex',preamble+r'''
-\title{IT3212 Assignment 4: Human Review Status}\author{MsPacMan team}\date{23 November 2026}
+\title{IT3212 Assignment 4: Human Review Status}\author{MsPacMan team}\date{}
 \begin{document}\maketitle\input{Sections/05_human_review.tex}\end{document}
 ''')
     write(REPORT/'ai_assistance.tex',r'''
 \section*{Consequential AI assistance record}
-\textbf{18--23 November 2026.} Codex assisted with experimental design,
+Codex assisted with experimental design,
 Gymnasium wrappers, ordinary tabular Q-learning, PPO, experiment runners,
 debugging, evidence analysis and report drafting. The team authorised score
 increment rewards after instructor clarification, requested ordinary Q
@@ -491,7 +535,7 @@ one Q update per transition, terminal targets, native action mapping, frozen
 parameter hashes, native BCD scores and directly replayed recorded actions.
 The imperfect power proxy and representation differences remain disclosed.
 
-On23 November Codex read both briefs, replaced primary D with a fixed
+Codex read both briefs, implemented primary D as a fixed
 object-feature occlusion analogue, and implemented45 fresh same-host,
 five-seed one-factor models plus a frozen execution-mode diagnostic. Native
 parity/noninterference checks verified D leaves the game unchanged. Original
@@ -506,6 +550,11 @@ not claimed as expected-return estimates. Report checks cover numerical
 provenance, original-prediction checksum, word limit, LaTeX compilation and
 rendered layout.
 
+The team requested date-free report prose and equal analytical attention to
+A/B/C/D. Codex added parallel subsections, a four-setting figure and a paired
+D outcome table, verified against the original records without new training.
+Raw provenance timestamps and the original prediction sheet remain intact.
+
 The team requested that the actual human review be deferred. No discussion,
 reviewer feedback or individual ranking was generated as human evidence.
 The final prose and recommendations are AI-assisted drafts requiring the
@@ -513,7 +562,7 @@ authors' ownership and review. This record does not claim they have already
 approved every conclusion or completed the outstanding human review.
 ''')
     write(REPORT/'ai_record.tex',preamble+r'''
-\title{IT3212 Assignment 4: AI Assistance}\author{MsPacMan team}\date{23 November 2026}
+\title{IT3212 Assignment 4: AI Assistance}\author{MsPacMan team}\date{}
 \begin{document}\maketitle\input{ai_assistance.tex}\end{document}
 ''')
     print('Evidence brief, original-plus-annotated predictions, deferred review and AI record written.')

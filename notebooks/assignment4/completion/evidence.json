@@ -3468,23 +3468,26 @@
     "all_training_roots_retained": true,
     "decisions": 30,
     "original_predictions_unchanged": true,
+    "calendar_dates_absent_from_report": true,
+    "parallel_A_B_C_D_sections": true,
+    "paired_D_table_verified": true,
     "prose_words_by_part": {
-      "02_learning_settings": 698,
+      "02_learning_settings": 888,
       "03_mechanisms": 400,
       "04_episode_inspection": 328,
       "06_recommendations": 320
     },
-    "conservative_brief_words": 1766,
+    "conservative_brief_words": 1956,
     "counting_rule": "Excludes table and longtable contents and figure captions; includes headings, inline mathematics/numbers and conservative title allowance.",
     "human_review": "Explicitly deferred by user; no completed review claimed.",
     "report_hashes": {
-      "reports\\assignment4\\main.tex": "b2edc9fac00672434c0430b7439bf658c243d03fe0c6a375bce56bc4c5771f51",
-      "reports\\assignment4\\Sections\\02_learning_settings.tex": "c8abb3f9b34151af1b26c765094b81196672cd0182f1f67bef22441fd47a2f22",
-      "reports\\assignment4\\Sections\\03_mechanisms.tex": "1e9584024d0fe557ccd32a3cad343ef3b471e133b786d38c7fe89db9c27c222f",
-      "reports\\assignment4\\Sections\\04_episode_inspection.tex": "730efb07b1178fe72e9c1f7655995205114af75b3f96531bcc120bfb2f7309c8",
+      "reports\\assignment4\\main.tex": "f3e16d5bea5607c5ad8277a23ef702afb7d5d8074a9ed77e52da688f14b49d5b",
+      "reports\\assignment4\\Sections\\02_learning_settings.tex": "94651b6420a74bbf2dac01e0e992d54fe69cb96e3297f726aedcea61421bda85",
+      "reports\\assignment4\\Sections\\03_mechanisms.tex": "506c65d0d637581571a33ff6a571956225829704d318740f6b6823495e50c8f9",
+      "reports\\assignment4\\Sections\\04_episode_inspection.tex": "2ef75ee8eb58354473637fc4a656a6881cc003bd08f380ee55bcc328d822883a",
       "reports\\assignment4\\Sections\\06_recommendations.tex": "011abd02527077295306fe81c896ac455e288eef54b5b410565c999f498d3d2a"
     },
-    "verifier_sha256": "79b71d1ceb33d9fc3c26c422b25ff06847cc25025c16e28e9906bf6a24d191b7"
+    "verifier_sha256": "cda177201cc902dc1f01dfc5cc30b1f16348c3655d483a5fc89a829f31526efa"
   },
   "trace_audit": {
     "primary_decisions": 13581678,
