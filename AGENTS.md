@@ -21,7 +21,7 @@ implementation choices, and update this file when new briefs or repository struc
 
 The current Assignment4 entry points are documented in `notebooks/assignment4/README.md`:
 `three_hour/` for the reported search/A/B/C workflow, `transfer_evaluation/` for
-frozen D, and `report_review/` for the current three-table report audit. Shared
+frozen D, and `report_review/` for the current five-table, single-file Part2 audit. Shared
 core files retain their original paths and registered byte hashes. Earlier
 baselines, rejected experiments, obsolete figure copies and one-off helpers
 are preserved in Git checkpoint `714c0cb` and the ignored local archive at
@@ -607,10 +607,10 @@ Preserve original results/models and Part1. Old sources can be inspected with
   text is archived with the final run. Historical `current/report.py` cannot
   reproduce the new report; retain its sources and overwrite guard.
   Parts 3--6 remain prompts and empty placeholders, not results or peer feedback.
-  `Sections/02_discussion.tex` contains authored interpretation after the measured
-  Part 2 section; it keeps reviewed discussion separate from numerical rendering.
-  Recheck this text when experiments change and include both Part 2 input lines
-  when extracting the evidence brief.
+  The former `Sections/02_discussion.tex` was merged into
+  `Sections/02_learning_settings.tex` in the later justification review and
+  removed. The complete Part2 is now included once. Recheck its interpretation
+  when experiments change; do not use old separate-file renderers over it.
   The 23 November Part 2 editorial review preserves all numerical table values,
   removes visible file/path references, explicitly records failure rates in
   prose and explains A/B, B/C and transfer findings. The figure identifies the
@@ -618,7 +618,7 @@ Preserve original results/models and Part1. Old sources can be inspected with
   a filename. The subsequent requested edit explains arbitrary seed values
   and native maze identifiers, keeps only return in the outcome table, and
   uses the new censor-aware D results. The old interrupted run is not rewritten.
-  The latest quality revision compresses Part 2 to about1100 prose words,
+  An earlier quality revision compressed Part 2 to about1100 prose words,
   retains outcome/cost Tables1/2 and adds configuration Table3. It answers
   each A--D question directly and audits paired-seed differences without
   retraining/reselecting agents. Q's almost unchanged A/B mean hides changes
@@ -676,8 +676,19 @@ Preserve original results/models and Part1. Old sources can be inspected with
   The report adds Table4 with all five training replications, retaining
   Tables1/2 numbers and Part1 bytes. Q/D seed314 has the only censored episode,
   giving that agent a7.0--7.5%bound and the aggregate4.5--4.6%bound.
-  Run maintained `report_review/analyse.py` and `verify_quality.py` for the
-  four-table,1128-prose-word report. No registered runtime/model changes,
+  The later justification review supersedes that four-table layout: all Part2
+  protocol/results/A--D interpretation now reside in `02_learning_settings.tex`,
+  included once. The separate `02_discussion.tex` was merged and removed.
+  The current five tables retain outcome/cost/configuration values, add a
+  design-rationale table and show all seeds. Prose is1194words. The rationale
+  distinguishes design intent/package selection from per-constant optimality.
+  It explicitly states that Q omits time/score/lives while PPO retains them,
+  that one penalty size cannot establish a size response, and lists search/main
+  development-seed ranges. The maintained `report_review/verify_quality.py`
+  validates numerical tables, actual search allowance/seeds, ALE defaults,
+  penalty/discount arithmetic and the feature omission. Keep the whole evidence
+  brief within2000words; the local Part2 check allows1250. Old generators must
+  not overwrite the consolidated source. No registered runtime/model changes,
   training, new evaluation outcomes, retrospective best-test-model selection,
   report PDF or ZIP generation are part of this synthesis. Other parts remain
   separate. Later high PPO scores in Mats' warm-start/temperature/multi-map

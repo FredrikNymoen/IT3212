@@ -18,16 +18,20 @@ from validate_delivery import check_cell,summary
 
 sha=lambda path:hashlib.sha256(path.read_bytes()).hexdigest()
 main_path=REPORT/'Sections/02_learning_settings.tex'
-discussion_path=REPORT/'Sections/02_discussion.tex'
-text=main_path.read_text(encoding='utf-8');discussion=discussion_path.read_text(encoding='utf-8')
+text=main_path.read_text(encoding='utf-8')
+discussion=text[text.index('\\subsection{What changes across the four settings?}'):]
+assert not (REPORT/'Sections/02_discussion.tex').exists()
+assert (REPORT/'main.tex').read_text(encoding='utf-8').count('\\input{Sections/02_learning_settings.tex}')==1
+assert '02_discussion' not in (REPORT/'main.tex').read_text(encoding='utf-8')
 tables=lambda body:re.findall(r'\\begin\{tabular\}.*?\\end\{tabular\}',body,re.S)
 rows=lambda table:[[cell.strip() for cell in line.strip().removesuffix('\\\\').split('&')]
     for line in table.splitlines() if re.match(r'^[ABCD] &',line)]
 current=tables(text)
 before=tables((HERE/'before/02_learning_settings.tex').read_text(encoding='utf-8'))
-assert len(current)==2 and [rows(t) for t in current]==[rows(t) for t in before]
-assert len(re.findall(r'\\begin\{table\}',text))==3
+assert len(current)==3 and [rows(t) for t in current[:2]]==[rows(t) for t in before]
+assert len(re.findall(r'\\begin\{table\}',text))==5
 assert '\\begin{tabularx}' in text and '\\label{tab:part2-configuration}' in text
+assert '\\label{tab:part2-rationale}' in text
 assert all(len(row)==4 for row in rows(current[0])) and 'Game score &' not in current[0]
 
 old_lock=json.loads((OLD/'locked.json').read_text())
@@ -36,6 +40,45 @@ for lock in [old_lock,new_lock]:
     for name,expected in lock['source_hashes'].items():assert sha(ROOT/name)==expected,name
 assert sha(OLD/'locked.json')==new_lock['original_selection_lock_sha256']
 assert json.loads((NEW/'verification.json').read_text())['episodes']==2000
+# Check the numerical design choices against registered runs, not just prose.
+study=ROOT/'results/assignment4/three_hour_20261122'
+selection=json.loads((study/'selected.json').read_text())
+for name,expected in selection['development_sources'].items():assert sha(ROOT/name)==expected,name
+search_jobs=[]
+for name in ['screen_v1','additions_v1','extra_v1','compact_v1','replica_v2']:
+    protocol=json.loads((study/name/'protocol.json').read_text())
+    expected_start=1120000 if name=='replica_v2' else 1110000
+    for job in protocol['jobs']:
+        assert job['development_seeds']==list(range(expected_start,expected_start+20))
+        assert job['setting'] in 'AB' and job['budget']==262144
+    search_jobs.extend(protocol['jobs'])
+for algorithm in ['Q-learning','PPO']:
+    group=[job for job in search_jobs if job['algorithm']==algorithm]
+    assert len(group)==18 and sum(job['budget'] for job in group)==4718592
+    assert len({job['variant'] for job in group if job['seed']==42})==7
+    assert len({job['variant'] for job in group if job['seed']==7})==2
+main_protocol=json.loads((study/'main_v1/protocol.json').read_text())
+assert len(main_protocol['jobs'])==30
+for job in main_protocol['jobs']:
+    assert job['development_seeds']==list(range(1130000,1130010)) and job['budget']==262144
+    assert not set(job['development_seeds'])&set(old_lock['evaluation_seeds'])
+assert 262144==128*2048 and 65536==32*2048 and .1*1000==100 and 100/2000==.05
+assert np.isclose(1/(1-.995),200)
+import gymnasium as gym
+import ale_py
+gym.register_envs(ale_py)
+native_defaults=gym.spec('ALE/MsPacman-v5').kwargs
+assert native_defaults['frameskip']==4 and native_defaults['repeat_action_probability']==.25
+from candidates import StudyScorer
+from tabular_q import TabularQ
+import torch
+q=TabularQ(0,alpha=.15,gamma=.995);obs=np.zeros(61,dtype=np.float32)
+actor=StudyScorer('stable')
+for channel in [14,47,48]:
+    altered=obs.copy();altered[channel]=1
+    assert q.state(obs)==q.state(altered)
+    with torch.no_grad():
+        assert not torch.equal(actor.actor_features(torch.as_tensor(obs[None])),actor.actor_features(torch.as_tensor(altered[None])))
 records=[]
 for condition in 'ABCD':
     for algorithm in ['Q-learning','PPO']:
@@ -77,6 +120,8 @@ assert np.allclose(analysis['B_gap_omission_range'],[29.25,44.5])
 q_ab=next(row for row in analysis['setting_changes'] if row['algorithm']=='Q-learning' and row['before']=='A' and row['after']=='B')
 assert min(q_ab['per_seed'].values())==-71 and np.isclose(max(q_ab['per_seed'].values()),48)
 assert np.isclose(q_ab['mean_percentage_points'],-.7)
+ppo_ab=next(row for row in analysis['setting_changes'] if row['algorithm']=='PPO' and row['before']=='A' and row['after']=='B')
+assert np.isclose(ppo_ab['mean_percentage_points'],-12.6)
 raw_pairs=frame.pivot(index=['seed','algorithm'],columns='condition',values='success')
 seed_tables=tables(discussion)
 assert len(seed_tables)==1 and '\\label{tab:part2-seeds}' in discussion
@@ -126,13 +171,14 @@ assert len(labels)==len(set(labels)) and not set(references)-set(labels)
 old_report_manifest=json.loads((OLD/'report_manifest.json').read_text())
 for name,expected in old_report_manifest.items():
     if name.endswith('part2_learning_curves_20261122.png'):assert sha(ROOT/name)==expected
-visible=re.sub(r'(?<!\\)%[^\n]*','',text+'\n'+discussion)
+visible=re.sub(r'(?<!\\)%[^\n]*','',text)
 visible=re.sub(r'\\includegraphics(?:\[[^]]*\])?\{[^}]+\}','',visible)
 assert not re.search(r'\.(?:csv|json|tex|py|npz|pkl|png|pdf|ipynb)\b|results/|three\\?_hour|\\(?:input|href|url)\{',visible,re.I)
 prose=re.sub(r'\\begin\{(table|figure)\}.*?\\end\{\1\}','',visible,flags=re.S)
 prose=re.sub(r'\\[A-Za-z]+(?:\[[^]]*\])?','',prose)
 words=len(re.findall(r"[A-Za-z0-9]+(?:[.'-][A-Za-z0-9]+)*",prose))
-assert words<=1150
+# Local Part 2 allowance: preserve room within the whole 2,000-word evidence brief.
+assert words<=1250
 
 requirements={
     'A':'Early sample efficiency compared; final mean distinguished from retraining reliability.',
@@ -143,15 +189,19 @@ requirements={
     'required_metrics':'Success,return,failure,conditional lengths,interactions,runtime,across-training-seed SD retained.',
     'curves':'Original figure retained; source experiment identified, no smoothing,10 episodes every65536 interactions.',
     'limitations':'Five training replications,small development checks,unequal earlier search,power proxy,post-inspection boundary repair and non-independent domain disclosed.',
+    'design_rationale':'Task/cap,sensors/actions,sticky probability,penalty/scale,rollouts,seeds,search,monitoring,representations,schedules,discount,PPO safeguards,greedy evaluation and map boundary explained without an optimality claim.',
 }
 receipt=dict(requirements=requirements,raw_csv_table_arithmetic_verified=True,numerical_rows_unchanged=True,
+    complete_part2_in_one_source=True,design_rationale_table_present=True,
+    design_arithmetic_search_allowance_development_seeds_and_ALE_defaults_verified=True,
+    Q_omits_time_score_lives_while_PPO_actor_uses_them_verified=True,
     all_training_replications_displayed_and_verified=True,
     paired_seed_analysis_verified=True,all_40_conditions_have_200_evaluation_episodes=True,
     D_censored_Q_episodes=1,no_visible_file_references=True,latex_structure_refs_assets_verified=True,
     original_predictions_runtime_sources_and_models_unchanged=True,part2_prose_words=words,
     new_training=False,pdf_compiled=False,verifier_sha256=sha(Path(__file__)),
-    report_hashes={str(file.relative_to(ROOT)):sha(file) for file in [main_path,discussion_path,REPORT/'README.md',REPORT/'ai_assistance.tex']})
+    report_hashes={str(file.relative_to(ROOT)):sha(file) for file in [main_path,REPORT/'main.tex',REPORT/'README.md',REPORT/'ai_assistance.tex']})
 (HERE/'requirements_and_validation.json').write_text(json.dumps(receipt,indent=2),encoding='utf-8')
 after=HERE/'after';after.mkdir(exist_ok=True)
-for file in [main_path,discussion_path]:(after/file.name).write_bytes(file.read_bytes())
+for file in [main_path]:(after/file.name).write_bytes(file.read_bytes())
 print(json.dumps(receipt,indent=2))

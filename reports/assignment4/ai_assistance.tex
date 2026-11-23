@@ -433,3 +433,19 @@ checks cover 1,024 Q transitions and 256 PPO observations. Separate engineering
 training uses 2,048 interactions per model: the resulting Q table and every
 PPO policy tensor match the original implementations bit for bit. These are
 technical refactoring checks, not new performance estimates or tuning evidence.
+
+\medskip
+\noindent\textbf{Part 2 justification audit -- 23 November 2026.}
+At the user's request, Codex rechecked A--D, all eight comparison rules and
+required evidence against the brief. The full Part~2 now occupies one source:
+the separate interpretation was merged, with one document inclusion. A design
+rationale table explains the task, observations/actions, native defaults,
+penalty/scaling, budget/replication, search/monitoring, agent designs, discount,
+PPO safeguards and evaluation. It distinguishes design reasons and package
+selection from evidence that individual constants are optimal. Feature-level
+checks confirmed that the compact Q key drops time, score and lives while PPO
+retains them; the report now discloses that difference. It also limits claims
+from one penalty magnitude. The verifier checks the registered search counts,
+development seeds, native defaults, arithmetic, all numerical tables and
+source/model fingerprints. Original predictions and all measured outcomes
+remain unchanged; no training, new evaluation or model selection was performed.

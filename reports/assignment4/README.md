@@ -49,22 +49,34 @@ do not rewrite the predictions after seeing results.
 | 6 | `Sections/06_recommendations.tex` | Three operating scenarios and limits of the conclusions |
 | AI record | `ai_assistance.tex` | Consequential suggestions, team decisions and verification |
 
-Part 2 also imports `Sections/02_discussion.tex` for authored interpretation.
-`02_learning_settings.tex` and `02_discussion.tex` were reviewed against all
-Part 2 requirements on 23 November. The visible text contains no file paths
+The complete Part 2, including the A--D interpretation, now lives in
+`Sections/02_learning_settings.tex`, included once by `main.tex`. The former
+separate discussion source was merged and removed to avoid an incomplete
+answer when reading only the Part 2 file. The visible text contains no file paths
 or filenames; the figure identifies the 22 November main experiment by its
 date, settings, configuration and training seeds. That experiment maps to
 `three_hour_20261122/main_v1` for training/curves and `final_v1` for frozen
-evaluation. Include both Part 2 input lines when extracting the evidence brief.
-The current concise revision has 1,128 prose words, with
+evaluation. Include the single Part 2 input when extracting the evidence brief.
+The current revision has 1,194 prose words, with
 outcomes and costs as Tables 1/2 and a compact configuration comparison as
-Table 3. The Part 2 synthesis adds Table 4 with all five training seeds,
+Table 3. Table 4 explains the design choices and their limits; Table 5 shows all five training seeds,
 including the exact Q/D censoring cell and its 7.0--7.5% success bound.
 Return is retained without a duplicate game-score column; C raw
 scores remain in prose. Maze names and arbitrary seed identifiers are
 explained. The interpretation answers A--D directly, checks paired-seed
 sensitivity and distinguishes lower observed D success from its censoring
 bound. All existing outcome/cost table numbers are unchanged.
+
+The justification review explains the target/horizon, RAM features/five actions,
+registered four-frame/sticky defaults, 0.1-point penalty, reward scaling, rollout
+cap, replication/search/monitoring allowance, Q/PPO designs and exploration,
+discount/GAE/update safeguards, exploitation policy and D censoring. It checks
+the development-seed ranges against all search/main protocols. The compact Q
+key omits time, score and lives while PPO retains them; this is now explicit.
+One tested penalty size does not establish a size-dependent effect. These are
+design reasons and package-level selection evidence, not proof that every
+constant is optimal. Earlier unequal search and the inspected D domain remain
+limitations. Keep room for the other parts within the whole 2,000-word limit.
 
 The `assignment4-part2-synthesis` branch compares the fixed Johan, Elling,
 Mats and Fredrik revisions in
@@ -77,7 +89,7 @@ not pooled into these tables. Registered sources/models and Part 1 stay
 unchanged; the synthesis adds no training or new evaluation outcomes.
 
 This is an editorial revision of verified exports. Historical numerical and
-discussion generators do not preserve it and must not overwrite these sections.
+discussion generators do not preserve the single-file layout and must not overwrite it.
 Use the review records under `results/assignment4/section2_review_20261123/`
 for the earlier requirement audit and archived text. The latest D arithmetic,
 native replay and report checks are under `results/assignment4/transfer_boundary_v1/`.
@@ -91,6 +103,8 @@ python notebooks/assignment4/report_review/verify_quality.py
 ```
 
 Outputs of these maintained checks go to `results/assignment4/report_review_current/`.
+The single-file justification revision is archived before editing under
+`results/assignment4/part2_justification_review_20261123/before/`.
 The older authoring/validation scripts assume the previous two-table layout;
 their outputs remain historical and must not overwrite the concise revision.
 The original experiment manifests retain their historical report hashes.

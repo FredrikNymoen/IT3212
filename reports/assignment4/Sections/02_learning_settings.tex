@@ -22,9 +22,12 @@ These are native game mazes selected through RAM before the first action:
 0 and 1 are identifiers, not difficulty ratings. The observation/action formats
 remain compatible. A fixed graph supplies approximate food/corridor features;
 ghost positions come from RAM and all actions remain available. Q discretises a subset of the same features that
-PPO receives more finely. Table~\ref{tab:part2-configuration} gives the fixed
+PPO receives more finely. Its key omits remaining time, score and lives, which
+PPO retains; this is a representation-and-algorithm workflow comparison.
+Table~\ref{tab:part2-configuration} gives the fixed
 configurations. The power-related RAM signal is a proxy, not the precise
-countdown assumed in Part~1.
+countdown assumed in Part~1. Table~\ref{tab:part2-rationale} explains the design
+choices; it does not claim each numerical constant is independently optimal.
 
 Every A/B/C run consumes 262,144 interactions: 128 PPO rollouts of 2,048
 transitions, chosen to fit available resources, not to establish convergence.
@@ -38,6 +41,8 @@ success, then score and earlier checkpoint. Earlier unequal exploration
 informed these candidates; this is a workflow comparison after development.
 
 Main development checks use ten episodes at 0 and every 65,536 interactions.
+Search development uses seeds 1110000--1110019 and 1120000--1120019;
+main development uses 1130000--1130009.
 The same source-setting success/score/earlier-checkpoint rule selects each
 trained agent's saved policy. Selected weights contain 131,072--262,144
 transitions, while costs include the full cap. D inherits B's checkpoint;
@@ -144,6 +149,56 @@ Stable-Baselines3 2.9.2 and Python 3.13.7.}
 \label{tab:part2-configuration}
 \end{table}
 
+\begin{table}[htbp]
+\centering\small\renewcommand{\arraystretch}{1.15}
+\begin{tabularx}{\linewidth}{@{}p{0.22\linewidth}X@{}}
+\toprule
+Choice & Rationale and scope \\
+\midrule
+Target and horizon & The 2,000-point goal preserves Part~1's scoring objective.
+The 1,000-decision cap bounds trial cost; observable time makes it an explicit
+finite task. Neither value defines native level completion. \\
+Observations and actions & RAM-derived object features avoid training a pixel
+encoder within this budget. NOOP and four cardinal controls provide a common,
+small action set for corridor steering; all five remain available. \\
+A/B perturbation & Four-frame action repetition and B's 0.25 sticky probability
+retain the registered environment defaults. A disables stickiness only.
+Sticky actions repeat the previous controller input at emulator-frame level. \\
+Penalty and scaling & A 0.1-point cost totals at most 100 points over the cap,
+5\% of the target: a mild speed incentive with goal attainment prioritised.
+Shared division by 100 moderates learning targets; 2,000 points become 20 units. \\
+Budget and replication & 128 complete PPO rollouts fit the bounded compute
+study and avoid partial-rollout overshoot. Q receives the same cap. Five fresh
+training seeds assess retraining variation; this is a resource compromise,
+not a precision guarantee. \\
+Search and monitoring & Seven packages give each method the same new search
+allowance; repeating the best two spends replication cost on promising choices.
+Ten main development episodes every 32 rollouts limit monitoring cost; 200
+final episodes satisfy the brief's minimum. \\
+Q design & Relative keys increase reuse within a compact table, at the cost
+of aliasing. The 0.15 update rate smooths stochastic targets across visits. Decaying epsilon
+emphasises early coverage; its 0.05 floor retains exploration. \\
+PPO design & A small shared action scorer reuses parameters across directions;
+a separate critic estimates state value. Decreasing learning rate and entropy
+reduce update size and exploration later. Four 512-step streams give 2,048
+transitions and eight 256-transition minibatches per epoch. \\
+Discount and safeguards & Discount 0.995 retains delayed credit over roughly
+$1/(1-\gamma)=200$ decisions. GAE 0.97 trades variance against bootstrapping;
+clip 0.15, target KL 0.015 and at most six epochs restrain rollout reuse.
+Other SB3 optimiser defaults stay fixed to bound the search. \\
+Evaluation and transfer & Greedy Q and argmax PPO measure exploitation;
+seeded uniform Q ties avoid fixed action-order bias. Native maze 1 supplies a
+changed layout with compatible inputs. Freezing B tests transfer; map exit
+is censored because it is outside the specified task outcome. \\
+\bottomrule
+\end{tabularx}
+\caption{Design rationale for the same configurations and studies as
+Table~\ref{tab:part2-configuration}. The development search selects complete
+packages. These reasons explain the choices; they do not isolate the causal
+effect of each constant or establish optimal hyperparameters.}
+\label{tab:part2-rationale}
+\end{table}
+
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\linewidth]{Images/part2_learning_curves_20261122.png}
@@ -156,3 +211,83 @@ Table~\ref{tab:part2-outcomes} evaluates development-selected checkpoints,
 which can precede the curves' last point.}
 \label{fig:part2-learning}
 \end{figure}
+
+% Evidence-focused interpretation; original predictions are unchanged.
+\subsection{What changes across the four settings?}
+Table~\ref{tab:part2-seeds} exposes the training variation behind the means.
+
+\begin{table}[htbp]
+\centering\small\setlength{\tabcolsep}{5pt}
+\begin{tabular}{@{}r*{4}{rr}@{}}
+\toprule
+& \multicolumn{2}{c}{A} & \multicolumn{2}{c}{B} & \multicolumn{2}{c}{C} & \multicolumn{2}{c}{D} \\
+Training seed & Q & PPO & Q & PPO & Q & PPO & Q & PPO \\
+\midrule
+17   & 0 & 100 & 23 & 41 & 6 & 38 & 1 & 5 \\
+29   & 100 & 100 & 29 & 74.5 & 23.5 & 22 & 8 & 42.5 \\
+101  & 31.5 & 100 & 9 & 64.5 & 42 & 75.5 & 3 & 4 \\
+314  & 14.5 & 0 & 33.5 & 92.5 & 36.5 & 97 & 7 & 2 \\
+2718 & 18.5 & 100 & 66.5 & 64.5 & 26.5 & 31 & 3.5 & 20 \\
+\bottomrule
+\end{tabular}
+\caption{Success percentages for every trained agent: 22 November 2026
+main experiment for A/B/C; 23 November 2026 frozen-transfer evaluation for D.
+Each cell has 200 evaluation episodes. Q/D seed 314 has one censored episode,
+so its completed-task success bound is 7.0--7.5\%; other cells have no censoring.
+D uses the identical selected B checkpoint in the same row.}
+\label{tab:part2-seeds}
+\end{table}
+
+\paragraph{A: Predictable environment.}
+At 65,536 interactions, PPO reaches 20\% development success against Q's 2\%
+in A. B instead gives Q a small early lead, 6\% against 0\%. This does not
+support a general early Q advantage. Final A success favours PPO, but its
+80\% average comprises four 100\% agents and one 0\% agent, not uniformly
+reliable retraining. With only ten development episodes per checkpoint,
+individual curve points are noisy. The table tests development-selected
+weights, which can precede the last checkpoint, while charging full-run costs.
+
+\paragraph{B: Uncertain environment.}
+PPO exceeds Q by 35.2 percentage points on average, with higher observed
+success in four of five paired training seeds. Omitting any one paired seed leaves a positive mean
+advantage of 29.3--44.5 points: a descriptive sensitivity check, not a
+significance test. However, PPO still fails in 32.6\% of episodes.
+Q's A-to-B mean decline of only 0.7 points hides paired changes from
+$-71$ to $+48$ points; PPO's mean falls by 12.6 points. Thus the mean neither demonstrates robustness nor
+supports our predicted larger Q loss. Aggregate outcomes cannot establish
+that either agent chose safer routes.
+
+\paragraph{C: Changed incentives.}
+Relative to B, success falls by 5.3 points for Q and 14.7 for PPO. Mean
+successful lengths shorten from 655 to 625 decisions and 578 to 533,
+respectively, but this conditions on different sets of successful episodes.
+With goal attainment prioritised over speed, the results do not justify
+this penalty. Two of five seeds improve for each method, so this is not
+evidence that step penalties invariably harm learning. We compare common
+outcomes and raw scores: C raw scores are $1534.8\pm201.0$ for Q and
+$1873.4\pm283.5$ for PPO; penalised returns are not directly comparable to B.
+One penalty magnitude cannot establish the size-dependent effect predicted in Part~1.
+
+\paragraph{D: Transfer.}
+Food-relative Q keys and shared PPO action scores retain meaning on the new
+maze, aided by geometry-based feature extraction. Familiar compact keys can
+still merge different situations; approximate corridors omit wrap links,
+and the capped power signal loses timing information. Every B agent's observed success declines
+on D. The PPO policy selected on B development achieves 92.5\% in B but only
+2\% in D, illustrating why source performance cannot certify transfer.
+
+The original D run hit a natural map change. The revised boundary protocol,
+locked before fresh evaluation of all ten B agents, uses external truncation
+at map exit and takes no action on another maze. With $S$ successes and $C$
+censored episodes among $N$, the completed-task success fraction for these
+episodes is bounded by $[S/N,(S+C)/N]$.
+The single censored Q episode gives a mean bound of 4.5--4.6\%, not a
+confidence interval. Its maximum 0.1-point effect cannot explain the weak
+transfer. Returns for censoring are in-map prefixes, not complete-task returns.
+This is a post-inspection protocol repair; the previously inspected maze and
+ROM intervention do not constitute an independent geometry-only domain test.
+
+Within this budget, PPO is the stronger B workflow. Neither workflow's
+failure rate or transfer evidence supports reliable operation where failures
+matter. These findings concern the tested representations and procedures,
+not universal algorithm superiority.

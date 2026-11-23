@@ -93,7 +93,8 @@ python notebooks/assignment4/synthesis/compare_branches.py
 python notebooks/assignment4/synthesis/verify.py
 ```
 
-The full check recomputes the report's four tables from raw episode CSVs,
+The full check validates all five report tables, including design rationales,
+and recomputes every numerical outcome/cost/seed cell from raw episode CSVs,
 checks all source/model hashes, the unchanged prediction sheet and all seed
 cells, and verifies that the report contains no visible filenames/paths.
 The branch comparison rechecks the exact Git blobs, shared notebook code,
