@@ -66,12 +66,14 @@ def main():
     inspection=json.loads((BASE/'completion_inspection_v4/inspection.json').read_text())
     annotations=json.loads((BASE/'completion_inspection_v4/annotations.json').read_text())['annotations']
     panels=json.loads((BASE/'completion_figures/episode_figures.json').read_text())
-    assert panels['decisions']==30 and len(panels['figures'])==5
+    assert panels['decisions']==30 and len(panels['figures'])==1
     assert panels['source_sha256']==sha(BASE/'completion_inspection_v4/inspection.json')
     assert panels['annotation_sha256']==sha(BASE/'completion_inspection_v4/annotations.json')
-    plotted={p['id']:p for f in panels['figures'] for p in f['decisions']}
-    assert len(plotted)==30 and p4.count(r'\begin{table}')==1 and r'\begin{longtable}' not in p4
-    assert p4.count(r'\begin{figure}')==5
+    plotted={p['id']:p for p in panels['ledger']}
+    assert len(plotted)==30 and p4.count(r'\begin{table}')==1 and p4.count(r'\begin{longtable}')==1
+    assert p4.count(r'\begin{figure}')==1
+    captions=re.findall(r'\\caption\{([^\n]+)',p4)
+    assert all(len(c.split())<=40 for c in captions)
     for f in panels['figures']:
         pdf=REPORT/'Images'/Path(f['pdf']).name
         assert sha(pdf)==f['pdf_sha256']
@@ -87,11 +89,21 @@ def main():
             assert point['alternative']['full_seeded_action_prefix_verified']
             identity=e['case']['id']+'/'+str(point['decision'])
             assert p4.count(r'\textbf{'+identity+':}')==1
+            row=p4.split(r'\textbf{'+identity+':}')[1].splitlines()[0]
             assert plotted[identity]['values']==point['values']
             assert plotted[identity]['value_labels']==[f'{v:.4f}' for v in point['values']]
             assert plotted[identity]['chosen_action']==['N','U','R','L','D'][point['action']]
             assert plotted[identity]['alternative_action']==['N','U','R','L','D'][point['alternative']['action']]
-            assert next(x['interpretation'] for x in annotations if x['id']==identity) in p4
+            assert next(x['interpretation'] for x in annotations if x['id']==identity)==plotted[identity]['interpretation']
+            assert plotted[identity]['short_interpretation'] in row
+            assert ', '.join(f'{v:.4f}' for v in point['values']) in row
+            coord=lambda v:'('+','.join(f'{x:.0f}' for x in v)+')'
+            for label,field in [('P','player_before'),('G','nearest_ghost_offset'),('F','food_offset')]:assert label+coord(point[field]) in row
+            assert 'Chosen '+plotted[identity]['chosen_action']+r'$\to$'+coord(point['player_after']) in row
+            assert 'Alt '+plotted[identity]['alternative_action']+r'$\to$'+coord(point['alternative']['player']) in row
+            assert f'$p={point["encoded_power_proxy"]:.2f}$' in row and f'$s={point["score_before"]:g}$' in row
+            assert f'gain {point["raw_reward"]:g}; L{point["lives_after"]}' in row
+            assert f'gain {point["alternative"]["reward"]:g}; L{point["alternative"]["lives"]}' in row
     prose_counts={}
     for name,text in zip(names,contents):
         text=re.sub(r'(?<!\\)%[^\n]*','',text)
@@ -141,6 +153,7 @@ def main():
     result=dict(primary_tables_independently_recomputed=True,all_training_roots_retained=True,decisions=30,original_predictions_unchanged=True,
         calendar_dates_absent_from_report=True,parallel_A_B_C_D_sections=True,paired_D_table_verified=True,
         human_review_in_combined_report=True,separate_evidence_brief_retained=True,
+        part4_findings_figures=1,part4_recorded_decisions=30,part4_caption_word_limit=40,
         prose_words_by_part=prose_counts,conservative_brief_words=sum(prose_counts.values())+20,
         counting_rule='Excludes table and longtable contents and figure captions; includes headings, inline mathematics/numbers and conservative title allowance.',
         human_review='Completed using member rankings, final group priorities, rationale and broad support supplied by the user.',review_words=review_words,

@@ -3473,28 +3473,31 @@
     "paired_D_table_verified": true,
     "human_review_in_combined_report": true,
     "separate_evidence_brief_retained": true,
+    "part4_findings_figures": 1,
+    "part4_recorded_decisions": 30,
+    "part4_caption_word_limit": 40,
     "prose_words_by_part": {
       "02_learning_settings": 888,
       "03_mechanisms": 400,
-      "04_episode_inspection": 260,
+      "04_episode_inspection": 302,
       "06_recommendations": 320
     },
-    "conservative_brief_words": 1888,
+    "conservative_brief_words": 1930,
     "counting_rule": "Excludes table and longtable contents and figure captions; includes headings, inline mathematics/numbers and conservative title allowance.",
     "human_review": "Completed using member rankings, final group priorities, rationale and broad support supplied by the user.",
     "review_words": 623,
     "review_input_sha256": "11701adffacd10566f5479a6c6209e9bfb0f23d696ab486c8c66c0ca9f203754",
     "review_text_sha256": "cfbae8e5ecc64b7eaa6f14428ee456c13b7fd13fc46c14cac0bc43f886fbc3b0",
     "report_hashes": {
-      "reports\\assignment4\\main.tex": "f3602057cb2f4a8839723db2b0fca3f4abbd6b34f3521e8320661de26485c575",
-      "reports\\assignment4\\evidence_brief.tex": "f3e16d5bea5607c5ad8277a23ef702afb7d5d8074a9ed77e52da688f14b49d5b",
+      "reports\\assignment4\\main.tex": "bba33f5af3adff0fc4bd8f7792b38d8ebe78fe4e56f70bd2f9c7297b3a0a4378",
+      "reports\\assignment4\\evidence_brief.tex": "c7a5ce7e0810fa25132f7d9276d64b2e17275e82d58f395bc7c73eb53e25f808",
       "reports\\assignment4\\Sections\\05_human_review.tex": "cfbae8e5ecc64b7eaa6f14428ee456c13b7fd13fc46c14cac0bc43f886fbc3b0",
       "reports\\assignment4\\Sections\\02_learning_settings.tex": "94651b6420a74bbf2dac01e0e992d54fe69cb96e3297f726aedcea61421bda85",
       "reports\\assignment4\\Sections\\03_mechanisms.tex": "506c65d0d637581571a33ff6a571956225829704d318740f6b6823495e50c8f9",
-      "reports\\assignment4\\Sections\\04_episode_inspection.tex": "3ccf2f6a882f0526b859203bf8acbc435a33dcd2e90c92abddf0dedf6793ae23",
+      "reports\\assignment4\\Sections\\04_episode_inspection.tex": "13208f5834bbdf461e042e6dc23c102d2f123a10e14c94949a30cbb681219af0",
       "reports\\assignment4\\Sections\\06_recommendations.tex": "011abd02527077295306fe81c896ac455e288eef54b5b410565c999f498d3d2a"
     },
-    "verifier_sha256": "4d233e10b5ad5393948b116d5137ced88cfb897a813f55e12abbc1989bed01ee"
+    "verifier_sha256": "6011159362b56234cfd6fed1eba61af234c536843f2cd4f0718dc3ebc19126a5"
   },
   "trace_audit": {
     "primary_decisions": 13581678,

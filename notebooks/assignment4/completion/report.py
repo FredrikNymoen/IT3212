@@ -195,8 +195,9 @@ ghost premise cannot be verified with our power proxy.
 P4=r"""
 \setcounter{section}{3}
 \section{Inspect what aggregate scores hide}
-We retain the original requirement of ten episodes: three typical successes,
-three typical failures, two surprising successes and two surprising failures.
+\subsection{Selection and main findings}
+We inspect ten episodes: three typical successes, three typical failures,
+two surprising successes and two surprising failures.
 Within predeclared B/C-method strata, typical cases minimise distance to
 conditional median length, then score. Surprises use the model with the
 rarest nonzero relevant outcome, then its conditional median; duplicates
@@ -204,24 +205,13 @@ are excluded. Table~\ref{tab:episodes} identifies all cases and rarity.
 This is outcome-conditioned analysis, not an unbiased prevalence estimate
 or a claim about A/D.
 
-Each episode has three trace-driven decisions: largest score increment,
-controllable approach before first life loss, and small value gap near a
-ghost. The decision figures provide state, all five actual Q-values/probabilities,
-observed movement/reward and a tested alternative. Each alternative replays
-the entire seeded action prefix in native Gymnasium before one different
-input; all prefix RAM/rewards agree. One coupled step cannot identify
-expected survival or the eventual alternative outcome.
-
-TF3/301 misses an immediately available10 points; TS3/401 gains800 and
-reaches the goal. Conversely, SF1/326 gains200 in an eventual failure.
-TS1/318 has an absent Q key and five zero estimates: its eventual success
-does not validate an informed choice. SF1/625 approaches a ghost with
-probability.836, but a later collision alone cannot distinguish a poor
-expected-risk choice from an unlucky continuation. Sticky inputs and corridor
-timing can make different controls realise identical movement.
-Success percentages hide these value gaps, coverage holes and productive
-actions inside failures; neither a high action probability nor a favourable
-single fork is a calibrated success probability.
+Figure~\ref{fig:episode-findings} separates four lessons: success can include
+an unseen Q key; an agent can miss immediate points; one action can attain
+the goal; and an eventual failure can contain productive decisions.
+SF1/625 additionally approaches a ghost with probability.836, but a later
+collision alone cannot establish poor expected-risk choice. Different requested
+controls can realise identical movement. Aggregate success hides coverage
+holes and useful actions inside failures; action probability is not goal probability.
 """
 
 P6=r"""
@@ -362,23 +352,63 @@ and Stable-Baselines3 2.9.2.
         c=e['case'];j=c['job']
         rows.append([c['id'],c['category'].replace('surprising','rare'),('Q' if j['algorithm']=='Q-learning' else 'PPO')+'/'+j['condition'],str(j['seed']),str(c['evaluation_seed']),str(c['length']),f'{c["score"]:g}',f'{100*c["model_success_rate"]:g}'])
     p4=P4+table(r'ID & Category & Agent/setting & Root & Eval. seed & Length & Score & Model S\%',rows,
-        r'Learning-settings study recorded B/C episodes, development-selected configurations in Table~\ref{tab:config}. TS/TF denote typical success/failure; SS/SF denote rare success/failure. Model S\% uses all200 recorded episodes of that trained agent, making surprises relative to that model. Conditional medians determine typicality, not visual appeal.',
+        r'Recorded B/C episodes from the learning-settings study, configurations in Table~\ref{tab:config}. TS/TF: typical success/failure; SS/SF: surprising success/failure. Model S\% uses200 episodes.',
         'tab:episodes','lllrrrrr')
     panels=read(BASE/'completion_figures/episode_figures.json')
     assert panels['decisions']==30
-    p4+=r'\FloatBarrier'+'\n'
-    for index,figure in enumerate(panels['figures']):
-        path=ROOT/figure['pdf'];shutil.copy2(path,REPORT/'Images'/path.name)
-        caption='Recorded decisions for '+ ' and '.join(figure['episodes'])+r', learning-settings study sources in Table~\ref{tab:episodes}. '
-        if index==0:
-            caption+=('All five controls N/U/R/L/D (NOOP/up/right/left/down) are available. Blue marks the chosen action; orange the tested alternative. '
-                'Each image is a64-by-64 native pre-action crop. Coordinates use the full frame, positive $y$ downward; ghost/food offsets are relative. '
-                '$p$ is the imperfect power proxy. Q-values use scaled training reward; PPO values are probabilities. '
-                'Bars scale within each decision; numerical labels are rounded to four decimals, with full precision retained in experiment records. '
-                'Gain is native score increment; task includes the C penalty. ')
-        else:caption+=r'Conventions as Figure~\ref{fig:episode-pairs-1}. '
-        caption+=' '.join(r'\textbf{'+point['id']+':} '+point['interpretation'] for point in figure['decisions'])
-        p4+='\n'+r'\begin{figure}[p]\centering'+'\n'+r'\includegraphics[width=\linewidth]{Images/'+path.name+'}\n'+r'\caption{'+caption+'}\n'+r'\label{fig:episode-pairs-'+str(index+1)+'}\n'+r'\end{figure}'+'\n'
+    figure=panels['figures'][0];path=ROOT/figure['pdf'];shutil.copy2(path,REPORT/'Images'/path.name)
+    p4+=r'''
+\begin{figure}[htbp]\centering
+\includegraphics[width=\linewidth]{Images/part4_key_findings.pdf}
+\caption{Four recorded decisions from Table~\ref{tab:episodes}. Native80-by-80 crops; blue: chosen input; orange: coupled alternative. Gain is native points.}
+\label{fig:episode-findings}
+\end{figure}
+\FloatBarrier
+\subsection{Complete decision record}
+Each episode contributes three choices: largest score increment, controllable
+approach before first life loss, and small value gap near a ghost.
+Alternatives replay the complete seeded native action prefix before one
+different input; prefix RAM/rewards agree. A coupled step cannot establish
+expected survival or an alternative episode's eventual outcome.
+
+All five controls N/U/R/L/D (NOOP/up/right/left/down) remain available.
+In Table~\ref{tab:decision-record}, P is position; G/F are relative nearest ghost/food
+offsets; $p$ is the imperfect power proxy; $s$ is score and L lives.
+Coordinates use the full frame, positive $y$ downward. Action vectors follow
+N/U/R/L/D: scaled-reward Q-values or PPO probabilities, rounded to four decimals.
+Gain is native points; C's task reward subtracts.1, then learning divides by100.
+'''
+    # Stretch-only ending glue keeps the table's split output boxes valid.
+    # longtable's two \vss endings otherwise cause infinite-shrinkage errors
+    # with this installed LaTeX output routine. Changes bottom spacing only.
+    p4+=r'''\begingroup\small
+\makeatletter
+\patchcmd{\LT@output}{\vss}{\vfil}{}{\errmessage{Could not patch longtable output}}
+\patchcmd{\LT@output}{\vss}{\vfil}{}{\errmessage{Could not patch longtable output}}
+\makeatother
+\setcounter{LTchunksize}{100}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{.47\linewidth}>{\raggedright\arraybackslash}p{.49\linewidth}@{}}
+'''
+    p4+=r'\caption{All thirty recorded decisions, grouped by episode. Sources and final outcomes in Table~\ref{tab:episodes}.}\label{tab:decision-record}\\'+'\n'
+    header=r'\toprule State and action estimates & Realised transition, alternative and interpretation \\ \midrule'
+    p4+=header+r'\endfirsthead'+'\n'+header+r'\endhead'+'\n'+r'\bottomrule\endfoot'+'\n'
+    action=['N','U','R','L','D'];pair=lambda v:'('+','.join(f'{x:.0f}' for x in v)+')'
+    ledger={r['id']:r for r in panels['ledger']}
+    for e in inspection['episodes']:
+        c=e['case'];alg=c['job']['algorithm'];tag='Q' if alg=='Q-learning' else 'PPO'
+        p4+=r'\multicolumn{2}{@{}l}{\textbf{'+c['id']+' --- '+c['category']+'; '+tag+'/'+c['job']['condition']+r'}}\\*'+'\n'
+        for index,d in enumerate(e['decisions']):
+            identity=f'{c["id"]}/{d["decision"]}';r=ledger[identity];a=d['alternative']
+            key=('; key '+('present' if r['Q_key_present'] else 'absent')) if alg=='Q-learning' else ''
+            state=r'\textbf{'+identity+':} '+action[d['action']]+key+r'.\newline '
+            state+='P'+pair(d['player_before'])+'; G'+pair(d['nearest_ghost_offset'])+'; F'+pair(d['food_offset'])+r'.\newline '
+            state+=f'$p={d["encoded_power_proxy"]:.2f}$; $s={d["score_before"]:g}$; L{d["lives_before"]}.'+r'\newline '
+            state+=('$Q' if alg=='Q-learning' else r'$\pi')+'=('+', '.join(f'{v:.4f}' for v in d['values'])+')$.'
+            realised='Chosen '+action[d['action']]+r'$\to$'+pair(d['player_after'])+f'; gain{d["raw_reward"]:g}; L{d["lives_after"]}.'+r'\newline '
+            realised+='Alt '+action[a['action']]+r'$\to$'+pair(a['player'])+f'; gain{a["reward"]:g}; L{a["lives"]}.'+r'\newline '
+            realised+=r'\emph{'+r['short_interpretation']+'}'
+            p4+=state+' & '+realised+(r' \\*' if index<2 else r' \\ \addlinespace[5pt]')+'\n'
+    p4+=r'\end{longtable}\endgroup'+'\n'
     write(REPORT/'Sections/04_episode_inspection.tex',p4)
     write(REPORT/'Sections/06_recommendations.tex',P6)
 
@@ -390,6 +420,7 @@ and Stable-Baselines3 2.9.2.
 \usepackage[utf8]{inputenc}\usepackage[T1]{fontenc}\usepackage{lmodern}
 \usepackage[english]{babel}\usepackage[a4paper,margin=23mm]{geometry}
 \usepackage{microtype,graphicx,booktabs,tabularx,longtable,amsmath,amssymb}
+\usepackage{etoolbox}
 \usepackage[section]{placeins}
 \usepackage[hidelinks]{hyperref}
 \setlength{\emergencystretch}{2em}

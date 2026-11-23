@@ -105,12 +105,13 @@ Preserve original results/models and Part1. Old sources can be inspected with
   subsections, the four-panel `part2_all_settings.png`, and D's paired clean/
   obstructed outcomes table. D's frozen comparison has no training curve;
   show observation condition on its horizontal axis rather than invented steps.
-  Part4 now has ONE episode roster table and FIVE vector figures instead of
-  ten per-episode longtables. `episode_figures.py` plots all30 decisions:
-  actual64x64 native crops, five action values/probabilities, state, observed
-  transition and coupled alternative. Full individual interpretations appear
-  in the figure captions. All vectors/frames/captions are independently checked
-  against the original inspection; do not drop required decisions for brevity.
+  Part4 now has one focused findings figure, one episode roster and one grouped
+  thirty-decision log. `episode_figures.py` illustrates four recorded decisions
+  with80x80 native crops and exports the full ledger. The log retains all30
+  states, five action estimates, observed/alternative outcomes and concise
+  interpretations. Captions are short (at most40words); detailed comments no
+  longer live in figure captions. Source frames/vectors/rows are checked against
+  the original inspection; do not drop required decisions for brevity.
 - `workshops/workshop1/Monday-Workshop (1).pdf` - classification workshop brief;
   start with UCI Dry Bean (602), then repeat with another listed dataset.
   The original CSV and UCI metadata are gitignored at `workshops/workshop1/dry_bean.csv`

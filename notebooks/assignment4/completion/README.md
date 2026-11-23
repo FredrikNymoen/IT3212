@@ -188,12 +188,13 @@ and required ten analyzed full traces instead. The complete local audit receipt
 records hashes for all115 original trace files.
 
 `report.py` replaces editorial sections, so preserve manual changes first.
-`episode_figures.py` converts the thirty verified decisions into five vector
-figures with native state crops, action-value bars and observed/alternative
-transitions. Part4 keeps one roster table; per-decision interpretations are
-figure captions. This does not remove any required evidence.
+`episode_figures.py` creates one focused four-case findings figure and exports
+a source-checked thirty-decision ledger. Part4 has one episode roster and a
+single grouped log of all states, five action estimates, observed/alternative
+transitions and short interpretations. One shared notation guide and short
+captions replace the old dense multi-panel figures and long captions.
 `verify_report.py` independently recomputes every primary outcome/cost/root
-table and mechanism/diagnostic table and checks all30 plotted vectors/annotations,
+table and mechanism/diagnostic table and checks all30 recorded vectors/annotations,
 original prediction checksum and the **whole** evidence-brief word limit.
 `review.py` renders the completed human review from the four initial rankings,
 the final group priorities and rationale in `reports/assignment4/review_input.json`.

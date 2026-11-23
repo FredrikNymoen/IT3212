@@ -47,9 +47,10 @@ paths and fingerprints belong to the separate experiment records.
 - **Part 4:** ten distribution-selected B/C episodes, thirty actual decisions
   and thirty full-prefix native one-step alternatives. Local coupled outcomes
   are not claimed as expected risk or complete alternative routes.
-  One roster table and five vector figures replace ten decision longtables.
-  Each figure contains six native state crops, full action vectors and tested
-  alternative outcomes; each decision's interpretation remains in its caption.
+  One focused figure illustrates four findings. One grouped decision log
+  retains all30 states, full action vectors, observed/alternative outcomes
+  and short interpretations, alongside the episode roster. Captions stay short;
+  a single notation guide applies to the whole log.
 
 All 19,000 primary episodes and 13,581,678 recorded decisions were independently
 checked against episode metrics, native BCD scores, rewards and action values.
