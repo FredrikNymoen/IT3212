@@ -7,6 +7,42 @@ D uses the same frozen B models with the November 23 boundary protocol.
 
 ## Entry points
 
+The two readable algorithm files are **[q_learning.py](q_learning.py)** and
+**[ppo.py](ppo.py)**. Each contains its actual agent implementation and a
+training command, with the same selected settings as the report. Q has its
+own table, state encoding, action selection, Bellman update and Gymnasium
+training loop. PPO has its actor/critic, schedules, SB3 configuration and
+training loop. PPO imports common environment/evaluation/logging helpers
+from the Q file; both reuse the audited native Gymnasium environment.
+
+```powershell
+python notebooks/assignment4/q_learning.py check
+python notebooks/assignment4/ppo.py check
+python notebooks/assignment4/q_learning.py train --setting B --seed 17 --output results/assignment4/readable_Q_B17_NEW
+python notebooks/assignment4/ppo.py train --setting B --seed 17 --output results/assignment4/readable_PPO_B17_NEW
+```
+
+Training defaults to 262,144 interactions with ten source-development
+episodes at each checkpoint. It saves models, curves and a development-only
+`selected.json`; it does not automatically inspect held-out test outcomes.
+Use the same setting, cap and training seeds17/29/101/314/2718 for both methods.
+Each invocation trains one model, so repeat for each seed and A/B/C. D is
+excluded from training. To evaluate a locked selection:
+
+```powershell
+python notebooks/assignment4/q_learning.py evaluate --selection results/assignment4/readable_Q_B17_NEW/selected.json --setting B --output results/assignment4/readable_Q_B17_test_NEW
+python notebooks/assignment4/ppo.py evaluate --selection results/assignment4/readable_PPO_B17_NEW/selected.json --setting D --output results/assignment4/readable_PPO_D17_test_NEW
+```
+
+Evaluation defaults to 200 frozen episodes and writes episode CSVs and full
+traces. D requires B-trained weights and uses the existing explicit-censoring
+wrapper. Greedy Q uses seeded uniform ties; PPO uses argmax. Saved selections
+verify source/model hashes and existing output directories are never replaced.
+Evaluation seeds reproduce the original ranges, so these reruns are not new
+independent tests. The readable files do not rerun the earlier tuning search
+or overwrite the report. The registered implementations/checkpoints below
+remain the source of the existing measured report results.
+
 On `assignment4-part2-synthesis`, start with
 [the common Part 2 notebook](02_part2_synthesis.ipynb) and
 [the four-branch comparison/inspection guide](synthesis/README.md).
@@ -16,6 +52,8 @@ predictions. No DQN implementation or results are imported.
 
 | Purpose | Guide / implementation |
 |---|---|
+| Readable ordinary-Q agent, training and evaluation | [q_learning.py](q_learning.py) |
+| Readable PPO actor/critic, training and evaluation | [ppo.py](ppo.py) |
 | Matched search and A/B/C training/evaluation | [three_hour](three_hour/README.md) |
 | Frozen transfer evaluation with explicit censoring | [transfer_evaluation](transfer_evaluation/README.md) |
 | Current report/analysis validation | [report_review](report_review/README.md) |

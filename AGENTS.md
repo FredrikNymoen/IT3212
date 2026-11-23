@@ -639,6 +639,24 @@ Preserve original results/models and Part1. Old sources can be inspected with
   remain distinct submission components. Respect the separate 2,000-word evidence
   and 1,000-word review limits. See its README for Overleaf and extraction details.
   The selected environment is MsPacMan. Keep actual run IDs on all figures.
+- `notebooks/assignment4/q_learning.py` and `ppo.py` are the user-requested
+  readable algorithm files. Q contains its actual food-relative single-table
+  state/action/update code and training loop; PPO contains the selected shared
+  actor/critic, SB3 configuration, schedules and training loop. Shared Gymnasium
+  environment/evaluation/logging helpers are in the Q file; native environment
+  modules remain reused. Both expose `train`, `evaluate` and `check` commands.
+  They use the reported selected configurations; no new hyperparameter search
+  or report overwrite is performed. Training consumes262144interactions by
+  default, uses source-only development checkpoint selection and saves a lock
+  before explicit200-episode frozen evaluation. D requires B weights, adds no
+  training and retains explicit censoring. All sources/model hashes and source
+  snapshots are saved, output directories are never overwritten. Their new
+  Q NPZ/SB3 ZIP checkpoints have their own protocol; original recorded models
+  and runtime source bytes remain unchanged. Engineering checks under ignored
+  `results/assignment4/readable_agents_engineering_v3/` compare the new files
+  to original controls:after2048transitions both the Q table and every PPO
+  policy tensor are bitwise identical. These short checks are not new assessed
+  performance evidence. See the main Assignment4 README for run commands.
 - `notebooks/assignment4/synthesis/` and `02_part2_synthesis.ipynb` are the
   Part 2-only integration on branch `assignment4-part2-synthesis`, reviewed
   against fixed Johan/Elling/Mats/Fredrik Git commits. Read `COMPARISON.md`

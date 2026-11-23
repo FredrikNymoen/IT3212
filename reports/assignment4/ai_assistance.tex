@@ -420,3 +420,16 @@ censored case, reproduce 7,301 native Gymnasium decisions with RAM, reward
 and score agreement. Browser checks exercise filtering and episode controls.
 No new training, test-based model selection, human review or PDF/ZIP generation
 is claimed. Promising unmatched PPO follow-ups remain separate research leads.
+
+\medskip
+\noindent\textbf{Readable agent files -- 23 November 2026.}
+The user requested the actual algorithm code in two Python files. Codex
+consolidated ordinary Q's state encoding, table, update and training loop,
+and PPO's selected actor/critic, schedules and SB3 training loop into separate
+readable entry points. Both reuse the audited Gymnasium environment and
+provide explicit frozen evaluation with source/model checks. The original
+report sources, models and measured outcomes were preserved. Native parity
+checks cover 1,024 Q transitions and 256 PPO observations. Separate engineering
+training uses 2,048 interactions per model: the resulting Q table and every
+PPO policy tensor match the original implementations bit for bit. These are
+technical refactoring checks, not new performance estimates or tuning evidence.

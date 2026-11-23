@@ -9,6 +9,11 @@ the repository root or `notebooks/assignment4/`, displays the controlled
 protocol, all trained seeds, costs and development curves, and builds a
 standalone interactive overview. Training is never launched automatically.
 
+The actual readable agent/training implementations are now collected in
+[q_learning.py](../q_learning.py) and [ppo.py](../ppo.py), with `train`,
+`evaluate` and `check` commands. See the [main guide](../README.md) for examples.
+The original registered modules remain the source of the reported results.
+
 ## What was combined
 
 See [COMPARISON.md](COMPARISON.md) for the exact four-branch review,
