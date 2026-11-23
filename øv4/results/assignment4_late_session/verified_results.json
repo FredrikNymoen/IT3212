@@ -1,0 +1,193 @@
+{
+  "primary": {
+    "anchor": {
+      "1": {
+        "episodes": 480,
+        "successes": 177,
+        "success_rate": 0.36875,
+        "mean_score": 1700.3958333333333,
+        "reached_1500": 0.71875,
+        "conversion": 0.5130434782608696,
+        "late_deaths": 162
+      },
+      "0": {
+        "episodes": 480,
+        "successes": 448,
+        "success_rate": 0.9333333333333333,
+        "mean_score": 2330.0416666666665,
+        "reached_1500": 0.9791666666666666,
+        "conversion": 0.9531914893617022,
+        "late_deaths": 22
+      }
+    },
+    "control": {
+      "1": {
+        "episodes": 480,
+        "successes": 231,
+        "success_rate": 0.48125,
+        "mean_score": 1785.0,
+        "reached_1500": 0.8125,
+        "conversion": 0.5923076923076923,
+        "late_deaths": 155
+      },
+      "0": {
+        "episodes": 480,
+        "successes": 430,
+        "success_rate": 0.8958333333333334,
+        "mean_score": 2200.6875,
+        "reached_1500": 0.9770833333333333,
+        "conversion": 0.9168443496801706,
+        "late_deaths": 39
+      }
+    },
+    "averaged_survival": {
+      "1": {
+        "episodes": 480,
+        "successes": 248,
+        "success_rate": 0.5166666666666667,
+        "mean_score": 1826.8125,
+        "reached_1500": 0.825,
+        "conversion": 0.6262626262626263,
+        "late_deaths": 144
+      },
+      "0": {
+        "episodes": 480,
+        "successes": 453,
+        "success_rate": 0.94375,
+        "mean_score": 2295.125,
+        "reached_1500": 0.9875,
+        "conversion": 0.9556962025316456,
+        "late_deaths": 20
+      }
+    },
+    "averaged": {
+      "1": {
+        "episodes": 480,
+        "successes": 232,
+        "success_rate": 0.48333333333333334,
+        "mean_score": 1842.2916666666667,
+        "reached_1500": 0.8395833333333333,
+        "conversion": 0.575682382133995,
+        "late_deaths": 170
+      },
+      "0": {
+        "episodes": 480,
+        "successes": 458,
+        "success_rate": 0.9541666666666667,
+        "mean_score": 2303.3125,
+        "reached_1500": 0.99375,
+        "conversion": 0.960167714884696,
+        "late_deaths": 17
+      }
+    },
+    "survival": {
+      "1": {
+        "episodes": 480,
+        "successes": 196,
+        "success_rate": 0.4083333333333333,
+        "mean_score": 1771.7708333333333,
+        "reached_1500": 0.78125,
+        "conversion": 0.5226666666666666,
+        "late_deaths": 174
+      },
+      "0": {
+        "episodes": 480,
+        "successes": 444,
+        "success_rate": 0.925,
+        "mean_score": 2224.3541666666665,
+        "reached_1500": 0.975,
+        "conversion": 0.9487179487179487,
+        "late_deaths": 23
+      }
+    },
+    "phased_survival": {
+      "1": {
+        "episodes": 480,
+        "successes": 182,
+        "success_rate": 0.37916666666666665,
+        "mean_score": 1702.9375,
+        "reached_1500": 0.71875,
+        "conversion": 0.527536231884058,
+        "late_deaths": 161
+      },
+      "0": {
+        "episodes": 480,
+        "successes": 449,
+        "success_rate": 0.9354166666666667,
+        "mean_score": 2335.375,
+        "reached_1500": 0.9791666666666666,
+        "conversion": 0.9553191489361702,
+        "late_deaths": 20
+      }
+    },
+    "long_control": {
+      "1": {
+        "episodes": 480,
+        "successes": 230,
+        "success_rate": 0.4791666666666667,
+        "mean_score": 1785.9791666666667,
+        "reached_1500": 0.7645833333333333,
+        "conversion": 0.6267029972752044,
+        "late_deaths": 136
+      },
+      "0": {
+        "episodes": 480,
+        "successes": 461,
+        "success_rate": 0.9604166666666667,
+        "mean_score": 2529.6875,
+        "reached_1500": 0.9958333333333333,
+        "conversion": 0.9644351464435147,
+        "late_deaths": 16
+      }
+    }
+  },
+  "confirmation": {
+    "anchor": {
+      "1": {
+        "episodes": 1200,
+        "successes": 434,
+        "success_rate": 0.3616666666666667,
+        "mean_score": 1673.0,
+        "reached_1500": 0.6825,
+        "conversion": 0.5299145299145299,
+        "late_deaths": 377
+      }
+    },
+    "averaged_survival": {
+      "1": {
+        "episodes": 1200,
+        "successes": 552,
+        "success_rate": 0.46,
+        "mean_score": 1786.4583333333333,
+        "reached_1500": 0.7866666666666666,
+        "conversion": 0.5847457627118644,
+        "late_deaths": 382
+      }
+    },
+    "averaged": {
+      "1": {
+        "episodes": 1200,
+        "successes": 586,
+        "success_rate": 0.48833333333333334,
+        "mean_score": 1812.65,
+        "reached_1500": 0.7983333333333333,
+        "conversion": 0.6116910229645094,
+        "late_deaths": 365
+      }
+    }
+  },
+  "challenger": "averaged",
+  "primary_challenger": "averaged_survival",
+  "confirmation_difference": 0.12666666666666668,
+  "conditional_episode_interval": [
+    0.0875,
+    0.165
+  ],
+  "per_seed_change": {
+    "7": 0.12,
+    "42": 0.14,
+    "2026": 0.12
+  },
+  "primary_episodes": 6720,
+  "confirmation_episodes": 3600
+}

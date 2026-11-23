@@ -1,0 +1,74 @@
+{
+  "original_test": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_final",
+  "test_comparison_sha256": "5de93d6ac7c13cb8a250c28e4f2ad82a8e90a1cace7a914018075aaf3f4abf65",
+  "test_plan_sha256": "7e892188ca71d0a4374248785d8046bae3089ca4b08bba1ad87da82f29670cd2",
+  "seed_start": 985000,
+  "episodes": 450,
+  "chosen_arm": "mixed_balanced",
+  "runs": [
+    {
+      "arm": "starting",
+      "feature_type": "navigation",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_7\\model.npz",
+      "model_sha256": "5e5ca9f68f75e61b53de6009d3e4a782cd54640d7942ed8884a77a74a70b3ba0"
+    },
+    {
+      "arm": "starting",
+      "feature_type": "navigation",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_42\\model.npz",
+      "model_sha256": "f6c300c012f82686bfe69b59fb5b1ac3c28d83755ecb02bae238313ce6fda111"
+    },
+    {
+      "arm": "starting",
+      "feature_type": "navigation",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_2026\\model.npz",
+      "model_sha256": "5ac73555cf35322ce25da15bbade2adacb49fc2050f02a7a07d72c9b846188b0"
+    },
+    {
+      "arm": "mixed_balanced",
+      "feature_type": "navigation",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_7\\model.npz",
+      "model_sha256": "2c006db0dd522b020c12489365db67e6e6404e8a7e874d53b8ca6e582a116234"
+    },
+    {
+      "arm": "mixed_balanced",
+      "feature_type": "navigation",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_2026\\model.npz",
+      "model_sha256": "586af64dfc26e2228721400fc200fbd3900d19849ce1e24fc78d30f97c1c4f61"
+    },
+    {
+      "arm": "mixed_balanced",
+      "feature_type": "navigation",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_42\\model.npz",
+      "model_sha256": "cf4ef0743441cc429444fdff1360a2a7e5154f44d83828937129f44cffc15d4c"
+    }
+  ],
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "temperature": 0.2,
+  "code_sha256": {
+    "freeze_transfer.py": "e3aadb90e02aeefc65f7057a8af0148e58f07ca2a9061993552094cb84b0a003",
+    "wrapped_transfer.py": "95b4b766de42260d0ac0555e3330cf898aee916c9ab9e2d9fe1ebc12740ea0eb",
+    "refine_transfer.py": "863dd1de7b6a666ea9601a64c9425aa3c9446e91cc7ba21864bd0c5a17493192",
+    "cached_navigation.py": "ecf812c6921488f5e1c5ec0cf2dbb3fd0721ab60c5ffa2343e8b1c22cfa218a5",
+    "transfer_ppo.py": "1a31bf2bc92dcb1303b6b21169cfe2f1d1531e92473ec7366242ff6a6879fd49",
+    "transfer_power_ppo.py": "99b2dbe6983a0de2c51e4bc1781844087e3ec4d3cb00862889181620bcae0da9",
+    "transfer_ghost_ppo.py": "cc1ed5c54c5eac96c6c246a08a2ce8fde55bf7acd8f5d1c3dbcb19f05bd8d933",
+    "score_diagnostics.py": "325903d54b6997efae9e2a62ddad503fd43fb49a01bf5ce53db68323b601c2e2",
+    "compare_navigation.py": "bcf9e2083ff456c3cd14fdc326b382aa3c96c9dc10f9020c2c67ce4de3ae6666",
+    "reference_policy.py": "42d646261d0a0fc5c7b447a0e86683ee65fdc60bd59277475d7bc256d1902e7d",
+    "part2_run.py": "b8e67644bca6148d56bd2753f06bf214a526f743760eaea2acce4b8093907b82",
+    "mspacman.py": "01b94e1d8d69359186e6cd4935f9fe9c3b25ef54526f549719b0f3d89ef643d0",
+    "confirm_transfer.py": "cb2f325be6d1159f87e90452492b7fe458782984a78b4bdb171d2492a48b9262"
+  }
+}

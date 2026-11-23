@@ -1,0 +1,19 @@
+{
+  "success_rate": 0.0,
+  "success_length": null,
+  "cleared_rate": 0.0,
+  "cleared_length": null,
+  "failure_rate": 1.0,
+  "failure_length": 824.0,
+  "timeout_rate": 0.0,
+  "timeout_length": null,
+  "mean_return": 970.0,
+  "unseen_state_fraction": 0.0,
+  "mean_score": 970.0,
+  "median_score": 970.0,
+  "max_score": 1080.0,
+  "evaluation_seconds": 2.3859307000020635,
+  "evaluation_decisions": 1778,
+  "seed": 42,
+  "stage": "prior_ppo"
+}

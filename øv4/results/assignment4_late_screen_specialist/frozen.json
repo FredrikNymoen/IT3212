@@ -1,0 +1,52 @@
+{
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "temperature": 0.2,
+  "layouts": [
+    0,
+    2,
+    3
+  ],
+  "seed_start": 980500,
+  "episodes": 70,
+  "runs": [
+    {
+      "arm": "specialist",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_specialist\\specialist\\seed_2026\\model.npz",
+      "model_sha256": "a33e415351cf0bdc48a777b0a37687382ef307bde28a42e4a01867f5e2b4858e",
+      "feature_type": "navigation",
+      "opening_model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_2026\\model.npz",
+      "opening_sha256": "586af64dfc26e2228721400fc200fbd3900d19849ce1e24fc78d30f97c1c4f61",
+      "switch_score": 1500
+    },
+    {
+      "arm": "specialist",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_specialist\\specialist\\seed_42\\model.npz",
+      "model_sha256": "708291268196489af372f3cde4d8860ef85696468fc27ebe4a3989f3af6407fc",
+      "feature_type": "navigation",
+      "opening_model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_42\\model.npz",
+      "opening_sha256": "cf4ef0743441cc429444fdff1360a2a7e5154f44d83828937129f44cffc15d4c",
+      "switch_score": 1500
+    },
+    {
+      "arm": "specialist",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_specialist\\specialist\\seed_7\\model.npz",
+      "model_sha256": "b6921e7e4501dd8bab33d1dc3698d6f47da3dbf85d77f72920b6b195aa48d34d",
+      "feature_type": "navigation",
+      "opening_model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_7\\model.npz",
+      "opening_sha256": "2c006db0dd522b020c12489365db67e6e6404e8a7e874d53b8ca6e582a116234",
+      "switch_score": 1500
+    }
+  ],
+  "source": {
+    "path": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_specialist_navigation\\comparison.json",
+    "sha256": "ae57d6fbba4d652c73c11752eb105a2c9f8a70f54c7da17b8ff47a6472cde684"
+  }
+}

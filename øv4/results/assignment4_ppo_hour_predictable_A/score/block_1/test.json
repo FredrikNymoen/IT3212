@@ -1,0 +1,20 @@
+{
+  "success_rate": 1.0,
+  "success_length": 152.26,
+  "cleared_rate": 0.0,
+  "cleared_length": null,
+  "failure_rate": 0.0,
+  "failure_length": null,
+  "timeout_rate": 0.0,
+  "timeout_length": null,
+  "mean_return": 3229.3,
+  "unseen_state_fraction": 0.0,
+  "mean_score": 3129.3,
+  "median_score": 3360.0,
+  "max_score": 3370.0,
+  "evaluation_seconds": 29.520254700000805,
+  "evaluation_decisions": 21726,
+  "name": "score",
+  "block": 1,
+  "seed_start": 991100
+}

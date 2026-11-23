@@ -1,0 +1,43 @@
+{
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "temperature": 0.2,
+  "layouts": [
+    0,
+    2,
+    3
+  ],
+  "seed_start": 980500,
+  "episodes": 70,
+  "runs": [
+    {
+      "arm": "averaged",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_averaged\\seed_2026\\model.npz",
+      "model_sha256": "ed4147797b335533c5387f71abfaa349816be8a00e5bd96cbf59cd579ce60419",
+      "feature_type": "navigation"
+    },
+    {
+      "arm": "averaged",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_averaged\\seed_42\\model.npz",
+      "model_sha256": "f7766fad9eb8281d6ac2795a11e43f6e3f49ad722ebc46b628c7f5b5c3a72cc3",
+      "feature_type": "navigation"
+    },
+    {
+      "arm": "averaged",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_averaged\\seed_7\\model.npz",
+      "model_sha256": "359ae139f377b779e209487d5ac7a70306bac6ae238bec0246da8bdfe2d6627a",
+      "feature_type": "navigation"
+    }
+  ],
+  "source": {
+    "path": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_averaged\\comparison.json",
+    "sha256": "d75b70c4a3dac4e2f634b9f05462ba7c37bcb443feb47a7be6df7f00a87380ab"
+  }
+}

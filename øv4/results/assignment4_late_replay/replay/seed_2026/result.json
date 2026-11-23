@@ -1,0 +1,87 @@
+{
+  "arm": "replay",
+  "seed": 2026,
+  "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_replay\\replay\\seed_2026\\model.npz",
+  "model_sha256": "fb5accaa9aa2bd22a8b61784e329c0de94a5837c3eea45b1a1b96af630b7aa03",
+  "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_2026\\model.npz",
+  "parent_sha256": "586af64dfc26e2228721400fc200fbd3900d19849ce1e24fc78d30f97c1c4f61",
+  "feature_type": "navigation",
+  "interactions": {
+    "0": 62332,
+    "2": 88422,
+    "3": 89246
+  },
+  "update_interactions": {
+    "0": 52964,
+    "2": 75877,
+    "3": 76159
+  },
+  "collection_interactions": {
+    "0": 9368,
+    "2": 12545,
+    "3": 13087
+  },
+  "replay_interactions": {
+    "0": 12585,
+    "2": 17224,
+    "3": 15495
+  },
+  "cached_states": {
+    "0": 45,
+    "2": 33,
+    "3": 39
+  },
+  "validation": {
+    "0": {
+      "success_rate": 0.9625,
+      "success_length": 260.3246753246753,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.0375,
+      "failure_length": 966.0,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 2511.75,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 2415.5,
+      "median_score": 2015.0,
+      "max_score": 3360.0,
+      "evaluation_seconds": 64.76199239999914,
+      "evaluation_decisions": 28143
+    },
+    "2": {
+      "success_rate": 0.575,
+      "success_length": 618.0652173913044,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.425,
+      "failure_length": 798.9411764705883,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 1923.0,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1865.5,
+      "median_score": 2000.0,
+      "max_score": 2770.0,
+      "evaluation_seconds": 104.30311869999969,
+      "evaluation_decisions": 60795
+    },
+    "3": {
+      "success_rate": 0.675,
+      "success_length": 580.425925925926,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.325,
+      "failure_length": 876.1538461538462,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 2059.875,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1992.375,
+      "median_score": 2000.0,
+      "max_score": 2770.0,
+      "evaluation_seconds": 124.4550976999999,
+      "evaluation_decisions": 59323
+    }
+  }
+}

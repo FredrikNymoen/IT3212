@@ -1,0 +1,15 @@
+[
+  {
+    "round": 1,
+    "teacher_mixing_probability": 0.25,
+    "collected": 2404,
+    "teacher_steps": 576,
+    "history": [
+      {
+        "epoch": 1,
+        "loss": 0.40541791832456436,
+        "accuracy": 0.834996944387859
+      }
+    ]
+  }
+]

@@ -1,0 +1,68 @@
+{
+  "arm": "mixed_ghost_target_reward",
+  "seed": 7,
+  "training_seed": 12007,
+  "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_objective\\mixed_ghost_target_reward\\seed_7\\model.npz",
+  "model_sha256": "644f11946843b11d836c7ffad54ff22bf780de82c9818fa0f4194385280abb6e",
+  "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_ghost\\mixed_ghost\\seed_7\\model.npz",
+  "parent_sha256": "7dcb4a9ea4123f6e377bd10dc9b752d337685dc6bf7bcb312918efd971a798d3",
+  "interactions": {
+    "0": 65038,
+    "2": 92107,
+    "3": 92855
+  },
+  "validation": {
+    "0": {
+      "success_rate": 0.725,
+      "success_length": 420.82758620689657,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.275,
+      "failure_length": 800.1818181818181,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 2016.625,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1944.125,
+      "median_score": 2000.0,
+      "max_score": 2560.0,
+      "evaluation_seconds": 62.68027819999952,
+      "evaluation_decisions": 47212
+    },
+    "2": {
+      "success_rate": 0.625,
+      "success_length": 565.56,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.3625,
+      "failure_length": 847.7241379310345,
+      "timeout_rate": 0.0125,
+      "timeout_length": 1500.0,
+      "mean_return": 1952.875,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1890.375,
+      "median_score": 2000.0,
+      "max_score": 2720.0,
+      "evaluation_seconds": 77.27053669999987,
+      "evaluation_decisions": 59562
+    },
+    "3": {
+      "success_rate": 0.4875,
+      "success_length": 677.1794871794872,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.5125,
+      "failure_length": 770.0975609756098,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 1772.0,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1723.25,
+      "median_score": 1965.0,
+      "max_score": 2450.0,
+      "evaluation_seconds": 79.10593419999987,
+      "evaluation_decisions": 63184
+    }
+  },
+  "feature_type": "ghost"
+}

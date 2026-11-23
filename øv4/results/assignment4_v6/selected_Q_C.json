@@ -1,0 +1,110 @@
+{
+  "selected": {
+    "Q": {
+      "position_bins": 4
+    },
+    "PPO": {
+      "lr": 0.001
+    }
+  },
+  "search": [
+    {
+      "algorithm": "Q",
+      "candidate": 0,
+      "config": {
+        "epsilon_fraction": 0.6
+      },
+      "mean_score": 327.4,
+      "success_rate": 0.0,
+      "seeds": 5,
+      "budget": 25000,
+      "evaluation_episodes": 20
+    },
+    {
+      "algorithm": "Q",
+      "candidate": 1,
+      "config": {
+        "epsilon_fraction": 0.9
+      },
+      "mean_score": 286.5,
+      "success_rate": 0.0,
+      "seeds": 5,
+      "budget": 25000,
+      "evaluation_episodes": 20
+    },
+    {
+      "algorithm": "Q",
+      "candidate": 2,
+      "config": {
+        "position_bins": 4
+      },
+      "mean_score": 405.6,
+      "success_rate": 0.0,
+      "seeds": 5,
+      "budget": 25000,
+      "evaluation_episodes": 20
+    },
+    {
+      "algorithm": "Q",
+      "candidate": 3,
+      "config": {
+        "lr": 0.3
+      },
+      "mean_score": 339.0,
+      "success_rate": 0.0,
+      "seeds": 5,
+      "budget": 25000,
+      "evaluation_episodes": 20
+    },
+    {
+      "algorithm": "PPO",
+      "candidate": 0,
+      "config": {
+        "lr": 0.0003
+      },
+      "mean_score": 528.9,
+      "success_rate": 0.0,
+      "seeds": 5,
+      "budget": 25000,
+      "evaluation_episodes": 20
+    },
+    {
+      "algorithm": "PPO",
+      "candidate": 1,
+      "config": {
+        "lr": 0.001
+      },
+      "mean_score": 595.9,
+      "success_rate": 0.030000000000000006,
+      "seeds": 5,
+      "budget": 25000,
+      "evaluation_episodes": 20
+    },
+    {
+      "algorithm": "PPO",
+      "candidate": 2,
+      "config": {
+        "entropy": 0.003
+      },
+      "mean_score": 470.5,
+      "success_rate": 0.0,
+      "seeds": 5,
+      "budget": 25000,
+      "evaluation_episodes": 20
+    },
+    {
+      "algorithm": "PPO",
+      "candidate": 3,
+      "config": {
+        "rollout": 1024
+      },
+      "mean_score": 523.3,
+      "success_rate": 0.02,
+      "seeds": 5,
+      "budget": 25000,
+      "evaluation_episodes": 20
+    }
+  ],
+  "seed_range": 100000,
+  "note": "Chosen on tuning seeds only; held-out episodes were not read."
+}

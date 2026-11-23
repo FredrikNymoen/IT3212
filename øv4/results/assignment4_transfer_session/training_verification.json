@@ -1,0 +1,99 @@
+{
+  "b_only": {
+    "checkpoints": 3,
+    "training_interactions": {
+      "0": 600000
+    },
+    "validation_episodes": 900
+  },
+  "mixed": {
+    "checkpoints": 3,
+    "training_interactions": {
+      "0": 114315,
+      "2": 252448,
+      "3": 233237
+    },
+    "validation_episodes": 900
+  },
+  "mixed_power": {
+    "checkpoints": 3,
+    "training_interactions": {
+      "0": 123080,
+      "2": 237811,
+      "3": 239109
+    },
+    "validation_episodes": 900
+  },
+  "mixed_ghost": {
+    "checkpoints": 3,
+    "training_interactions": {
+      "0": 126620,
+      "2": 230461,
+      "3": 242919
+    },
+    "validation_episodes": 900
+  },
+  "mixed_hot": {
+    "checkpoints": 3,
+    "training_interactions": {
+      "0": 134299,
+      "2": 232069,
+      "3": 233632
+    },
+    "validation_episodes": 900
+  },
+  "mixed_local": {
+    "checkpoints": 3,
+    "training_interactions": {
+      "0": 126967,
+      "2": 239597,
+      "3": 233436
+    },
+    "validation_episodes": 900
+  },
+  "mixed_balanced": {
+    "checkpoints": 3,
+    "training_interactions": {
+      "0": 272598,
+      "2": 388914,
+      "3": 388488
+    },
+    "validation_episodes": 900
+  },
+  "mixed_mirror": {
+    "checkpoints": 3,
+    "training_interactions": {
+      "0": 273198,
+      "2": 388286,
+      "3": 388516
+    },
+    "validation_episodes": 900
+  },
+  "mixed_ghost_balanced": {
+    "checkpoints": 3,
+    "training_interactions": {
+      "0": 194776,
+      "2": 277717,
+      "3": 277507
+    },
+    "validation_episodes": 720
+  },
+  "mixed_ghost_target_reward": {
+    "checkpoints": 3,
+    "training_interactions": {
+      "0": 194889,
+      "2": 277173,
+      "3": 277938
+    },
+    "validation_episodes": 720
+  },
+  "mixed_wrapped": {
+    "checkpoints": 3,
+    "training_interactions": {
+      "0": 120489,
+      "2": 243682,
+      "3": 235829
+    },
+    "validation_episodes": 900
+  }
+}

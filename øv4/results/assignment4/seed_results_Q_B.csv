@@ -1,0 +1,7 @@
+run_id,algorithm,condition,seed,stage,training_interactions,training_seconds,environment_interactions,startup_interactions,final_evaluation_episodes,success_rate,success_length,failure_rate,failure_length,timeout_rate,timeout_length,mean_return,mean_score,median_score,max_score,evaluation_seconds,evaluation_decisions,evaluation_policy,wall_seconds,source_run
+main_Q_B_42,Q,B,42,main,100000,174.7558536999859,113845.0,13845.0,200,0.0,,1.0,632.58,0.0,,531.2,531.2,460.0,1660.0,155.6972395000048,139516,"greedy, ties uniform",330.5860552000813,
+transfer_Q_D_42,Q,D,42,transfer,0,,,,200,0.015,1021.0,0.97,890.7113402061856,0.015,1500.0,708.6,708.6,550.0,2060.0,177.3620498003438,193361,,,main_Q_B_42
+main_Q_B_7,Q,B,7,main,100000,188.58250110037625,113520.0,13520.0,200,0.0,,1.0,540.5,0.0,,320.4,320.4,260.0,1030.0,133.76037560030818,121100,"greedy, ties uniform",322.4676638999954,
+transfer_Q_D_7,Q,D,7,transfer,0,,,,200,0.005,558.0,0.995,738.0452261306533,0.0,,477.75,477.75,340.0,2190.0,227.0683890003711,160429,,,main_Q_B_7
+main_Q_B_2026,Q,B,2026,main,100000,227.45779940020293,113715.0,13715.0,200,0.0,,1.0,617.07,0.0,,553.15,553.15,490.0,1540.0,158.43049659999087,136414,"greedy, ties uniform",386.0683039999567,
+transfer_Q_D_2026,Q,D,2026,transfer,0,,,,200,0.015,690.3333333333334,0.98,781.030612244898,0.005,1500.0,760.45,760.45,665.0,2070.0,188.89948049979284,169653,,,main_Q_B_2026

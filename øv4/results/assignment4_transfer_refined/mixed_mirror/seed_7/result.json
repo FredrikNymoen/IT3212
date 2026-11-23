@@ -1,0 +1,68 @@
+{
+  "arm": "mixed_mirror",
+  "seed": 7,
+  "training_seed": 12007,
+  "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_mirror\\seed_7\\model.npz",
+  "model_sha256": "0adcb01cf8a99a31a9d5aad612aa36b38cd41f0c2a201d3e54a6c1abb36b3274",
+  "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_matched\\mixed\\seed_7\\model.npz",
+  "parent_sha256": "4357328a4c154e3a9f42ce719b78380be30206138b4b55477fa91117c2569701",
+  "interactions": {
+    "0": 91086,
+    "2": 129340,
+    "3": 129574
+  },
+  "validation": {
+    "0": {
+      "success_rate": 0.88,
+      "success_length": 299.0568181818182,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.12,
+      "failure_length": 748.5,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 2085.7,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1997.7,
+      "median_score": 2000.0,
+      "max_score": 3310.0,
+      "evaluation_seconds": 55.05067220000001,
+      "evaluation_decisions": 41799
+    },
+    "2": {
+      "success_rate": 0.43,
+      "success_length": 709.8372093023256,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.57,
+      "failure_length": 700.6315789473684,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 1730.7,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1687.7,
+      "median_score": 1835.0,
+      "max_score": 2280.0,
+      "evaluation_seconds": 116.97147290000066,
+      "evaluation_decisions": 76959
+    },
+    "3": {
+      "success_rate": 0.62,
+      "success_length": 656.1451612903226,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.38,
+      "failure_length": 910.1052631578947,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 1972.9,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1910.9,
+      "median_score": 2000.0,
+      "max_score": 2390.0,
+      "evaluation_seconds": 108.57013860000006,
+      "evaluation_decisions": 81765
+    }
+  },
+  "feature_type": "navigation"
+}

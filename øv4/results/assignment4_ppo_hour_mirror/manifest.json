@@ -1,0 +1,46 @@
+{
+  "code_sha256": {
+    "continue_cool_ppo.py": "ef3657bb715da3b7c55256f7b05d5993d8dc94fd9b18b9c76d7b13998a00c918",
+    "improve_ppo_session.py": "39e837cb57794562592c668021b81ee636003bad46e8853e296f34b1880a2abf",
+    "train_cool_ppo.py": "77272c4897c83a8cd82caeb88a3dbc6d31a62b79602b8451b9b0823001f2ced4",
+    "score_diagnostics.py": "325903d54b6997efae9e2a62ddad503fd43fb49a01bf5ce53db68323b601c2e2",
+    "targeted_dagger.py": "e2475621b7fd8cdac0b5a89d4682c5411f353ad8895e82623ff694009eb9fc4d",
+    "extend_dagger_ppo.py": "3ee370ce42048814f52de3bcadbd7ca2c9997eb0625f4be4a9f8985fbdbfd9f9",
+    "dagger_reference.py": "e14fcffc60a619421dc25a40c7756251fb3bb664732c3821ee2e1eed9efc110c",
+    "imitate_reference.py": "6b3ceb6a8366aa1eee4be083d7287ac325aec1e924bd12b677e96f690459ad4a",
+    "reference_policy.py": "42d646261d0a0fc5c7b447a0e86683ee65fdc60bd59277475d7bc256d1902e7d",
+    "compare_navigation.py": "bcf9e2083ff456c3cd14fdc326b382aa3c96c9dc10f9020c2c67ce4de3ae6666",
+    "part2_run.py": "b8e67644bca6148d56bd2753f06bf214a526f743760eaea2acce4b8093907b82",
+    "mspacman.py": "01b94e1d8d69359186e6cd4935f9fe9c3b25ef54526f549719b0f3d89ef643d0",
+    "test_mirror_augmentation.py": "df9745e537ba8792d4d78d5cc609b1fef9f9c20eef0a8904604c49556208d9d7"
+  },
+  "inputs_sha256": {
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_01\\seed_7\\model.npz": "56eedc9de09824b279e5738929818b1cb9f5164b32f5dcf2c318d87d6957e1af",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_03\\seed_42\\model.npz": "ab7def13b186721a11923c57d7e8323e1dbe78bce144bba81f03ed61050d51a0",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_04\\seed_2026\\model.npz": "de969d4eea52f3fcad9580ff5a0f107e1a0dc7ca917421e17d4f32049cb4525c",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_60000\\seed_7\\model.npz": "c8ea73a012db2394147099f862c350625de444e187fd1b50f38ae942809dbc13",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_60000\\seed_42\\model.npz": "2646d7cc9a1f89b06b131648b7e4ab70df5844c9141aa53595dce733d43fadfa",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_60000\\seed_2026\\model.npz": "20624cc42ad7c10b3ce58e503fefad277eec058ac65937f7a4a897f2de1a65d8"
+  },
+  "source": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B",
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "train_condition": "B",
+  "budget": 60000,
+  "seeds": [
+    7,
+    42,
+    2026
+  ],
+  "temperature": 0.2,
+  "mirror_probability": 0.5,
+  "episodes": 100,
+  "test_seed_start": {
+    "B": 998400,
+    "D": 998300
+  }
+}

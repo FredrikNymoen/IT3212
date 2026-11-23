@@ -1,0 +1,18 @@
+{
+  "verified_episodes": 500,
+  "episodes_per_checkpoint": 250,
+  "seed_start": 989250,
+  "training_seed": 7,
+  "results": {
+    "anchor": {
+      "successes": 110,
+      "success_rate": 0.44,
+      "mean_score": 1785.32
+    },
+    "averaged": {
+      "successes": 138,
+      "success_rate": 0.552,
+      "mean_score": 1838.2
+    }
+  }
+}

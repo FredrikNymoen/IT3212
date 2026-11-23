@@ -1,0 +1,294 @@
+{
+  "frozen_utc": "2026-11-19T13:06:02.505166+00:00",
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "temperature": 0.2,
+  "layouts": [
+    1
+  ],
+  "episodes": 450,
+  "seed_start": 985000,
+  "train_layouts": [
+    0,
+    2,
+    3
+  ],
+  "layout_b_minimum": 0.9,
+  "means": {
+    "b_only": {
+      "0": {
+        "success_rate": 0.82,
+        "mean_score": 2294.7
+      },
+      "2": {
+        "success_rate": 0.26666666666666666,
+        "mean_score": 1519.4333333333334
+      },
+      "3": {
+        "success_rate": 0.3333333333333333,
+        "mean_score": 1614.6
+      }
+    },
+    "mixed": {
+      "0": {
+        "success_rate": 0.9866666666666667,
+        "mean_score": 2582.233333333333
+      },
+      "2": {
+        "success_rate": 0.44999999999999996,
+        "mean_score": 1757.4666666666667
+      },
+      "3": {
+        "success_rate": 0.6766666666666666,
+        "mean_score": 1941.6666666666667
+      }
+    },
+    "mixed_power": {
+      "0": {
+        "success_rate": 0.9533333333333333,
+        "mean_score": 2047.1
+      },
+      "2": {
+        "success_rate": 0.37,
+        "mean_score": 1634.9666666666667
+      },
+      "3": {
+        "success_rate": 0.5266666666666666,
+        "mean_score": 1840.5333333333333
+      }
+    },
+    "mixed_ghost": {
+      "0": {
+        "success_rate": 0.9533333333333334,
+        "mean_score": 2143.7
+      },
+      "2": {
+        "success_rate": 0.4966666666666667,
+        "mean_score": 1752.5333333333333
+      },
+      "3": {
+        "success_rate": 0.5366666666666666,
+        "mean_score": 1818.9666666666667
+      }
+    },
+    "mixed_hot": {
+      "0": {
+        "success_rate": 0.9866666666666667,
+        "mean_score": 2323.1
+      },
+      "2": {
+        "success_rate": 0.41000000000000003,
+        "mean_score": 1729.7
+      },
+      "3": {
+        "success_rate": 0.6466666666666666,
+        "mean_score": 1918.0666666666666
+      }
+    },
+    "mixed_local": {
+      "0": {
+        "success_rate": 0.9199999999999999,
+        "mean_score": 2267.1
+      },
+      "2": {
+        "success_rate": 0.45666666666666667,
+        "mean_score": 1727.9333333333334
+      },
+      "3": {
+        "success_rate": 0.5166666666666667,
+        "mean_score": 1833.3333333333333
+      }
+    },
+    "mixed_balanced": {
+      "0": {
+        "success_rate": 0.9233333333333333,
+        "mean_score": 2402.0666666666666
+      },
+      "2": {
+        "success_rate": 0.5733333333333334,
+        "mean_score": 1856.0333333333333
+      },
+      "3": {
+        "success_rate": 0.64,
+        "mean_score": 1904.5666666666666
+      }
+    },
+    "mixed_mirror": {
+      "0": {
+        "success_rate": 0.9433333333333334,
+        "mean_score": 2320.133333333333
+      },
+      "2": {
+        "success_rate": 0.48333333333333334,
+        "mean_score": 1762.6000000000001
+      },
+      "3": {
+        "success_rate": 0.6566666666666666,
+        "mean_score": 1931.7
+      }
+    },
+    "mixed_ghost_balanced": {
+      "0": {
+        "success_rate": 0.9208333333333334,
+        "mean_score": 2093.4583333333335
+      },
+      "2": {
+        "success_rate": 0.5083333333333333,
+        "mean_score": 1819.8333333333333
+      },
+      "3": {
+        "success_rate": 0.6375,
+        "mean_score": 1903.7916666666667
+      }
+    },
+    "mixed_ghost_target_reward": {
+      "0": {
+        "success_rate": 0.8208333333333333,
+        "mean_score": 2203.7083333333335
+      },
+      "2": {
+        "success_rate": 0.6,
+        "mean_score": 1851.1666666666667
+      },
+      "3": {
+        "success_rate": 0.5375,
+        "mean_score": 1822.0833333333333
+      }
+    },
+    "mixed_wrapped": {
+      "0": {
+        "success_rate": 0.94,
+        "mean_score": 2258.266666666667
+      },
+      "2": {
+        "success_rate": 0.52,
+        "mean_score": 1816.2333333333333
+      },
+      "3": {
+        "success_rate": 0.49333333333333335,
+        "mean_score": 1831.4
+      }
+    }
+  },
+  "ordered_candidates": [
+    "mixed_balanced",
+    "mixed_mirror",
+    "mixed_hot",
+    "mixed_local",
+    "mixed_power"
+  ],
+  "control_arms": [
+    "b_only",
+    "mixed",
+    "mixed_ghost",
+    "mixed_ghost_balanced",
+    "mixed_ghost_target_reward",
+    "mixed_wrapped"
+  ],
+  "selected_arms": [
+    "mixed"
+  ],
+  "sources": {
+    "b_only": {
+      "results": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_matched\\comparison.json",
+      "sha256": "34498c09a85d44442f8acf34d7ea67e3fdc6b07e999e8b8168d4808d079e81fb",
+      "manifest_sha256": "4aa7568cb03c36427929232675526bd50ea5751d76d64aff69b5a1ea7a596116"
+    },
+    "mixed": {
+      "results": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_matched\\comparison.json",
+      "sha256": "34498c09a85d44442f8acf34d7ea67e3fdc6b07e999e8b8168d4808d079e81fb",
+      "manifest_sha256": "4aa7568cb03c36427929232675526bd50ea5751d76d64aff69b5a1ea7a596116"
+    },
+    "mixed_power": {
+      "results": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_power\\comparison.json",
+      "sha256": "7ba56fb547e1a78435692a85d9f8049df2c955129ac00348bbec84b87fbaf2d8",
+      "manifest_sha256": "43bb9190b09e18b78678b1fcee040482acc7e11a6dd7f14869179ebb2430bc55"
+    },
+    "mixed_ghost": {
+      "results": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_ghost\\comparison.json",
+      "sha256": "88ace7094d2698cc3018c422549a2e3ed4a6bda5c35cc92140d6414264d1ff59",
+      "manifest_sha256": "598ef0c9c0a0de12488545b7b274b9b3aab066e32be85093c9bcfeeb3ee4c173"
+    },
+    "mixed_hot": {
+      "results": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_variants\\comparison.json",
+      "sha256": "a085811041dccf460c91c3dec059f0f75f0ec4f477a50d3a844bfb41021a21d5",
+      "manifest_sha256": "9867f2e8ed691e2f74d47185ecd1169f650dce8c206280a8b3afb1eef96ca6f9"
+    },
+    "mixed_local": {
+      "results": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_variants\\comparison.json",
+      "sha256": "a085811041dccf460c91c3dec059f0f75f0ec4f477a50d3a844bfb41021a21d5",
+      "manifest_sha256": "9867f2e8ed691e2f74d47185ecd1169f650dce8c206280a8b3afb1eef96ca6f9"
+    },
+    "mixed_balanced": {
+      "results": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\comparison.json",
+      "sha256": "af1edcde3c9d7356b20ceba65ac2562e2582279ecde936d7ed7f86336298180f",
+      "manifest_sha256": "caff40622055549faed96ec34373ff1b65283dfa96397a61da5fd2adab59cfa7"
+    },
+    "mixed_mirror": {
+      "results": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\comparison.json",
+      "sha256": "af1edcde3c9d7356b20ceba65ac2562e2582279ecde936d7ed7f86336298180f",
+      "manifest_sha256": "caff40622055549faed96ec34373ff1b65283dfa96397a61da5fd2adab59cfa7"
+    },
+    "mixed_ghost_balanced": {
+      "results": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_objective\\comparison.json",
+      "sha256": "e64a9663f842dee26b20dd1071a36ad0e516105deda7f335ee97047ff4190c49",
+      "manifest_sha256": "2d4ec814deba156f6f12611641015ac679ae44b34c7de6fba0bc63a738a37e91"
+    },
+    "mixed_ghost_target_reward": {
+      "results": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_objective\\comparison.json",
+      "sha256": "e64a9663f842dee26b20dd1071a36ad0e516105deda7f335ee97047ff4190c49",
+      "manifest_sha256": "2d4ec814deba156f6f12611641015ac679ae44b34c7de6fba0bc63a738a37e91"
+    },
+    "mixed_wrapped": {
+      "results": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_wrapped\\comparison.json",
+      "sha256": "ff9d25d7dd4fc343e93bc65e25cfb50451705e7800755783ecfc358f60172a27",
+      "manifest_sha256": "b47442c14657047d9b1751b3e49457b9b49468b9211b9a3889981cbc8be32364"
+    }
+  },
+  "baseline": {
+    "results": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_frontier_B\\comparison.json",
+    "sha256": "f96727e6835ba35dcf8973d36181e1ff308c3e04b376a76b736f288431a4f65e"
+  },
+  "evaluation_code_sha256": {
+    "freeze_transfer.py": "e3aadb90e02aeefc65f7057a8af0148e58f07ca2a9061993552094cb84b0a003",
+    "wrapped_transfer.py": "95b4b766de42260d0ac0555e3330cf898aee916c9ab9e2d9fe1ebc12740ea0eb",
+    "refine_transfer.py": "863dd1de7b6a666ea9601a64c9425aa3c9446e91cc7ba21864bd0c5a17493192",
+    "cached_navigation.py": "ecf812c6921488f5e1c5ec0cf2dbb3fd0721ab60c5ffa2343e8b1c22cfa218a5",
+    "transfer_ppo.py": "1a31bf2bc92dcb1303b6b21169cfe2f1d1531e92473ec7366242ff6a6879fd49",
+    "transfer_power_ppo.py": "99b2dbe6983a0de2c51e4bc1781844087e3ec4d3cb00862889181620bcae0da9",
+    "transfer_ghost_ppo.py": "cc1ed5c54c5eac96c6c246a08a2ce8fde55bf7acd8f5d1c3dbcb19f05bd8d933",
+    "score_diagnostics.py": "325903d54b6997efae9e2a62ddad503fd43fb49a01bf5ce53db68323b601c2e2",
+    "compare_navigation.py": "bcf9e2083ff456c3cd14fdc326b382aa3c96c9dc10f9020c2c67ce4de3ae6666",
+    "reference_policy.py": "42d646261d0a0fc5c7b447a0e86683ee65fdc60bd59277475d7bc256d1902e7d",
+    "part2_run.py": "b8e67644bca6148d56bd2753f06bf214a526f743760eaea2acce4b8093907b82",
+    "mspacman.py": "01b94e1d8d69359186e6cd4935f9fe9c3b25ef54526f549719b0f3d89ef643d0"
+  },
+  "runs": [
+    {
+      "arm": "mixed",
+      "feature_type": "navigation",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_matched\\mixed\\seed_7\\model.npz",
+      "model_sha256": "4357328a4c154e3a9f42ce719b78380be30206138b4b55477fa91117c2569701"
+    },
+    {
+      "arm": "mixed",
+      "feature_type": "navigation",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_matched\\mixed\\seed_42\\model.npz",
+      "model_sha256": "a1da7af96a7a4a9e31ec5f10da9a6f3ffcde7af9bc43d72163dbae9c669bada2"
+    },
+    {
+      "arm": "mixed",
+      "feature_type": "navigation",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_matched\\mixed\\seed_2026\\model.npz",
+      "model_sha256": "d91581f061a8525db25360fcb04c28129609a60975f30ad417e24d2454ad728c"
+    }
+  ],
+  "reason": "Paired check of the simpler mixed policy at the confirmation seeds."
+}

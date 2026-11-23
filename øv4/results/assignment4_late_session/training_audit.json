@@ -1,0 +1,410 @@
+{
+  "reward": {
+    "budget": 240000,
+    "verified_models": 9,
+    "models": [
+      {
+        "arm": "control",
+        "seed": 2026,
+        "interactions": {
+          "0": 62597,
+          "2": 88516,
+          "3": 88887
+        },
+        "model_sha256": "0c5ea76daccdd7f99350c3c07c5eb145b3769533a747a1953b4ce3d92d3dfd12"
+      },
+      {
+        "arm": "control",
+        "seed": 42,
+        "interactions": {
+          "0": 62669,
+          "2": 88781,
+          "3": 88550
+        },
+        "model_sha256": "d0dd9489a02f046eb912df2846cd9289fc00f2dc4fcea8e97d3f625d66d6e411"
+      },
+      {
+        "arm": "control",
+        "seed": 7,
+        "interactions": {
+          "0": 62166,
+          "2": 89027,
+          "3": 88807
+        },
+        "model_sha256": "31701e15eaf65efce7aefc13f338495875d2ad0e528b5a1e99dfe7ea9cdb96f1"
+      },
+      {
+        "arm": "finish",
+        "seed": 2026,
+        "interactions": {
+          "0": 62526,
+          "2": 88623,
+          "3": 88851
+        },
+        "model_sha256": "761c502259e7f14e1c85755813e0cc974b30ede0f050a26b28b09785fd644566"
+      },
+      {
+        "arm": "finish",
+        "seed": 42,
+        "interactions": {
+          "0": 62327,
+          "2": 88941,
+          "3": 88732
+        },
+        "model_sha256": "45400cca764bbe75921cfdcbc91d8bb63fa5ea9747070a57c894520ef49f63a2"
+      },
+      {
+        "arm": "finish",
+        "seed": 7,
+        "interactions": {
+          "0": 62486,
+          "2": 88601,
+          "3": 88913
+        },
+        "model_sha256": "e8895e4f3e43fd86b0da185cb3c15d6c7232d499b2e548261414b96f239bbb55"
+      },
+      {
+        "arm": "survival",
+        "seed": 2026,
+        "interactions": {
+          "0": 62294,
+          "2": 88817,
+          "3": 88889
+        },
+        "model_sha256": "ec8a84d37945fa42c7f00d2abdc68229e2d691635aee10a8b8b2c3f23a9180ee"
+      },
+      {
+        "arm": "survival",
+        "seed": 42,
+        "interactions": {
+          "0": 62567,
+          "2": 88831,
+          "3": 88602
+        },
+        "model_sha256": "71b0c67bff860b3eaf87218d6ebc80fabb6bc4fa9366dab415f3970841395882"
+      },
+      {
+        "arm": "survival",
+        "seed": 7,
+        "interactions": {
+          "0": 62187,
+          "2": 88905,
+          "3": 88908
+        },
+        "model_sha256": "6f8f2cfb7fbe84d46638e128efe4baf2c06f32af8b62bdb9d7ddcdedbd0c4182"
+      }
+    ]
+  },
+  "replay": {
+    "budget": 240000,
+    "verified_models": 6,
+    "models": [
+      {
+        "arm": "replay",
+        "seed": 2026,
+        "interactions": {
+          "0": 62332,
+          "2": 88422,
+          "3": 89246
+        },
+        "model_sha256": "fb5accaa9aa2bd22a8b61784e329c0de94a5837c3eea45b1a1b96af630b7aa03"
+      },
+      {
+        "arm": "replay",
+        "seed": 42,
+        "interactions": {
+          "0": 62086,
+          "2": 88794,
+          "3": 89120
+        },
+        "model_sha256": "ce1952a053cd7f363a5cfd7bb4a193c1ba4265bfdc92371facfc1ad5b06ad1ec"
+      },
+      {
+        "arm": "replay",
+        "seed": 7,
+        "interactions": {
+          "0": 62381,
+          "2": 88751,
+          "3": 88868
+        },
+        "model_sha256": "c5363342f40f6db5f60a4eafb4b6a0ffbd863159e1b4596c9b9ffd582c599e2d"
+      },
+      {
+        "arm": "replay_survival",
+        "seed": 2026,
+        "interactions": {
+          "0": 62489,
+          "2": 88701,
+          "3": 88810
+        },
+        "model_sha256": "f5e69798a5721f4da679832f0f33a270d21f15d141dd8b2f07c9f4089e8f82d2"
+      },
+      {
+        "arm": "replay_survival",
+        "seed": 42,
+        "interactions": {
+          "0": 62386,
+          "2": 88994,
+          "3": 88620
+        },
+        "model_sha256": "b538fe10d33ed703e3c59c5a5690bf585a749ad6b7caf3bca8272c6f512c47b4"
+      },
+      {
+        "arm": "replay_survival",
+        "seed": 7,
+        "interactions": {
+          "0": 62294,
+          "2": 89017,
+          "3": 88689
+        },
+        "model_sha256": "ff637fda59e0b05a1c71d038c2bcdb9505a5b86deff7dd4f3ce74ff2fa25d3e8"
+      }
+    ]
+  },
+  "specialist": {
+    "budget": 320000,
+    "verified_models": 6,
+    "models": [
+      {
+        "arm": "specialist",
+        "seed": 2026,
+        "interactions": {
+          "0": 83041,
+          "2": 118005,
+          "3": 118954
+        },
+        "model_sha256": "a33e415351cf0bdc48a777b0a37687382ef307bde28a42e4a01867f5e2b4858e"
+      },
+      {
+        "arm": "specialist",
+        "seed": 42,
+        "interactions": {
+          "0": 83000,
+          "2": 118363,
+          "3": 118637
+        },
+        "model_sha256": "708291268196489af372f3cde4d8860ef85696468fc27ebe4a3989f3af6407fc"
+      },
+      {
+        "arm": "specialist",
+        "seed": 7,
+        "interactions": {
+          "0": 83283,
+          "2": 118142,
+          "3": 118575
+        },
+        "model_sha256": "b6921e7e4501dd8bab33d1dc3698d6f47da3dbf85d77f72920b6b195aa48d34d"
+      },
+      {
+        "arm": "specialist_ghost",
+        "seed": 2026,
+        "interactions": {
+          "0": 83011,
+          "2": 118061,
+          "3": 118928
+        },
+        "model_sha256": "657b4bb428de6ecd374a33c713f4dd00658c88a1484c98fe66d26af729df7a05"
+      },
+      {
+        "arm": "specialist_ghost",
+        "seed": 42,
+        "interactions": {
+          "0": 82976,
+          "2": 118401,
+          "3": 118623
+        },
+        "model_sha256": "87ff57d7c7a568c425855e4531d89ea53f83dab3e08f60515aee9a964f4e2db1"
+      },
+      {
+        "arm": "specialist_ghost",
+        "seed": 7,
+        "interactions": {
+          "0": 83184,
+          "2": 118166,
+          "3": 118650
+        },
+        "model_sha256": "bdf906ec83785f59d235cad5d2ca58139dd9cff9c16c4b3a157accfa3f71e765"
+      }
+    ]
+  },
+  "teacher": {
+    "budget": 260000,
+    "verified_models": 3,
+    "models": [
+      {
+        "arm": "branch_teacher",
+        "seed": 2026,
+        "interactions": {
+          "0": 72497,
+          "2": 93284,
+          "3": 94219
+        },
+        "model_sha256": "edc4f59428d4f330d840a36dfe887dee5763da34e3f40e8f4611512c2aea8c39"
+      },
+      {
+        "arm": "branch_teacher",
+        "seed": 42,
+        "interactions": {
+          "0": 68513,
+          "2": 98579,
+          "3": 92908
+        },
+        "model_sha256": "8a91f9b4371f36e9cf39a78114379095e8b4cc2634f8c3d2a71cdea480509e83"
+      },
+      {
+        "arm": "branch_teacher",
+        "seed": 7,
+        "interactions": {
+          "0": 67315,
+          "2": 96099,
+          "3": 96586
+        },
+        "model_sha256": "8294c7a4ef279fd0c083d8e6128fa2a80e94fc7c20eefb61c130be69d29979df"
+      }
+    ]
+  },
+  "long": {
+    "budget": 500000,
+    "verified_models": 3,
+    "models": [
+      {
+        "arm": "control",
+        "seed": 2026,
+        "interactions": {
+          "0": 130124,
+          "2": 184663,
+          "3": 185213
+        },
+        "model_sha256": "64b95c0d66a7ec34f90b9973cc7d82022f8e017756824f0cf190e2de19b0d79c"
+      },
+      {
+        "arm": "control",
+        "seed": 42,
+        "interactions": {
+          "0": 129908,
+          "2": 184978,
+          "3": 185114
+        },
+        "model_sha256": "66ca7a603f6419248b18c2baca13b55baa0633327099000e38267516460df05b"
+      },
+      {
+        "arm": "control",
+        "seed": 7,
+        "interactions": {
+          "0": 130236,
+          "2": 184899,
+          "3": 184865
+        },
+        "model_sha256": "8fa1c044f56e0280b9273d8502a34a367197cc627c4d59b9f6d67c4ca59e6062"
+      }
+    ]
+  },
+  "fast_replay": {
+    "budget": 240000,
+    "verified_models": 3,
+    "models": [
+      {
+        "arm": "specialist_fast",
+        "seed": 2026,
+        "interactions": {
+          "0": 62320,
+          "2": 88799,
+          "3": 88881
+        },
+        "model_sha256": "ccf68a151a48758859e5e4ee5fd805eca419dcaf732155710fc4a17c206c6d02"
+      },
+      {
+        "arm": "specialist_fast",
+        "seed": 42,
+        "interactions": {
+          "0": 62335,
+          "2": 88941,
+          "3": 88724
+        },
+        "model_sha256": "58edb2dbd5baecd7af669206daff486b2ad8533ab7f959adfe32db78d134313e"
+      },
+      {
+        "arm": "specialist_fast",
+        "seed": 7,
+        "interactions": {
+          "0": 62654,
+          "2": 88478,
+          "3": 88868
+        },
+        "model_sha256": "62912e326b7312b2510c9ac2772d802de3602e3bcf5c2acb720c748c7694f816"
+      }
+    ]
+  },
+  "averaged_survival": {
+    "budget": 150000,
+    "verified_models": 3,
+    "models": [
+      {
+        "arm": "survival",
+        "seed": 2026,
+        "interactions": {
+          "0": 38797,
+          "2": 55424,
+          "3": 55779
+        },
+        "model_sha256": "6a70dcff71009f2ebe413f9daf5fb008af5aa91ad06e3e259d538f29703db917"
+      },
+      {
+        "arm": "survival",
+        "seed": 42,
+        "interactions": {
+          "0": 38946,
+          "2": 55572,
+          "3": 55482
+        },
+        "model_sha256": "f398638dfefcb934c16453ecf6cb2f0f95b45c8def1b16830cda6f33eebb3c1d"
+      },
+      {
+        "arm": "survival",
+        "seed": 7,
+        "interactions": {
+          "0": 39117,
+          "2": 55359,
+          "3": 55524
+        },
+        "model_sha256": "9d7c7710a842f786a1e3f5852a84fa252156a8dd34c3a161030ea1c39ad8a5a8"
+      }
+    ]
+  },
+  "committed": {
+    "budget": 240000,
+    "verified_models": 3,
+    "models": [
+      {
+        "arm": "committed_teacher",
+        "seed": 2026,
+        "interactions": {
+          "0": 59740,
+          "2": 88791,
+          "3": 91469
+        },
+        "model_sha256": "586af64dfc26e2228721400fc200fbd3900d19849ce1e24fc78d30f97c1c4f61"
+      },
+      {
+        "arm": "committed_teacher",
+        "seed": 42,
+        "interactions": {
+          "0": 61494,
+          "2": 87965,
+          "3": 90541
+        },
+        "model_sha256": "cf4ef0743441cc429444fdff1360a2a7e5154f44d83828937129f44cffc15d4c"
+      },
+      {
+        "arm": "committed_teacher",
+        "seed": 7,
+        "interactions": {
+          "0": 63108,
+          "2": 88597,
+          "3": 88295
+        },
+        "model_sha256": "5fefe80336291d034f104baa962bdc855405bc927e23d9ffdbedcd88230f8275"
+      }
+    ]
+  }
+}

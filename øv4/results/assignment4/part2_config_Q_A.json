@@ -1,0 +1,52 @@
+{
+  "environment": "ALE/MsPacman-v5",
+  "settings": {
+    "A": {
+      "sticky": 0.0,
+      "mode": 0,
+      "penalty": 0.0
+    },
+    "B": {
+      "sticky": 0.25,
+      "mode": 0,
+      "penalty": 0.0
+    },
+    "C": {
+      "sticky": 0.25,
+      "mode": 0,
+      "penalty": -0.5
+    },
+    "D": {
+      "sticky": 0.25,
+      "mode": 3,
+      "penalty": 0.0
+    }
+  },
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500
+  },
+  "budget": 100000,
+  "evaluation_episodes": 200,
+  "curve": {
+    "every_interactions": 25000,
+    "episodes_per_point": 20,
+    "seed_range": [
+      200000,
+      200020
+    ],
+    "smoothing": "none; straight lines between checkpoints"
+  },
+  "train_seeds": [
+    42,
+    7,
+    2026,
+    123,
+    999
+  ],
+  "evaluation_seeds": [
+    300000,
+    300200
+  ]
+}

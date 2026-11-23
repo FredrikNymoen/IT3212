@@ -1,0 +1,65 @@
+{
+  "arm": "mixed_ghost",
+  "seed": 42,
+  "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_ghost\\mixed_ghost\\seed_42\\model.npz",
+  "model_sha256": "3a51dbfd1b7b1b9f18b0992a57045c12bc40bbe692671b36c6965c5f07ac8654",
+  "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_ghost\\expanded_parents\\seed_42.npz",
+  "interactions": {
+    "0": 40357,
+    "2": 79818,
+    "3": 79825
+  },
+  "validation": {
+    "0": {
+      "success_rate": 0.99,
+      "success_length": 266.72727272727275,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.01,
+      "failure_length": 502.0,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 2480.7,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 2381.7,
+      "median_score": 2000.0,
+      "max_score": 3370.0,
+      "evaluation_seconds": 85.56470820000004,
+      "evaluation_decisions": 33408
+    },
+    "2": {
+      "success_rate": 0.53,
+      "success_length": 624.7924528301887,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.47,
+      "failure_length": 725.531914893617,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 1832.5,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1779.5,
+      "median_score": 2000.0,
+      "max_score": 3490.0,
+      "evaluation_seconds": 154.7268841999994,
+      "evaluation_decisions": 73714
+    },
+    "3": {
+      "success_rate": 0.6,
+      "success_length": 577.5166666666667,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.4,
+      "failure_length": 783.1,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 1919.0,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1859.0,
+      "median_score": 2000.0,
+      "max_score": 3410.0,
+      "evaluation_seconds": 137.52580709999984,
+      "evaluation_decisions": 72475
+    }
+  }
+}

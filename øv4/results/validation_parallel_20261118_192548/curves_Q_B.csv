@@ -1,0 +1,6 @@
+environment_interactions,decisions,success_rate,mean_return,mean_score,run_id,algorithm,condition,seed
+0,0,0.0,90.0,90.0,main_Q_B_42,Q,B,42
+64,0,0.0,90.0,90.0,main_Q_B_42,Q,B,42
+128,63,0.0,90.0,90.0,main_Q_B_42,Q,B,42
+192,64,0.0,90.0,90.0,main_Q_B_42,Q,B,42
+256,126,0.0,80.0,80.0,main_Q_B_42,Q,B,42

@@ -1,0 +1,2 @@
+run_id,algorithm,condition,seed,stage,training_interactions,training_seconds,final_evaluation_episodes,success_rate,success_length,failure_rate,failure_length,timeout_rate,timeout_length,mean_return,evaluation_seconds,evaluation_decisions,evaluation_policy,wall_seconds
+main_Q_A_42,Q,A,42,main,100000,59.34152669971809,200,0.0,,1.0,554.0,0.0,,310.0,75.16753680026159,110800,"greedy, ties uniform",134.56143269967288

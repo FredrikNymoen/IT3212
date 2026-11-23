@@ -1,0 +1,62 @@
+{
+  "selected": {
+    "Q": {
+      "epsilon_fraction": 0.9
+    },
+    "PPO": {
+      "lr": 0.0003
+    }
+  },
+  "search": [
+    {
+      "algorithm": "Q",
+      "candidate": 0,
+      "config": {
+        "epsilon_fraction": 0.6
+      },
+      "mean_score": 62.5,
+      "success_rate": 0.0,
+      "seeds": 1,
+      "budget": 400,
+      "evaluation_episodes": 20
+    },
+    {
+      "algorithm": "Q",
+      "candidate": 1,
+      "config": {
+        "epsilon_fraction": 0.9
+      },
+      "mean_score": 73.5,
+      "success_rate": 0.0,
+      "seeds": 1,
+      "budget": 400,
+      "evaluation_episodes": 20
+    },
+    {
+      "algorithm": "PPO",
+      "candidate": 0,
+      "config": {
+        "lr": 0.0003
+      },
+      "mean_score": 73.0,
+      "success_rate": 0.0,
+      "seeds": 1,
+      "budget": 400,
+      "evaluation_episodes": 20
+    },
+    {
+      "algorithm": "PPO",
+      "candidate": 1,
+      "config": {
+        "lr": 0.001
+      },
+      "mean_score": 70.0,
+      "success_rate": 0.0,
+      "seeds": 1,
+      "budget": 400,
+      "evaluation_episodes": 20
+    }
+  ],
+  "seed_range": 100000,
+  "note": "Chosen on tuning seeds only; held-out episodes were not read."
+}

@@ -1,0 +1,22 @@
+{
+  "success_rate": 0.04,
+  "success_length": 425.375,
+  "cleared_rate": 0.0,
+  "cleared_length": null,
+  "failure_rate": 0.96,
+  "failure_length": 685.8333333333334,
+  "timeout_rate": 0.0,
+  "timeout_length": null,
+  "mean_return": 892.75,
+  "unseen_state_fraction": 0.0,
+  "mean_score": 888.75,
+  "median_score": 795.0,
+  "max_score": 3480.0,
+  "evaluation_seconds": 172.61986190000243,
+  "evaluation_decisions": 148083,
+  "variant": "navigation",
+  "seed": 7,
+  "budget": 100000,
+  "episodes": 200,
+  "reached_1500": 16
+}

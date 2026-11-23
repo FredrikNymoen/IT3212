@@ -1,0 +1,22 @@
+{
+  "success_rate": 0.455,
+  "success_length": 724.5494505494505,
+  "cleared_rate": 0.0,
+  "cleared_length": null,
+  "failure_rate": 0.48,
+  "failure_length": 1060.0416666666667,
+  "timeout_rate": 0.065,
+  "timeout_length": 1500.0,
+  "mean_return": 1859.95,
+  "unseen_state_fraction": 0.0,
+  "mean_score": 1814.45,
+  "median_score": 1890.0,
+  "max_score": 2780.0,
+  "evaluation_seconds": 213.592846800002,
+  "evaluation_decisions": 200198,
+  "seed": 2026,
+  "arm": "targeted",
+  "episodes": 200,
+  "reached_1500": 150,
+  "conversion_after_1500": 0.6066666666666667
+}

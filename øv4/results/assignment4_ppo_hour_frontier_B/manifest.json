@@ -1,0 +1,110 @@
+{
+  "code_sha256": {
+    "improve_ppo_session.py": "39e837cb57794562592c668021b81ee636003bad46e8853e296f34b1880a2abf",
+    "train_cool_ppo.py": "77272c4897c83a8cd82caeb88a3dbc6d31a62b79602b8451b9b0823001f2ced4",
+    "score_diagnostics.py": "325903d54b6997efae9e2a62ddad503fd43fb49a01bf5ce53db68323b601c2e2",
+    "targeted_dagger.py": "e2475621b7fd8cdac0b5a89d4682c5411f353ad8895e82623ff694009eb9fc4d",
+    "extend_dagger_ppo.py": "3ee370ce42048814f52de3bcadbd7ca2c9997eb0625f4be4a9f8985fbdbfd9f9",
+    "dagger_reference.py": "e14fcffc60a619421dc25a40c7756251fb3bb664732c3821ee2e1eed9efc110c",
+    "imitate_reference.py": "6b3ceb6a8366aa1eee4be083d7287ac325aec1e924bd12b677e96f690459ad4a",
+    "reference_policy.py": "42d646261d0a0fc5c7b447a0e86683ee65fdc60bd59277475d7bc256d1902e7d",
+    "compare_navigation.py": "bcf9e2083ff456c3cd14fdc326b382aa3c96c9dc10f9020c2c67ce4de3ae6666",
+    "part2_run.py": "b8e67644bca6148d56bd2753f06bf214a526f743760eaea2acce4b8093907b82",
+    "mspacman.py": "01b94e1d8d69359186e6cd4935f9fe9c3b25ef54526f549719b0f3d89ef643d0",
+    "confirm_ppo_frontier.py": "4e390fac18179eb8712ff043921e9d51f8e56eb8c2b30326c1938cdcffa34e46"
+  },
+  "model_sha256": {
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_01\\seed_7\\model.npz": "56eedc9de09824b279e5738929818b1cb9f5164b32f5dcf2c318d87d6957e1af",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_7\\model.npz": "5e5ca9f68f75e61b53de6009d3e4a782cd54640d7942ed8884a77a74a70b3ba0",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_dropout\\coordinate_dropout\\seed_7\\model.npz": "6f567485cc42757e782cf9c80bdac4030e8896877f4121eb66a028cdc4c3b15f",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_03\\seed_42\\model.npz": "ab7def13b186721a11923c57d7e8323e1dbe78bce144bba81f03ed61050d51a0",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_42\\model.npz": "f6c300c012f82686bfe69b59fb5b1ac3c28d83755ecb02bae238313ce6fda111",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_dropout\\coordinate_dropout\\seed_42\\model.npz": "e048005e4bbfa5d5d4a747b653860c6e632f833053b2bc81679910d5683ec658",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_04\\seed_2026\\model.npz": "de969d4eea52f3fcad9580ff5a0f107e1a0dc7ca917421e17d4f32049cb4525c",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_2026\\model.npz": "5ac73555cf35322ce25da15bbade2adacb49fc2050f02a7a07d72c9b846188b0",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_dropout\\coordinate_dropout\\seed_2026\\model.npz": "100d142e2e27a8d467e68ab90aa4b7627af71cc308c0efa1046a5bdabaaf142d"
+  },
+  "candidates": [
+    {
+      "name": "reliable_0.2",
+      "seed": 7,
+      "temperature": 0.2,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_01\\seed_7\\model.npz"
+    },
+    {
+      "name": "reliable_0.15",
+      "seed": 7,
+      "temperature": 0.15,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_01\\seed_7\\model.npz"
+    },
+    {
+      "name": "cold_30k",
+      "seed": 7,
+      "temperature": 0.2,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_7\\model.npz"
+    },
+    {
+      "name": "coordinate_dropout",
+      "seed": 7,
+      "temperature": 0.2,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_dropout\\coordinate_dropout\\seed_7\\model.npz"
+    },
+    {
+      "name": "reliable_0.2",
+      "seed": 42,
+      "temperature": 0.2,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_03\\seed_42\\model.npz"
+    },
+    {
+      "name": "reliable_0.15",
+      "seed": 42,
+      "temperature": 0.15,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_03\\seed_42\\model.npz"
+    },
+    {
+      "name": "cold_30k",
+      "seed": 42,
+      "temperature": 0.2,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_42\\model.npz"
+    },
+    {
+      "name": "coordinate_dropout",
+      "seed": 42,
+      "temperature": 0.2,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_dropout\\coordinate_dropout\\seed_42\\model.npz"
+    },
+    {
+      "name": "reliable_0.2",
+      "seed": 2026,
+      "temperature": 0.2,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_04\\seed_2026\\model.npz"
+    },
+    {
+      "name": "reliable_0.15",
+      "seed": 2026,
+      "temperature": 0.15,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_04\\seed_2026\\model.npz"
+    },
+    {
+      "name": "cold_30k",
+      "seed": 2026,
+      "temperature": 0.2,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_2026\\model.npz"
+    },
+    {
+      "name": "coordinate_dropout",
+      "seed": 2026,
+      "temperature": 0.2,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_dropout\\coordinate_dropout\\seed_2026\\model.npz"
+    }
+  ],
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "setting": "B",
+  "test_start": 996300,
+  "test_episodes": 300
+}

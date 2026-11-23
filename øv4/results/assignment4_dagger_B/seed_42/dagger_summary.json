@@ -1,0 +1,19 @@
+{
+  "success_rate": 0.29,
+  "success_length": 901.2413793103449,
+  "cleared_rate": 0.0,
+  "cleared_length": null,
+  "failure_rate": 0.645,
+  "failure_length": 981.9069767441861,
+  "timeout_rate": 0.065,
+  "timeout_length": 1500.0,
+  "mean_return": 1532.2,
+  "unseen_state_fraction": 0.0,
+  "mean_score": 1503.2,
+  "median_score": 1515.0,
+  "max_score": 2780.0,
+  "evaluation_seconds": 255.40133350000178,
+  "evaluation_decisions": 211438,
+  "seed": 42,
+  "stage": "dagger"
+}

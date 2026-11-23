@@ -1,0 +1,30 @@
+{
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "baseline_protocol_id": "mspacman_v8_power_pellet_wall_fix",
+  "setting": "B",
+  "algorithm": "PPO",
+  "lr": 0.001,
+  "policy": "sampled",
+  "training_seeds": [
+    42,
+    7,
+    2026,
+    123,
+    999
+  ],
+  "budget": 100000,
+  "episodes": 200,
+  "eval_seed_start": 300000,
+  "smoke": false,
+  "code_sha256": {
+    "compare_navigation.py": "bcf9e2083ff456c3cd14fdc326b382aa3c96c9dc10f9020c2c67ce4de3ae6666",
+    "reference_policy.py": "42d646261d0a0fc5c7b447a0e86683ee65fdc60bd59277475d7bc256d1902e7d",
+    "mspacman.py": "01b94e1d8d69359186e6cd4935f9fe9c3b25ef54526f549719b0f3d89ef643d0",
+    "part2_run.py": "b8e67644bca6148d56bd2753f06bf214a526f743760eaea2acce4b8093907b82"
+  }
+}

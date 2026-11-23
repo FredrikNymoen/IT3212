@@ -1,0 +1,62 @@
+{
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "budget": 200000,
+  "validation_seed": 982000,
+  "validation_layouts": [
+    0,
+    2,
+    3
+  ],
+  "episodes": 100,
+  "parents": {
+    "7": {
+      "path": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_7\\model.npz",
+      "sha256": "5e5ca9f68f75e61b53de6009d3e4a782cd54640d7942ed8884a77a74a70b3ba0"
+    },
+    "42": {
+      "path": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_42\\model.npz",
+      "sha256": "f6c300c012f82686bfe69b59fb5b1ac3c28d83755ecb02bae238313ce6fda111"
+    },
+    "2026": {
+      "path": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_2026\\model.npz",
+      "sha256": "5ac73555cf35322ce25da15bbade2adacb49fc2050f02a7a07d72c9b846188b0"
+    }
+  },
+  "config": [
+    [
+      0,
+      2,
+      3
+    ],
+    0.25,
+    4e-05,
+    0.04
+  ],
+  "power_centroids": [
+    [
+      16.0,
+      9.5
+    ],
+    [
+      148.0,
+      9.5
+    ],
+    [
+      15.0,
+      149.5
+    ],
+    [
+      147.0,
+      149.5
+    ]
+  ],
+  "sources": {
+    "transfer_power_ppo.py": "99b2dbe6983a0de2c51e4bc1781844087e3ec4d3cb00862889181620bcae0da9",
+    "transfer_ppo.py": "1a31bf2bc92dcb1303b6b21169cfe2f1d1531e92473ec7366242ff6a6879fd49"
+  }
+}

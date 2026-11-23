@@ -1,0 +1,23 @@
+using selected_from_v8.json: {'Q': {'position_bins': 4}, 'PPO': {'lr': 0.001}}
+         main_Q_B_42  success 0.005  return    529.5    189s
+     transfer_Q_D_42  success 0.000
+          main_Q_B_7  success 0.000  return    407.8    171s
+      transfer_Q_D_7  success 0.000
+       main_Q_B_2026  success 0.000  return    328.4    185s
+   transfer_Q_D_2026  success 0.000
+        main_Q_B_123  success 0.000  return    260.4    209s
+    transfer_Q_D_123  success 0.000
+        main_Q_B_999  success 0.005  return    364.5    193s
+    transfer_Q_D_999  success 0.000
+       main_PPO_B_42  success 0.020  return    887.0    316s
+   transfer_PPO_D_42  success 0.015
+        main_PPO_B_7  success 0.080  return   1006.4    275s
+    transfer_PPO_D_7  success 0.005
+     main_PPO_B_2026  success 0.040  return    790.5    327s
+ transfer_PPO_D_2026  success 0.030
+      main_PPO_B_123  success 0.065  return    948.1    267s
+  transfer_PPO_D_123  success 0.005
+      main_PPO_B_999  success 0.070  return   1052.8    339s
+  transfer_PPO_D_999  success 0.010
+
+20 runs written to ..\results\assignment4_wall_fix_100k_B\seed_results_B.csv

@@ -1,0 +1,53 @@
+{
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "budget": 200000,
+  "validation_seed": 982000,
+  "validation_layouts": [
+    0,
+    2,
+    3
+  ],
+  "episodes": 100,
+  "parents": {
+    "7": {
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_7\\model.npz",
+      "sha256": "5e5ca9f68f75e61b53de6009d3e4a782cd54640d7942ed8884a77a74a70b3ba0"
+    },
+    "42": {
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_42\\model.npz",
+      "sha256": "f6c300c012f82686bfe69b59fb5b1ac3c28d83755ecb02bae238313ce6fda111"
+    },
+    "2026": {
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_2026\\model.npz",
+      "sha256": "5ac73555cf35322ce25da15bbade2adacb49fc2050f02a7a07d72c9b846188b0"
+    }
+  },
+  "arms": {
+    "mixed_ghost": [
+      [
+        0,
+        2,
+        3
+      ],
+      0.25,
+      4e-05,
+      0.04
+    ]
+  },
+  "code_sha256": {
+    "transfer_ghost_ppo.py": "cc1ed5c54c5eac96c6c246a08a2ce8fde55bf7acd8f5d1c3dbcb19f05bd8d933",
+    "transfer_power_ppo.py": "99b2dbe6983a0de2c51e4bc1781844087e3ec4d3cb00862889181620bcae0da9",
+    "transfer_ppo.py": "1a31bf2bc92dcb1303b6b21169cfe2f1d1531e92473ec7366242ff6a6879fd49",
+    "improve_ppo_session.py": "39e837cb57794562592c668021b81ee636003bad46e8853e296f34b1880a2abf",
+    "score_diagnostics.py": "325903d54b6997efae9e2a62ddad503fd43fb49a01bf5ce53db68323b601c2e2",
+    "compare_navigation.py": "bcf9e2083ff456c3cd14fdc326b382aa3c96c9dc10f9020c2c67ce4de3ae6666",
+    "reference_policy.py": "42d646261d0a0fc5c7b447a0e86683ee65fdc60bd59277475d7bc256d1902e7d",
+    "part2_run.py": "b8e67644bca6148d56bd2753f06bf214a526f743760eaea2acce4b8093907b82",
+    "mspacman.py": "01b94e1d8d69359186e6cd4935f9fe9c3b25ef54526f549719b0f3d89ef643d0"
+  }
+}

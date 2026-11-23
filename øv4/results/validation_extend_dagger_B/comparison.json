@@ -1,0 +1,54 @@
+{
+  "selected_budget": 30000,
+  "validation_means": {
+    "30000": {
+      "success_rate": 0.5,
+      "mean_score": 1400.0
+    },
+    "256": {
+      "success_rate": 0.0,
+      "mean_score": 685.0
+    },
+    "384": {
+      "success_rate": 0.0,
+      "mean_score": 1050.0
+    }
+  },
+  "test_means": {
+    "30000": {
+      "success_rate": 0.5,
+      "mean_score": 1980.0,
+      "median_score": 1980.0
+    }
+  },
+  "paired_deltas": [
+    {
+      "seed": 42,
+      "success_rate": 0.0,
+      "mean_score": 0.0
+    }
+  ],
+  "test_runs": [
+    {
+      "success_rate": 0.5,
+      "success_length": 866.0,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.5,
+      "failure_length": 912.0,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 2030.0,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1980.0,
+      "median_score": 1980.0,
+      "max_score": 2000.0,
+      "evaluation_seconds": 2.24845269999787,
+      "evaluation_decisions": 1908,
+      "seed": 42,
+      "budget": 30000,
+      "episodes": 2,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_dagger_B\\seed_42\\dagger_ppo.npz"
+    }
+  ]
+}

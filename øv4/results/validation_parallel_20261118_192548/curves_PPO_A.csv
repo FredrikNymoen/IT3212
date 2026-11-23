@@ -1,0 +1,4 @@
+environment_interactions,decisions,success_rate,mean_return,mean_score,run_id,algorithm,condition,seed
+128,0,0.0,70.0,70.0,main_PPO_A_42,PPO,A,42
+192,62,0.0,70.0,70.0,main_PPO_A_42,PPO,A,42
+256,64,0.0,70.0,70.0,main_PPO_A_42,PPO,A,42

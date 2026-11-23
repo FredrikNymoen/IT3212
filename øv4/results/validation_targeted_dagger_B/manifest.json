@@ -1,0 +1,40 @@
+{
+  "source": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_dagger_budget_B",
+  "source_sha256": {
+    "manifest.json": "53aa733952d30e486eb7422f4190e3aa5f12fe81da2c53fd929e0d0033c75b14",
+    "budget_60000\\seed_42\\model.npz": "945bd7ff410e2ea0ea00e41484bc5086fe045b31617e6492519f76eb06a41da4"
+  },
+  "code_sha256": {
+    "targeted_dagger.py": "e2475621b7fd8cdac0b5a89d4682c5411f353ad8895e82623ff694009eb9fc4d",
+    "extend_dagger_ppo.py": "3ee370ce42048814f52de3bcadbd7ca2c9997eb0625f4be4a9f8985fbdbfd9f9",
+    "dagger_reference.py": "e14fcffc60a619421dc25a40c7756251fb3bb664732c3821ee2e1eed9efc110c",
+    "imitate_reference.py": "6b3ceb6a8366aa1eee4be083d7287ac325aec1e924bd12b677e96f690459ad4a",
+    "reference_policy.py": "42d646261d0a0fc5c7b447a0e86683ee65fdc60bd59277475d7bc256d1902e7d",
+    "compare_navigation.py": "bcf9e2083ff456c3cd14fdc326b382aa3c96c9dc10f9020c2c67ce4de3ae6666",
+    "part2_run.py": "b8e67644bca6148d56bd2753f06bf214a526f743760eaea2acce4b8093907b82",
+    "mspacman.py": "01b94e1d8d69359186e6cd4935f9fe9c3b25ef54526f549719b0f3d89ef643d0"
+  },
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "setting": "B",
+  "seeds": [
+    42
+  ],
+  "smoke": true,
+  "rollout_seed_start": 980000,
+  "rollout_episodes": 5,
+  "validation_episodes": 4,
+  "max_corrections_per_arm": 128,
+  "cloning_epochs": 1,
+  "preferred_priority_fraction": 0.7,
+  "priority_rule": "score >= 1500 or ghost <= 40 px, closing, global timer <= .20",
+  "fine_tuning_interactions": 256,
+  "learning_rate": 0.0001,
+  "entropy": 0.003,
+  "eval_seed_start": 990000,
+  "eval_episodes": 2
+}

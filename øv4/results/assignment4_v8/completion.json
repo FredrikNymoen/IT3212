@@ -1,0 +1,24 @@
+{
+  "status": "complete",
+  "protocol_id": "mspacman_maze_pellets_walls_v8",
+  "training_agents": 30,
+  "frozen_transfer_evaluations": 10,
+  "primary_evaluation_episodes": 8000,
+  "training_budget_per_agent": 100000,
+  "selected": {
+    "Q": {
+      "position_bins": 4
+    },
+    "PPO": {
+      "lr": 0.001
+    }
+  },
+  "verification": "verify_study.py passed: coverage, source hashes, summary metrics, reward accounting, models and traces",
+  "reports": [
+    "part2_tables.md",
+    "v7_vs_v8.md",
+    "learning_curve_A.png",
+    "learning_curve_B.png",
+    "learning_curve_C.png"
+  ]
+}

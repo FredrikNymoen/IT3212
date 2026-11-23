@@ -1,0 +1,82 @@
+{
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "temperature": 0.2,
+  "layouts": [
+    0,
+    2,
+    3
+  ],
+  "seed_start": 980500,
+  "episodes": 70,
+  "runs": [
+    {
+      "arm": "phased_averaged",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_averaged\\seed_2026\\model.npz",
+      "model_sha256": "ed4147797b335533c5387f71abfaa349816be8a00e5bd96cbf59cd579ce60419",
+      "feature_type": "navigation",
+      "opening_model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_2026\\model.npz",
+      "opening_sha256": "586af64dfc26e2228721400fc200fbd3900d19849ce1e24fc78d30f97c1c4f61",
+      "switch_score": 1500
+    },
+    {
+      "arm": "phased_averaged",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_averaged\\seed_42\\model.npz",
+      "model_sha256": "f7766fad9eb8281d6ac2795a11e43f6e3f49ad722ebc46b628c7f5b5c3a72cc3",
+      "feature_type": "navigation",
+      "opening_model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_42\\model.npz",
+      "opening_sha256": "cf4ef0743441cc429444fdff1360a2a7e5154f44d83828937129f44cffc15d4c",
+      "switch_score": 1500
+    },
+    {
+      "arm": "phased_averaged",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_averaged\\seed_7\\model.npz",
+      "model_sha256": "359ae139f377b779e209487d5ac7a70306bac6ae238bec0246da8bdfe2d6627a",
+      "feature_type": "navigation",
+      "opening_model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_7\\model.npz",
+      "opening_sha256": "2c006db0dd522b020c12489365db67e6e6404e8a7e874d53b8ca6e582a116234",
+      "switch_score": 1500
+    },
+    {
+      "arm": "phased_survival",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_reward\\survival\\seed_2026\\model.npz",
+      "model_sha256": "ec8a84d37945fa42c7f00d2abdc68229e2d691635aee10a8b8b2c3f23a9180ee",
+      "feature_type": "navigation",
+      "opening_model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_2026\\model.npz",
+      "opening_sha256": "586af64dfc26e2228721400fc200fbd3900d19849ce1e24fc78d30f97c1c4f61",
+      "switch_score": 1500
+    },
+    {
+      "arm": "phased_survival",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_reward\\survival\\seed_42\\model.npz",
+      "model_sha256": "71b0c67bff860b3eaf87218d6ebc80fabb6bc4fa9366dab415f3970841395882",
+      "feature_type": "navigation",
+      "opening_model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_42\\model.npz",
+      "opening_sha256": "cf4ef0743441cc429444fdff1360a2a7e5154f44d83828937129f44cffc15d4c",
+      "switch_score": 1500
+    },
+    {
+      "arm": "phased_survival",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_reward\\survival\\seed_7\\model.npz",
+      "model_sha256": "6f8f2cfb7fbe84d46638e128efe4baf2c06f32af8b62bdb9d7ddcdedbd0c4182",
+      "feature_type": "navigation",
+      "opening_model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_7\\model.npz",
+      "opening_sha256": "2c006db0dd522b020c12489365db67e6e6404e8a7e874d53b8ca6e582a116234",
+      "switch_score": 1500
+    }
+  ],
+  "source": {
+    "path": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_phased_existing\\comparison.json",
+    "sha256": "2be799ea4d98ae46873540ea5ebca3a1176d3a1ad7849f8107b90141c1db78ae"
+  }
+}

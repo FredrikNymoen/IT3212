@@ -1,0 +1,90 @@
+{
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "condition": "D",
+  "source_study": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_temperature_B",
+  "candidates": [
+    {
+      "arm": "prior",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_cool_ppo_B\\trained_at_0.5\\seed_7\\model.npz",
+      "temperature": 0.5
+    },
+    {
+      "arm": "prior",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_cool_ppo_B\\trained_at_0.5\\seed_42\\model.npz",
+      "temperature": 0.5
+    },
+    {
+      "arm": "prior",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_cool_ppo_B\\trained_at_0.5\\seed_2026\\model.npz",
+      "temperature": 0.5
+    },
+    {
+      "arm": "improved_0.2",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_01\\seed_7\\model.npz",
+      "temperature": 0.2
+    },
+    {
+      "arm": "improved_0.2",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_03\\seed_42\\model.npz",
+      "temperature": 0.2
+    },
+    {
+      "arm": "improved_0.2",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_04\\seed_2026\\model.npz",
+      "temperature": 0.2
+    },
+    {
+      "arm": "improved_0.5",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_01\\seed_7\\model.npz",
+      "temperature": 0.5
+    },
+    {
+      "arm": "improved_0.5",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_03\\seed_42\\model.npz",
+      "temperature": 0.5
+    },
+    {
+      "arm": "improved_0.5",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_04\\seed_2026\\model.npz",
+      "temperature": 0.5
+    }
+  ],
+  "episodes": 100,
+  "seed_start": 999700,
+  "model_sha256": {
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_cool_ppo_B\\trained_at_0.5\\seed_7\\model.npz": "a53e46b6a38c850c96452d78629830d494f1d458692114e7cf1a454c1b6d64fd",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_cool_ppo_B\\trained_at_0.5\\seed_42\\model.npz": "f60d808d61a75a21ed725b9e44a32add473c2c26c5bde0a2626215469e63631c",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_cool_ppo_B\\trained_at_0.5\\seed_2026\\model.npz": "c9ec94c9d1c3bf3cefb341e6ccc6ba2feac44ac43a4018a0b7088c87c7028b79",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_01\\seed_7\\model.npz": "56eedc9de09824b279e5738929818b1cb9f5164b32f5dcf2c318d87d6957e1af",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_03\\seed_42\\model.npz": "ab7def13b186721a11923c57d7e8323e1dbe78bce144bba81f03ed61050d51a0",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_04\\seed_2026\\model.npz": "de969d4eea52f3fcad9580ff5a0f107e1a0dc7ca917421e17d4f32049cb4525c"
+  },
+  "code_sha256": {
+    "improve_ppo_session.py": "39e837cb57794562592c668021b81ee636003bad46e8853e296f34b1880a2abf",
+    "train_cool_ppo.py": "77272c4897c83a8cd82caeb88a3dbc6d31a62b79602b8451b9b0823001f2ced4",
+    "score_diagnostics.py": "325903d54b6997efae9e2a62ddad503fd43fb49a01bf5ce53db68323b601c2e2",
+    "targeted_dagger.py": "e2475621b7fd8cdac0b5a89d4682c5411f353ad8895e82623ff694009eb9fc4d",
+    "extend_dagger_ppo.py": "3ee370ce42048814f52de3bcadbd7ca2c9997eb0625f4be4a9f8985fbdbfd9f9",
+    "dagger_reference.py": "e14fcffc60a619421dc25a40c7756251fb3bb664732c3821ee2e1eed9efc110c",
+    "imitate_reference.py": "6b3ceb6a8366aa1eee4be083d7287ac325aec1e924bd12b677e96f690459ad4a",
+    "reference_policy.py": "42d646261d0a0fc5c7b447a0e86683ee65fdc60bd59277475d7bc256d1902e7d",
+    "compare_navigation.py": "bcf9e2083ff456c3cd14fdc326b382aa3c96c9dc10f9020c2c67ce4de3ae6666",
+    "part2_run.py": "b8e67644bca6148d56bd2753f06bf214a526f743760eaea2acce4b8093907b82",
+    "mspacman.py": "01b94e1d8d69359186e6cd4935f9fe9c3b25ef54526f549719b0f3d89ef643d0",
+    "audit_ppo_transfer.py": "41208c7b933e611830604e7d465b7fcb562ea69f6a1a66bd8d5f290cb725d0bf"
+  }
+}

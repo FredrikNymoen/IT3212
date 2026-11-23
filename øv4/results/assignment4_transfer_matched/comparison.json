@@ -1,0 +1,418 @@
+{
+  "runs": [
+    {
+      "arm": "b_only",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_matched\\b_only\\seed_7\\model.npz",
+      "model_sha256": "caf64eab603f8493e4a9d17bd64fb3864d4633e3a3064a422f3348b5f84c0946",
+      "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_7\\model.npz",
+      "interactions": {
+        "0": 200000
+      },
+      "validation": {
+        "0": {
+          "success_rate": 0.82,
+          "success_length": 408.2317073170732,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.18,
+          "failure_length": 832.3333333333334,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 2056.4,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1974.4,
+          "median_score": 2000.0,
+          "max_score": 2690.0,
+          "evaluation_seconds": 86.94325489999983,
+          "evaluation_decisions": 54957
+        },
+        "2": {
+          "success_rate": 0.4,
+          "success_length": 669.05,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.6,
+          "failure_length": 673.7666666666667,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1607.9,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1567.9,
+          "median_score": 1760.0,
+          "max_score": 2630.0,
+          "evaluation_seconds": 160.9711471999999,
+          "evaluation_decisions": 73688
+        },
+        "3": {
+          "success_rate": 0.38,
+          "success_length": 685.6842105263158,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.62,
+          "failure_length": 793.483870967742,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1706.6,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1668.6,
+          "median_score": 1835.0,
+          "max_score": 2700.0,
+          "evaluation_seconds": 138.98598449999963,
+          "evaluation_decisions": 81752
+        }
+      }
+    },
+    {
+      "arm": "b_only",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_matched\\b_only\\seed_42\\model.npz",
+      "model_sha256": "e095efea47bb034d6ca94be5a6b500684bcc7944ce288d7a858e2c50af36b99b",
+      "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_42\\model.npz",
+      "interactions": {
+        "0": 200000
+      },
+      "validation": {
+        "0": {
+          "success_rate": 0.88,
+          "success_length": 290.47727272727275,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.12,
+          "failure_length": 881.8333333333334,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 2421.7,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 2333.7,
+          "median_score": 2000.0,
+          "max_score": 3370.0,
+          "evaluation_seconds": 68.78498629999967,
+          "evaluation_decisions": 42644
+        },
+        "2": {
+          "success_rate": 0.21,
+          "success_length": 581.2857142857143,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.79,
+          "failure_length": 777.7721518987341,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1559.1,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1538.1,
+          "median_score": 1595.0,
+          "max_score": 2320.0,
+          "evaluation_seconds": 163.4086986000002,
+          "evaluation_decisions": 80151
+        },
+        "3": {
+          "success_rate": 0.27,
+          "success_length": 522.2222222222222,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.73,
+          "failure_length": 756.0,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1526.1,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1499.1,
+          "median_score": 1590.0,
+          "max_score": 2640.0,
+          "evaluation_seconds": 138.15752479999992,
+          "evaluation_decisions": 75788
+        }
+      }
+    },
+    {
+      "arm": "b_only",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_matched\\b_only\\seed_2026\\model.npz",
+      "model_sha256": "bbf3c54406056493ecc812cf1e69e23ebe7562d10372a75978cca24255ad66f3",
+      "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_2026\\model.npz",
+      "interactions": {
+        "0": 200000
+      },
+      "validation": {
+        "0": {
+          "success_rate": 0.76,
+          "success_length": 246.78947368421052,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.23,
+          "failure_length": 1107.2173913043478,
+          "timeout_rate": 0.01,
+          "timeout_length": 1500.0,
+          "mean_return": 2652.0,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 2576.0,
+          "median_score": 2560.0,
+          "max_score": 3460.0,
+          "evaluation_seconds": 79.7735631999999,
+          "evaluation_decisions": 52222
+        },
+        "2": {
+          "success_rate": 0.19,
+          "success_length": 685.3157894736842,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.81,
+          "failure_length": 792.395061728395,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1471.3,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1452.3,
+          "median_score": 1450.0,
+          "max_score": 2630.0,
+          "evaluation_seconds": 174.71594770000002,
+          "evaluation_decisions": 83705
+        },
+        "3": {
+          "success_rate": 0.35,
+          "success_length": 673.4285714285714,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.65,
+          "failure_length": 915.2307692307693,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1711.1,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1676.1,
+          "median_score": 1685.0,
+          "max_score": 2780.0,
+          "evaluation_seconds": 147.04006349999963,
+          "evaluation_decisions": 89560
+        }
+      }
+    },
+    {
+      "arm": "mixed",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_matched\\mixed\\seed_7\\model.npz",
+      "model_sha256": "4357328a4c154e3a9f42ce719b78380be30206138b4b55477fa91117c2569701",
+      "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_7\\model.npz",
+      "interactions": {
+        "0": 44309,
+        "2": 82046,
+        "3": 73645
+      },
+      "validation": {
+        "0": {
+          "success_rate": 0.96,
+          "success_length": 312.6041666666667,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.04,
+          "failure_length": 859.0,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 2131.6,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 2035.6,
+          "median_score": 2000.0,
+          "max_score": 3310.0,
+          "evaluation_seconds": 62.12291980000009,
+          "evaluation_decisions": 39946
+        },
+        "2": {
+          "success_rate": 0.57,
+          "success_length": 676.578947368421,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.43,
+          "failure_length": 833.2093023255813,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1916.9,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1859.9,
+          "median_score": 2000.0,
+          "max_score": 2620.0,
+          "evaluation_seconds": 154.8296375,
+          "evaluation_decisions": 80893
+        },
+        "3": {
+          "success_rate": 0.73,
+          "success_length": 473.5890410958904,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.27,
+          "failure_length": 820.2222222222222,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 2033.8,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1960.8,
+          "median_score": 2000.0,
+          "max_score": 2550.0,
+          "evaluation_seconds": 113.20015829999966,
+          "evaluation_decisions": 63218
+        }
+      }
+    },
+    {
+      "arm": "mixed",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_matched\\mixed\\seed_42\\model.npz",
+      "model_sha256": "a1da7af96a7a4a9e31ec5f10da9a6f3ffcde7af9bc43d72163dbae9c669bada2",
+      "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_42\\model.npz",
+      "interactions": {
+        "0": 31242,
+        "2": 88977,
+        "3": 79781
+      },
+      "validation": {
+        "0": {
+          "success_rate": 1.0,
+          "success_length": 189.91,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.0,
+          "failure_length": null,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 3040.6,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 2940.6,
+          "median_score": 3360.0,
+          "max_score": 3360.0,
+          "evaluation_seconds": 43.99131230000012,
+          "evaluation_decisions": 25491
+        },
+        "2": {
+          "success_rate": 0.41,
+          "success_length": 654.439024390244,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.59,
+          "failure_length": 819.9661016949152,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1800.8,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1759.8,
+          "median_score": 1900.0,
+          "max_score": 2280.0,
+          "evaluation_seconds": 168.45599070000026,
+          "evaluation_decisions": 81710
+        },
+        "3": {
+          "success_rate": 0.71,
+          "success_length": 505.11267605633805,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.29,
+          "failure_length": 892.4137931034483,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 2052.0,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1981.0,
+          "median_score": 2000.0,
+          "max_score": 3390.0,
+          "evaluation_seconds": 129.03124620000017,
+          "evaluation_decisions": 68243
+        }
+      }
+    },
+    {
+      "arm": "mixed",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_matched\\mixed\\seed_2026\\model.npz",
+      "model_sha256": "d91581f061a8525db25360fcb04c28129609a60975f30ad417e24d2454ad728c",
+      "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_2026\\model.npz",
+      "interactions": {
+        "0": 38764,
+        "2": 81425,
+        "3": 79811
+      },
+      "validation": {
+        "0": {
+          "success_rate": 1.0,
+          "success_length": 201.32,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.0,
+          "failure_length": null,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 2870.5,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 2770.5,
+          "median_score": 3360.0,
+          "max_score": 3370.0,
+          "evaluation_seconds": 45.61409179999964,
+          "evaluation_decisions": 26632
+        },
+        "2": {
+          "success_rate": 0.37,
+          "success_length": 703.5405405405405,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.63,
+          "failure_length": 834.0952380952381,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1689.7,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1652.7,
+          "median_score": 1760.0,
+          "max_score": 2380.0,
+          "evaluation_seconds": 167.6371135999998,
+          "evaluation_decisions": 85079
+        },
+        "3": {
+          "success_rate": 0.59,
+          "success_length": 551.6610169491526,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.4,
+          "failure_length": 948.7,
+          "timeout_rate": 0.01,
+          "timeout_length": 1500.0,
+          "mean_return": 1942.2,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1883.2,
+          "median_score": 2000.0,
+          "max_score": 3340.0,
+          "evaluation_seconds": 139.7073744999998,
+          "evaluation_decisions": 78496
+        }
+      }
+    }
+  ],
+  "means": {
+    "b_only": {
+      "0": {
+        "success_rate": 0.82,
+        "mean_score": 2294.7
+      },
+      "2": {
+        "success_rate": 0.26666666666666666,
+        "mean_score": 1519.4333333333334
+      },
+      "3": {
+        "success_rate": 0.3333333333333333,
+        "mean_score": 1614.6
+      }
+    },
+    "mixed": {
+      "0": {
+        "success_rate": 0.9866666666666667,
+        "mean_score": 2582.233333333333
+      },
+      "2": {
+        "success_rate": 0.44999999999999996,
+        "mean_score": 1757.4666666666667
+      },
+      "3": {
+        "success_rate": 0.6766666666666666,
+        "mean_score": 1941.6666666666667
+      }
+    }
+  }
+}

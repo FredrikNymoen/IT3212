@@ -1,0 +1,52 @@
+{
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "temperature": 0.2,
+  "layouts": [
+    0,
+    2,
+    3
+  ],
+  "seed_start": 980500,
+  "episodes": 70,
+  "runs": [
+    {
+      "arm": "specialist_fast",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_fast_replay\\specialist_fast\\seed_7\\model.npz",
+      "model_sha256": "62912e326b7312b2510c9ac2772d802de3602e3bcf5c2acb720c748c7694f816",
+      "feature_type": "navigation",
+      "opening_model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_7\\model.npz",
+      "opening_sha256": "2c006db0dd522b020c12489365db67e6e6404e8a7e874d53b8ca6e582a116234",
+      "switch_score": 1500
+    },
+    {
+      "arm": "specialist_fast",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_fast_replay\\specialist_fast\\seed_2026\\model.npz",
+      "model_sha256": "ccf68a151a48758859e5e4ee5fd805eca419dcaf732155710fc4a17c206c6d02",
+      "feature_type": "navigation",
+      "opening_model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_2026\\model.npz",
+      "opening_sha256": "586af64dfc26e2228721400fc200fbd3900d19849ce1e24fc78d30f97c1c4f61",
+      "switch_score": 1500
+    },
+    {
+      "arm": "specialist_fast",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_fast_replay\\specialist_fast\\seed_42\\model.npz",
+      "model_sha256": "58edb2dbd5baecd7af669206daff486b2ad8533ab7f959adfe32db78d134313e",
+      "feature_type": "navigation",
+      "opening_model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_42\\model.npz",
+      "opening_sha256": "cf4ef0743441cc429444fdff1360a2a7e5154f44d83828937129f44cffc15d4c",
+      "switch_score": 1500
+    }
+  ],
+  "source": {
+    "path": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_fast_replay\\comparison.json",
+    "sha256": "04874a63169256637aa4949b616e4f05a89d78eee88de436f8eb592052af0d43"
+  }
+}

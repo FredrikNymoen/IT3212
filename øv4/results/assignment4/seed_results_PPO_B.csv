@@ -1,0 +1,7 @@
+run_id,algorithm,condition,seed,stage,training_interactions,training_seconds,environment_interactions,startup_interactions,final_evaluation_episodes,success_rate,success_length,failure_rate,failure_length,timeout_rate,timeout_length,mean_return,mean_score,median_score,max_score,evaluation_seconds,evaluation_decisions,greedy_success_rate,greedy_mean_return,evaluation_policy,wall_seconds,source_run
+main_PPO_B_42,PPO,B,42,main,100000,196.45272540021688,111440.0,11440.0,200,0.0,,0.995,584.3316582914573,0.005,1500.0,572.6,572.6,520.0,1970.0,148.96514170011505,130782,0.0,210.0,sampled,430.43871100014076,
+transfer_PPO_D_42,PPO,D,42,transfer,0,,,,200,0.035,829.0,0.96,761.8020833333334,0.005,1500.0,808.1,808.1,730.0,2310.0,169.4958175001666,166569,,,,,main_PPO_B_42
+main_PPO_B_7,PPO,B,7,main,100000,192.840856899973,111635.0,11635.0,200,0.01,542.0,0.99,570.959595959596,0.0,,649.35,649.35,580.0,2120.0,174.82080660015345,127134,0.0,210.0,sampled,550.4046710003167,
+transfer_PPO_D_7,PPO,D,7,transfer,0,,,,200,0.05,771.8,0.945,762.0899470899471,0.005,1500.0,920.55,920.55,790.0,2240.0,193.3942015999928,166253,,,,,main_PPO_B_7
+main_PPO_B_2026,PPO,B,2026,main,100000,212.83880299981683,111505.0,11505.0,200,0.015,547.3333333333334,0.985,568.0710659898477,0.0,,601.25,601.25,540.0,2080.0,161.04492709971964,126552,0.0,60.0,sampled,501.4633931000717,
+transfer_PPO_D_2026,PPO,D,2026,transfer,0,,,,200,0.04,740.875,0.96,743.59375,0.0,,809.45,809.45,675.0,3080.0,143.98196960007772,161697,,,,,main_PPO_B_2026

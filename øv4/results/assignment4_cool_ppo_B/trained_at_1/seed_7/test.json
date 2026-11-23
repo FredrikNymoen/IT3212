@@ -1,0 +1,22 @@
+{
+  "success_rate": 0.825,
+  "success_length": 451.08484848484846,
+  "cleared_rate": 0.0,
+  "cleared_length": null,
+  "failure_rate": 0.165,
+  "failure_length": 878.4242424242424,
+  "timeout_rate": 0.01,
+  "timeout_length": 1500.0,
+  "mean_return": 2060.35,
+  "unseen_state_fraction": 0.0,
+  "mean_score": 1977.85,
+  "median_score": 2000.0,
+  "max_score": 3530.0,
+  "evaluation_seconds": 143.1085536999999,
+  "evaluation_decisions": 119417,
+  "seed": 7,
+  "arm": "trained_at_1",
+  "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_score_diagnostics_B\\reward_control\\seed_7\\model.npz",
+  "reached_1500": 191,
+  "conversion_after_1500": 0.8638743455497382
+}

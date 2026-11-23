@@ -1,0 +1,21 @@
+{
+  "success_rate": 0.15,
+  "success_length": 851.6666666666666,
+  "cleared_rate": 0.0,
+  "cleared_length": null,
+  "failure_rate": 0.85,
+  "failure_length": 710.2117647058824,
+  "timeout_rate": 0.0,
+  "timeout_length": null,
+  "mean_return": 1291.0,
+  "unseen_state_fraction": 0.0,
+  "mean_score": 1276.0,
+  "median_score": 1290.0,
+  "max_score": 2300.0,
+  "evaluation_seconds": 98.27388619999692,
+  "evaluation_decisions": 79643,
+  "arm": "prior",
+  "seed": 7,
+  "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_cool_ppo_B\\trained_at_0.5\\seed_7\\model.npz",
+  "temperature": 0.5
+}

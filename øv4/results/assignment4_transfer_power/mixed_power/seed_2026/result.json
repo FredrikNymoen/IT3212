@@ -1,0 +1,65 @@
+{
+  "arm": "mixed_power",
+  "seed": 2026,
+  "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_power\\mixed_power\\seed_2026\\model.npz",
+  "model_sha256": "f5d3c8bc44f571efa3cb6c76ab777cdf540ef0e4344332fd1fed2e22655afcba",
+  "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_power\\expanded_parents\\seed_2026.npz",
+  "interactions": {
+    "0": 38885,
+    "2": 80030,
+    "3": 81085
+  },
+  "validation": {
+    "0": {
+      "success_rate": 0.97,
+      "success_length": 278.21649484536084,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.03,
+      "failure_length": 1024.6666666666667,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 2144.4,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 2047.4,
+      "median_score": 2000.0,
+      "max_score": 3430.0,
+      "evaluation_seconds": 78.08416499999976,
+      "evaluation_decisions": 36561
+    },
+    "2": {
+      "success_rate": 0.21,
+      "success_length": 686.8095238095239,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.79,
+      "failure_length": 812.7341772151899,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 1517.0,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1496.0,
+      "median_score": 1540.0,
+      "max_score": 2580.0,
+      "evaluation_seconds": 143.0858285000004,
+      "evaluation_decisions": 85129
+    },
+    "3": {
+      "success_rate": 0.31,
+      "success_length": 675.0645161290323,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.69,
+      "failure_length": 903.5942028985507,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 1708.5,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1677.5,
+      "median_score": 1740.0,
+      "max_score": 2670.0,
+      "evaluation_seconds": 171.4587988999997,
+      "evaluation_decisions": 89775
+    }
+  }
+}

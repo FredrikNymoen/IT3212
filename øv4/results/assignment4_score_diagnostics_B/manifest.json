@@ -1,0 +1,60 @@
+{
+  "source": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_targeted_dagger_B",
+  "source_sha256": {
+    "manifest.json": "0fe1db30f4e170d68af55730d93bef62e0773cfc14a124fe9d5f0cdcef794260",
+    "targeted/seed_42/model.npz": "4570eff66b320a9a58a043b6ce013dd23f1abbe7be369efce0764eeaab022077",
+    "targeted/seed_42/test_B_episodes.csv": "68acc646cb99f1543b333d6ce15afb3035bcab16740e738eaf1863d9aeb999a1",
+    "targeted/seed_7/model.npz": "497d2f6d20e3447c860d7cf2bd5e7b23e71ff1c825e574e069f9ef4e2e07a7f9",
+    "targeted/seed_7/test_B_episodes.csv": "614a8f71595bdfb3b61a72d3ad9c2fcf5d3d92f00dc9af4a4f06028ca51c0418",
+    "targeted/seed_2026/model.npz": "de7b8cc54dc8263a99fc6229e431e3345ada458e8c8943fdea0f19f8810d9ff7",
+    "targeted/seed_2026/test_B_episodes.csv": "3d564c663c37304e72954b0ebf786c6add820e6c6c6c7b4915b796abf6249310"
+  },
+  "code_sha256": {
+    "score_diagnostics.py": "325903d54b6997efae9e2a62ddad503fd43fb49a01bf5ce53db68323b601c2e2",
+    "targeted_dagger.py": "e2475621b7fd8cdac0b5a89d4682c5411f353ad8895e82623ff694009eb9fc4d",
+    "extend_dagger_ppo.py": "3ee370ce42048814f52de3bcadbd7ca2c9997eb0625f4be4a9f8985fbdbfd9f9",
+    "dagger_reference.py": "e14fcffc60a619421dc25a40c7756251fb3bb664732c3821ee2e1eed9efc110c",
+    "imitate_reference.py": "6b3ceb6a8366aa1eee4be083d7287ac325aec1e924bd12b677e96f690459ad4a",
+    "reference_policy.py": "42d646261d0a0fc5c7b447a0e86683ee65fdc60bd59277475d7bc256d1902e7d",
+    "compare_navigation.py": "bcf9e2083ff456c3cd14fdc326b382aa3c96c9dc10f9020c2c67ce4de3ae6666",
+    "part2_run.py": "b8e67644bca6148d56bd2753f06bf214a526f743760eaea2acce4b8093907b82",
+    "mspacman.py": "01b94e1d8d69359186e6cd4935f9fe9c3b25ef54526f549719b0f3d89ef643d0"
+  },
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "setting": "B",
+  "seeds": [
+    42,
+    7,
+    2026
+  ],
+  "smoke": false,
+  "temperatures": [
+    1.0,
+    0.75,
+    0.5
+  ],
+  "validation_start": 993000,
+  "validation_episodes": 60,
+  "test_start": 994000,
+  "test_episodes": 200,
+  "budget": 30000,
+  "life_penalty": 25.0,
+  "learning_rate": 0.0001,
+  "entropy": 0.003,
+  "collision_range": [
+    1800,
+    1999
+  ],
+  "collision_cases_per_seed": 4,
+  "lookback": [
+    1,
+    4,
+    8
+  ],
+  "horizon": 24
+}

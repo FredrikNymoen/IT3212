@@ -1,0 +1,17 @@
+{
+  "code_sha256": {
+    "late_specialist.py": "baa312318971d0b269fe148f68b6ac1100cdddc7200d7349ebac8dadcb859818"
+  },
+  "training_layouts": [
+    0,
+    2,
+    3
+  ],
+  "additional_interactions": 0,
+  "parents": {
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_averaged\\comparison.json": "d75b70c4a3dac4e2f634b9f05462ba7c37bcb443feb47a7be6df7f00a87380ab",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_reward\\comparison.json": "e1551b7b13e69ccd4050ef9b98ac1d7de80d26f5f3759fdef824023b01812d68",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\comparison.json": "af1edcde3c9d7356b20ceba65ac2562e2582279ecde936d7ed7f86336298180f"
+  },
+  "switch": 1500
+}

@@ -1,0 +1,13 @@
+using selected_Q_A.json: {'Q': {'position_bins': 4}, 'PPO': {'lr': 0.001}}
+         main_Q_B_42  success 0.000  return    408.0    571s
+     transfer_Q_D_42  success 0.000
+          main_Q_B_7  success 0.010  return    544.6    573s
+      transfer_Q_D_7  success 0.005
+       main_Q_B_2026  success 0.005  return    380.6    572s
+   transfer_Q_D_2026  success 0.000
+        main_Q_B_123  success 0.000  return    463.4    589s
+    transfer_Q_D_123  success 0.000
+        main_Q_B_999  success 0.000  return    427.6    553s
+    transfer_Q_D_999  success 0.000
+
+10 runs written to D:\PROGRAMMERING\NTNU\2026\datadrevet\øv4ny\results\assignment4_v8_500k_parallel\seed_results_Q_B.csv

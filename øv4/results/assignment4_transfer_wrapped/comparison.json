@@ -1,0 +1,218 @@
+{
+  "runs": [
+    {
+      "arm": "mixed_wrapped",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_wrapped\\mixed_wrapped\\seed_7\\model.npz",
+      "model_sha256": "c71f303b024959629b957b0fb33a5b66e524af01bca682040cde3f9284e20b74",
+      "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_7\\model.npz",
+      "interactions": {
+        "0": 41952,
+        "2": 78337,
+        "3": 79711
+      },
+      "validation": {
+        "0": {
+          "success_rate": 0.88,
+          "success_length": 326.0113636363636,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.12,
+          "failure_length": 951.3333333333334,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 2116.0,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 2028.0,
+          "median_score": 2000.0,
+          "max_score": 3380.0,
+          "evaluation_seconds": 54.63357629999973,
+          "evaluation_decisions": 46605
+        },
+        "2": {
+          "success_rate": 0.58,
+          "success_length": 728.2068965517242,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.42,
+          "failure_length": 888.3809523809524,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1932.5,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1874.5,
+          "median_score": 2000.0,
+          "max_score": 2600.0,
+          "evaluation_seconds": 87.20045179999943,
+          "evaluation_decisions": 86048
+        },
+        "3": {
+          "success_rate": 0.55,
+          "success_length": 641.0363636363636,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.45,
+          "failure_length": 939.0222222222222,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1969.2,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1914.2,
+          "median_score": 2000.0,
+          "max_score": 2780.0,
+          "evaluation_seconds": 76.43340810000063,
+          "evaluation_decisions": 84013
+        }
+      },
+      "feature_type": "wrapped"
+    },
+    {
+      "arm": "mixed_wrapped",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_wrapped\\mixed_wrapped\\seed_42\\model.npz",
+      "model_sha256": "8be5e8716b57566f6e4c5cc7215d5419aedacab7e32945d2df17a868589a1049",
+      "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_42\\model.npz",
+      "interactions": {
+        "0": 32909,
+        "2": 86664,
+        "3": 80427
+      },
+      "validation": {
+        "0": {
+          "success_rate": 0.95,
+          "success_length": 201.54736842105262,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.05,
+          "failure_length": 970.8,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 2798.4,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 2703.4,
+          "median_score": 3360.0,
+          "max_score": 3360.0,
+          "evaluation_seconds": 39.57285649999994,
+          "evaluation_decisions": 30501
+        },
+        "2": {
+          "success_rate": 0.43,
+          "success_length": 675.3255813953489,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.57,
+          "failure_length": 839.6842105263158,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1804.6,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1761.6,
+          "median_score": 1930.0,
+          "max_score": 2490.0,
+          "evaluation_seconds": 86.0400182000003,
+          "evaluation_decisions": 83401
+        },
+        "3": {
+          "success_rate": 0.43,
+          "success_length": 534.7674418604652,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.57,
+          "failure_length": 892.280701754386,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1833.8,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1790.8,
+          "median_score": 1890.0,
+          "max_score": 3410.0,
+          "evaluation_seconds": 74.13827740000033,
+          "evaluation_decisions": 80355
+        }
+      },
+      "feature_type": "wrapped"
+    },
+    {
+      "arm": "mixed_wrapped",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_wrapped\\mixed_wrapped\\seed_2026\\model.npz",
+      "model_sha256": "1866794fc7d4e6a9448541a6cd2770b03015256f4d0f6000e7a48052caf5a6aa",
+      "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_2026\\model.npz",
+      "interactions": {
+        "0": 45628,
+        "2": 78681,
+        "3": 75691
+      },
+      "validation": {
+        "0": {
+          "success_rate": 0.99,
+          "success_length": 247.53535353535352,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.01,
+          "failure_length": 1110.0,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 2142.4,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 2043.4,
+          "median_score": 2000.0,
+          "max_score": 3360.0,
+          "evaluation_seconds": 41.28993469999932,
+          "evaluation_decisions": 32116
+        },
+        "2": {
+          "success_rate": 0.55,
+          "success_length": 709.5636363636364,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.45,
+          "failure_length": 878.5777777777778,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1867.6,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1812.6,
+          "median_score": 2000.0,
+          "max_score": 2720.0,
+          "evaluation_seconds": 87.57103830000051,
+          "evaluation_decisions": 85062
+        },
+        "3": {
+          "success_rate": 0.5,
+          "success_length": 569.7,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.5,
+          "failure_length": 956.64,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1839.2,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1789.2,
+          "median_score": 1990.0,
+          "max_score": 2630.0,
+          "evaluation_seconds": 76.4739370999996,
+          "evaluation_decisions": 82817
+        }
+      },
+      "feature_type": "wrapped"
+    }
+  ],
+  "means": {
+    "mixed_wrapped": {
+      "0": {
+        "success_rate": 0.94,
+        "mean_score": 2258.266666666667
+      },
+      "2": {
+        "success_rate": 0.52,
+        "mean_score": 1816.2333333333333
+      },
+      "3": {
+        "success_rate": 0.49333333333333335,
+        "mean_score": 1831.4
+      }
+    }
+  }
+}

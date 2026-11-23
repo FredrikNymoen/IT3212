@@ -1,0 +1,85 @@
+{
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "temperature": 0.2,
+  "layouts": [
+    0,
+    2,
+    3
+  ],
+  "seed_start": 980500,
+  "episodes": 70,
+  "runs": [
+    {
+      "arm": "survival",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_reward\\survival\\seed_2026\\model.npz",
+      "model_sha256": "ec8a84d37945fa42c7f00d2abdc68229e2d691635aee10a8b8b2c3f23a9180ee",
+      "feature_type": "navigation"
+    },
+    {
+      "arm": "finish",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_reward\\finish\\seed_42\\model.npz",
+      "model_sha256": "45400cca764bbe75921cfdcbc91d8bb63fa5ea9747070a57c894520ef49f63a2",
+      "feature_type": "navigation"
+    },
+    {
+      "arm": "control",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_reward\\control\\seed_2026\\model.npz",
+      "model_sha256": "0c5ea76daccdd7f99350c3c07c5eb145b3769533a747a1953b4ce3d92d3dfd12",
+      "feature_type": "navigation"
+    },
+    {
+      "arm": "control",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_reward\\control\\seed_42\\model.npz",
+      "model_sha256": "d0dd9489a02f046eb912df2846cd9289fc00f2dc4fcea8e97d3f625d66d6e411",
+      "feature_type": "navigation"
+    },
+    {
+      "arm": "survival",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_reward\\survival\\seed_42\\model.npz",
+      "model_sha256": "71b0c67bff860b3eaf87218d6ebc80fabb6bc4fa9366dab415f3970841395882",
+      "feature_type": "navigation"
+    },
+    {
+      "arm": "finish",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_reward\\finish\\seed_2026\\model.npz",
+      "model_sha256": "761c502259e7f14e1c85755813e0cc974b30ede0f050a26b28b09785fd644566",
+      "feature_type": "navigation"
+    },
+    {
+      "arm": "finish",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_reward\\finish\\seed_7\\model.npz",
+      "model_sha256": "e8895e4f3e43fd86b0da185cb3c15d6c7232d499b2e548261414b96f239bbb55",
+      "feature_type": "navigation"
+    },
+    {
+      "arm": "survival",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_reward\\survival\\seed_7\\model.npz",
+      "model_sha256": "6f8f2cfb7fbe84d46638e128efe4baf2c06f32af8b62bdb9d7ddcdedbd0c4182",
+      "feature_type": "navigation"
+    },
+    {
+      "arm": "control",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_reward\\control\\seed_7\\model.npz",
+      "model_sha256": "31701e15eaf65efce7aefc13f338495875d2ad0e528b5a1e99dfe7ea9cdb96f1",
+      "feature_type": "navigation"
+    }
+  ],
+  "source": {
+    "path": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_reward\\comparison.json",
+    "sha256": "e1551b7b13e69ccd4050ef9b98ac1d7de80d26f5f3759fdef824023b01812d68"
+  }
+}

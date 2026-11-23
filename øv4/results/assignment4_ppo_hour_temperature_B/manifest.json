@@ -1,0 +1,41 @@
+{
+  "source": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B",
+  "checkpoints": [
+    {
+      "name": "temp_2_0.35",
+      "seed": 7,
+      "temperature": 0.35,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_01\\seed_7\\model.npz"
+    },
+    {
+      "name": "trial_03",
+      "seed": 42,
+      "temperature": 0.5,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_03\\seed_42\\model.npz"
+    },
+    {
+      "name": "trial_04",
+      "seed": 2026,
+      "temperature": 0.5,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_04\\seed_2026\\model.npz"
+    }
+  ],
+  "source_trial": 13,
+  "checkpoint_sha256": {
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_01\\seed_7\\model.npz": "56eedc9de09824b279e5738929818b1cb9f5164b32f5dcf2c318d87d6957e1af",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_03\\seed_42\\model.npz": "ab7def13b186721a11923c57d7e8323e1dbe78bce144bba81f03ed61050d51a0",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_B\\training\\trial_04\\seed_2026\\model.npz": "de969d4eea52f3fcad9580ff5a0f107e1a0dc7ca917421e17d4f32049cb4525c"
+  },
+  "code_sha256": "3c778001799c6cd88b883a7f470531df11a0451cd89893e949155a439e27be08",
+  "temperatures": [
+    0.2,
+    0.275,
+    0.35,
+    0.425,
+    0.5
+  ],
+  "validation_start": 999400,
+  "validation_episodes": 60,
+  "test_start": 999500,
+  "test_episodes": 200
+}

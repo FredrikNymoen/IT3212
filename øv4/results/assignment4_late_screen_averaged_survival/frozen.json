@@ -1,0 +1,43 @@
+{
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "temperature": 0.2,
+  "layouts": [
+    0,
+    2,
+    3
+  ],
+  "seed_start": 980500,
+  "episodes": 70,
+  "runs": [
+    {
+      "arm": "averaged_survival",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_averaged_survival\\survival\\seed_42\\model.npz",
+      "model_sha256": "f398638dfefcb934c16453ecf6cb2f0f95b45c8def1b16830cda6f33eebb3c1d",
+      "feature_type": "navigation"
+    },
+    {
+      "arm": "averaged_survival",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_averaged_survival\\survival\\seed_7\\model.npz",
+      "model_sha256": "9d7c7710a842f786a1e3f5852a84fa252156a8dd34c3a161030ea1c39ad8a5a8",
+      "feature_type": "navigation"
+    },
+    {
+      "arm": "averaged_survival",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_averaged_survival\\survival\\seed_2026\\model.npz",
+      "model_sha256": "6a70dcff71009f2ebe413f9daf5fb008af5aa91ad06e3e259d538f29703db917",
+      "feature_type": "navigation"
+    }
+  ],
+  "source": {
+    "path": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_averaged_survival\\comparison.json",
+    "sha256": "8f899a624e6efd1e299fef8b60decb01d90adf9e5f4c4b2e885cca0f55f9e98a"
+  }
+}

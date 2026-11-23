@@ -1,0 +1,37 @@
+{
+  "code_sha256": {
+    "train_cool_ppo.py": "77272c4897c83a8cd82caeb88a3dbc6d31a62b79602b8451b9b0823001f2ced4",
+    "score_diagnostics.py": "325903d54b6997efae9e2a62ddad503fd43fb49a01bf5ce53db68323b601c2e2",
+    "targeted_dagger.py": "e2475621b7fd8cdac0b5a89d4682c5411f353ad8895e82623ff694009eb9fc4d",
+    "extend_dagger_ppo.py": "3ee370ce42048814f52de3bcadbd7ca2c9997eb0625f4be4a9f8985fbdbfd9f9",
+    "dagger_reference.py": "e14fcffc60a619421dc25a40c7756251fb3bb664732c3821ee2e1eed9efc110c",
+    "imitate_reference.py": "6b3ceb6a8366aa1eee4be083d7287ac325aec1e924bd12b677e96f690459ad4a",
+    "reference_policy.py": "42d646261d0a0fc5c7b447a0e86683ee65fdc60bd59277475d7bc256d1902e7d",
+    "compare_navigation.py": "bcf9e2083ff456c3cd14fdc326b382aa3c96c9dc10f9020c2c67ce4de3ae6666",
+    "part2_run.py": "b8e67644bca6148d56bd2753f06bf214a526f743760eaea2acce4b8093907b82",
+    "mspacman.py": "01b94e1d8d69359186e6cd4935f9fe9c3b25ef54526f549719b0f3d89ef643d0"
+  },
+  "inputs_sha256": {
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_score_diagnostics_B\\manifest.json": "40fa0128a213dc943a9ecd5ef1692723485a51ae26c54b6d63c92c44a822d727",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_targeted_dagger_B\\targeted\\seed_42\\model.npz": "4570eff66b320a9a58a043b6ce013dd23f1abbe7be369efce0764eeaab022077",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_score_diagnostics_B\\reward_control\\seed_42\\model.npz": "49feda82693a562e6211974de695baad76223be0a0e11e5f3606d253cb7aff72"
+  },
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "setting": "B",
+  "seeds": [
+    42
+  ],
+  "smoke": true,
+  "new_training_budget": 256,
+  "control_training_budget": 30000,
+  "learning_rate": 0.0001,
+  "entropy": 0.003,
+  "eval_temperature": 0.5,
+  "eval_seed_start": 996000,
+  "eval_episodes": 2
+}

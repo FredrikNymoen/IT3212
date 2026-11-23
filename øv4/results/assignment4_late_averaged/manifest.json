@@ -1,0 +1,25 @@
+{
+  "sources": {
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_reward\\comparison.json": "e1551b7b13e69ccd4050ef9b98ac1d7de80d26f5f3759fdef824023b01812d68",
+    "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_replay\\comparison.json": "ff2ae810980599e40915de41e14bc975a853d3d9f3c2ac75f2ad3977ac40b2b5"
+  },
+  "matched_arms": [
+    "control",
+    "finish",
+    "replay",
+    "replay_survival",
+    "survival"
+  ],
+  "additional_interactions": 0,
+  "training_layouts": [
+    0,
+    2,
+    3
+  ],
+  "code_sha256": {
+    "late_average.py": "e059cfd417f4261123e5fa9f0e145374cc6a9e29f57e029db56da833df8eb0f5",
+    "late_evaluate.py": "436697d56263cf0cb2154b6ee215e891c9e6ee6c361ea4ca589a41f1623e7381",
+    "part2_run.py": "b8e67644bca6148d56bd2753f06bf214a526f743760eaea2acce4b8093907b82",
+    "score_diagnostics.py": "325903d54b6997efae9e2a62ddad503fd43fb49a01bf5ce53db68323b601c2e2"
+  }
+}

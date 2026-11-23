@@ -1,0 +1,215 @@
+{
+  "runs": [
+    {
+      "arm": "mixed_ghost",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_ghost\\mixed_ghost\\seed_7\\model.npz",
+      "model_sha256": "7dcb4a9ea4123f6e377bd10dc9b752d337685dc6bf7bcb312918efd971a798d3",
+      "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_ghost\\expanded_parents\\seed_7.npz",
+      "interactions": {
+        "0": 46375,
+        "2": 73673,
+        "3": 79952
+      },
+      "validation": {
+        "0": {
+          "success_rate": 0.91,
+          "success_length": 372.2087912087912,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.09,
+          "failure_length": 885.1111111111111,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 2098.6,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 2007.6,
+          "median_score": 2000.0,
+          "max_score": 2690.0,
+          "evaluation_seconds": 110.59387530000004,
+          "evaluation_decisions": 48337
+        },
+        "2": {
+          "success_rate": 0.56,
+          "success_length": 723.6964285714286,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.44,
+          "failure_length": 896.7272727272727,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1881.3,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1825.3,
+          "median_score": 2000.0,
+          "max_score": 2730.0,
+          "evaluation_seconds": 181.3325973000001,
+          "evaluation_decisions": 86483
+        },
+        "3": {
+          "success_rate": 0.61,
+          "success_length": 572.7213114754098,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.39,
+          "failure_length": 878.2564102564103,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1908.9,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1847.9,
+          "median_score": 2000.0,
+          "max_score": 2600.0,
+          "evaluation_seconds": 127.66387680000025,
+          "evaluation_decisions": 75688
+        }
+      }
+    },
+    {
+      "arm": "mixed_ghost",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_ghost\\mixed_ghost\\seed_42\\model.npz",
+      "model_sha256": "3a51dbfd1b7b1b9f18b0992a57045c12bc40bbe692671b36c6965c5f07ac8654",
+      "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_ghost\\expanded_parents\\seed_42.npz",
+      "interactions": {
+        "0": 40357,
+        "2": 79818,
+        "3": 79825
+      },
+      "validation": {
+        "0": {
+          "success_rate": 0.99,
+          "success_length": 266.72727272727275,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.01,
+          "failure_length": 502.0,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 2480.7,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 2381.7,
+          "median_score": 2000.0,
+          "max_score": 3370.0,
+          "evaluation_seconds": 85.56470820000004,
+          "evaluation_decisions": 33408
+        },
+        "2": {
+          "success_rate": 0.53,
+          "success_length": 624.7924528301887,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.47,
+          "failure_length": 725.531914893617,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1832.5,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1779.5,
+          "median_score": 2000.0,
+          "max_score": 3490.0,
+          "evaluation_seconds": 154.7268841999994,
+          "evaluation_decisions": 73714
+        },
+        "3": {
+          "success_rate": 0.6,
+          "success_length": 577.5166666666667,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.4,
+          "failure_length": 783.1,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1919.0,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1859.0,
+          "median_score": 2000.0,
+          "max_score": 3410.0,
+          "evaluation_seconds": 137.52580709999984,
+          "evaluation_decisions": 72475
+        }
+      }
+    },
+    {
+      "arm": "mixed_ghost",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_ghost\\mixed_ghost\\seed_2026\\model.npz",
+      "model_sha256": "766b5155d89ff81ede0a232074404d7e879fb7967d297fde3cb3ed66f0edeba2",
+      "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_ghost\\expanded_parents\\seed_2026.npz",
+      "interactions": {
+        "0": 39888,
+        "2": 76970,
+        "3": 83142
+      },
+      "validation": {
+        "0": {
+          "success_rate": 0.96,
+          "success_length": 252.77083333333334,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.04,
+          "failure_length": 1158.0,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 2137.8,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 2041.8,
+          "median_score": 2000.0,
+          "max_score": 3360.0,
+          "evaluation_seconds": 81.02442759999985,
+          "evaluation_decisions": 35398
+        },
+        "2": {
+          "success_rate": 0.4,
+          "success_length": 565.25,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.6,
+          "failure_length": 744.3333333333334,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1692.8,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1652.8,
+          "median_score": 1690.0,
+          "max_score": 3580.0,
+          "evaluation_seconds": 169.7774884999999,
+          "evaluation_decisions": 73770
+        },
+        "3": {
+          "success_rate": 0.4,
+          "success_length": 591.025,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.59,
+          "failure_length": 916.0,
+          "timeout_rate": 0.01,
+          "timeout_length": 1500.0,
+          "mean_return": 1790.0,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1750.0,
+          "median_score": 1905.0,
+          "max_score": 3580.0,
+          "evaluation_seconds": 158.91363060000003,
+          "evaluation_decisions": 85685
+        }
+      }
+    }
+  ],
+  "means": {
+    "mixed_ghost": {
+      "0": {
+        "success_rate": 0.9533333333333334,
+        "mean_score": 2143.7
+      },
+      "2": {
+        "success_rate": 0.4966666666666667,
+        "mean_score": 1752.5333333333333
+      },
+      "3": {
+        "success_rate": 0.5366666666666666,
+        "mean_score": 1818.9666666666667
+      }
+    }
+  }
+}

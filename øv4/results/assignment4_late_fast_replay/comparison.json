@@ -1,0 +1,368 @@
+{
+  "runs": [
+    {
+      "arm": "specialist_fast",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_fast_replay\\specialist_fast\\seed_7\\model.npz",
+      "model_sha256": "62912e326b7312b2510c9ac2772d802de3602e3bcf5c2acb720c748c7694f816",
+      "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_7\\model.npz",
+      "parent_sha256": "2c006db0dd522b020c12489365db67e6e6404e8a7e874d53b8ca6e582a116234",
+      "feature_type": "navigation",
+      "interactions": {
+        "0": 62654,
+        "2": 88478,
+        "3": 88868
+      },
+      "update_interactions": {
+        "0": 50633,
+        "2": 72087,
+        "3": 72280
+      },
+      "collection_interactions": {
+        "0": 12021,
+        "2": 16391,
+        "3": 16588
+      },
+      "replay_interactions": {
+        "0": 50568,
+        "2": 72087,
+        "3": 72280
+      },
+      "cached_states": {
+        "0": 47,
+        "2": 35,
+        "3": 41
+      },
+      "opening_model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_7\\model.npz",
+      "opening_sha256": "2c006db0dd522b020c12489365db67e6e6404e8a7e874d53b8ca6e582a116234",
+      "switch_score": 1500,
+      "validation": {
+        "0": {
+          "success_rate": 0.9866666666666667,
+          "success_length": 356.86486486486484,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.013333333333333334,
+          "failure_length": 1096.0,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 2164.266666666667,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 2065.6,
+          "median_score": 2000.0,
+          "max_score": 3460.0,
+          "evaluation_seconds": 44.75734179999927,
+          "evaluation_decisions": 32379,
+          "arm": "specialist_fast",
+          "seed": 7,
+          "layout": 0,
+          "episodes": 75,
+          "seed_start": 981600,
+          "reached_1500": 1.0,
+          "conversion": 0.9866666666666667,
+          "late_life_loss": 0.013333333333333334
+        },
+        "2": {
+          "success_rate": 0.7333333333333333,
+          "success_length": 621.8545454545455,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.26666666666666666,
+          "failure_length": 769.4,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 2020.9333333333334,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1947.6,
+          "median_score": 2000.0,
+          "max_score": 2490.0,
+          "evaluation_seconds": 81.41407049999907,
+          "evaluation_decisions": 54465,
+          "arm": "specialist_fast",
+          "seed": 7,
+          "layout": 2,
+          "episodes": 75,
+          "seed_start": 981600,
+          "reached_1500": 0.9066666666666666,
+          "conversion": 0.8088235294117647,
+          "late_life_loss": 0.17333333333333334
+        },
+        "3": {
+          "success_rate": 0.68,
+          "success_length": 622.3529411764706,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.32,
+          "failure_length": 907.1666666666666,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 2013.2,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1945.2,
+          "median_score": 2000.0,
+          "max_score": 2740.0,
+          "evaluation_seconds": 114.12270779999926,
+          "evaluation_decisions": 58387,
+          "arm": "specialist_fast",
+          "seed": 7,
+          "layout": 3,
+          "episodes": 75,
+          "seed_start": 981600,
+          "reached_1500": 0.92,
+          "conversion": 0.7391304347826086,
+          "late_life_loss": 0.24
+        }
+      }
+    },
+    {
+      "arm": "specialist_fast",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_fast_replay\\specialist_fast\\seed_2026\\model.npz",
+      "model_sha256": "ccf68a151a48758859e5e4ee5fd805eca419dcaf732155710fc4a17c206c6d02",
+      "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_2026\\model.npz",
+      "parent_sha256": "586af64dfc26e2228721400fc200fbd3900d19849ce1e24fc78d30f97c1c4f61",
+      "feature_type": "navigation",
+      "interactions": {
+        "0": 62320,
+        "2": 88799,
+        "3": 88881
+      },
+      "update_interactions": {
+        "0": 50821,
+        "2": 72082,
+        "3": 72097
+      },
+      "collection_interactions": {
+        "0": 11499,
+        "2": 16717,
+        "3": 16784
+      },
+      "replay_interactions": {
+        "0": 50756,
+        "2": 72082,
+        "3": 72097
+      },
+      "cached_states": {
+        "0": 54,
+        "2": 31,
+        "3": 43
+      },
+      "opening_model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_2026\\model.npz",
+      "opening_sha256": "586af64dfc26e2228721400fc200fbd3900d19849ce1e24fc78d30f97c1c4f61",
+      "switch_score": 1500,
+      "validation": {
+        "0": {
+          "success_rate": 0.9466666666666667,
+          "success_length": 250.50704225352112,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.05333333333333334,
+          "failure_length": 872.0,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 2683.0666666666666,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 2588.4,
+          "median_score": 2040.0,
+          "max_score": 3450.0,
+          "evaluation_seconds": 37.48907370000052,
+          "evaluation_decisions": 26149,
+          "arm": "specialist_fast",
+          "seed": 2026,
+          "layout": 0,
+          "episodes": 75,
+          "seed_start": 981600,
+          "reached_1500": 0.9866666666666667,
+          "conversion": 0.9594594594594594,
+          "late_life_loss": 0.04
+        },
+        "2": {
+          "success_rate": 0.4266666666666667,
+          "success_length": 541.09375,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.5733333333333334,
+          "failure_length": 805.2558139534884,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1815.3333333333333,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1772.6666666666667,
+          "median_score": 1900.0,
+          "max_score": 3510.0,
+          "evaluation_seconds": 84.26562700000068,
+          "evaluation_decisions": 56816,
+          "arm": "specialist_fast",
+          "seed": 2026,
+          "layout": 2,
+          "episodes": 75,
+          "seed_start": 981600,
+          "reached_1500": 0.68,
+          "conversion": 0.6274509803921569,
+          "late_life_loss": 0.25333333333333335
+        },
+        "3": {
+          "success_rate": 0.6133333333333333,
+          "success_length": 500.45652173913044,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.38666666666666666,
+          "failure_length": 852.9655172413793,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1952.8,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1891.4666666666667,
+          "median_score": 2000.0,
+          "max_score": 3390.0,
+          "evaluation_seconds": 114.74891759999991,
+          "evaluation_decisions": 52632,
+          "arm": "specialist_fast",
+          "seed": 2026,
+          "layout": 3,
+          "episodes": 75,
+          "seed_start": 981600,
+          "reached_1500": 0.8666666666666667,
+          "conversion": 0.7076923076923077,
+          "late_life_loss": 0.25333333333333335
+        }
+      }
+    },
+    {
+      "arm": "specialist_fast",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_fast_replay\\specialist_fast\\seed_42\\model.npz",
+      "model_sha256": "58edb2dbd5baecd7af669206daff486b2ad8533ab7f959adfe32db78d134313e",
+      "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_42\\model.npz",
+      "parent_sha256": "cf4ef0743441cc429444fdff1360a2a7e5154f44d83828937129f44cffc15d4c",
+      "feature_type": "navigation",
+      "interactions": {
+        "0": 62335,
+        "2": 88941,
+        "3": 88724
+      },
+      "update_interactions": {
+        "0": 50695,
+        "2": 72155,
+        "3": 72150
+      },
+      "collection_interactions": {
+        "0": 11640,
+        "2": 16786,
+        "3": 16574
+      },
+      "replay_interactions": {
+        "0": 50630,
+        "2": 72155,
+        "3": 72150
+      },
+      "cached_states": {
+        "0": 55,
+        "2": 48,
+        "3": 36
+      },
+      "opening_model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_refined\\mixed_balanced\\seed_42\\model.npz",
+      "opening_sha256": "cf4ef0743441cc429444fdff1360a2a7e5154f44d83828937129f44cffc15d4c",
+      "switch_score": 1500,
+      "validation": {
+        "0": {
+          "success_rate": 0.8933333333333333,
+          "success_length": 305.76119402985074,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.10666666666666667,
+          "failure_length": 982.75,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 2620.9333333333334,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 2531.6,
+          "median_score": 2060.0,
+          "max_score": 3410.0,
+          "evaluation_seconds": 45.79184929999974,
+          "evaluation_decisions": 33223,
+          "arm": "specialist_fast",
+          "seed": 42,
+          "layout": 0,
+          "episodes": 75,
+          "seed_start": 981600,
+          "reached_1500": 0.9733333333333334,
+          "conversion": 0.9178082191780822,
+          "late_life_loss": 0.08
+        },
+        "2": {
+          "success_rate": 0.48,
+          "success_length": 627.0277777777778,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.52,
+          "failure_length": 833.8974358974359,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1898.4,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1850.4,
+          "median_score": 1990.0,
+          "max_score": 2220.0,
+          "evaluation_seconds": 84.38675899999907,
+          "evaluation_decisions": 59970,
+          "arm": "specialist_fast",
+          "seed": 42,
+          "layout": 2,
+          "episodes": 75,
+          "seed_start": 981600,
+          "reached_1500": 0.8933333333333333,
+          "conversion": 0.5373134328358209,
+          "late_life_loss": 0.41333333333333333
+        },
+        "3": {
+          "success_rate": 0.4666666666666667,
+          "success_length": 525.4571428571429,
+          "cleared_rate": 0.0,
+          "cleared_length": null,
+          "failure_rate": 0.5333333333333333,
+          "failure_length": 847.4,
+          "timeout_rate": 0.0,
+          "timeout_length": null,
+          "mean_return": 1838.2666666666667,
+          "unseen_state_fraction": 0.0,
+          "mean_score": 1791.6,
+          "median_score": 1950.0,
+          "max_score": 2220.0,
+          "evaluation_seconds": 93.12405579999904,
+          "evaluation_decisions": 57162,
+          "arm": "specialist_fast",
+          "seed": 42,
+          "layout": 3,
+          "episodes": 75,
+          "seed_start": 981600,
+          "reached_1500": 0.8533333333333334,
+          "conversion": 0.546875,
+          "late_life_loss": 0.38666666666666666
+        }
+      }
+    }
+  ],
+  "means": {
+    "specialist_fast": {
+      "0": {
+        "success_rate": 0.9422222222222222,
+        "mean_score": 2395.2,
+        "reached_1500": 0.9866666666666667,
+        "conversion": 0.9546447817680694
+      },
+      "2": {
+        "success_rate": 0.5466666666666666,
+        "mean_score": 1856.888888888889,
+        "reached_1500": 0.8266666666666667,
+        "conversion": 0.6578626475465809
+      },
+      "3": {
+        "success_rate": 0.5866666666666667,
+        "mean_score": 1876.088888888889,
+        "reached_1500": 0.88,
+        "conversion": 0.6645659141583055
+      }
+    }
+  }
+}

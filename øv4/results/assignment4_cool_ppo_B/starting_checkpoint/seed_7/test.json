@@ -1,0 +1,22 @@
+{
+  "success_rate": 0.7,
+  "success_length": 548.1571428571428,
+  "cleared_rate": 0.0,
+  "cleared_length": null,
+  "failure_rate": 0.285,
+  "failure_length": 924.5263157894736,
+  "timeout_rate": 0.015,
+  "timeout_length": 1500.0,
+  "mean_return": 1987.15,
+  "unseen_state_fraction": 0.0,
+  "mean_score": 1917.15,
+  "median_score": 2000.0,
+  "max_score": 2390.0,
+  "evaluation_seconds": 171.1644477000009,
+  "evaluation_decisions": 146940,
+  "seed": 7,
+  "arm": "starting_checkpoint",
+  "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_targeted_dagger_B\\targeted\\seed_7\\model.npz",
+  "reached_1500": 183,
+  "conversion_after_1500": 0.7650273224043715
+}

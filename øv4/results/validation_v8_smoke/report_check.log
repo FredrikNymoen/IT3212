@@ -1,0 +1,101 @@
+# Part 2 tables
+
+Source: 1 shard file(s), 8 run summaries. Cells are mean ± sample SD across trained seeds. A dash indicates unavailable data or no episodes with that outcome.
+
+Protocol: `mspacman_maze_pellets_walls_v8`. Training rows: 6/30; transfer rows: 2/10 for the standard five-seed study.
+
+## Outcomes, Settings A/B/C/D
+
+| Setting | Agent | n       | Success rate | Mean score | Mean return | Cleared rate | Failure rate | Timeout rate |
+|---------|-------|---------|--------------|------------|-------------|--------------|--------------|--------------|
+| A       | Q     | 1 seeds | 0.000        | 100        | 100.0       | 0.000        | 0.000        | 1.000        |
+| A       | PPO   | 1 seeds | 0.000        | 80         | 80.0        | 0.000        | 0.000        | 1.000        |
+| B       | Q     | 1 seeds | 0.000        | 55         | 55.0        | 0.000        | 0.000        | 1.000        |
+Written to ..\results\validation_v8_smoke\part2_tables.md
+| B       | PPO   | 1 seeds | 0.000        | 95         | 95.0        | 0.000        | 0.000        | 1.000        |
+| C       | Q     | 1 seeds | 0.000        | 100        | 68.0        | 0.000        | 0.000        | 1.000        |
+| C       | PPO   | 1 seeds | 0.000        | 95         | 63.0        | 0.000        | 0.000        | 1.000        |
+| D       | Q     | 1 seeds | 0.000        | 60         | 60.0        | 0.000        | 0.000        | 1.000        |
+| D       | PPO   | 1 seeds | 0.000        | 100        | 100.0       | 0.000        | 0.000        | 1.000        |
+
+## Episode lengths and state coverage
+
+| Setting | Agent | n       | Len (success) | Len (failure) | Unseen states |
+|---------|-------|---------|---------------|---------------|---------------|
+| A       | Q     | 1 seeds | -             | -             | 0.609         |
+| A       | PPO   | 1 seeds | -             | -             | 0.000         |
+| B       | Q     | 1 seeds | -             | -             | 0.812         |
+| B       | PPO   | 1 seeds | -             | -             | 0.000         |
+| C       | Q     | 1 seeds | -             | -             | 0.562         |
+| C       | PPO   | 1 seeds | -             | -             | 0.000         |
+| D       | Q     | 1 seeds | -             | -             | 0.758         |
+| D       | PPO   | 1 seeds | -             | -             | 0.000         |
+
+Lengths are agent decisions, excluding startup. Conditional lengths omit seeds with no matching outcomes; B-C length differences compare different sets of successful/failed episodes, not identical trajectories. Unseen state coverage applies to Q only; PPO has no lookup table.
+
+## Computation
+
+| Setting | Agent | n       | Agent decisions | Training env. steps | Training (s) | Curve eval. (s) | Final eval. (s) | Extra greedy eval. (s) |
+|---------|-------|---------|-----------------|---------------------|--------------|-----------------|-----------------|------------------------|
+| A       | Q     | 1 seeds | 126             | 256                 | 0.3          | 1.7             | 0.4             | 0.0                    |
+| A       | PPO   | 1 seeds | 64              | 256                 | 0.4          | 1.0             | 0.4             | 0.3                    |
+| B       | Q     | 1 seeds | 126             | 256                 | 0.3          | 1.7             | 0.3             | 0.0                    |
+| B       | PPO   | 1 seeds | 64              | 256                 | 0.4          | 1.0             | 0.4             | 0.3                    |
+| C       | Q     | 1 seeds | 126             | 256                 | 0.3          | 1.7             | 0.3             | 0.0                    |
+| C       | PPO   | 1 seeds | 64              | 256                 | 0.4          | 1.0             | 0.4             | 0.3                    |
+| D       | Q     | 1 seeds | 0               | 0                   | 0.0          | -               | 0.3             | -                      |
+| D       | PPO   | 1 seeds | 0               | 0                   | 0.0          | -               | 0.4             | -                      |
+
+## Additional greedy PPO evaluation
+
+| Setting | Trained seeds | Success rate | Mean score | Mean return |
+|---------|---------------|--------------|------------|-------------|
+| A       | 1             | 0.000        | 60         | 60.0        |
+| B       | 1             | 0.000        | 60         | 60.0        |
+| C       | 1             | 0.000        | 60         | 28.0        |
+
+Primary PPO results use sampled actions. Greedy results are a separate evaluation mode and are not pooled with primary results.
+
+## Setting B versus Setting C
+
+Step penalty effect, C minus B (paired on shared training seeds; returns are omitted because B and C define the reward differently)
+
+| Agent | seeds | success rate Δ | cleared rate Δ | failure rate Δ | timeout rate Δ | mean score Δ | success length Δ | failure length Δ |
+|-------|-------|----------------|----------------|----------------|----------------|--------------|------------------|------------------|
+| Q     | 1     | +0.000         | +0.000         | +0.000         | +0.000         | +45          | -                | -                |
+| PPO   | 1     | +0.000         | +0.000         | +0.000         | +0.000         | +0           | -                | -                |
+
+## Setting A versus Setting B
+
+Uncertainty effect, B minus A (paired on shared training seeds; same reward, so score and return both compare; only the sticky-action probability changes. Route choice is not established by these numbers, it needs episode traces)
+
+| Agent | seeds | success rate Δ | cleared rate Δ | failure rate Δ | timeout rate Δ | mean score Δ | success length Δ | failure length Δ |
+|-------|-------|----------------|----------------|----------------|----------------|--------------|------------------|------------------|
+| Q     | 1     | +0.000         | +0.000         | +0.000         | +0.000         | -45          | -                | -                |
+| PPO   | 1     | +0.000         | +0.000         | +0.000         | +0.000         | +15          | -                | -                |
+
+## Setting D, transfer from Setting B
+
+Transfer effect, D minus B (paired on shared training seeds; frozen B models on held-out maze 1, same game mode, reward and stickiness. Maze 1 uses a modified Atari start state)
+
+| Agent | seeds | success rate Δ | cleared rate Δ | failure rate Δ | timeout rate Δ | mean score Δ | success length Δ | failure length Δ |
+|-------|-------|----------------|----------------|----------------|----------------|--------------|------------------|------------------|
+| Q     | 1     | +0.000         | +0.000         | +0.000         | +0.000         | +5           | -                | -                |
+| PPO   | 1     | +0.000         | +0.000         | +0.000         | +0.000         | +5           | -                | -                |
+
+## Learning curves
+
+Points are unsmoothed means across training seeds. Bands show one sample standard deviation when at least two seeds are available.
+
+A: mean raw game score and success rate. Sources: main_PPO_A_42, main_Q_A_42.
+
+![A](learning_curve_A.png)
+
+B: mean raw game score and success rate. Sources: main_PPO_B_42, main_Q_B_42.
+
+![B](learning_curve_B.png)
+
+C: mean raw game score and success rate. Sources: main_PPO_C_42, main_Q_C_42.
+
+![C](learning_curve_C.png)
+

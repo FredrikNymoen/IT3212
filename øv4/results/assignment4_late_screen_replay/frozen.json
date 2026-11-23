@@ -1,0 +1,64 @@
+{
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "temperature": 0.2,
+  "layouts": [
+    0,
+    2,
+    3
+  ],
+  "seed_start": 980500,
+  "episodes": 70,
+  "runs": [
+    {
+      "arm": "replay",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_replay\\replay\\seed_42\\model.npz",
+      "model_sha256": "ce1952a053cd7f363a5cfd7bb4a193c1ba4265bfdc92371facfc1ad5b06ad1ec",
+      "feature_type": "navigation"
+    },
+    {
+      "arm": "replay_survival",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_replay\\replay_survival\\seed_42\\model.npz",
+      "model_sha256": "b538fe10d33ed703e3c59c5a5690bf585a749ad6b7caf3bca8272c6f512c47b4",
+      "feature_type": "navigation"
+    },
+    {
+      "arm": "replay",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_replay\\replay\\seed_7\\model.npz",
+      "model_sha256": "c5363342f40f6db5f60a4eafb4b6a0ffbd863159e1b4596c9b9ffd582c599e2d",
+      "feature_type": "navigation"
+    },
+    {
+      "arm": "replay_survival",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_replay\\replay_survival\\seed_2026\\model.npz",
+      "model_sha256": "f5e69798a5721f4da679832f0f33a270d21f15d141dd8b2f07c9f4089e8f82d2",
+      "feature_type": "navigation"
+    },
+    {
+      "arm": "replay",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_replay\\replay\\seed_2026\\model.npz",
+      "model_sha256": "fb5accaa9aa2bd22a8b61784e329c0de94a5837c3eea45b1a1b96af630b7aa03",
+      "feature_type": "navigation"
+    },
+    {
+      "arm": "replay_survival",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_replay\\replay_survival\\seed_7\\model.npz",
+      "model_sha256": "ff637fda59e0b05a1c71d038c2bcdb9505a5b86deff7dd4f3ce74ff2fa25d3e8",
+      "feature_type": "navigation"
+    }
+  ],
+  "source": {
+    "path": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_replay\\comparison.json",
+    "sha256": "ff2ae810980599e40915de41e14bc975a853d3d9f3c2ac75f2ad3977ac40b2b5"
+  }
+}

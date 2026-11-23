@@ -1,0 +1,49 @@
+{
+  "layouts": {
+    "0": {
+      "decisions": 5242,
+      "timer_positive": 3380,
+      "legacy_timer_overstated": 1692,
+      "frightened_flag_at_zero_timer": 0,
+      "tracked_power_consumptions": 36,
+      "tracked_power_consumptions_without_timer_increase": 0,
+      "timer_increases": 36,
+      "timer_increases_with_power_score": 36,
+      "timer_increases_with_pellet_removed": 36,
+      "ghost_combo_rewards": 77,
+      "combo_reward_matches_chain": 77,
+      "combo_reward_drops_frightened_flag": 77
+    },
+    "2": {
+      "decisions": 20441,
+      "timer_positive": 6755,
+      "legacy_timer_overstated": 2550,
+      "frightened_flag_at_zero_timer": 0,
+      "tracked_power_consumptions": 55,
+      "tracked_power_consumptions_without_timer_increase": 0,
+      "timer_increases": 55,
+      "timer_increases_with_power_score": 55,
+      "timer_increases_with_pellet_removed": 55,
+      "ghost_combo_rewards": 45,
+      "combo_reward_matches_chain": 45,
+      "combo_reward_drops_frightened_flag": 45
+    },
+    "3": {
+      "decisions": 20459,
+      "timer_positive": 8227,
+      "legacy_timer_overstated": 2375,
+      "frightened_flag_at_zero_timer": 0,
+      "tracked_power_consumptions": 70,
+      "tracked_power_consumptions_without_timer_increase": 0,
+      "timer_increases": 70,
+      "timer_increases_with_power_score": 70,
+      "timer_increases_with_pellet_removed": 70,
+      "ghost_combo_rewards": 48,
+      "combo_reward_matches_chain": 48,
+      "combo_reward_drops_frightened_flag": 48
+    }
+  },
+  "episodes_per_layout": 25,
+  "seed_start": 981100,
+  "checkpoint": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_2026\\model.npz"
+}

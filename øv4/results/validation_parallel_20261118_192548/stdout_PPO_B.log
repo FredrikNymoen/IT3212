@@ -1,0 +1,4 @@
+       main_PPO_B_42  success 0.000  return     95.0      3s
+   transfer_PPO_D_42  success 0.000
+
+2 runs written to D:\PROGRAMMERING\NTNU\2026\datadrevet\øv4ny\results\validation_parallel_20261118_192548\seed_results_PPO_B.csv

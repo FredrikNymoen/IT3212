@@ -1,0 +1,148 @@
+{
+  "reference_successes": 107,
+  "reference_success_rate": 0.535,
+  "evaluation_episodes_per_policy": 200,
+  "stage_means": {
+    "cloned": {
+      "success_rate": 0.058333333333333334,
+      "mean_score": 1049.1,
+      "median_score": 931.6666666666666
+    },
+    "fine_tuned": {
+      "success_rate": 0.19333333333333333,
+      "mean_score": 1482.4666666666667,
+      "median_score": 1485.0
+    }
+  },
+  "runs": [
+    {
+      "seed": 7,
+      "fine_tuning_interactions": 30000,
+      "best_cloning_epoch": {
+        "epoch": 23,
+        "loss": 0.3810968881074511,
+        "accuracy": 0.843975036005761
+      },
+      "cloned": {
+        "success_rate": 0.03,
+        "success_length": 847.3333333333334,
+        "cleared_rate": 0.0,
+        "cleared_length": null,
+        "failure_rate": 0.96,
+        "failure_length": 886.9375,
+        "timeout_rate": 0.01,
+        "timeout_length": 1500.0,
+        "mean_return": 929.65,
+        "unseen_state_fraction": 0.0,
+        "mean_score": 926.65,
+        "median_score": 810.0,
+        "max_score": 2390.0,
+        "evaluation_seconds": 206.81675689999975,
+        "evaluation_decisions": 191376
+      },
+      "fine_tuned": {
+        "success_rate": 0.14,
+        "success_length": 859.0,
+        "cleared_rate": 0.0,
+        "cleared_length": null,
+        "failure_rate": 0.835,
+        "failure_length": 909.7964071856287,
+        "timeout_rate": 0.025,
+        "timeout_length": 1500.0,
+        "mean_return": 1489.95,
+        "unseen_state_fraction": 0.0,
+        "mean_score": 1475.95,
+        "median_score": 1465.0,
+        "max_score": 2360.0,
+        "evaluation_seconds": 198.59253859999808,
+        "evaluation_decisions": 196488
+      }
+    },
+    {
+      "seed": 42,
+      "fine_tuning_interactions": 30000,
+      "best_cloning_epoch": {
+        "epoch": 23,
+        "loss": 0.3843659632958016,
+        "accuracy": 0.8460153624579932
+      },
+      "cloned": {
+        "success_rate": 0.06,
+        "success_length": 829.3333333333334,
+        "cleared_rate": 0.0,
+        "cleared_length": null,
+        "failure_rate": 0.9,
+        "failure_length": 912.5111111111111,
+        "timeout_rate": 0.04,
+        "timeout_length": 1500.0,
+        "mean_return": 1108.25,
+        "unseen_state_fraction": 0.0,
+        "mean_score": 1102.25,
+        "median_score": 1015.0,
+        "max_score": 3500.0,
+        "evaluation_seconds": 213.91317079999862,
+        "evaluation_decisions": 199204
+      },
+      "fine_tuned": {
+        "success_rate": 0.14,
+        "success_length": 678.7857142857143,
+        "cleared_rate": 0.0,
+        "cleared_length": null,
+        "failure_rate": 0.855,
+        "failure_length": 836.514619883041,
+        "timeout_rate": 0.005,
+        "timeout_length": 1500.0,
+        "mean_return": 1370.05,
+        "unseen_state_fraction": 0.0,
+        "mean_score": 1356.05,
+        "median_score": 1330.0,
+        "max_score": 2540.0,
+        "evaluation_seconds": 184.04490870000154,
+        "evaluation_decisions": 176550
+      }
+    },
+    {
+      "seed": 2026,
+      "fine_tuning_interactions": 30000,
+      "best_cloning_epoch": {
+        "epoch": 24,
+        "loss": 0.3780019716195774,
+        "accuracy": 0.8446951512241959
+      },
+      "cloned": {
+        "success_rate": 0.085,
+        "success_length": 884.4117647058823,
+        "cleared_rate": 0.0,
+        "cleared_length": null,
+        "failure_rate": 0.89,
+        "failure_length": 889.3258426966293,
+        "timeout_rate": 0.025,
+        "timeout_length": 1500.0,
+        "mean_return": 1126.9,
+        "unseen_state_fraction": 0.0,
+        "mean_score": 1118.4,
+        "median_score": 970.0,
+        "max_score": 2650.0,
+        "evaluation_seconds": 198.45442919999914,
+        "evaluation_decisions": 193835
+      },
+      "fine_tuned": {
+        "success_rate": 0.3,
+        "success_length": 857.4666666666667,
+        "cleared_rate": 0.0,
+        "cleared_length": null,
+        "failure_rate": 0.655,
+        "failure_length": 959.4809160305343,
+        "timeout_rate": 0.045,
+        "timeout_length": 1500.0,
+        "mean_return": 1645.4,
+        "unseen_state_fraction": 0.0,
+        "mean_score": 1615.4,
+        "median_score": 1660.0,
+        "max_score": 2710.0,
+        "evaluation_seconds": 189.7313119999999,
+        "evaluation_decisions": 203640
+      }
+    }
+  ]
+}

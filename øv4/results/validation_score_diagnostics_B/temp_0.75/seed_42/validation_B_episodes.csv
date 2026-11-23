@@ -1,0 +1,3 @@
+seed,setting,length,outcome,raw_score,episode_return
+993000,B,879,success,2000.0,2100.0
+993001,B,1148,failure,1660.0,1660.0

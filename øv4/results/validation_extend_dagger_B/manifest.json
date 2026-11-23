@@ -1,0 +1,40 @@
+{
+  "source": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_dagger_B",
+  "source_sha256": {
+    "manifest.json": "6de15f1a001b8d75a6e686f84ee4e77bd9556fc48e7395891647225637c08602",
+    "seed_42/dagger.npz": "34f7ad48c02aef0758fa3c541b30df473649c72333f9ecc62d6b61a57b00899d",
+    "seed_42/dagger_ppo.npz": "b25b0b5162ab80ca561f8d29801bab74cefe1c45788e4e124ad0ae479b7518bc"
+  },
+  "code_sha256": {
+    "extend_dagger_ppo.py": "3ee370ce42048814f52de3bcadbd7ca2c9997eb0625f4be4a9f8985fbdbfd9f9",
+    "dagger_reference.py": "e14fcffc60a619421dc25a40c7756251fb3bb664732c3821ee2e1eed9efc110c",
+    "imitate_reference.py": "6b3ceb6a8366aa1eee4be083d7287ac325aec1e924bd12b677e96f690459ad4a",
+    "reference_policy.py": "42d646261d0a0fc5c7b447a0e86683ee65fdc60bd59277475d7bc256d1902e7d",
+    "compare_navigation.py": "bcf9e2083ff456c3cd14fdc326b382aa3c96c9dc10f9020c2c67ce4de3ae6666",
+    "part2_run.py": "b8e67644bca6148d56bd2753f06bf214a526f743760eaea2acce4b8093907b82",
+    "mspacman.py": "01b94e1d8d69359186e6cd4935f9fe9c3b25ef54526f549719b0f3d89ef643d0"
+  },
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "setting": "B",
+  "seeds": [
+    42
+  ],
+  "budgets": [
+    30000,
+    256,
+    384
+  ],
+  "smoke": true,
+  "learning_rate": 0.0001,
+  "entropy": 0.003,
+  "validation_seed_start": 960000,
+  "validation_episodes": 2,
+  "test_seed_start": 970000,
+  "test_episodes": 2,
+  "selection": "One budget across seeds: mean validation success, mean score, then shorter budget"
+}

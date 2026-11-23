@@ -1,0 +1,86 @@
+{
+  "runs": [
+    {
+      "arm": "mixed",
+      "seed": 7,
+      "layout": 1,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_matched\\mixed\\seed_7\\model.npz",
+      "model_sha256": "4357328a4c154e3a9f42ce719b78380be30206138b4b55477fa91117c2569701",
+      "episodes": 450,
+      "seed_start": 985000,
+      "success_rate": 0.43555555555555553,
+      "success_length": 645.3724489795918,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.5577777777777778,
+      "failure_length": 859.4422310756972,
+      "timeout_rate": 0.006666666666666667,
+      "timeout_length": 1500.0,
+      "mean_return": 1797.8666666666666,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1754.3111111111111,
+      "median_score": 1875.0,
+      "max_score": 2790.0,
+      "evaluation_seconds": 408.85394030000043,
+      "evaluation_decisions": 375963
+    },
+    {
+      "arm": "mixed",
+      "seed": 42,
+      "layout": 1,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_matched\\mixed\\seed_42\\model.npz",
+      "model_sha256": "a1da7af96a7a4a9e31ec5f10da9a6f3ffcde7af9bc43d72163dbae9c669bada2",
+      "episodes": 450,
+      "seed_start": 985000,
+      "success_rate": 0.32666666666666666,
+      "success_length": 704.0884353741496,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.6688888888888889,
+      "failure_length": 843.6810631229235,
+      "timeout_rate": 0.0044444444444444444,
+      "timeout_length": 1500.0,
+      "mean_return": 1691.9555555555555,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1659.2888888888888,
+      "median_score": 1775.0,
+      "max_score": 2740.0,
+      "evaluation_seconds": 419.8013678999996,
+      "evaluation_decisions": 389699
+    },
+    {
+      "arm": "mixed",
+      "seed": 2026,
+      "layout": 1,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_matched\\mixed\\seed_2026\\model.npz",
+      "model_sha256": "d91581f061a8525db25360fcb04c28129609a60975f30ad417e24d2454ad728c",
+      "episodes": 450,
+      "seed_start": 985000,
+      "success_rate": 0.2511111111111111,
+      "success_length": 735.3451327433628,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.7266666666666667,
+      "failure_length": 955.6819571865443,
+      "timeout_rate": 0.022222222222222223,
+      "timeout_length": 1500.0,
+      "mean_return": 1625.2,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1600.088888888889,
+      "median_score": 1615.0,
+      "max_score": 2760.0,
+      "evaluation_seconds": 457.50833540000076,
+      "evaluation_decisions": 439852
+    }
+  ],
+  "means": {
+    "mixed": {
+      "1": {
+        "success_rate": 0.3377777777777778,
+        "mean_score": 1671.2296296296297,
+        "failure_rate": 0.6511111111111111,
+        "timeout_rate": 0.011111111111111112
+      }
+    }
+  }
+}

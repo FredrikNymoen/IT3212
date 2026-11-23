@@ -1,0 +1,66 @@
+{
+  "protocol_id": "mspacman_maze_bonus_v2",
+  "environment": "ALE/MsPacman-v5",
+  "settings": {
+    "A": {
+      "sticky": 0.0,
+      "mode": 0,
+      "maze": 0,
+      "penalty": 0.0
+    },
+    "B": {
+      "sticky": 0.25,
+      "mode": 0,
+      "maze": 0,
+      "penalty": 0.0
+    },
+    "C": {
+      "sticky": 0.25,
+      "mode": 0,
+      "maze": 0,
+      "penalty": -0.5
+    },
+    "D": {
+      "sticky": 0.25,
+      "mode": 0,
+      "maze": 1,
+      "penalty": 0.0
+    }
+  },
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "smoke": false,
+  "budget": 100000,
+  "train_seeds": [
+    42,
+    7,
+    2026,
+    123,
+    999
+  ],
+  "evaluation_episodes": 200,
+  "eval_seed_start": 300000,
+  "curve_seed_start": 200000,
+  "curve_episodes": 20,
+  "every_environment_interactions": 25000,
+  "smoothing": "none",
+  "startup_steps": 65,
+  "action_rng": "SeedSequence([episode_seed, 1])",
+  "python": "3.12.5",
+  "os": "Windows-11-10.0.26200-SP0",
+  "cpu": "Intel64 Family 6 Model 170 Stepping 4, GenuineIntel",
+  "packages": {
+    "ale-py": "0.12.1",
+    "gymnasium": "1.4.0",
+    "numpy": "1.26.4",
+    "pandas": "3.0.6"
+  },
+  "code_sha256": {
+    "part2_run.py": "60f12f35383b76c1a1bb319e7c3d07930d5ea3f0062961314e1e3ffbed53dd32",
+    "mspacman.py": "24ca503d3413e8396ed2f4281550916ba35dcf7572424c1d5658fafb2c1fa414"
+  }
+}

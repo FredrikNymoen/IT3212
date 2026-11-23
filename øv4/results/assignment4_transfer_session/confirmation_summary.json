@@ -1,0 +1,109 @@
+{
+  "verified_episodes": 4500,
+  "summaries": {
+    "starting": {
+      "episodes": 1350,
+      "successes": 395,
+      "success_rate": 0.29259259259259257,
+      "mean_score": 1611.6222222222223,
+      "reached_1500": 0.6325925925925926,
+      "success_given_1500": 0.46252927400468385,
+      "per_seed": {
+        "7": 0.4111111111111111,
+        "42": 0.2111111111111111,
+        "2026": 0.25555555555555554
+      },
+      "mean_power_pellets": 2.4096296296296296,
+      "power_pellet_rate": 0.9844444444444445,
+      "median_first_power": 84,
+      "mean_ghost_points": 400.2962962962963,
+      "mean_ghosts_eaten": 1.4348148148148148
+    },
+    "mixed": {
+      "episodes": 1350,
+      "successes": 456,
+      "success_rate": 0.3377777777777778,
+      "mean_score": 1671.2296296296297,
+      "reached_1500": 0.6844444444444444,
+      "success_given_1500": 0.4935064935064935,
+      "per_seed": {
+        "7": 0.43555555555555553,
+        "42": 0.32666666666666666,
+        "2026": 0.2511111111111111
+      }
+    },
+    "mixed_balanced": {
+      "episodes": 1350,
+      "successes": 530,
+      "success_rate": 0.3925925925925926,
+      "mean_score": 1731.1037037037038,
+      "reached_1500": 0.7437037037037038,
+      "success_given_1500": 0.5278884462151394,
+      "per_seed": {
+        "7": 0.4777777777777778,
+        "2026": 0.3288888888888889,
+        "42": 0.3711111111111111
+      },
+      "mean_power_pellets": 2.5244444444444443,
+      "power_pellet_rate": 0.9903703703703703,
+      "median_first_power": 77,
+      "mean_ghost_points": 473.77777777777777,
+      "mean_ghosts_eaten": 1.6896296296296296
+    },
+    "mixed_wrapped": {
+      "episodes": 450,
+      "successes": 188,
+      "success_rate": 0.4177777777777778,
+      "mean_score": 1799.5333333333333,
+      "reached_1500": 0.8288888888888889,
+      "success_given_1500": 0.5040214477211796,
+      "per_seed": {
+        "2026": 0.4177777777777778
+      }
+    }
+  },
+  "paired_contrasts": {
+    "mixed": {
+      "seeds": [
+        7,
+        42,
+        2026
+      ],
+      "difference": 0.04518518518518518,
+      "conditional_episode_interval": [
+        0.008888888888888882,
+        0.08074074074074072
+      ],
+      "gains": 308,
+      "losses": 247
+    },
+    "mixed_balanced": {
+      "seeds": [
+        7,
+        42,
+        2026
+      ],
+      "difference": 0.1,
+      "conditional_episode_interval": [
+        0.06444444444444444,
+        0.13555555555555557
+      ],
+      "gains": 360,
+      "losses": 225
+    },
+    "balanced_vs_mixed": {
+      "seeds": [
+        7,
+        42,
+        2026
+      ],
+      "difference": 0.054814814814814816,
+      "conditional_episode_interval": [
+        0.01925925925925926,
+        0.09185185185185184
+      ],
+      "gains": 332,
+      "losses": 258
+    }
+  }
+}

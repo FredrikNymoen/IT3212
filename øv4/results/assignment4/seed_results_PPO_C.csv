@@ -1,0 +1,4 @@
+run_id,algorithm,condition,seed,stage,training_interactions,training_seconds,environment_interactions,startup_interactions,final_evaluation_episodes,success_rate,success_length,failure_rate,failure_length,timeout_rate,timeout_length,mean_return,mean_score,median_score,max_score,evaluation_seconds,evaluation_decisions,greedy_success_rate,greedy_mean_return,evaluation_policy,wall_seconds
+main_PPO_C_42,PPO,C,42,main,100000,192.75192070007324,111765,11765,200,0.01,550.0,0.99,588.8181818181819,0.0,,286.935,581.15,505.0,3250.0,144.25393590005115,130686,0.0,-189.09,sampled,464.27677340013906
+main_PPO_C_7,PPO,C,7,main,100000,209.53742810012773,111960,11960,200,0.0,,1.0,609.69,0.0,,245.405,550.25,455.0,1960.0,147.6439735996537,134938,0.0,-163.0,sampled,520.7933948002756
+main_PPO_C_2026,PPO,C,2026,main,100000,261.705370800104,111700,11700,200,0.0,,1.0,588.47,0.0,,396.215,690.45,610.0,1910.0,157.84423359995708,130694,0.0,171.955,sampled,584.4398928000592

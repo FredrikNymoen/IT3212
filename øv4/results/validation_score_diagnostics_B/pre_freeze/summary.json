@@ -1,0 +1,15 @@
+{
+  "episodes": 1,
+  "replayed_positions": 4,
+  "episodes_with_surviving_alternative": 0,
+  "episodes_with_success_alternative": 0,
+  "positions_with_surviving_alternative": 0,
+  "horizon": 64,
+  "freeze_lookbacks": [
+    1,
+    4,
+    8,
+    16
+  ],
+  "replay_code_sha256": "f63a4be8d5aa74eef6430f51a68cc47d1a5a52cb9eccd51c9e2ed6f2bad0b610"
+}

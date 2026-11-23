@@ -1,0 +1,43 @@
+{
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "temperature": 0.2,
+  "layouts": [
+    0,
+    2,
+    3
+  ],
+  "seed_start": 980500,
+  "episodes": 70,
+  "runs": [
+    {
+      "arm": "long_control",
+      "seed": 7,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_long\\control\\seed_7\\model.npz",
+      "model_sha256": "8fa1c044f56e0280b9273d8502a34a367197cc627c4d59b9f6d67c4ca59e6062",
+      "feature_type": "navigation"
+    },
+    {
+      "arm": "long_control",
+      "seed": 42,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_long\\control\\seed_42\\model.npz",
+      "model_sha256": "66ca7a603f6419248b18c2baca13b55baa0633327099000e38267516460df05b",
+      "feature_type": "navigation"
+    },
+    {
+      "arm": "long_control",
+      "seed": 2026,
+      "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_long\\control\\seed_2026\\model.npz",
+      "model_sha256": "64b95c0d66a7ec34f90b9973cc7d82022f8e017756824f0cf190e2de19b0d79c",
+      "feature_type": "navigation"
+    }
+  ],
+  "source": {
+    "path": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_late_long\\comparison.json",
+    "sha256": "297ac8c8a3a229215d5ef8a9038dc9ad46654d883cf32c333171596a4fcea271"
+  }
+}

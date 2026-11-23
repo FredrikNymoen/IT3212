@@ -1,0 +1,63 @@
+{
+  "arm": "b_only",
+  "seed": 7,
+  "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_matched\\b_only\\seed_7\\model.npz",
+  "model_sha256": "caf64eab603f8493e4a9d17bd64fb3864d4633e3a3064a422f3348b5f84c0946",
+  "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_7\\model.npz",
+  "interactions": {
+    "0": 200000
+  },
+  "validation": {
+    "0": {
+      "success_rate": 0.82,
+      "success_length": 408.2317073170732,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.18,
+      "failure_length": 832.3333333333334,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 2056.4,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1974.4,
+      "median_score": 2000.0,
+      "max_score": 2690.0,
+      "evaluation_seconds": 86.94325489999983,
+      "evaluation_decisions": 54957
+    },
+    "2": {
+      "success_rate": 0.4,
+      "success_length": 669.05,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.6,
+      "failure_length": 673.7666666666667,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 1607.9,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1567.9,
+      "median_score": 1760.0,
+      "max_score": 2630.0,
+      "evaluation_seconds": 160.9711471999999,
+      "evaluation_decisions": 73688
+    },
+    "3": {
+      "success_rate": 0.38,
+      "success_length": 685.6842105263158,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.62,
+      "failure_length": 793.483870967742,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 1706.6,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1668.6,
+      "median_score": 1835.0,
+      "max_score": 2700.0,
+      "evaluation_seconds": 138.98598449999963,
+      "evaluation_decisions": 81752
+    }
+  }
+}

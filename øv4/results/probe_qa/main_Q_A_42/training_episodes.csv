@@ -1,0 +1,6 @@
+seed,setting,length,outcome,raw_score,episode_return,environment_interactions
+192575712,A,382,failure,220.0,220.0,447
+1662284001,A,328,failure,210.0,210.0,840
+1406027060,A,366,failure,190.0,190.0,1271
+943045393,A,452,failure,200.0,200.0,1788
+930460122,A,147,budget_cut,70.0,70.0,2000

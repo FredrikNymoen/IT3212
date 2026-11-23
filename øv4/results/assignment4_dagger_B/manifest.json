@@ -1,0 +1,48 @@
+{
+  "source": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_imitation_B",
+  "source_sha256": {
+    "demonstrations.npz": "5edc9f25200c5e7f06b03004aab8d04eb0ea4db95bcd021b287c15b17f0fbc7c",
+    "manifest.json": "dcd25a8820d4003b550f1ac6ad92dce9394bba40e022e726029aedccfc7a0b55",
+    "seed_42\\cloned.npz": "7e4068d8cf5ed823e8824a32256f804a4e66d15c1c556fc863259235df9c6b1c",
+    "seed_42\\fine_tuned.npz": "666298144bbaf10be75aba367ceccb83d9fd5e72f294ca2a4b6833e4ed3e99f8",
+    "seed_7\\cloned.npz": "bd82a642cd8d9ab9fb8e2491185e00bb0d84d06aebedda783a0f1b8ff5375ba0",
+    "seed_7\\fine_tuned.npz": "5d059d94fb8ba77711dd2d638cb0ec13a149d66099443f4e3b15ae87d7cde8a2",
+    "seed_2026\\cloned.npz": "939bc180591553cea16a8d52e94a1b8e8be563e3df1ee3f3a596acfcaf5d2a56",
+    "seed_2026\\fine_tuned.npz": "5aa9501e8d77a6e47f062d57d4cf7b00c3acafd3eafb39f7f1b281b72484f00b"
+  },
+  "code_sha256": {
+    "dagger_reference.py": "e14fcffc60a619421dc25a40c7756251fb3bb664732c3821ee2e1eed9efc110c",
+    "imitate_reference.py": "6b3ceb6a8366aa1eee4be083d7287ac325aec1e924bd12b677e96f690459ad4a",
+    "reference_policy.py": "42d646261d0a0fc5c7b447a0e86683ee65fdc60bd59277475d7bc256d1902e7d",
+    "compare_navigation.py": "bcf9e2083ff456c3cd14fdc326b382aa3c96c9dc10f9020c2c67ce4de3ae6666",
+    "part2_run.py": "b8e67644bca6148d56bd2753f06bf214a526f743760eaea2acce4b8093907b82",
+    "mspacman.py": "01b94e1d8d69359186e6cd4935f9fe9c3b25ef54526f549719b0f3d89ef643d0"
+  },
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "protocol_id": "mspacman_v8_power_pellet_wall_fix",
+  "setting": "B",
+  "seeds": [
+    42,
+    7,
+    2026
+  ],
+  "sampled": true,
+  "eval_seed_start": 950000,
+  "eval_episodes": 200,
+  "rollout_seed_start": 940000,
+  "teacher_mixing": [
+    0.25,
+    0.1
+  ],
+  "rollouts_per_round": 12,
+  "validation_rollouts_per_round": 2,
+  "cloning_epochs_per_round": 12,
+  "fine_tuning_interactions": 30000,
+  "fine_tuning_lr": 0.0001,
+  "fine_tuning_entropy": 0.003
+}

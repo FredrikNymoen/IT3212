@@ -1,0 +1,19 @@
+{
+  "success_rate": 0.0,
+  "success_length": null,
+  "cleared_rate": 0.0,
+  "cleared_length": null,
+  "failure_rate": 1.0,
+  "failure_length": 969.0,
+  "timeout_rate": 0.0,
+  "timeout_length": null,
+  "mean_return": 840.0,
+  "unseen_state_fraction": 0.0,
+  "mean_score": 840.0,
+  "median_score": 840.0,
+  "max_score": 1040.0,
+  "evaluation_seconds": 2.4806871000000683,
+  "evaluation_decisions": 2068,
+  "seed": 42,
+  "stage": "dagger_ppo"
+}

@@ -1,0 +1,133 @@
+{
+  "0": {
+    "CachedNavigationTask": {
+      "spawn": [
+        101.5,
+        79.5
+      ],
+      "power_path_distances": [
+        148.0,
+        112.0,
+        160.0,
+        124.0
+      ],
+      "visible_dots": 150,
+      "tunnel_rows": []
+    },
+    "WrappedNavigationTask": {
+      "spawn": [
+        101.5,
+        79.5
+      ],
+      "power_path_distances": [
+        148.0,
+        112.0,
+        160.0,
+        124.0
+      ],
+      "visible_dots": 150,
+      "tunnel_rows": [
+        53.5,
+        101.5
+      ]
+    }
+  },
+  "1": {
+    "CachedNavigationTask": {
+      "spawn": [
+        101.5,
+        79.5
+      ],
+      "power_path_distances": [
+        148.0,
+        112.0,
+        160.0,
+        124.0
+      ],
+      "visible_dots": 146,
+      "tunnel_rows": []
+    },
+    "WrappedNavigationTask": {
+      "spawn": [
+        101.5,
+        79.5
+      ],
+      "power_path_distances": [
+        148.0,
+        112.0,
+        160.0,
+        124.0
+      ],
+      "visible_dots": 146,
+      "tunnel_rows": [
+        65.5,
+        161.5
+      ]
+    }
+  },
+  "2": {
+    "CachedNavigationTask": {
+      "spawn": [
+        101.5,
+        79.5
+      ],
+      "power_path_distances": [
+        148.0,
+        112.0,
+        160.0,
+        124.0
+      ],
+      "visible_dots": 154,
+      "tunnel_rows": []
+    },
+    "WrappedNavigationTask": {
+      "spawn": [
+        101.5,
+        79.5
+      ],
+      "power_path_distances": [
+        148.0,
+        112.0,
+        160.0,
+        124.0
+      ],
+      "visible_dots": 154,
+      "tunnel_rows": [
+        101.5
+      ]
+    }
+  },
+  "3": {
+    "CachedNavigationTask": {
+      "spawn": [
+        101.5,
+        79.5
+      ],
+      "power_path_distances": [
+        148.0,
+        112.0,
+        160.0,
+        124.0
+      ],
+      "visible_dots": 150,
+      "tunnel_rows": []
+    },
+    "WrappedNavigationTask": {
+      "spawn": [
+        101.5,
+        79.5
+      ],
+      "power_path_distances": [
+        148.0,
+        112.0,
+        160.0,
+        124.0
+      ],
+      "visible_dots": 150,
+      "tunnel_rows": [
+        77.5,
+        101.5
+      ]
+    }
+  }
+}

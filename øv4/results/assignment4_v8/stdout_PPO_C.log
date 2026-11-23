@@ -1,0 +1,8 @@
+using selected_Q_A.json: {'Q': {'position_bins': 4}, 'PPO': {'lr': 0.001}}
+       main_PPO_C_42  success 0.055  return    440.5    292s
+        main_PPO_C_7  success 0.075  return    666.8    346s
+     main_PPO_C_2026  success 0.020  return    577.2    328s
+      main_PPO_C_123  success 0.030  return    402.5    337s
+      main_PPO_C_999  success 0.050  return    603.3    324s
+
+5 runs written to D:\PROGRAMMERING\NTNU\2026\datadrevet\øv4ny\results\assignment4_v8\seed_results_PPO_C.csv

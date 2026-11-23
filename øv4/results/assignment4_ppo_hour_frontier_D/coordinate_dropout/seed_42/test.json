@@ -1,0 +1,21 @@
+{
+  "success_rate": 0.16,
+  "success_length": 676.25,
+  "cleared_rate": 0.0,
+  "cleared_length": null,
+  "failure_rate": 0.84,
+  "failure_length": 776.2857142857143,
+  "timeout_rate": 0.0,
+  "timeout_length": null,
+  "mean_return": 1495.8666666666666,
+  "unseen_state_fraction": 0.0,
+  "mean_score": 1479.8666666666666,
+  "median_score": 1530.0,
+  "max_score": 2420.0,
+  "evaluation_seconds": 171.8386731999999,
+  "evaluation_decisions": 123792,
+  "name": "coordinate_dropout",
+  "seed": 42,
+  "temperature": 0.2,
+  "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_dropout\\coordinate_dropout\\seed_42\\model.npz"
+}

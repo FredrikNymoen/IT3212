@@ -1,0 +1,21 @@
+{
+  "success_rate": 0.39,
+  "success_length": 587.4615384615385,
+  "cleared_rate": 0.0,
+  "cleared_length": null,
+  "failure_rate": 0.61,
+  "failure_length": 894.2295081967213,
+  "timeout_rate": 0.0,
+  "timeout_length": null,
+  "mean_return": 1741.9,
+  "unseen_state_fraction": 0.0,
+  "mean_score": 1702.9,
+  "median_score": 1775.0,
+  "max_score": 2740.0,
+  "evaluation_seconds": 99.84791600000244,
+  "evaluation_decisions": 83959,
+  "seed": 2026,
+  "budget": 60000,
+  "episodes": 100,
+  "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_dagger_budget_B\\budget_60000\\seed_2026\\model.npz"
+}

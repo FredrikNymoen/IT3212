@@ -1,0 +1,6 @@
+run_id,algorithm,condition,seed,stage,training_interactions,training_seconds,environment_interactions,startup_interactions,final_evaluation_episodes,success_rate,success_length,failure_rate,failure_length,timeout_rate,timeout_length,mean_return,mean_score,median_score,max_score,evaluation_seconds,evaluation_decisions,evaluation_policy,wall_seconds
+main_Q_A_42,Q,A,42,main,100000,167.4407941000536,114560,14560,200,0.0,,1.0,554.0,0.0,,310.0,310.0,310.0,310.0,139.46367459977046,123800,"greedy, ties uniform",307.0036189001985
+main_Q_A_7,Q,A,7,main,100000,185.6904198001139,113260,13260,200,0.005,732.0,0.995,676.1507537688442,0.0,,833.55,833.55,820.0,2340.0,155.32847909955308,148286,"greedy, ties uniform",341.1694348002784
+main_Q_A_2026,Q,A,2026,main,100000,207.7171009001322,113260,13260,200,0.0,,1.0,704.86,0.0,,802.85,802.85,760.0,1600.0,220.16856939997524,153972,"greedy, ties uniform",428.03156090015545
+main_Q_A_123,Q,A,123,main,100000,214.50609639985487,113585,13585,200,0.0,,1.0,430.0,0.0,,190.0,190.0,190.0,190.0,123.37360020028427,99000,"greedy, ties uniform",338.0577799999155
+main_Q_A_999,Q,A,999,main,100000,207.9599943999201,113780,13780,200,0.0,,1.0,490.0,0.0,,290.0,290.0,290.0,290.0,151.05331850005314,111000,"greedy, ties uniform",359.18321939976886

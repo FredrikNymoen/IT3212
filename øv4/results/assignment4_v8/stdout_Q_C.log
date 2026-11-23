@@ -1,0 +1,8 @@
+using selected_Q_A.json: {'Q': {'position_bins': 4}, 'PPO': {'lr': 0.001}}
+         main_Q_C_42  success 0.000  return    187.8    190s
+          main_Q_C_7  success 0.000  return    260.5    215s
+       main_Q_C_2026  success 0.005  return    134.4    214s
+        main_Q_C_123  success 0.000  return    104.0    212s
+        main_Q_C_999  success 0.000  return    193.5    216s
+
+5 runs written to D:\PROGRAMMERING\NTNU\2026\datadrevet\øv4ny\results\assignment4_v8\seed_results_Q_C.csv

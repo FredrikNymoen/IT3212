@@ -1,0 +1,65 @@
+{
+  "arm": "mixed_hot",
+  "seed": 2026,
+  "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_variants\\mixed_hot\\seed_2026\\model.npz",
+  "model_sha256": "f5d97d830788513fc8541c268a9256b716f2fb371e57b691078f95e5f624d67a",
+  "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_ppo_hour_cold_continuation_B\\training\\budget_30000\\seed_2026\\model.npz",
+  "interactions": {
+    "0": 44619,
+    "2": 75867,
+    "3": 79514
+  },
+  "validation": {
+    "0": {
+      "success_rate": 0.99,
+      "success_length": 280.2020202020202,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.01,
+      "failure_length": 732.0,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 2173.0,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 2074.0,
+      "median_score": 2000.0,
+      "max_score": 3360.0,
+      "evaluation_seconds": 68.33032209999965,
+      "evaluation_decisions": 34972
+    },
+    "2": {
+      "success_rate": 0.38,
+      "success_length": 678.2368421052631,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.62,
+      "failure_length": 835.8064516129032,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 1757.6,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1719.6,
+      "median_score": 1735.0,
+      "max_score": 3510.0,
+      "evaluation_seconds": 146.22090030000027,
+      "evaluation_decisions": 84093
+    },
+    "3": {
+      "success_rate": 0.55,
+      "success_length": 575.4363636363636,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.43,
+      "failure_length": 924.7441860465116,
+      "timeout_rate": 0.02,
+      "timeout_length": 1500.0,
+      "mean_return": 1921.3,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1866.3,
+      "median_score": 2000.0,
+      "max_score": 3340.0,
+      "evaluation_seconds": 125.91486540000005,
+      "evaluation_decisions": 80913
+    }
+  }
+}

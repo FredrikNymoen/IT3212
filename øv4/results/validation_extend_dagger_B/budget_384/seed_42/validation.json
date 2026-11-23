@@ -1,0 +1,21 @@
+{
+  "success_rate": 0.0,
+  "success_length": null,
+  "cleared_rate": 0.0,
+  "cleared_length": null,
+  "failure_rate": 1.0,
+  "failure_length": 1000.0,
+  "timeout_rate": 0.0,
+  "timeout_length": null,
+  "mean_return": 1050.0,
+  "unseen_state_fraction": 0.0,
+  "mean_score": 1050.0,
+  "median_score": 1050.0,
+  "max_score": 1300.0,
+  "evaluation_seconds": 2.108312100001058,
+  "evaluation_decisions": 2130,
+  "seed": 42,
+  "budget": 384,
+  "episodes": 2,
+  "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\validation_extend_dagger_B\\budget_384\\seed_42\\model.npz"
+}

@@ -1,0 +1,16 @@
+  tune   Q {'epsilon_fraction': 0.6}  score 362
+  tune   Q {'epsilon_fraction': 0.9}  score 315
+  tune   Q {'position_bins': 4}  score 456
+  tune   Q {'lr': 0.3}  score 274
+  tune PPO {'lr': 0.0003}  score 597
+  tune PPO {'lr': 0.001}  score 646
+  tune PPO {'entropy': 0.003}  score 495
+  tune PPO {'rollout': 1024}  score 512
+selected: {'Q': {'position_bins': 4}, 'PPO': {'lr': 0.001}}
+         main_Q_A_42  success 0.000  return    413.6    187s
+          main_Q_A_7  success 0.005  return    861.2    238s
+       main_Q_A_2026  success 0.000  return    766.6    239s
+        main_Q_A_123  success 0.005  return    820.2    215s
+        main_Q_A_999  success 0.000  return    383.3    201s
+
+5 runs written to D:\PROGRAMMERING\NTNU\2026\datadrevet\øv4ny\results\assignment4_v8\seed_results_Q_A.csv

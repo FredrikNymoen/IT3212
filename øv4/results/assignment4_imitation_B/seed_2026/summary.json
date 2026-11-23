@@ -1,0 +1,43 @@
+{
+  "seed": 2026,
+  "fine_tuning_interactions": 30000,
+  "best_cloning_epoch": {
+    "epoch": 24,
+    "loss": 0.3780019716195774,
+    "accuracy": 0.8446951512241959
+  },
+  "cloned": {
+    "success_rate": 0.085,
+    "success_length": 884.4117647058823,
+    "cleared_rate": 0.0,
+    "cleared_length": null,
+    "failure_rate": 0.89,
+    "failure_length": 889.3258426966293,
+    "timeout_rate": 0.025,
+    "timeout_length": 1500.0,
+    "mean_return": 1126.9,
+    "unseen_state_fraction": 0.0,
+    "mean_score": 1118.4,
+    "median_score": 970.0,
+    "max_score": 2650.0,
+    "evaluation_seconds": 198.45442919999914,
+    "evaluation_decisions": 193835
+  },
+  "fine_tuned": {
+    "success_rate": 0.3,
+    "success_length": 857.4666666666667,
+    "cleared_rate": 0.0,
+    "cleared_length": null,
+    "failure_rate": 0.655,
+    "failure_length": 959.4809160305343,
+    "timeout_rate": 0.045,
+    "timeout_length": 1500.0,
+    "mean_return": 1645.4,
+    "unseen_state_fraction": 0.0,
+    "mean_score": 1615.4,
+    "median_score": 1660.0,
+    "max_score": 2710.0,
+    "evaluation_seconds": 189.7313119999999,
+    "evaluation_decisions": 203640
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "arm": "mixed_power",
+  "seed": 42,
+  "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_power\\mixed_power\\seed_42\\model.npz",
+  "model_sha256": "1ae9619f9f2d13118772399a3b15edc8b23c8f5e0fdbd6f252ef29ec4365ceaf",
+  "parent": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_transfer_power\\expanded_parents\\seed_42.npz",
+  "interactions": {
+    "0": 38868,
+    "2": 78369,
+    "3": 82763
+  },
+  "validation": {
+    "0": {
+      "success_rate": 0.95,
+      "success_length": 300.4947368421053,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.05,
+      "failure_length": 914.8,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 2156.2,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 2061.2,
+      "median_score": 2000.0,
+      "max_score": 3400.0,
+      "evaluation_seconds": 91.78930780000019,
+      "evaluation_decisions": 39621
+    },
+    "2": {
+      "success_rate": 0.32,
+      "success_length": 669.96875,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.68,
+      "failure_length": 817.1176470588235,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 1631.2,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1599.2,
+      "median_score": 1685.0,
+      "max_score": 2420.0,
+      "evaluation_seconds": 157.04808100000037,
+      "evaluation_decisions": 83503
+    },
+    "3": {
+      "success_rate": 0.57,
+      "success_length": 559.4736842105264,
+      "cleared_rate": 0.0,
+      "cleared_length": null,
+      "failure_rate": 0.43,
+      "failure_length": 983.7674418604652,
+      "timeout_rate": 0.0,
+      "timeout_length": null,
+      "mean_return": 1952.1,
+      "unseen_state_fraction": 0.0,
+      "mean_score": 1895.1,
+      "median_score": 2000.0,
+      "max_score": 3320.0,
+      "evaluation_seconds": 147.0854943999998,
+      "evaluation_decisions": 80692
+    }
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "Q:A": {
+    "pid": 35260,
+    "status": "complete",
+    "command": [
+      "C:\\Users\\there\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "-u",
+      "-X",
+      "utf8",
+      "part2_run.py",
+      "--only",
+      "Q:A",
+      "--results",
+      "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_v8",
+      "--tune"
+    ],
+    "exit_code": 0
+  },
+  "Q:B": {
+    "pid": 32872,
+    "status": "complete",
+    "command": [
+      "C:\\Users\\there\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "-u",
+      "-X",
+      "utf8",
+      "part2_run.py",
+      "--only",
+      "Q:B",
+      "--results",
+      "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_v8"
+    ],
+    "exit_code": 0
+  },
+  "Q:C": {
+    "pid": 38036,
+    "status": "complete",
+    "command": [
+      "C:\\Users\\there\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "-u",
+      "-X",
+      "utf8",
+      "part2_run.py",
+      "--only",
+      "Q:C",
+      "--results",
+      "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_v8"
+    ],
+    "exit_code": 0
+  },
+  "PPO:A": {
+    "pid": 2944,
+    "status": "complete",
+    "command": [
+      "C:\\Users\\there\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "-u",
+      "-X",
+      "utf8",
+      "part2_run.py",
+      "--only",
+      "PPO:A",
+      "--results",
+      "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_v8"
+    ],
+    "exit_code": 0
+  },
+  "PPO:B": {
+    "pid": 35296,
+    "status": "complete",
+    "command": [
+      "C:\\Users\\there\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "-u",
+      "-X",
+      "utf8",
+      "part2_run.py",
+      "--only",
+      "PPO:B",
+      "--results",
+      "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_v8"
+    ],
+    "exit_code": 0
+  },
+  "PPO:C": {
+    "pid": 35096,
+    "status": "complete",
+    "command": [
+      "C:\\Users\\there\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "-u",
+      "-X",
+      "utf8",
+      "part2_run.py",
+      "--only",
+      "PPO:C",
+      "--results",
+      "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_v8"
+    ],
+    "exit_code": 0
+  }
+}

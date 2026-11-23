@@ -1,0 +1,18 @@
+{
+  "protocol": "mspacman_v8_power_pellet_wall_fix",
+  "setting": "B",
+  "policy": "maze-aware reference",
+  "episodes": 200,
+  "seed_start": 300000,
+  "outcome_counts": {
+    "success": 112,
+    "failure": 61,
+    "timeout": 27
+  },
+  "success_rate": 0.56,
+  "mean_score": 1833.15,
+  "median_score": 2000.0,
+  "max_score": 3580.0,
+  "reached_1500": 153,
+  "mean_lost_lives": 1.685
+}

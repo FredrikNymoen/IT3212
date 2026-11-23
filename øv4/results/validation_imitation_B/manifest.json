@@ -1,0 +1,32 @@
+{
+  "protocol": {
+    "frameskip": 4,
+    "success_score": 2000,
+    "max_decisions": 1500,
+    "success_bonus": 100.0
+  },
+  "protocol_id": "mspacman_v8_power_pellet_wall_fix",
+  "setting": "B",
+  "policy": "sampled",
+  "seeds": [
+    42
+  ],
+  "eval_seed_start": 930000,
+  "demo_seed_start": 920000,
+  "demo_episodes": 3,
+  "validation_episodes": 1,
+  "clone_epochs": 1,
+  "fine_tuning_interactions": 256,
+  "eval_episodes": 2,
+  "hidden": 128,
+  "cloning_lr": 0.001,
+  "fine_tuning_lr": 0.0001,
+  "fine_tuning_entropy": 0.003,
+  "code_sha256": {
+    "imitate_reference.py": "8641086fda6525042beddb7beceb273e35165343eea1908689b5b5266e9fc088",
+    "compare_navigation.py": "bcf9e2083ff456c3cd14fdc326b382aa3c96c9dc10f9020c2c67ce4de3ae6666",
+    "reference_policy.py": "42d646261d0a0fc5c7b447a0e86683ee65fdc60bd59277475d7bc256d1902e7d",
+    "mspacman.py": "01b94e1d8d69359186e6cd4935f9fe9c3b25ef54526f549719b0f3d89ef643d0",
+    "part2_run.py": "b8e67644bca6148d56bd2753f06bf214a526f743760eaea2acce4b8093907b82"
+  }
+}

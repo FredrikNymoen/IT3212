@@ -1,0 +1,21 @@
+{
+  "success_rate": 0.4,
+  "success_length": 817.45,
+  "cleared_rate": 0.0,
+  "cleared_length": null,
+  "failure_rate": 0.57,
+  "failure_length": 960.5263157894736,
+  "timeout_rate": 0.03,
+  "timeout_length": 1500.0,
+  "mean_return": 1750.7,
+  "unseen_state_fraction": 0.0,
+  "mean_score": 1710.7,
+  "median_score": 1815.0,
+  "max_score": 2730.0,
+  "evaluation_seconds": 114.40089649999936,
+  "evaluation_decisions": 98448,
+  "seed": 42,
+  "budget": 30000,
+  "episodes": 100,
+  "model": "D:\\PROGRAMMERING\\NTNU\\2026\\datadrevet\\\u00f8v4ny\\results\\assignment4_dagger_B\\seed_42\\dagger_ppo.npz"
+}
