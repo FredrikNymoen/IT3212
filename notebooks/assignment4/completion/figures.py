@@ -93,6 +93,8 @@ def mechanism_curves():
 
 
 if __name__=='__main__':
+    from episode_figures import build
+    build()
     print(learning_settings())
     print(episode_panels())
     if (ROOT/'results/assignment4/completion_part3_v1/training_completed.json').exists():print(mechanism_curves())

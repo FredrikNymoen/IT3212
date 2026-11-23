@@ -5,6 +5,7 @@ import json
 import re
 import numpy as np
 import pandas as pd
+from pypdf import PdfReader
 
 ROOT=Path(__file__).resolve().parents[3]; REPORT=ROOT/'reports/assignment4'
 BASE=ROOT/'results/assignment4'; OUT=BASE/'completion_analysis_v1'
@@ -64,14 +65,32 @@ def main():
         check(cells[3],[g.mean_action_entropy.mean()])
     inspection=json.loads((BASE/'completion_inspection_v4/inspection.json').read_text())
     annotations=json.loads((BASE/'completion_inspection_v4/annotations.json').read_text())['annotations']
+    panels=json.loads((BASE/'completion_figures/episode_figures.json').read_text())
+    assert panels['decisions']==30 and len(panels['figures'])==5
+    assert panels['source_sha256']==sha(BASE/'completion_inspection_v4/inspection.json')
+    assert panels['annotation_sha256']==sha(BASE/'completion_inspection_v4/annotations.json')
+    plotted={p['id']:p for f in panels['figures'] for p in f['decisions']}
+    assert len(plotted)==30 and p4.count(r'\begin{table}')==1 and r'\begin{longtable}' not in p4
+    assert p4.count(r'\begin{figure}')==5
+    for f in panels['figures']:
+        pdf=REPORT/'Images'/Path(f['pdf']).name
+        assert sha(pdf)==f['pdf_sha256']
+        visible=' '.join(page.extract_text() for page in PdfReader(pdf).pages)
+        for point in f['decisions']:
+            assert point['id'] in visible
+            assert all(label in visible for label in point['value_labels'])
+            assert sha(ROOT/point['native_frame'])==point['native_frame_sha256']
     assert len(inspection['episodes'])==10 and len(annotations)==30
     for e in inspection['episodes']:
         assert len(e['decisions'])==3
         for point in e['decisions']:
             assert point['alternative']['full_seeded_action_prefix_verified']
             identity=e['case']['id']+'/'+str(point['decision'])
-            assert p4.count(r'\textbf{'+identity+'}')==1
-            assert ', '.join(f'{v:.4f}' for v in point['values']) in p4
+            assert p4.count(r'\textbf{'+identity+':}')==1
+            assert plotted[identity]['values']==point['values']
+            assert plotted[identity]['value_labels']==[f'{v:.4f}' for v in point['values']]
+            assert plotted[identity]['chosen_action']==['N','U','R','L','D'][point['action']]
+            assert plotted[identity]['alternative_action']==['N','U','R','L','D'][point['alternative']['action']]
             assert next(x['interpretation'] for x in annotations if x['id']==identity) in p4
     prose_counts={}
     for name,text in zip(names,contents):
@@ -102,10 +121,18 @@ def main():
         assert not re.search(r'\b(?:January|February|March|April|May|June|July|August|September|October|November|December)\b|\\date\{[^}]+\}',text),path
     assert sha(REPORT/'Sections/01_predictions.tex')=='17fcfc5a3d12c7abca0f7bc0ec49a3e4972e413c2cb356039db435acbc27961a'
     proof=json.loads((OUT/'records_verification.json').read_text());assert proof['primary_episodes']==19000 and proof['secondary_episodes']==1000
+    review=(REPORT/'Sections/05_human_review.tex').read_text()
+    review_state=json.loads((REPORT/'review_input.json').read_text())
+    review_words=len(re.findall(r"[A-Za-z0-9]+(?:[.'-][A-Za-z0-9]+)*",re.sub(r'\\[A-Za-z]+','',review)))
+    assert review_words<=1000 and review_state['status']=='draft'
+    assert all(value is None for value in review_state['initial_rankings'].values())
+    assert all(name in review for name in review_state['members_named_by_user'])
+    assert 'not verified minutes' in review and 'Not supplied' in review
     result=dict(primary_tables_independently_recomputed=True,all_training_roots_retained=True,decisions=30,original_predictions_unchanged=True,
         calendar_dates_absent_from_report=True,parallel_A_B_C_D_sections=True,paired_D_table_verified=True,
         prose_words_by_part=prose_counts,conservative_brief_words=sum(prose_counts.values())+20,
         counting_rule='Excludes table and longtable contents and figure captions; includes headings, inline mathematics/numbers and conservative title allowance.',
-        human_review='Explicitly deferred by user; no completed review claimed.',report_hashes={str(p.relative_to(ROOT)):sha(p) for p in active},verifier_sha256=sha(Path(__file__)))
+        human_review='Substantive draft for team validation; actual initial rankings and negotiation not provided.',review_words=review_words,
+        report_hashes={str(p.relative_to(ROOT)):sha(p) for p in active},verifier_sha256=sha(Path(__file__)))
     (OUT/'report_verification.json').write_text(json.dumps(result,indent=2)+'\n'); print(json.dumps(result,indent=2))
 if __name__=='__main__':main()

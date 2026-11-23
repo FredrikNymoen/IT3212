@@ -14,7 +14,7 @@ def main():
     # Build beside private auxiliary files. A stale main.aux in the editable
     # report directory otherwise takes precedence over -output-directory.
     for path in report.rglob('*'):
-        if path.is_file() and path.suffix in {'.tex','.png'}:
+        if path.is_file() and (path.suffix in {'.tex','.png'} or path.parent==report/'Images' and path.suffix=='.pdf'):
             dest=build/path.relative_to(report);dest.parent.mkdir(parents=True,exist_ok=True);shutil.copy2(path,dest)
     documents={'main':'evidence_brief','predictions':'predictions','review':'review_status','ai_record':'ai_record'}
     result=[]

@@ -1,0 +1,8 @@
+{
+  "status": "draft",
+  "members_named_by_user": ["Fredrik", "Johan", "Elling", "Mats"],
+  "initial_rankings": {"Fredrik": null, "Johan": null, "Elling": null, "Mats": null},
+  "actual_negotiation_record": null,
+  "proposed_final_priorities": ["Failure avoidance", "Robustness to change", "Explainability", "Time efficiency"],
+  "provenance": "The user supplied member names but no actual individual rankings or negotiated outcome. The substantive analysis is an AI-assisted proposal, not verified group feedback or an account of a completed discussion."
+}

@@ -49,7 +49,11 @@ Preserve original results/models and Part1. Old sources can be inspected with
   despite this clarification mentioning traces for six. One ZIP can contain
   multiple deliverables. Never fabricate original timestamps or human review.
 - `notebooks/assignment4/completion/` is the user-authorised full remaining
-  assignment work. User explicitly deferred Part5; do Parts3/4/6 and clarifiedD.
+  assignment work. Part5 was initially deferred; the user now requests it.
+  The user named Fredrik/Johan/Elling/Mats; actual opinions were not supplied.
+  `review.py`/`reports/assignment4/review_input.json` provide a substantive,
+  explicitly labelled review DRAFT. Do not invent actual individual initial
+  rankings, negotiated priorities or group feedback. Those remain unprovided.
   The user requested PAUSE and subsequently explicitly resumed. All11 workflow
   processes were verified by PID creation time and resumed successfully on
   23November2026. The pause ledger is in
@@ -60,8 +64,9 @@ Preserve original results/models and Part1. Old sources can be inspected with
   pause instruction is superseded by the user's later "fortsett". The
   ten-episode/30-decision inspection is verified. All45 mechanism models and
   9000 primary episodes,4000 clarified-D episodes and1000 secondary diagnostic
-  episodes are complete. The report covers Parts2/3/4/6; Part5 remains
-  explicitly deferred. Predictions are unchanged, with dated annotations.
+  episodes are complete. The report covers Parts2/3/4/6; Part5 is a separate
+  evidence-based draft awaiting actual human rankings/negotiation. Predictions
+  are unchanged, with separate post-experiment annotations.
   See README for the prespecified45-model five-seed Part3 study, fixed cap262144,
   common seeds17/29/101/314/2718 and fresh final episodes1500000--1500199.
   Both baselines are retrained and bitwise identical to all10 historical final
@@ -95,6 +100,12 @@ Preserve original results/models and Part1. Old sources can be inspected with
   subsections, the four-panel `part2_all_settings.png`, and D's paired clean/
   obstructed outcomes table. D's frozen comparison has no training curve;
   show observation condition on its horizontal axis rather than invented steps.
+  Part4 now has ONE episode roster table and FIVE vector figures instead of
+  ten per-episode longtables. `episode_figures.py` plots all30 decisions:
+  actual64x64 native crops, five action values/probabilities, state, observed
+  transition and coupled alternative. Full individual interpretations appear
+  in the figure captions. All vectors/frames/captions are independently checked
+  against the original inspection; do not drop required decisions for brevity.
 - `workshops/workshop1/Monday-Workshop (1).pdf` - classification workshop brief;
   start with UCI Dry Bean (602), then repeat with another listed dataset.
   The original CSV and UCI metadata are gitignored at `workshops/workshop1/dry_bean.csv`

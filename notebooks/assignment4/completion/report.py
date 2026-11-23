@@ -206,7 +206,7 @@ or a claim about A/D.
 
 Each episode has three trace-driven decisions: largest score increment,
 controllable approach before first life loss, and small value gap near a
-ghost. The tables provide state, all five actual Q-values/probabilities,
+ghost. The decision figures provide state, all five actual Q-values/probabilities,
 observed movement/reward and a tested alternative. Each alternative replays
 the entire seeded action prefix in native Gymnasium before one different
 input; all prefix RAM/rewards agree. One coupled step cannot identify
@@ -364,35 +364,21 @@ and Stable-Baselines3 2.9.2.
     p4=P4+table(r'ID & Category & Agent/setting & Root & Eval. seed & Length & Score & Model S\%',rows,
         r'Learning-settings study recorded B/C episodes, development-selected configurations in Table~\ref{tab:config}. TS/TF denote typical success/failure; SS/SF denote rare success/failure. Model S\% uses all200 recorded episodes of that trained agent, making surprises relative to that model. Conditional medians determine typicality, not visual appeal.',
         'tab:episodes','lllrrrrr')
-    shutil.copy2(BASE/'completion_figures/part4_native_decisions.png',REPORT/'Images/part4_native_decisions.png')
-    p4+=r'''
-\begin{figure}[htbp]\centering
-\includegraphics[width=\linewidth]{Images/part4_native_decisions.png}
-\caption{Native pre-action frames reproduced from recorded action prefixes: TS1/318, TF3/301, TS3/401 and SF1/625. Source episodes/configurations are identified in Table~\ref{tab:episodes}; all numerical values and one-step alternatives appear in the decision tables. These are actual emulator frames, not illustrative reconstructions.}
-\end{figure}
-\FloatBarrier
-\noindent All decision vectors below use the order N,U,R,L,D (NOOP, up, right,
-left, down); all five are available. Coordinates are native pixels, positive
-$y$ downward; ghost/food offsets are relative. $p$ is the encoded power proxy.
-Q-values use scaled training reward; PPO entries are action probabilities.
-Vectors are rounded to four decimals; experiment records retain full precision.
-Alternatives are single coupled-prefix steps; later outcomes remain unknown.
-'''
-    action=['N','U','R','L','D']
-    pair=lambda a:'('+','.join(f'{v:.0f}' for v in a)+')'
-    for e in inspection['episodes']:
-        c=e['case'];alg=c['job']['algorithm']
-        p4+='\n'+r'\begingroup\small\begin{longtable}{@{}>{\raggedright\arraybackslash}p{.47\linewidth}>{\raggedright\arraybackslash}p{.49\linewidth}@{}}'+'\n'+r'\caption{'+c['id']+r': three recorded decisions. Episode source and outcome in Table~\ref{tab:episodes}.}\\'+'\n'+r'\toprule State and policy evidence & Observed transition, alternative and interpretation \\ \midrule\endfirsthead'+'\n'+r'\toprule State and policy evidence & Transition and interpretation (continued) \\ \midrule\endhead'+'\n'
-        for d in e['decisions']:
-            identity=f'{c["id"]}/{d["decision"]}';comment=comments[identity]
-            vec=', '.join(f'{v:.4f}' for v in d['values'])
-            state=(r'\textbf{'+identity+r'}. Position '+pair(d['player_before'])+'; nearest ghost '+pair(d['nearest_ghost_offset'])+'; food '+pair(d['food_offset'])+f'; $p={d["encoded_power_proxy"]:.2f}$; score{d["score_before"]:g}; lives{d["lives_before"]}. '+('$Q' if alg=='Q-learning' else r'$\pi')+r'=('+vec+r')$. Chosen '+action[d['action']]+'.')
-            if alg=='Q-learning':state+=' Q key '+('present.' if comment['Q_key_present'] else 'absent (read-only zero lookup).')
-            a=d['alternative']
-            observed=(f'Moved to{pair(d["player_after"])}; native gain{d["raw_reward"]:g}, task reward{d["task_reward"]:g}; score{d["score_after"]:g}; lives{d["lives_after"]}. '
-                      f'Alternative {action[a["action"]]}: position{pair(a["player"])}, native gain{a["reward"]:g}, lives{a["lives"]}. '+comment['interpretation'])
-            p4+=state+' & '+observed+r' \\ \addlinespace'+'\n'
-        p4+=r'\bottomrule\end{longtable}\endgroup'+'\n'
+    panels=read(BASE/'completion_figures/episode_figures.json')
+    assert panels['decisions']==30
+    p4+=r'\FloatBarrier'+'\n'
+    for index,figure in enumerate(panels['figures']):
+        path=ROOT/figure['pdf'];shutil.copy2(path,REPORT/'Images'/path.name)
+        caption='Recorded decisions for '+ ' and '.join(figure['episodes'])+r', learning-settings study sources in Table~\ref{tab:episodes}. '
+        if index==0:
+            caption+=('All five controls N/U/R/L/D (NOOP/up/right/left/down) are available. Blue marks the chosen action; orange the tested alternative. '
+                'Each image is a64-by-64 native pre-action crop. Coordinates use the full frame, positive $y$ downward; ghost/food offsets are relative. '
+                '$p$ is the imperfect power proxy. Q-values use scaled training reward; PPO values are probabilities. '
+                'Bars scale within each decision; numerical labels are rounded to four decimals, with full precision retained in experiment records. '
+                'Gain is native score increment; task includes the C penalty. ')
+        else:caption+=r'Conventions as Figure~\ref{fig:episode-pairs-1}. '
+        caption+=' '.join(r'\textbf{'+point['id']+':} '+point['interpretation'] for point in figure['decisions'])
+        p4+='\n'+r'\begin{figure}[p]\centering'+'\n'+r'\includegraphics[width=\linewidth]{Images/'+path.name+'}\n'+r'\caption{'+caption+'}\n'+r'\label{fig:episode-pairs-'+str(index+1)+'}\n'+r'\end{figure}'+'\n'
     write(REPORT/'Sections/04_episode_inspection.tex',p4)
     write(REPORT/'Sections/06_recommendations.tex',P6)
 
@@ -501,22 +487,11 @@ strongly on execution mode; it does not show that diversity always harms
 learning. No final-test winner is promoted into the original comparison.
 '''
     write(REPORT/'Sections/01_prediction_annotations.tex',annotations)
-    write(REPORT/'Sections/05_human_review.tex',r'''
-\section*{Part 5: Human review -- deferred}
-The team explicitly deferred this part. No group discussion, individual
-priority ranking, negotiated priorities or peer feedback is claimed here.
-This record must be completed by the actual participants before submission.
-
-\subsection*{Record to complete after the discussion}
-Record date and participants; each member's initial priority ranking (for
-example failure avoidance, efficiency, explainability and robustness); the
-negotiated final priorities and why they changed. Identify the strongest
-supporting evidence, one claim that exceeds the evidence, a competing
-explanation, and how these affect the unchanged initial predictions.
-The completed review has a separate maximum of1,000 words.
-''')
+    from review import render_review
+    review_state,review_text=render_review(REPORT)
+    write(REPORT/'Sections/05_human_review.tex',review_text)
     write(REPORT/'review.tex',preamble+r'''
-\title{IT3212 Assignment 4: Human Review Status}\author{MsPacMan team}\date{}
+\title{IT3212 Assignment 4: Human Review Draft}\author{MsPacMan team}\date{}
 \begin{document}\maketitle\input{Sections/05_human_review.tex}\end{document}
 ''')
     write(REPORT/'ai_assistance.tex',r'''
@@ -555,8 +530,10 @@ A/B/C/D. Codex added parallel subsections, a four-setting figure and a paired
 D outcome table, verified against the original records without new training.
 Raw provenance timestamps and the original prediction sheet remain intact.
 
-The team requested that the actual human review be deferred. No discussion,
-reviewer feedback or individual ranking was generated as human evidence.
+The team subsequently requested a Part5 draft and supplied the four member
+names. Actual individual rankings and negotiated outcomes were not supplied.
+Codex supplied an evidence-based proposal, separated from actual group feedback.
+No discussion, individual initial ranking or negotiated agreement is claimed.
 The final prose and recommendations are AI-assisted drafts requiring the
 authors' ownership and review. This record does not claim they have already
 approved every conclusion or completed the outstanding human review.
@@ -565,6 +542,6 @@ approved every conclusion or completed the outstanding human review.
 \title{IT3212 Assignment 4: AI Assistance}\author{MsPacMan team}\date{}
 \begin{document}\maketitle\input{ai_assistance.tex}\end{document}
 ''')
-    print('Evidence brief, original-plus-annotated predictions, deferred review and AI record written.')
+    print('Evidence brief, annotated predictions, review draft and AI record written.')
 
 if __name__=='__main__':main()

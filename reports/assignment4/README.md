@@ -9,12 +9,14 @@ post-experiment annotations, human review and AI record are separate documents.
 |---|---|---|
 | Evidence brief | `main.tex`, Sections 02/03/04/06 | `../../output/pdf/assignment4_evidence_brief.pdf` |
 | Original predictions + later annotations | `predictions.tex`, Sections 01 | `../../output/pdf/assignment4_predictions.pdf` |
-| Human review status | `review.tex`, Section 05 | `../../output/pdf/assignment4_review_status.pdf` |
+| Human review draft | `review.tex`, Section 05, `review_input.json` | `../../output/pdf/assignment4_review_status.pdf` |
 | Consequential AI assistance | `ai_record.tex`, `ai_assistance.tex` | `../../output/pdf/assignment4_ai_record.pdf` |
 
-**Part 5 is deferred at the user's request.** No human discussion, priority
-ranking or negotiation has been invented. Complete that actual review before
-submitting the assignment. Retain the original Part 1 submission timestamp;
+**Part 5 is an evidence-based draft for team validation.** Fredrik, Johan,
+Elling and Mats are the member names supplied by the user. Actual individual
+initial rankings and negotiation were not supplied; no personal opinions or
+agreement have been invented. Complete that record before submitting the
+assignment. Retain the original Part 1 submission timestamp;
 this project preserves the text but does not certify a timestamp.
 
 Use pdfLaTeX. In Overleaf select the appropriate main document above. The
@@ -42,6 +44,9 @@ paths and fingerprints belong to the separate experiment records.
 - **Part 4:** ten distribution-selected B/C episodes, thirty actual decisions
   and thirty full-prefix native one-step alternatives. Local coupled outcomes
   are not claimed as expected risk or complete alternative routes.
+  One roster table and five vector figures replace ten decision longtables.
+  Each figure contains six native state crops, full action vectors and tested
+  alternative outcomes; each decision's interpretation remains in its caption.
 
 All 19,000 primary episodes and 13,581,678 recorded decisions were independently
 checked against episode metrics, native BCD scores, rewards and action values.

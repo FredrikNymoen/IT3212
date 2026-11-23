@@ -20,11 +20,11 @@ in the repository root. This is an audit map, not a grade guarantee.
 | Contrary case, rival explanation, diagnostic | Zero entropy improves argmax mean but loses29points at2718. Frozen all-ten-policy argmax/sampled diagnostic shrinks advantage25.6 to.8points; state-distribution mediation limitation explicit. |
 | Original predictions revisited | All six questions plus three state-action probes; training-rank association separately measured, power-timer premise unverified. No retrospective rewriting. |
 | Ten distribution-selected episodes | 3 typical successes/3 typical failures/2 rare successes/2 rare failures; conditional median and within-model rarity selection with duplicates excluded. |
-| Thirty actual decisions | State, five available controls, full Q/pi vector, chosen action, score/life/position transition; genuine full-prefix seeded alternative, uncertainty and observed episode outcome. Eight full trace archives cover all ten episodes. |
+| Thirty actual decisions | Five vector figures show native state crops, five available controls, all Q/pi values, chosen action and observed/alternative transitions. Individual interpretation and uncertainty remain in captions. One episode roster table remains. Eight full trace archives cover all ten episodes. |
 | Bad action vs unlucky outcome | Missed immediate score, productive actions in failures, zero-value absent key, non-unique realised inputs; one coupled fork does not estimate expected survival. |
 | Three contextual recommendations | Fixed configuration or neither, two experimental supports each, observed weakness, explicit reversal condition and specific further test before beyond-simulation use. |
 | <=2000-word evidence brief | Parts2/3/4/6 only; conservative full-brief counter includes headings/math/numbers, excludes tables/captions. Compiled separately from predictions/review/AI record. |
-| Real human review <=1000 words | **Deferred explicitly by user.** Actual participants, rankings and negotiated priorities remain required; no invented review is supplied. |
+| Real human review <=1000 words | A583-word evidence-based draft names the four members provided by the user. Actual initial rankings and negotiation were not supplied; these remain pending. Proposed analysis/priorities are labelled as proposals, not invented group feedback. |
 | Reproducible code/records | Actual Q/PPO in two Python files; documented75-model selected-config command, original search command separately; exact versions/configs, models, all episode CSVs, ten analyzed full traces and fingerprints in one ZIP. |
 | Consequential AI assistance | Separate honest record of suggested/implemented work, accepted/rejected choices, checks, limitations and outstanding human ownership. |
 

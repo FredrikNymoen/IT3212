@@ -3,15 +3,18 @@
 Read both root PDFs: `IT3212 - Assignment 4.pdf` and
 `clarification-assingment4 (1).pdf`. The clarification defines the 2,000-word
 evidence brief as Parts 2/3/4/6; original predictions/annotations and the
-1,000-word human review are separate. The user explicitly deferred Part 5.
-Do not invent reviewers, priority rankings or negotiation. Preserve Part 1.
+1,000-word human review are separate. Part5 was initially deferred and now
+has an evidence-based draft. Do not invent personal rankings, group agreement
+or negotiation. Preserve Part1.
 
 ## Registered immutable runs
 
 **Completion status, 23 November:** all 45 models, 9,000 Part 3 primary
 episodes, 4,000 clarified-D episodes and 1,000 diagnostic episodes are finished.
 The current report covers Parts 2/3/4/6 and separately annotated predictions.
-Part 5 remains deferred, not fabricated. Registered sources below remain
+Part 5 now has a substantive draft for validation by the four named members;
+actual individual rankings and negotiated priorities were not supplied.
+They must not be fabricated. Registered sources below remain
 immutable for reproducibility after completion as well.
 Report prose/captions omit specific calendar dates at the user's request;
 the raw records retain timestamps. A/B/C/D have parallel analytical subsections
@@ -181,10 +184,17 @@ and required ten analyzed full traces instead. The complete local audit receipt
 records hashes for all115 original trace files.
 
 `report.py` replaces editorial sections, so preserve manual changes first.
+`episode_figures.py` converts the thirty verified decisions into five vector
+figures with native state crops, action-value bars and observed/alternative
+transitions. Part4 keeps one roster table; per-decision interpretations are
+figure captions. This does not remove any required evidence.
 `verify_report.py` independently recomputes every primary outcome/cost/root
-table and mechanism/diagnostic table and checks all30 vectors/annotations,
+table and mechanism/diagnostic table and checks all30 plotted vectors/annotations,
 original prediction checksum and the **whole** evidence-brief word limit.
-It does not fabricate a human review. `build_documents.py` compiles separate
+`review.py` supplies a583-word evidence-based human-review draft, not invented
+minutes. The four members' initial rankings and actual negotiation remain
+unprovided in `reports/assignment4/review_input.json`. Do not relabel the draft
+as a completed discussion. `build_documents.py` compiles separate
 PDFs twice, rejects unresolved references/overflow, and renders every page.
 
 ## Record mapping and provenance
