@@ -1,43 +1,21 @@
-% Working document for Assignment 4. Select this file as the main file in Overleaf.
-\documentclass[a4paper,11pt]{article}
-\usepackage[utf8]{inputenc}
-\usepackage[T1]{fontenc}
-\usepackage{lmodern}
-\usepackage[english]{babel}
-\usepackage[a4paper,margin=25mm]{geometry}
-\usepackage{microtype}
-\usepackage{graphicx}
-\usepackage{booktabs,tabularx}
-\usepackage{amsmath,amssymb}
-\usepackage{enumitem}
+%TC:envir table 0 ignore
+%TC:envir longtable 0 ignore
+%TC:envir figure 0 ignore
+\documentclass[a4 paper, 11 pt]{article}
+\usepackage[utf 8]{inputenc}\usepackage[T1]{fontenc}\usepackage{lmodern}
+\usepackage[english]{babel}\usepackage[a4 paper,margin=23 mm]{geometry}
+\usepackage{microtype,graphicx,booktabs,tabularx,longtable,amsmath,amssymb}
+\usepackage[section]{placeins}
 \usepackage[hidelinks]{hyperref}
-\setlist{nosep}
+\setlength{\emergencystretch}{2 em}
 \renewcommand{\thesection}{Part \arabic{section}}
 \renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
 
-\title{IT3212 -- Assignment 4\\Reinforcement Learning}
-\author{\textit{[Author names or candidate numbers]}}
-\date{\textit{[Final submission date]}}
-
-\begin{document}
-\maketitle
-\noindent\textbf{Team option:} MsPacMan
-
-% This is a combined writing document, not a claim that all submission records
-% are complete. The brief separately requests predictions, an evidence brief,
-% a review record, code/experiment records and an AI-assistance record.
-% Evidence-brief working layout: Parts 2, 3, 4 and 6, at most 2,000 words
-% excluding tables and figure captions. Part 5: review record, at most 1,000 words.
-% To prepare separate documents, retain the corresponding input lines below.
-% Each section sets its original Part number, so numbering survives extraction.
-
-\input{Sections/01_predictions.tex}
+\title{IT 3212 Assignment 4: Evidence Brief\\MsPacMan}
+\author{MsPacMan team}\date{23 November 2026}
+\begin{document}\maketitle
 \input{Sections/02_learning_settings.tex}
 \input{Sections/03_mechanisms.tex}
 \input{Sections/04_episode_inspection.tex}
-\input{Sections/05_human_review.tex}
 \input{Sections/06_recommendations.tex}
-
-\clearpage
-\input{ai_assistance.tex}
 \end{document}

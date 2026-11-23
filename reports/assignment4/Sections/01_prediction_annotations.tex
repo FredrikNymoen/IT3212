@@ -1,0 +1,67 @@
+\section*{Post-experiment annotations -- 23 November 2026}
+These annotations follow the results and do not replace prior predictions.
+The 2,000-point target is a task threshold, not verified level completion.
+The actual power feature is an imperfect capped proxy, not a precise timer.
+
+\begin{enumerate}
+\item \textbf{Early improvement: mixed, general Q advantage unsupported.}
+At 65,536 interactions A development success is Q 2\%, PPO 20\%; B is Q 6\%, PPO 0\%.
+These are ten-episode checks per model, five training roots, not evidence of
+convergence or a universally faster algorithm.
+\item \textbf{Seed variation: condition-dependent.} Main evaluation SD in B is
+Q 21.3 versus PPO 18.7 percentage points; C13.9 versus 32.1, and A39.2 versus 44.7.
+Thus the predicted larger Q variation holds in B only. PPO A includes one 0\%
+agent and four 100\% agents; an 80\% mean is not stable retraining.
+\item \textbf{Stochastic routes: not demonstrated.} A-to-B mean success changes
+by$-.7$ points for Q and$-12.6$ for PPO, contradicting the predicted larger
+Q decline at the mean level. Q's paired changes span$-71$ to$+48$.
+Outcome changes do not establish that agents chose safer routes. Recorded
+local approaches and delayed losses do not measure route-level expected risk.
+\item \textbf{Step penalty: proposed benefit not established.} C lowers mean
+success 5.3 points for Q and 14.7 for PPO. Conditional successful lengths shorten
+655 to 625 and 578 to 533 decisions, respectively, but different episodes
+qualify as successes. Two roots improve per method. Only one penalty magnitude
+was tested; the predicted dose-response remains untested.
+\item \textbf{Training/evaluation ranking: association, not a guarantee.}
+Using the last 20 completed training episodes before each selected checkpoint,
+within-condition five-root Spearman correlations are A Q .70/PPO .71,
+B Q .90/PPO .21, C Q .10/PPO .70. The highest-training-return model is also an
+evaluation leader only for PPO A/C (2/6 groups). In B, Q's training leader
+succeeds 33.5\% against the evaluation leader 66.5\%; PPO 64.5\% against 92.5\%.
+Training is exploratory/nonstationary and five ranks are descriptive, not a
+reliable predictive model. Never compare penalised C returns directly with B.
+\item \textbf{Initial PPO preference: supported for B simulation, qualified elsewhere.}
+PPO B success 67.4\% exceeds Q 32.2\%, but failure 32.6\% and substantial
+training variation rule out reliable consequential deployment. Clarified
+D is observation robustness, not unseen-maze transfer: PPO 48.5\%, Q 23.2\%
+under obstruction. Lower Q degradation does not imply higher retained success.
+\end{enumerate}
+
+\subsection*{The three state-action predictions}
+We selected the first observable matching state in fixed recorded traversal
+order, then queried all five original frozen B agents on the identical
+61-value observation. Selection rules locked before these policy queries.
+These are observable analogues, not proof that every original premise holds.
+Numbers below count an exclusive maximum matching the predicted action;
+ties are not counted as a confirmed preference.
+\begin{center}\begin{tabular}{lrr}\toprule
+State & Q prediction matched & PPO prediction matched\\\midrule
+S1: right/up &2/5&0/5\\
+S2: up/right &0/5&0/5\\
+S3: right/left &1/5&0/5\\\bottomrule
+\end{tabular}\end{center}
+The proposed systematic action split is not supported in these probes.
+S2 requires enough remaining frightened time to pass safely, which our
+proxy cannot establish; it is therefore not a clean falsification of that
+conditional hypothesis. A single S1/S3 analogue cannot determine prevalence
+over all matching states. Full action vectors, state observations, native
+frames and model fingerprints accompany the experiment records.
+
+\subsection*{Mechanism findings that changed our interpretation}
+Five-root one-factor tests show shorter Q exploration loses 18.6 points on
+average but improves two roots. Zero PPO entropy gains 27.6 points under
+primary argmax execution but loses 29 points at root 2718. A frozen paired
+execution diagnostic reduces its mean advantage from 25.6 points under
+argmax to .8 under sampled actions. The apparent entropy benefit depends
+strongly on execution mode; it does not show that diversity always harms
+learning. No final-test winner is promoted into the original comparison.

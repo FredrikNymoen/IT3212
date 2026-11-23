@@ -1,25 +1,39 @@
 \setcounter{section}{5}
 \section{Make three recommendations}
-\label{sec:recommendations}
+\paragraph{Rapid classroom demonstration.}
+Use a frozen, source-development-selected B PPO policy with the baseline
+configuration; display probabilities and native transitions. Two supports
+are its 67.4\% five-root B success and A's 20\% development success at 65,536
+interactions versus Q's 2\%. The weakness is retraining variation: A includes
+a zero-success PPO model, and full-budget B baselines average 37.6\%.
+If live training from scratch is mandatory, promise no successful short
+demonstration. Reverse preference if matched short-budget Q replications
+deliver higher success with lower wall cost. Before use beyond simulation,
+test repeated fixed-time starts and independent perception errors with a
+human abort mechanism.
 
-% For EACH situation include: approach/configuration and justification; TWO pieces
-% of experimental evidence with source run IDs; ONE observed weakness; a condition
-% that would change the recommendation; ONE further experiment before use beyond
-% simulation. It is acceptable to recommend neither agent if evidence is insufficient.
+\paragraph{Repeated operation in uncertainty.}
+Recommend neither tested workflow for consequential autonomous use; for
+further simulated development choose baseline PPO without the C penalty.
+PPO's B failure rate 32.6\% is lower than Q's 67.8\%, while C lowers PPO
+success by 14.7 points rather than improving the prioritised outcome.
+The weakness is substantial failure and seed dependence despite the mean
+advantage. Change this decision only after a prespecified acceptable
+failure bound holds across fresh retrainings and operating conditions.
+Before leaving simulation, run stress tests with controlled hazard rates,
+matched perception, human intervention and reported failure severity;
+episode lengths alone do not establish safety.
 
-\subsection{Rapid classroom demonstration}
-% Short training time; behaviour must be explainable.
-\noindent\textit{[Recommendation, two supporting results, weakness, reversal condition and next experiment.]}
-
-\subsection{Repeated operation in uncertainty}
-% Failures matter more than taking additional steps.
-\noindent\textit{[Recommendation, two supporting results, weakness, reversal condition and next experiment.]}
-
-\subsection{Operation after an environment change}
-% Reliability under unfamiliar conditions matters. Use the transfer evidence.
-\noindent\textit{[Recommendation, two supporting results, weakness, reversal condition and next experiment.]}
-
-\subsection{Scope of the conclusions}
-% Separate findings specific to this implementation/environment from broader
-% learning principles. Do not claim that either algorithm is universally superior.
-\noindent\textit{[State what the evidence supports and where it stops.]}
+\paragraph{Operation after an environment change.}
+Recommend neither for reliable unfamiliar operation. Under fixed observation
+obstruction PPO retains 48.5\% success versus Q's 23.2\%, but loses 17.4 points
+against paired clean observations, versus Q's 6.3-point loss. These are two
+supports for caution: higher retained success and greater absolute degradation
+answer different questions. The observed weakness is incomplete robustness
+even to one small feature obstruction; static geometry remains available.
+Reverse the decision only if locked policies satisfy the required reliability
+threshold on multiple independently chosen shifts. Before deployment, test
+unseen obstruction locations, missing-object durations and genuine pixel
+perception on a protected test platform. Directional sharing can preserve
+feature meaning; these results do not establish unseen-map transfer or
+universal algorithm superiority.

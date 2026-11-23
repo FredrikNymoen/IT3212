@@ -1,5 +1,14 @@
 # Assignment 4: current MsPacMan workflow
 
+**23 November completion:** start with [completion/README.md](completion/README.md)
+for the complete Parts 2/3/4/6 evidence brief, five-seed mechanisms, ten inspected
+episodes, annotated predictions and clarified observation-robustness D.
+Part 5 is explicitly deferred. The instructions below describe the preserved
+earlier Part 2/map-transfer snapshot. In particular, the readable agents'
+legacy `evaluate --setting D` uses that old map protocol; use the completion
+reproducer for the current fixed observation obstruction. The two actual
+agent implementations remain `q_learning.py` and `ppo.py`.
+
 Run commands from the repository root after installing `requirements.txt`.
 The report compares ordinary single-table Q-learning with PPO. Original
 predictions remain unchanged. A/B/C use the five-seed November 22 study;
@@ -85,5 +94,6 @@ Earlier notebooks, failed variants, one-off migration/recovery helpers and
 unused figures were removed from the working tree after being preserved in
 Git commit `714c0cb`. See [ARCHIVE.md](ARCHIVE.md). Numerical results and exact
 source snapshots remain in their original ignored results directories.
-Parts3--6 still require their own experiments, episode analysis and real human
-review; the current Part2 report is not the complete assignment submission.
+The historical Part2 snapshot above is superseded for the current report by
+the completion guide. Parts3/4/6 are now implemented and measured there;
+only the actual Part5 human review remains explicitly deferred.

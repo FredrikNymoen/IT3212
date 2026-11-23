@@ -1,158 +1,60 @@
-# Assignment 4 report
+# Assignment 4 deliverables
 
-The current Part 2 combines the original five-seed A/B/C measurements in
-[the November 22 guide](../../notebooks/assignment4/three_hour/README.md) with
-[the November 23 frozen-transfer evaluation](../../notebooks/assignment4/transfer_evaluation/README.md).
-Ordinary single-table Q-learning (`gamma995`) and PPO (`stable`) use training
-seeds 17/29/101/314/2718 and a common 262,144-interaction cap. D retains all
-ten source-development-selected B models and adds zero training.
+Read both root PDFs, including `clarification-assingment4 (1).pdf`.
+The evidence brief is **Parts 2, 3, 4 and 6 only**, below the 2,000-word
+limit excluding tables and figure captions. The original predictions plus
+dated annotations, human review and AI record are separate documents.
 
-The original D guard aborted one Q test at a native map change. A new locked
-evaluation records map exits as censored, stops before any action on the
-other maze, and tests every model on 200 fresh episodes (2,000 total).
-Observed D success is Q 4.5% and PPO 14.7%. One Q episode is censored, giving
-an across-agent mean success bound of 4.5--4.6%; PPO has no censored episodes.
-These are measured in-map success rates, with censoring explicitly separate
-from failure. The old interrupted run is preserved. The boundary revision
-follows inspection of that error and is not an independent new-domain test.
-
-The older complete v3 benchmark and B-only/A/D follow-ups remain archived.
-The historical 94.5% PPO result concerned two fixed revised B policies. It
-was never the complete A–D benchmark or five-seed training reliability. The
-new study independently checks those policies, then tests fresh training
-variability separately. Double Q variants remain historical side experiments.
-
-English LaTeX writing project based on all six pages of
-`IT3212 - Assignment 4.pdf`. Open `main.tex` locally or upload this directory
-to Overleaf and select `main.tex` as the main document. Use pdfLaTeX.
-No generated PDF or ZIP is included.
-
-## Original Part 1
-
-The team has pasted its completed answer into
-[Sections/01_predictions.tex](Sections/01_predictions.tex). It is preserved
-unchanged while implementing Part 2. Keep the original submission timestamp or
-reference with the submitted sheet; none is invented by this project.
-Keep the original submitted sheet separately as the submission record.
-Later annotations belong below the original, dated and linked to actual runs;
-do not rewrite the predictions after seeing results.
-
-## Where to write
-
-| Part | File | Content |
+| Document | Editable source | Compiled output |
 |---|---|---|
-| 1 | `Sections/01_predictions.tex` | Original prediction sheet and optional later annotations |
-| 2 | `Sections/02_learning_settings.tex` | Environment/protocol, settings A--D, measured comparison |
-| 3 | `Sections/03_mechanisms.tex` | Controlled experiments, prediction check and diagnostic |
-| 4 | `Sections/04_episode_inspection.tex` | Ten selected episodes, three decisions per episode and aggregate limitations |
-| 5 | `Sections/05_human_review.tex` | Actual team review record |
-| 6 | `Sections/06_recommendations.tex` | Three operating scenarios and limits of the conclusions |
-| AI record | `ai_assistance.tex` | Consequential suggestions, team decisions and verification |
+| Evidence brief | `main.tex`, Sections 02/03/04/06 | `../../output/pdf/assignment4_evidence_brief.pdf` |
+| Original predictions + later annotations | `predictions.tex`, Sections 01 | `../../output/pdf/assignment4_predictions.pdf` |
+| Human review status | `review.tex`, Section 05 | `../../output/pdf/assignment4_review_status.pdf` |
+| Consequential AI assistance | `ai_record.tex`, `ai_assistance.tex` | `../../output/pdf/assignment4_ai_record.pdf` |
 
-The complete Part 2, including the A--D interpretation, now lives in
-`Sections/02_learning_settings.tex`, included once by `main.tex`. The former
-separate discussion source was merged and removed to avoid an incomplete
-answer when reading only the Part 2 file. The visible text contains no file paths
-or filenames; the figure identifies the 22 November main experiment by its
-date, settings, configuration and training seeds. That experiment maps to
-`three_hour_20261122/main_v1` for training/curves and `final_v1` for frozen
-evaluation. Include the single Part 2 input when extracting the evidence brief.
-The current revision has 1,194 prose words, with
-outcomes and costs as Tables 1/2 and a compact configuration comparison as
-Table 3. Table 4 explains the design choices and their limits; Table 5 shows all five training seeds,
-including the exact Q/D censoring cell and its 7.0--7.5% success bound.
-Return is retained without a duplicate game-score column; C raw
-scores remain in prose. Maze names and arbitrary seed identifiers are
-explained. The interpretation answers A--D directly, checks paired-seed
-sensitivity and distinguishes lower observed D success from its censoring
-bound. All existing outcome/cost table numbers are unchanged.
+**Part 5 is deferred at the user's request.** No human discussion, priority
+ranking or negotiation has been invented. Complete that actual review before
+submitting the assignment. Retain the original Part 1 submission timestamp;
+this project preserves the text but does not certify a timestamp.
 
-The justification review explains the target/horizon, RAM features/five actions,
-registered four-frame/sticky defaults, 0.1-point penalty, reward scaling, rollout
-cap, replication/search/monitoring allowance, Q/PPO designs and exploration,
-discount/GAE/update safeguards, exploitation policy and D censoring. It checks
-the development-seed ranges against all search/main protocols. The compact Q
-key omits time, score and lives while PPO retains them; this is now explicit.
-One tested penalty size does not establish a size-dependent effect. These are
-design reasons and package-level selection evidence, not proof that every
-constant is optimal. Earlier unequal search and the inspected D domain remain
-limitations. Keep room for the other parts within the whole 2,000-word limit.
+Use pdfLaTeX. In Overleaf select the appropriate main document above. The
+brief contains no visible source filenames/paths. The tables and captions
+identify dates, conditions, training roots and evaluation episodes. Exact
+paths and fingerprints belong to the separate experiment records.
 
-The `assignment4-part2-synthesis` branch compares the fixed Johan, Elling,
-Mats and Fredrik revisions in
-[the synthesis review](../../notebooks/assignment4/synthesis/COMPARISON.md).
-Its [common notebook](../../notebooks/assignment4/02_part2_synthesis.ipynb)
-provides the reviewed protocol, portable evidence snapshot, per-seed overview
-and native recorded-episode inspection. Only ordinary Q-learning and PPO are
-used. Incompatible rewards, representations, budgets and PPO policies are
-not pooled into these tables. Registered sources/models and Part 1 stay
-unchanged; the synthesis adds no training or new evaluation outcomes.
+## Current evidence
 
-This is an editorial revision of verified exports. Historical numerical and
-discussion generators do not preserve the single-file layout and must not overwrite it.
-Use the review records under `results/assignment4/section2_review_20261123/`
-for the earlier requirement audit and archived text. The latest D arithmetic,
-native replay and report checks are under `results/assignment4/transfer_boundary_v1/`.
-The latest prose/claim audit and archived previous version are under
-`results/assignment4/part2_quality_review_20261123/`. Its descriptive analysis
-does not tune or retrain models. The current validation command is:
+- **Part 2 A/B/C:** 22 November five-root study, 262,144 consumed interactions
+  per run; checkpoints selected using source-setting development data only.
+- **Primary D:** 23 November fixed observation obstruction, all ten frozen B
+  models, clean/obstructed paired controls, 4,000 episodes, no learning.
+  This explicitly tests a RAM/object-feature analogue of spatial occlusion,
+  not unseen-map generalisation or a pixel encoder. Old map-selector D is
+  preserved as historical supplementary evidence, not mixed into primary D.
+- **Part 3:** 45 fresh models, nine one-factor configurations, five roots each,
+  fixed final 262,144-step weights; 9,000 primary episodes. All results retained.
+  Ten baseline weights match their historical full-budget counterparts bitwise.
+- **Diagnostic:** 1,000 secondary frozen episodes, argmax versus sampled PPO,
+  fifty per model/mode, reported separately from 200-episode primary tests.
+- **Part 4:** ten distribution-selected B/C episodes, thirty actual decisions
+  and thirty full-prefix native one-step alternatives. Local coupled outcomes
+  are not claimed as expected risk or complete alternative routes.
 
-```powershell
-python notebooks/assignment4/report_review/analyse.py
-python notebooks/assignment4/report_review/verify_quality.py
-```
+All 19,000 primary episodes and 13,581,678 recorded decisions were independently
+checked against episode metrics, native BCD scores, rewards and action values.
+The additional 1,000 diagnostic episodes contain 725,743 decisions. Verification
+receipts also record direct native replays and original-prediction integrity.
+Word count is checked across the entire brief, rather than Part 2 alone.
 
-Outputs of these maintained checks go to `results/assignment4/report_review_current/`.
-The single-file justification revision is archived before editing under
-`results/assignment4/part2_justification_review_20261123/before/`.
-The older authoring/validation scripts assume the previous two-table layout;
-their outputs remain historical and must not overwrite the concise revision.
-The original experiment manifests retain their historical report hashes.
+## Reproduce and audit
 
-Headings follow the brief's Part 1--6 numbering. Comments contain writing
-prompts; italic bracketed text is a placeholder, not completed report prose.
-Replace the author/date placeholders in `main.tex`. The selected option is
-MsPacMan. Part 2's code and reproduction instructions are in
-[notebooks/assignment4](../../notebooks/assignment4/README.md).
+See [the completion guide](../../notebooks/assignment4/completion/README.md)
+for exact commands, raw-record mapping, seed lists, budget rationale, software,
+hardware, timing adjustments, package contents and limitations. Its reproduction
+command never overwrites this report or tunes on final tests. Reproduction of
+the existing seeds is not a new independent validation study.
 
-Part 2 uses score-based rewards in A/B, as the team confirmed was agreed with
-the instructor, with a step penalty added in C. The latest curve is `Images/part2_learning_curves_20261122.png`; it shows
-unsmoothed development success and variation across five newly trained agents.
-No report PDF or ZIP snapshot is rebuilt. Part 3--6 placeholders remain;
-five seeds in Part 2 alone do not complete Part 3's controlled mechanism study.
-Part 5 must record an actual team review. Original predictions are unchanged.
-Fresh evaluation seeds do not make the previously inspected D layout an
-independent new domain. Prior cumulative search was unequal and is disclosed;
-this study gives both methods the same new candidate/interaction allowance.
-
-## Submission components and limits
-
-The brief separately requests an **evidence brief of at most 2,000 words**,
-excluding tables and figure captions, and a **review record of at most
-1,000 words**, alongside the original/annotated predictions, executable code
-with a reproduction command, and experiment records. The AI-assistance record
-is mandatory but ungraded.
-
-`main.tex` is a combined working document. This template groups Parts 2, 3, 4
-and 6 as the evidence brief, keeps Part 1 as the prediction record, and uses
-Part 5 as the review record. This grouping is an editorial choice, not an
-additional requirement in the brief. Do not interpret the two word limits as
-one shared allowance. For separate documents, retain only the corresponding
-`\input` lines in a copy of `main.tex`; every section preserves its original
-Part number. Keep the original prediction submission unchanged.
-
-Use the prompts to cover all requirements, especially separate training and
-evaluation, at least 200 evaluation episodes per trained agent, at least five
-seeds per tested mechanism configuration, and traceable episode evidence.
-Record every figure's source configuration/run IDs in its caption. Create
-`Images/` when adding actual figures and use literal relative paths such as
-`Images/learning_curves.pdf`. Do not invent observations to fill the template.
-
-Assignment 4 code belongs in `notebooks/assignment4/`, numerical logs and traces
-in `results/assignment4/`, and generated plots in `figures/assignment4/`.
-Part 2 keeps its canonical PNG learning curve in this report's `Images/`
-directory. Duplicate generated previews are ignored; older images remain
-available in Git checkpoint `714c0cb` and the local cleanup archive.
-Results are gitignored, so explicitly include the required experiment records
-when preparing the submission. The report folder alone is not the complete
-Assignment 4 submission.
+Historical `report_review` and `synthesis` utilities describe the earlier
+Part 2/map-D snapshot. Use `completion/verify_report.py` for the current brief.
+The previous report and long AI history were retained in the ignored
+`completion_report_before` records before this replacement.

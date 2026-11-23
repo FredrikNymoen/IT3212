@@ -38,6 +38,57 @@ Preserve original results/models and Part1. Old sources can be inspected with
 - `IT3212-2026-Assignment 3.pdf` - machine-learning brief, 200 points with 130 required to pass.
 - `IT3212 - Assignment 4.pdf` - reinforcement-learning brief, Q-learning versus PPO,
   with six assessed parts and separate prediction, experiment, evidence and review records.
+- `clarification-assingment4 (1).pdf` - two-page instructor clarification added
+  23November2026. Evidence brief max2000words covers Parts2/3/4/6; predictions
+  unchanged plus labelled annotations are separate, as is human review max1000.
+  Review also needs each member's initial priority ranking and negotiation.
+  For MsPacMan D, use frozen B policies with a fixed small observation obstruction,
+  same native game; describe observation robustness rather than unseen-map
+  generalisation. Main/matched mechanisms should share hardware/software and
+  evaluation procedures. Keep the stricter original ten episode count (3/3/2/2)
+  despite this clarification mentioning traces for six. One ZIP can contain
+  multiple deliverables. Never fabricate original timestamps or human review.
+- `notebooks/assignment4/completion/` is the user-authorised full remaining
+  assignment work. User explicitly deferred Part5; do Parts3/4/6 and clarifiedD.
+  The user requested PAUSE and subsequently explicitly resumed. All11 workflow
+  processes were verified by PID creation time and resumed successfully on
+  23November2026. The pause ledger is in
+  `results/assignment4/completion_pause_state.json` (user_requested_pause=false);
+  it records2203.8seconds and phase/publication evidence. Preserve raw timings
+  and disclose/remove logged suspension time in derived runtime summaries.
+  `COMPLETION_RESUME.md` describes the saved task/protocol state; its initial
+  pause instruction is superseded by the user's later "fortsett". The
+  ten-episode/30-decision inspection is verified. All45 mechanism models and
+  9000 primary episodes,4000 clarified-D episodes and1000 secondary diagnostic
+  episodes are complete. The report covers Parts2/3/4/6; Part5 remains
+  explicitly deferred. Predictions are unchanged, with dated annotations.
+  See README for the prespecified45-model five-seed Part3 study, fixed cap262144,
+  common seeds17/29/101/314/2718 and fresh final episodes1500000--1500199.
+  Both baselines are retrained and bitwise identical to all10 historical final
+  checkpoints; all nine configurations retained, no final-test winner selection.
+  Preserve registered source hashes even after completion:
+  `q_learning.py`, `ppo.py`, `completion/study.py`, `observation_shift.py` and
+  `robustness.py`. Runs are `completion_part3_v1` and `clarified_D_v1` under results.
+  D compares all ten original source-selected B models clean/obstructed on
+  seeds1600000--1600199; no learning or native maze/dynamics change. The fixed
+ 32x32 regionx16--48/y24--56 removes object centres before full feature
+  recomputation. This is explicitly a RAM/object-feature analogue, not literal
+  pixel-CNN occlusion. Its1600-step engineering and hidden-variable tests pass.
+  `inspect_episodes.py` selects ten original B/C episodes by conditional median
+  and within-model rarity;30 native alternative steps reconstruct the full
+  seeded prefix because RAM snapshot restoration did not preserve the next
+  recorded sticky transition. Keep one-step conclusions conditional. All old
+  results/sources/Part1 remain preserved; report only verified completed work.
+  Current primary D is Q23.2%/PPO48.5% versus paired clean29.5%/65.9%, not
+  the old map-D result. Part3 zero entropy gives65.2% versus baseline37.6%
+  under argmax but loses29points at root2718. A frozen diagnostic reduces
+  its advantage to0.8points under sampling versus25.6under argmax. Do not
+  claim universal entropy benefit or promote a final-test winner.
+  `verify_records.py` checks19000 primary episodes/13581678 decisions and
+  1000 secondary episodes/725743 decisions; `verify_report.py` checks whole-
+  brief tables, all30 decisions, word count and the prediction hash.
+  `reproduce.py --plan` documents a fresh75-model reproduction. `report.py`
+  regenerates current editorial files; preserve manual revisions first.
 - `workshops/workshop1/Monday-Workshop (1).pdf` - classification workshop brief;
   start with UCI Dry Bean (602), then repeat with another listed dataset.
   The original CSV and UCI metadata are gitignored at `workshops/workshop1/dry_bean.csv`

@@ -1,5 +1,10 @@
 # Part 2 synthesis
 
+This is the historical Part 2/map-D interface. For the current full evidence
+brief and instructor-clarified observation D, use
+[the completion guide](../completion/README.md). Its mechanism study and
+episode analysis extend this synthesis; they do not rewrite original predictions.
+
 Branch `assignment4-part2-synthesis` combines reviewed ideas from Johan,
 Elling, Mats and Fredrik. It uses **ordinary single-table Q-learning and PPO**.
 No DQN implementation or results are imported. The scope is Part 2 only.

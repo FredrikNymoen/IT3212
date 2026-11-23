@@ -131,11 +131,13 @@ class Checkpoints(BaseCallback):
         return True
 
 
-def build_model(envs, seed):
+def build_model(envs, seed, **overrides):
     """Reported stable configuration; all settings stay fixed across A/B/C."""
-    return PPO(SharedActionPolicy, envs, learning_rate=lambda progress: .00005 + (.0003 - .00005) * max(0, progress),
-               gamma=.995, gae_lambda=.97, ent_coef=.02, n_steps=512, batch_size=256,
-               n_epochs=6, clip_range=.15, target_kl=.015, seed=seed, device="cpu", verbose=0)
+    settings = dict(learning_rate=lambda progress: .00005 + (.0003 - .00005) * max(0, progress),
+                    gamma=.995, gae_lambda=.97, ent_coef=.02, n_steps=512, batch_size=256,
+                    n_epochs=6, clip_range=.15, target_kl=.015, seed=seed, device="cpu", verbose=0)
+    settings.update(overrides)
+    return PPO(SharedActionPolicy, envs, **settings)
 
 
 def train(args):
