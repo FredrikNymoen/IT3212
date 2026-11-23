@@ -11,9 +11,16 @@ report, not an assignment brief.
 | Assignment 1: preprocessing | [Notebook](notebooks/assignment1/student_graduation.ipynb) | No separate report stored locally |
 | Assignment 2: image processing | `notebooks/assignment2/` | [Overleaf sections](reports/assignment2/README.md) |
 | Assignment 3: classification | [Workflow and reproduction](notebooks/assignment3/README.md) | [Current LaTeX sources](report/README.md) |
-| Assignment 4: reinforcement learning | `notebooks/assignment4/` (not started) | Requirements in `IT3212 - Assignment 4.pdf` |
+| Assignment 4: reinforcement learning | [Current five-seed MsPacMan study](notebooks/assignment4/three_hour/README.md) | [LaTeX writing project](reports/assignment4/README.md) |
 | Workshop 1: classification | [Instructions](workshops/workshop1/README.md) | Notebook |
 | Lecture examples | `lecture/` | Not assignment deliverables |
+
+Assignment 4's current A--D runner compares ordinary single-table Q-learning
+with PPO and refreshes Part 2 only from verified full-run exports. The
+[ordinary-Q pilot](notebooks/assignment4/pilot/SINGLE_Q.md) preceded that study.
+The [earlier investigation](notebooks/assignment4/pilot/FURTHER_EXPLORATION.md)
+also includes archived Double Q/replay variants; those rates must not be
+substituted for the ordinary Q-learning described in the original predictions.
 
 Assignment 3's current report recommends LDA. Reproduce it by running the
 combined notebook, `check_lda_vs_adaboost.py`, then `finalize_lda_report.py`.

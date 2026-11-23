@@ -1,0 +1,69 @@
+\section{Predictions Before Training}
+
+%\textbf{Assumptions.} We compare tabular Q-learning using a compact, discretised set of game features with PPO using the same underlying features at a finer level of detail. Features include MsPacMan's position, nearby ghosts, pellets and power-pellet status. We define success as reaching a score of 2,000 points, which is a reasonable score to achieve upon completing the first level. Failure is defined as losing all remaining lives without reaching 2000 points. These are predictions, not results.
+
+
+\textbf{Assumptions:} We compare tabular Q-learning using a compact, discretised set of game features with PPO using the same underlying features at a finer level of detail. These features include MsPacMan's position, nearby ghosts, pellets, and remaining power-pellet time. Rewards are based on the game score. We define success as reaching at least 2,000 points before losing all lives or reaching the maximum episode length. We consider 2,000 points a reasonable score to achieve by the time the first level is completed. Failure means that the agent does not reach 2,000 points before either of these limits. These are predictions, not results.
+
+
+\subsection{Which agent will improve fastest with a small interaction budget?}
+\textbf{Prediction:} Q-learning will improve faster at first. Provided a small interaction budget, we expect it to have a higher evaluation success rate than PPO.
+
+\textbf{Why:} Q-learning updates the estimated value of a state--action pair after each move. If similar situations are grouped into a small number of states, it can quickly learn useful choices, such as moving away from nearby ghosts. PPO must collect experience and then update both its policy and value estimates. With little data, those updates may take longer to produce reliable behaviour. However, Q-learning's early advantage depends on the state table being small enough for important situations to be visited often.
+
+\subsection{Which agent will show the largest performance variation across seeds?}
+\textbf{Prediction:} Q-learning will show more variation in evaluation success rate across training seeds.
+
+\textbf{Why:} MsPacMan has many possible routes, and a few early encounters with ghosts or power pellets can strongly affect what an agent learns. In a Q-table, an action that has rarely been tried may keep an inaccurate value for a long time. Different random seeds can therefore lead to very different routes. PPO also depends on random experience, but its shared model can learn from related states instead of estimating every state--action pair separately. We expect this to reduce variation, although it is not guaranteed.
+
+\subsection{How will stochastic transitions change the routes agents learn?}
+\textbf{Prediction:} When moves become less predictable, both agents will choose safer routes more often than when every action has a fixed outcome. We expect Q-learning's success rate to fall more than PPO's.
+
+\textbf{Why:} When an action does not always produce the expected movement, a route close to a ghost becomes less reliable. A small movement error may turn a shortcut into a collision, so a longer route with more space can give a better chance of survival. Q-learning can learn this too, but its table needs enough visits to estimate the risk in each relevant state. PPO may cope better if its model learns a similar avoidance pattern across many positions. This prediction assumes the training budget is too small for Q-learning to visit every risky situation often.
+
+\subsection{How might a penalty for each step change success rate and episode length?}
+\textbf{Prediction:} We expect the effect of a step penalty to depend on its size. A small negative reward for each move may lead to shorter successful episodes without significantly reducing the success rate. However, a larger penalty may reduce the success rate by encouraging riskier routes.
+
+\textbf{Why:} A small step penalty gives the agent a reason to reach 2,000 points with fewer moves rather than taking unnecessary detours. However, in MsPacMan, the shortest route to more points may pass close to ghosts. If the penalty is too large, the agent may prioritise speed over survival and lose all its lives before reaching the target. We therefore expect a moderate penalty to improve efficiency, but a large penalty could make the agent less reliable. 
+
+\subsection{Will the agent with the highest training return also perform best during evaluation?}
+\textbf{Prediction:} We expect the agent with the highest training return to generally perform better during evaluation, but this is not guaranteed.
+
+\textbf{Why:} Since rewards are based on the game score, a higher training return means that the agent has collected more points during training. However, our definition of success is reaching 2,000 points, which means that a higher average score does not necessarily lead to a higher success rate. For example, an agent that consistently scores 1,900 points would have a higher average return than one that sometimes reaches 2,000 points but often scores much lower. Different ghost movements and random seeds may also affect how well the agents perform during evaluation. Therefore, we expect a positive relationship between training return and evaluation success rate, but not a perfect one.
+
+\subsection{Which agent would you initially recommend, and what evidence would change your mind?}
+
+\textbf{Prediction:} We would initially recommend PPO because MsPacMan has a large and complex state space involving ghosts, pellets, and changing positions.
+\textbf{Why:} MsPacMan has many possible states involving ghost positions, remaining pellets, and the player's position. We expect tabular Q-learning to struggle because representing all these states would require a very large Q-table. Simplifying the state representation could reduce the table size but may remove useful information. PPO uses a neural network that can learn patterns across similar situations, which may help it make better decisions in unfamiliar states. However, PPO may require more computation and training interactions to learn effectively.
+
+\textbf{Evidence that would change our mind:} We would reconsider our recommendation if Q-learning achieves a higher evaluation success rate than PPO with the same interaction budget. We would also consider the variation across random seeds and the time required for training. If Q-learning consistently reaches 2,000 points more often while requiring fewer resources, we would recommend it instead.
+
+\subsection{Three states where we expect the approaches to behave differently}
+For each state, we predict Q-learning's highest-value action and PPO's highest-probability action. These differences are hypotheses based on the state representations above, not properties the algorithms must always have.
+
+\subsubsection{State 1: Ghost near a shortcut}
+\textbf{State:} MsPacMan reaches a junction. Pellets are on the right, but a normal ghost is moving towards her from that direction. Going up is a longer route with more space between her and the ghost.
+
+\textbf{Expected actions:} Q-learning: \textbf{RIGHT}. PPO: \textbf{UP}.
+
+\textbf{Why:} A coarse Q-table may group together junctions where the ghost is close and where it is farther away. If moving right was often rewarded in those grouped states, Q-learning may still choose it here. PPO may use the finer information about the ghost's location to choose the safer route upward. This could improve its chance of surviving long enough to reach 2,000 points. The difference depends on whether the Q-table loses useful distance information.
+
+\textbf{What would contradict this prediction:} If, when tested at this junction, Q-learning favours UP or PPO favours RIGHT, the predicted action for that agent is contradicted. If both consistently favour the same action, our predicted difference between the agents is not supported.
+
+\subsubsection{State 2: Frightened ghost}
+\textbf{State:} A frightened ghost is on the right, with pellets behind it. There is enough power time left to pass it safely. Moving up avoids the ghost but takes a longer path.
+
+\textbf{Expected actions:} Q-learning: \textbf{UP}. PPO: \textbf{RIGHT}.
+
+\textbf{Why:} A coarse Q-learning state may treat frightened-ghost situations alike, even when the remaining power time differs. If the agent has learned to avoid uncertain encounters, it may turn up. PPO may distinguish how much power time remains and recognise that passing the ghost is currently safe and gives access to points that help it reach the 2,000-point target. This prediction requires the power timer to be represented more precisely for PPO.
+
+\textbf{What would contradict this prediction:} If Q-learning favours RIGHT or PPO favours UP when enough power time remains, the predicted action for that agent is contradicted. If both consistently choose the same direction, the expected difference is not supported.
+
+\subsubsection{State 3: Only a few pellets nearby}
+\textbf{State:} One pellet is nearby on the right, while a larger group of pellets is on the left. Neither direction has an immediate ghost threat, and the agent has not yet reached 2,000 points.
+
+\textbf{Expected actions:} Q-learning: \textbf{RIGHT}. PPO: \textbf{LEFT}.
+
+\textbf{Why:} A compact Q-learning state that mainly describes nearby pellets may favour collecting the closest one, since this gives an immediate reward. PPO may use information about the wider pellet layout and learn that moving left leads to more points with less backtracking. Both algorithms can learn to value future rewards, but PPO may have an advantage because its state representation includes more information about the maze.
+
+\textbf{What would contradict this prediction:} If Q-learning favours LEFT or PPO favours RIGHT in this state, the predicted action for that agent is contradicted. If both consistently favour the same direction, the expected difference is not supported.

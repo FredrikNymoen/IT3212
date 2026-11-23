@@ -37,9 +37,11 @@ __pycache__/
 *.synctex.gz
 *.toc
 /report/*.log
+/reports/assignment4/*.log
 
 # Local report previews and upload bundles; current sources live in report/
 /report/main.pdf
+/reports/assignment4/main.pdf
 /report/tasks_*.pdf
 /report/overleaf_tasks_*.zip
 

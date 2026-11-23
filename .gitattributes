@@ -1,0 +1,12 @@
+# Registered experiment sources must retain their exact bytes on every checkout.
+notebooks/assignment4/** -text whitespace=cr-at-eol
+# The submitted prediction sheet also retains its original trailing spaces.
+reports/assignment4/Sections/01_predictions.tex -text -whitespace
+
+# Keep editable report sources consistent without touching binary figures.
+reports/assignment4/*.tex text eol=lf
+reports/assignment4/Sections/02*.tex text eol=lf
+reports/assignment4/Sections/03*.tex text eol=lf
+reports/assignment4/Sections/04*.tex text eol=lf
+reports/assignment4/Sections/05*.tex text eol=lf
+reports/assignment4/Sections/06*.tex text eol=lf

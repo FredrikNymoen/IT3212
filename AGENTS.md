@@ -6,9 +6,10 @@ This file provides guidance to coding agents working with this repository.
 
 IT3212 (Data-Driven Software Engineering) is a course repository for all four assignments.
 Assignment 1 has an existing preprocessing implementation. Assignment 2 covers image processing.
-Assignment 3 is the current focus and covers a justified machine-learning workflow; the user selected
-the student graduation dataset for this assignment. Assignment 4 covers reinforcement learning;
-its brief is now available. Do not assume it uses Assignment 3's dataset or workflow.
+Assignment 3 covers a justified machine-learning workflow using the student graduation dataset.
+Assignment 4 is the current focus and covers reinforcement learning; report scaffolding is
+available and the team has already completed Part 1. Do not assume it uses Assignment 3's
+dataset or workflow.
 
 The assignment PDFs in the repository root are the source of truth for grading and submission requirements.
 Read the relevant PDF before implementing an assignment. Distinguish assignment requirements from local
@@ -38,7 +39,353 @@ implementation choices, and update this file when new briefs or repository struc
 - `notebooks/assignment1/student_graduation.ipynb` - populated Assignment 1 implementation, including optional PCA.
   Preserve this work when starting later assignments.
 - `notebooks/assignment1/` through `notebooks/assignment4/` - one directory per assignment.
-  Assignment 4 currently contains a `.gitkeep` placeholder; remove it when adding content.
+  Assignment 4 contains the Gymnasium MsPacMan Part 2 workflow; its placeholder was removed.
+- `notebooks/assignment4/02_learning_settings.ipynb` - historical v2 Part 2 reproduction notebook,
+  run from `notebooks/assignment4/`. `part2_experiment.py run` is the equivalent
+  command for that archived baseline; use `current/` for the current report.
+  Uses `mspacman_env.py` (Gymnasium wrapper/features), `rl_agents.py`
+  (tabular Q-learning/PyTorch PPO) and `part2_report.py` (measured report exports).
+  The original Part 1 text is preserved. The user confirmed instructor approval
+  of score-increment rewards for A/B instead of terminal-only success rewards.
+  Success is >=2,000 new points before all lives are lost or 1,000 decisions.
+  The finite horizon is a terminal task failure with observable time remaining.
+  A has no sticky actions; B uses probability 0.25; C subtracts 0.1 points/decision.
+  D freezes B agents and changes ROM maze selector 0 to 1 before the first action.
+  Both wrappers retain the same action/observation formats. Native level transitions
+  raise an error to protect the map holdout. This ROM intervention may also change
+  layout-dependent behaviour; do not call it a geometry-only causal experiment.
+  Q-learning coarsens object features; PPO receives 15 finer features. The inherited
+  RAM-116 cap is a power-related signal, not a verified precise countdown: later
+  successful replays show values above 63 after ghosts are eaten. Comparisons are between
+  workflows with different representations, not algorithms in isolation.
+  Each algorithm/setting has two learning rates with 16,384 interactions each,
+  a separate tuning seed and 50 development episodes. Mean development success
+  across A/B/C, then mean game score, selects one common rate per algorithm.
+  Other hyperparameters stay fixed across A/B/C. Main runs use 65,536
+  decisions and seeds 42/7/2026, with 20 development episodes at five checkpoints
+  and 200 final held-out episodes per trained agent/condition. D adds no training.
+  This three-seed Part 2 comparison does not satisfy Part 3's five-seed rule.
+  Q evaluation is greedy with seeded uniform ties; PPO uses highest-probability
+  actions. Frozen evaluation checks parameter fingerprints, uses read-only Q
+  lookups and restores training RNG state. Final results never tune parameters.
+  Numerical records and per-decision traces are ignored under
+  `results/assignment4/part2_controlled_v2/`; engineering checks are separate under
+  `results/assignment4/engineering_audit/`. Protocol and source hashes are checked
+  when resuming; use a new run ID after code/protocol changes. Raw traces contain
+  RAM, Q-values/probabilities, actions, rewards and episode/step IDs for Part 4.
+  Report text and a single vector learning curve are generated only after the
+  full run. No report PDF/ZIP is compiled. See its README for budgets, sources,
+  runtime accounting, Gymnasium audit and reproducibility instructions.
+  The initial `part2_score_v1` pilot selected rates separately by setting. This
+  was corrected after partial evaluation inspection to satisfy the controlled
+  setting comparison. The correction selects only from development data and
+  reuses evaluation seeds; never call it a new independent test. Twelve identical
+  final agents and the original tuning search are reused with a manifest;
+  six changed agents are retrained. Original raw results and exact original
+  Python snapshots are preserved separately. Reused costs keep source provenance.
+- `notebooks/assignment4/pilot/` - bounded improvement diagnostics authorised
+  after the poor main results. `policy_check.py` evaluates saved B checkpoints
+  with greedy/sampled PPO policies; `q_exploration_check.py` evaluates frozen Q
+  tables with epsilon 0.05/0.10. Development seeds are 650000--650019, separate
+  from the main held-out seeds. `local_pilot.py` tries a relative food-lattice
+  representation and advisory action filter for both agents, 65,536 interactions
+  at seeds 42/7; PPO also uses LR 0.0003. Its graph is only checked for training
+  layout 0 and is not an exact ALE legality detector. This is a package feasibility
+  pilot, not a controlled one-factor Part 3 experiment. It does not improve both
+  workflows and is NOT adopted. Sampled original PPO improves development scores
+  (179.8 to 681.2 across three agents) but has 0/60 successes; Q epsilon 0.05
+  yields only 1/40 successes across two agents. Do not claim reliable improvement
+  or count the separate hand-coded geometry diagnostic as an RL result. Main
+  code, report, predictions and held-out exports remain unchanged. Records are
+  separate under `results/assignment4/quick_pilot/`. See its README for paired
+  comparisons, controls, limitations and the recommended next isolated check.
+- `notebooks/assignment4/pilot/FURTHER_EXPLORATION.md` - subsequent investigation.
+  The user explicitly reminded that the main implementation must match the
+  original prediction sheet. Use ordinary single-table tabular Q-learning,
+  updated from each new environment transition, versus PPO. Double Q, replay
+  and eligibility-trace variants are separate exploratory deviations. Do not
+  promote their improved rates as the original Q-learning baseline or modify
+  the prediction sheet to legitimise them. A corrected ordinary-Q rerun is
+  required before reporting improved main-comparison Q results. Retain the
+  geometry corrections and document the shared underlying feature information.
+  The archived locked Double Q results below remain genuine variant results.
+  The investigation began after the user rejected the first pilot. Original pellet masks contain manual
+  transcription errors and right-side pellet coordinates omit a four-pixel offset.
+  The old local pilot inherits them. `maze_geometry.json` is extracted automatically
+  from the referenced upstream source; `navigation_features.py` provides corrected
+  current geometry and motion (45 values), no forced actions or shaped rewards.
+  `validate_navigation.py` checked 1,405 Gymnasium steps for unchanged native RAM,
+  rewards and episode outcomes. Preserve the registered top-level source hashes and
+  original predictions; do not silently rewrite the historical baseline/report.
+  `reference_ppo.py` tests SB3 PPO with original versus rich features; SB3 2.9.2 is
+  documented in pilot/requirements.txt. `navigation_q.py` tests one-step relative
+  Q and phase-aware Watkins Q(lambda), including failed controls. `canonical_q.py`
+  and `shared_policy.py` are separately labelled exploratory packages. Main new
+  candidates have a 524,288-interaction maximum; development uses 670000-series
+  seeds, frozen confirmation 680000-series. The held-out D map is not evaluated.
+  Seed-42 rich PPO at checkpoint 327,680 succeeded in 20/20 selection and 50/50 new
+  development episodes (2,500.4 mean points). Replay checks every score against
+  native BCD registers/RGB and documents 200/400/800/1,600-point ghost bonuses.
+  Seed-42 phase/trace Q reached 8/20 at 458,752 but did not replicate at seed 7
+  (0/50 separate development successes). Both can regress with more training;
+  never report selected peaks as final independent tests or infer seed stability
+  from one trained agent. Shared-action PPO at the final 262,144 checkpoint
+  achieved 35/50 and 37/50 separate development successes for seeds 42 and 7.
+  `replay_double_q.py` adds tabular Double Q and observed-transition replay;
+  `goal_replay_q.py` shares learned table values in food-relative coordinates.
+  The latter's final 262,144 checkpoints achieved 17/50 and 22/50 on those
+  development episodes. `power_goal_q.py` is a separate short bonus-direction
+  observation test, not an adopted change or a hand-coded action policy.
+  Four final goal-relative Q/shared-PPO model hashes and 200 untouched seeds
+  710000--710199 are frozen in `locked_validation_protocol.json`. Do not use
+  this locked pilot validation set for further model/configuration selection.
+  The locked 200-episode/model results are Q 59/200 and 131/200, PPO 136/200
+  and 158/200 for seeds 42/7 respectively. All four model hashes and seed lists
+  were verified. This is a B-only pilot, not the complete new A--D study. Q still
+  varies substantially across training seeds. `locked_validation_summary.csv`
+  includes raw-score means and episode lengths by outcome; the matching checks
+  record verifies all 800 episodes. Use the final fixed checkpoints, not the
+  earlier transient 100% PPO peak, when reporting this locked comparison.
+  `confirm_candidate.py` freezes tables/actors, `sb3_numpy.py` checks actor inference
+  against Torch, and `exploration_summary.py` exports raw comparison tables/plots
+  and verifies original source hashes. Records live under
+  `results/assignment4/further_exploration/`, plot outputs under the matching
+  `figures/assignment4/` subdirectory. The first canonical-Q unseen_fraction metadata
+  is wrong (rotated wrapper lookup); it does not affect learning. These are
+  exploratory packages with unequal tuning, not the formal five-seed Part 3 or
+  the required new controlled A--D/200-episode evaluation. See the investigation
+  record before changing the report recommendation or promoting the implementation.
+- `notebooks/assignment4/pilot/tabular_q.py` is the Part 1-aligned replacement:
+  an independent ordinary single-table Q-learning implementation. It imports
+  no Double Q/replay implementation. Each real transition makes one Bellman
+  update; terminal states omit bootstrapping. It retains the corrected shared
+  observation and compact food-relative bins, with alpha 0.15, gamma 0.99 and
+  the declared epsilon schedule. `validate_tabular_q.py` numerically checks the
+  target, terminal handling, native action mapping and read-only lookup.
+  `single_q_experiment.py` trains seeds 42/7 for a fixed 262,144 decisions and
+  asserts that the update count equals the interaction count. Records are
+  separate under `results/assignment4/single_q_v1/`; development seeds are
+  730000--730019 and final frozen evaluation uses 740000--740199. Do not use
+  these final seeds to select parameters or intermediate checkpoints.
+  Unchanged PPO checkpoints are separately evaluated on the identical final
+  seeds under `further_exploration/confirmation/aligned_ppo_*_740000/`.
+  `summarize_single_q.py` validates the model hashes, update counts, paired seeds
+  and raw outcomes and exports the new comparison. See `pilot/SINGLE_Q.md`.
+  This rerun is complete: ordinary Q achieved 74/200 and 59/200 successes for
+  seeds 42/7; unchanged PPO achieved 131/200 and 166/200 on the identical new
+  episodes. All ordinary-Q models have one table and exactly 262,144 update
+  calls, matching their real training interactions. The final 800 episodes
+  were evaluated without parameter updates. The earlier Double Q success rates
+  are not ordinary-Q results and are not reused in the new comparison.
+  The old Double Q rates remain variant results and must not be copied into
+  this ordinary-Q comparison. Historical top-level sources and Part 1 remain
+  unchanged; the new B-only rerun is not the full refreshed A--D report.
+- `notebooks/assignment4/current/` is the updated full Part 2 A--D workflow.
+  Run `python notebooks/assignment4/current/experiment.py run --workers 3` from
+  the repository root. `environment.py` preserves exact pilot features on map 0
+  and provides compatible map-1 features for D. The audit checks exact B
+  equivalence, B/C reward isolation and D shapes/geometry. Ordinary single-table
+  Q-learning and SB3 shared-action PPO use 262,144 interactions and seeds 42/7.
+  A new matched grid gives each method two 65,536-step candidates and 50 B
+  development episodes each, training seed 31415. It selected Q alpha 0.15 and
+  PPO LR 0.0003, held fixed across A/B/C. Exactly matching B checkpoints can be
+  reused with source checks; their original training-time provenance is retained.
+  All reported evaluations are rerun. Tuning seeds 760000--760049, curve seeds
+  780000--780019 and final seeds 790000--790199 are separate. D freezes B weights
+  without training. Never tune on the held-out final results or D performance.
+  Records and source snapshots are under `results/assignment4/part2_current_v3/`.
+  The renderer verifies all 3,200 episodes/traces and writes the new section 2
+  and `Images/part2_learning_curves_v3.png` only after all 12 trained-model jobs
+  complete. It does not compile a report PDF. Review `02_discussion.tex` manually
+  against the new measurements; the old 1%/zero-PPO interpretation was replaced.
+  The full v3 run completed: B success averages Q 31.0% and PPO 69.5%; C 21.8%
+  and 58.5%; D 1.5% and 37.5%. Across-seed variation is large for PPO, including
+  A successes of 0%/100%, so do not claim general reliability from these means.
+  `verify.py` independently replayed eight saved A--D/algorithm episodes. The
+  previous report text is archived in the run. Two seeds are not the five-seed
+  Part 3 mechanism study. The capped power signal remains a declared limitation.
+  Use this new runner/report command for the current report. The old top-level
+  runner, notebook and `part2_controlled_v2` outputs are historical; preserve their
+  registered source hashes rather than modifying them to imitate the new run.
+- `notebooks/assignment4/improvements/` contains the user-authorised post-v3
+  improvement search. Preserve the v3 sources/report/results. `check.py` checks
+  unchanged Gymnasium transitions/rewards, ordinary Q updates and PPO inference.
+  `experiment.py screen` gives each method two 262,144-decision B candidates,
+  seed 42, evaluated on development seeds 810000--810049. `replicate.py` repeats
+  an individually promising candidate without retraining rejected variants.
+  The bulk `confirm` command ranks new candidates even when all lose to the
+  baseline, so it is not an automatic quality gate. Do not select on D or
+  reuse old final episodes for tuning.
+  Ordinary Q is retained; no Double Q, replay, action masks or reward shaping.
+  Changes include common observed motion/score/lives, compact Q state/credit
+  variants and PPO actor/update variants. Read the directory README for exact
+  settings and chronology. This is development after inspection, not a new
+  independent final test or Part 3's five-seed mechanism experiment.
+  The PPO `stable` package improved on both seeds: locked B confirmation on
+  860000--860199 gave 96%/93%, versus old-model 66%/82.5%, 200 episodes per
+  model. All weights were frozen; do not tune on these confirmation results.
+  Five newly trained Q packages failed to beat the development baseline and
+  are not recommended. `select_q_checkpoint.py` separately locks a common
+  earlier checkpoint (196,608) from the original development curves and
+  confirmed Q improvements on both seeds: 36%/39% versus 32%/30%, 200 episodes
+  per model, mean 37.5% versus 31%. This is a modest gain, not reliable success.
+  `selected_agents.py` loads the locked selected Q/PPO models and exposes
+  `action(observation)` with the common Gymnasium 49-value wrapper.
+  The original training run consumed
+  262,144 interactions, but selected weights contain only 196,608 updates.
+  These are B-only development revisions with unequal cumulative search, not
+  a new matched A--D report; preserve the full v3 report and label scope.
+- `notebooks/assignment4/q_motion/` is the user-requested isolated follow-up
+  after the earlier Q packages failed. `motion_q.py` appends one relative
+  closing-motion bit to the original Q key; all other key fields and Q alpha,
+  gamma, epsilon, reward, actions and horizon are unchanged. `experiment.py`
+  trains A/B seeds 42/7 for 262,144 decisions and reuses source/hash-matched
+  v3 baselines. Primary comparison is full budget; a predefined secondary
+  comparison uses 196,608 checkpoints. Fifty development seeds 890000--890049
+  per checkpoint are separate from earlier tests. Records are under
+  `results/assignment4/q_motion_v1/`; never tune on D or old final outcomes.
+  Preserve these registered sources when resuming; use a new ID after changes.
+  This remains a two-seed development pilot, not a five-seed mechanism study
+  or a replacement of the complete A--D report. Read its README for diagnostic
+  counts, motion thresholds and the inherited power/geometry limitations.
+  A separate `tunnel_experiment.py` tests an observed graph repair, without
+  the closing bit: four apparent dead ends in map 0 are actual wrap portals
+  (41 boundary crossings in old B traces). `tunnel_features.py` adds paired
+  boundary links only to feature extraction, leaving native dynamics unchanged.
+  `check_tunnels.py` verified 1,244 identical A/B transitions/rewards, including
+  a recorded wrap replay. The separate Q tunnel pilot uses matched settings
+  and reuses the first study's baseline development episodes with hashes;
+  outputs go to `results/assignment4/q_tunnels_v2/`. The v1 attempt failed
+  before training due to a spawned-worker module-name collision; sources are
+  preserved there. The runner now loads its study by explicit file path, with
+  a spawned baseline-worker regression check. D never selects either
+  representation. Preserve original graph code and frozen model/report records.
+  The completed motion-bit development pilot has a trade-off: primary A mean
+  success 31% versus 0%, B 21% versus 25%, with A seeds 62%/0%. At 196,608,
+  A is 50% versus 0%, B 30% versus 33%. Do not claim a universal improvement.
+  `confirm_transfer.py` selects representation/checkpoint only from the two
+  A/B development studies, then locks hashes and tests A and frozen B-to-D on
+  new seeds960000--960199,200 episodes per model. It includes matched checkpoint
+  controls and, when applicable, the old full-budget D reference. Results are
+  under `results/assignment4/q_representation_confirmation_v1/`. Never reselect
+  from these confirmation results; A uses A-trained models and D adds no training.
+  Completed locked confirmation selected motion at 196,608 from A/B development:
+  A success 50% versus 0% (candidate seeds 100%/0%); D 2.5% versus 4.5% at
+  matched checkpoints. The full-budget old D reference scored 3.25%. All cells
+  have 200 new episodes per model, seeds 960000--960199, 2,000 episodes total.
+  Do not promote this as a general Q or transfer improvement. `selected_q.py`
+  loads the opt-in experimental model with the right Gymnasium wrapper; the
+  previous B-focused loader and full report remain unchanged. The tunnel-only
+  pilot gave A 0% and B 16% versus original B 25% at full budget, so it was not
+  selected. Keep both failed and successful cases and the native graph evidence.
+- `notebooks/assignment4/q_transfer/` continues user-authorised Q transfer
+  exploration after verification of the motion study. `q_motion/verify_native.py`
+  independently recounted 2,000 old A/D episodes and replayed 16 outcome cases
+  with native BCD score agreement at every step. The old 50% A/2.5% D result
+  is correct; no old confirmation episode becomes tuning data.
+  `transfer_q.py` tests two separate one-component state changes: three-level
+  directional threat, or zero/low/high bins of the existing capped power proxy.
+  No precise-timer claim or RAM decoder change is made. Original Q updates,
+  alpha/gamma/epsilon/reward/actions/horizon stay fixed; no closing bit, tunnel
+  repair, Double Q or replay enters this study. `run_study.py` trains B seeds
+  42/7, 262,144 decisions, checkpoints 196,608/262,144 and new development seeds
+  1000000--1000049. Records/snapshots go to `results/assignment4/q_transfer_v1/`.
+  Select a new representation only from B development before fresh frozen D
+  testing. Previously inspected D layout is not a new independent domain just
+  because episode seeds change. Read the README for scope and cumulative search.
+  `resources_q.py` adds a separate package with last-life and near-goal score
+  bits from the existing observation, leaving the original key/update intact.
+  `run_resources.py` trains B seeds 42/7 with the same trainer/schedule/budget,
+  storing separate records under `results/assignment4/q_resources_v1/`.
+  This package changes two observed variables and is not a one-factor study.
+  `confirm_d.py` waits for both B studies, chooses the strongest NEW candidate
+  from threat/power/resources/power-route using B data only, then locks hashes
+  before seeds 1060000--1060199. It compares 200 frozen D episodes per model
+  against both original checkpoints, with native score agreement checked at
+  every decision; results go to `results/assignment4/q_transfer_confirmation_v2/`.
+  Never reselect from these D outcomes. The old baseline can be stronger in B;
+  selecting a new candidate for a transfer hypothesis is not a claim of B gain.
+  `power_route_q.py` separately retains the existing power-pellet direction
+  field when unpowered and threatened; no action is forced or masked.
+  `run_power_route.py` uses the same B trainer/seeds/budget, recording two new
+  agents under `results/assignment4/q_power_route_v1/` before valid D locking.
+  The first confirmation process had loaded an earlier plan while waiting;
+  it was stopped and v1 marked aborted, with no outcomes inspected/used.
+  Only v2 with fresh seeds and loaded-source hash checks is valid. Never edit
+  registered source files in a running/waiting process.
+  All four B candidates completed on seeds42/7. At196,608/262,144, mean success
+  is baseline24%/41%, threat22%/12%, power20%/21%, resources5%/2%, power-route
+  25%/27%. The D v2 lock selected the strongest NEW candidate, power-route at
+  262,144, before its fresh D outcomes. This is not a B improvement over the
+  stronger original model. Preserve all failures and do not cherry-pick D.
+  Valid v2 D confirmation completed: candidate power-route262,144 mean4.5%
+  (seed42=2%,seed7=7%) versus matched original262,144 mean2% (2%/2%). Original
+  196,608 mean2.5%. Each model has200 fresh episodes,1,200 total, with native
+  BCD score agreement checked every step and no D training. Only one training
+  seed improved, so describe this as a small conditional gain, not reliable
+  transfer. The new source models were weaker on B; do not replace the complete
+  v3 report or original B-focused recommendation with these partial results.
+- `notebooks/assignment4/three_hour/` is the user-approved 22 November 2026
+  improvement study, bounded to 19:58--22:58 UTC. All native task/reward rules
+  and ordinary single-table Q updates remain intact. The 61-value observation
+  adds all four ghost offsets/activity to the audited 49 values. Seven matched
+  candidate packages per algorithm use A/B, seed 42 and 262,144 decisions per
+  setting, then the best two repeat on seed 7. No D result selects a candidate.
+  `select.py` locks source-development decisions, `main_cohort.py` trains fresh
+  main seeds with a common recorded cap, and `evaluate_final.py` selects
+  checkpoints from each A/B/C model's source-condition development episodes
+  using the same rule/allowance. Every run consumes the full cap; selected
+  earlier weights must not be labelled as containing all those transitions.
+  D reuses B's selected frozen model and gets zero additional training. Each
+  final model has at least 200 separate episodes, full traces, native BCD score
+  checks and hash/fingerprint checks. Native replay bypasses custom wrappers.
+  The original v1 runner's duplicate `checkpoints` keyword failed only when
+  assembling metadata after successful checkpoint/curve saving. Preserve v1.
+  `recover_metadata*.py` checks all saved models and development episodes before
+  recovering metadata; `run_study_v2.py` changes only that dictionary assembly.
+  Queued-job rescheduling records actual v2 runtime sources separately and never
+  overwrites an existing job directory. A small engineering cohort tested the
+  corrected end-to-end save/completion path and is excluded from selection.
+  `reproduce.py` provides the corrected sequence under a new run prefix; consult
+  its README and the actual result locks under
+  `results/assignment4/three_hour_20261122/`. Sources are immutable once locked.
+  Keep all training seeds, failed candidates and original predictions. Do not
+  present post-inspection development as an independent new map-domain test or
+  fabricate human review. Only update report LaTeX/PNG after full verification;
+  no report PDF/ZIP is compiled. Main algorithm comparisons and separate
+  five-seed mechanism studies remain distinct.
+  The November 22 training/search completed all 30 fresh main models. Final
+  evaluation completed 39/40 cells, 7,800 episodes and 5,195,714 decisions.
+  Q/PPO means are A32.9%/80%, B32.2%/67.4%, C26.9%/52.7%; PPO D13.9%.
+  Q/D seed314 hit a native maze1->0 change at1760points, episode1150094,
+  decision975, lives2 and no native termination. The guard correctly stopped
+  evaluation; do not label it agent failure or average only four Q/D agents.
+  `interrupted.json` preserves the 40-case lock and the report suppresses the
+  incomplete Q/D aggregate. Exact native flags were independently reproduced.
+  The user approved up to fifteen extra minutes for diagnosis/report checks,
+  with no new training/model changes. Source-selected fixed B policies scored
+  Q66.5%/PPO92.5%; their D rates were only2.5%/2%. Do not replace five-seed
+  means with these n=1 choices. The earlier fixed PPO42/7 models separately
+  verified98.5%/98%; these are different models, not five-seed reliability.
+- `notebooks/assignment4/transfer_evaluation/` repairs measurement of the native
+  D map-boundary interruption without modifying any learned model. All ten
+  original B checkpoints (Q/PPO seeds17/29/101/314/2718) are locked before
+  200 fresh D episodes per model, seeds1250000--1250199. `boundary_env.py`
+  preserves native dynamics and pre-boundary features; map exits produce
+  external truncation/censoring rather than agent failure. No action is
+  allowed afterward. A censored return excludes the crossing action's reward
+  and is the verified in-map prefix. Report S/N as observed in-map success
+  and [S/N,(S+C)/N] as bounds on unresolved original-task outcomes, not CIs.
+  Records/snapshots are separate under `results/assignment4/transfer_boundary_v1/`.
+  `check.py` verifies1600 unchanged steps and the exact old975-step exit;
+  `verify.py` checks all traces/model hashes and native replays. `update_report.py`
+  replaces only D numbers/discussion in the reviewed report; `verify_report.py`
+  checks old A/B/C and new D against raw CSVs with the reduced four-column
+  outcome table. No original source/model/prediction/old-result rewrite is made.
+  The2000-episode run measured Q4.5% observed success versus PPO14.7%.
+  One Q episode is censored (1/1000), so the mean Q success bound is4.5--4.6%;
+  PPO has no censored episodes. This is a post-inspection boundary repair,
+  not improved learning, a new independent domain, or Part3's mechanism study.
 - `notebooks/assignment3/student_dropout_combined.ipynb` - combined binary Assignment 3 workflow
   on branch `assignment3-combined`, with English answers to points 1-10. This is the current
   synthesis; the earlier three-class notebook is retained as a separate reference. Positive class
@@ -224,6 +571,58 @@ implementation choices, and update this file when new briefs or repository struc
   Keep the report self-contained and do not refer readers to exported files or notebooks for results.
   Local CSV exports and code remain internal analysis and reproducibility artifacts.
 - `requirements.txt` - shared Python dependencies with minimum versions.
+- `reports/assignment4/` - English LaTeX writing project for Assignment 4.
+  `main.tex` includes six section files in the brief's Part 1--6 order and an
+  `ai_assistance.tex` record. The team's original Part 1 answer is now supplied in
+  `Sections/01_predictions.tex`; preserve it unchanged and keep later annotations
+  separate. The latest Part 2 workflow is `three_hour/`: fresh five-training-seed
+  A/B/C comparison and frozen D tests of ordinary Q `gamma995` and PPO `stable`.
+  Both use 262,144 interactions and the same source-development checkpoint
+  rule; D inherits B. A/B/C retain the original five-seed results; current D
+  uses `transfer_evaluation/` with all ten original B models and explicitly
+  censored map exits. The original Q/D interruption remains historical. A
+  separate source-selected operating-policy table has n=1 policy per cell
+  and must not replace training-seed variability. The old v3 benchmark and
+  later two-seed follow-ups are historical. In particular, PPO's historical
+  94.5% is a fixed two-model B result, not five-seed A--D reliability.
+  `three_hour/render_results.py` verifies complete frozen traces before writing
+  numerical LaTeX/PNG; `refresh_discussion.py` updates interpretation and
+  `validate_delivery.py` independently checks table arithmetic/LaTeX. Previous
+  text is archived with the final run. Historical `current/report.py` cannot
+  reproduce the new report; retain its sources and overwrite guard.
+  Parts 3--6 remain prompts and empty placeholders, not results or peer feedback.
+  `Sections/02_discussion.tex` contains authored interpretation after the measured
+  Part 2 section; it keeps reviewed discussion separate from numerical rendering.
+  Recheck this text when experiments change and include both Part 2 input lines
+  when extracting the evidence brief.
+  The 23 November Part 2 editorial review preserves all numerical table values,
+  removes visible file/path references, explicitly records failure rates in
+  prose and explains A/B, B/C and transfer findings. The figure identifies the
+  22 November main experiment by date/settings/configuration/seeds instead of
+  a filename. The subsequent requested edit explains arbitrary seed values
+  and native maze identifiers, keeps only return in the outcome table, and
+  uses the new censor-aware D results. The old interrupted run is not rewritten.
+  The latest quality revision compresses Part 2 to about1100 prose words,
+  retains outcome/cost Tables1/2 and adds configuration Table3. It answers
+  each A--D question directly and audits paired-seed differences without
+  retraining/reselecting agents. Q's almost unchanged A/B mean hides changes
+  from-71to+48pp. PPO's B mean advantage survives omission of any paired seed
+  (29.25--44.5pp); this is descriptive sensitivity, not significance or new
+  independent validation. Two seeds per algorithm improve under C despite
+  lower means, and the92.5%B PPO model achieves2%D. Preserve the one-censored
+  Q transfer bound4.5--4.6%. Current archived text, analysis and verifier are
+  under `results/assignment4/part2_quality_review_20261123/`; run its
+  `verify_quality.py` for the three-table revision. Earlier two-table report
+  generators/checkers are historical and must not replace this text.
+  Earlier review records and archived pre-edit text are under
+  `results/assignment4/section2_review_20261123/`. Do not run historical report
+  or discussion generators over this reviewed text; their numerical exports
+  and old report hashes remain historical provenance. Part 1 remains unchanged.
+  The combined document is a writing layout; evidence
+  brief (Parts 2/3/4/6, editorial grouping), original predictions and Part-5 review
+  remain distinct submission components. Respect the separate 2,000-word evidence
+  and 1,000-word review limits. See its README for Overleaf and extraction details.
+  The selected environment is MsPacMan. Keep actual run IDs on all figures.
 - `README.md` - course navigation, Python setup, local dataset paths and housekeeping policy.
 
 ### Post-Assignment 3 cleanup
@@ -266,8 +665,10 @@ other notebooks and retain point letters where the brief uses them.
 
 `requirements.txt` contains pandas>=2.0, numpy>=1.24, matplotlib>=3.7, seaborn>=0.12,
 scikit-learn>=1.3, jupyter>=1.0, ipykernel>=6.25, scipy>=1.11, Pillow>=10.0,
-contourpy>=1.1, torch>=2.6 (Workshop 1 and Assignment 3 neural networks), and
-threadpoolctl>=3.1 (bounded numerical threads for Assignment 3 timing comparisons).
+contourpy>=1.1, torch>=2.6 (Workshop 1 and Assignment 3/4 neural networks),
+threadpoolctl>=3.1 (bounded numerical threads), gymnasium>=1.1, ale-py>=0.12.1
+(Assignment 4 Atari backend), stable-baselines3==2.9.2 (current Assignment 4 PPO),
+plus IPython.
 These are minimum constraints, not exact pins. SciPy, Pillow, and ContourPy support the image-processing notebooks.
 Add new implementation dependencies (such as scikit-image, OpenCV, or Pillow) when introduced rather
 than installing them ad hoc. PDF-reading tools used only to inspect briefs are not runtime dependencies.
@@ -390,7 +791,7 @@ Document any resizing.
   advantages and limitations, effects of parameters such as thresholds and filter sizes, and examples
   where each method is more suitable.
 
-## Assignment 3: Machine learning (current focus)
+## Assignment 3: Machine learning
 
 Source of truth: `IT3212-2026-Assignment 3.pdf`. Total 200 points, passing mark 130.
 The supplied one-page brief specifies neither submission format nor word limit. The point allocations

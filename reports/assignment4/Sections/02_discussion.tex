@@ -1,0 +1,53 @@
+% Evidence-focused interpretation; original predictions are unchanged.
+\subsection{What changes across the four settings?}
+\paragraph{A: Predictable environment.}
+At 65,536 interactions, PPO reaches 20\% development success against Q's 2\%
+in A. B instead gives Q a small early lead, 6\% against 0\%. This does not
+support a general early Q advantage. Final A success favours PPO, but its
+80\% average comprises four 100\% agents and one 0\% agent, not uniformly
+reliable retraining. With only ten development episodes per checkpoint,
+individual curve points are noisy. The table tests development-selected
+weights, which can precede the last checkpoint, while charging full-run costs.
+
+\paragraph{B: Uncertain environment.}
+PPO exceeds Q by 35.2 percentage points on average, with higher observed
+success in four of five paired training seeds. Omitting any one paired seed leaves a positive mean
+advantage of 29.3--44.5 points: a descriptive sensitivity check, not a
+significance test. However, PPO still fails in 32.6\% of episodes.
+Q's A-to-B mean decline of only 0.7 points hides paired changes from
+$-71$ to $+48$ points. Thus the mean neither demonstrates robustness nor
+supports our predicted larger Q loss. Aggregate outcomes cannot establish
+that either agent chose safer routes.
+
+\paragraph{C: Changed incentives.}
+Relative to B, success falls by 5.3 points for Q and 14.7 for PPO. Mean
+successful lengths shorten from 655 to 625 decisions and 578 to 533,
+respectively, but this conditions on different sets of successful episodes.
+With goal attainment prioritised over speed, the results do not justify
+this penalty. Two of five seeds improve for each method, so this is not
+evidence that step penalties invariably harm learning. We compare common
+outcomes and raw scores: C raw scores are $1534.8\pm201.0$ for Q and
+$1873.4\pm283.5$ for PPO; penalised returns are not directly comparable to B.
+
+\paragraph{D: Transfer.}
+Food-relative Q keys and shared PPO action scores retain meaning on the new
+maze, aided by geometry-based feature extraction. Familiar compact keys can
+still merge different situations. Every B agent's observed success declines
+on D. The PPO policy selected on B development achieves 92.5\% in B but only
+2\% in D, illustrating why source performance cannot certify transfer.
+
+The original D run hit a natural map change. The revised boundary protocol,
+locked before fresh evaluation of all ten B agents, uses external truncation
+at map exit and takes no action on another maze. With $S$ successes and $C$
+censored episodes among $N$, the completed-task success fraction for these
+episodes is bounded by $[S/N,(S+C)/N]$.
+The single censored Q episode gives a mean bound of 4.5--4.6\%, not a
+confidence interval. Its maximum 0.1-point effect cannot explain the weak
+transfer. Returns for censoring are in-map prefixes, not complete-task returns.
+This is a post-inspection protocol repair; the previously inspected maze and
+ROM intervention do not constitute an independent geometry-only domain test.
+
+Within this budget, PPO is the stronger B workflow. Neither workflow's
+failure rate or transfer evidence supports reliable operation where failures
+matter. These findings concern the tested representations and procedures,
+not universal algorithm superiority.
