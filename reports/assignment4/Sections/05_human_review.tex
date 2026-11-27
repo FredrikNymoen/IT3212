@@ -2,21 +2,83 @@
 \section{Conduct a human review}
 \label{sec:human-review}
 
-% Separate review record: MAXIMUM 1,000 words.
-% Complete this from a real review within the team, not generated peer feedback.
-% Record the actual review date, participants and evidence/run IDs considered.
-\noindent\textbf{Review date and participants:} \textit{[Complete after the review.]}
+\noindent\textbf{Review record:} Team review (Fredrik, Johan, Elling and Mats), 26 November 2026,
+examining unified Part~2 A--D runs (\texttt{affae3e137cbe226}, \texttt{e8c0c6a8f4071325},
+\texttt{9e25203dcd939450}, \texttt{unified\_part2/setting\_D}), Part~3 sweeps and diagnostics
+(\texttt{054b0e6b63381969}, \texttt{3142fac3111db314}, \texttt{exec\_diagnostic}) and Part~4 replays.
 
-\subsection{Strongest supporting evidence}
-\noindent\textit{[Identify the strongest evidence and explain why it supports the claim.]}
+\subsection*{Strongest supporting evidence}
+The strongest evidence for preferring PPO in uncertain simulation is the matched Setting~B
+comparison executed in one consistent computing environment: baseline PPO achieved 70.2\%
+mean success against Q-learning's 31.3\% across five training seeds and 200 frozen episodes
+per model, outperforming Q on all five paired seeds. In Part~3's locked confirmation on the
+same 200 test seeds, PPO12 ($2\times$ learning rate, 12 epochs) raised mean success further
+to 90.2\% while halving between-seed SD from 16.1 to 8.0 percentage points. Because Q and PPO
+use different state encodings from the shared observation vector, this supports the tested
+workflows rather than PPO in isolation.
 
-\subsection{A claim that goes beyond the evidence}
-\noindent\textit{[Identify an overreaching claim and record the team's correction.]}
+The paired Setting~D study provides the cleanest control of observation sensitivity: the exact
+same frozen Setting~B checkpoints ran on 200 paired seeds under clean and 32$\times$32 obstructed
+observations with native dynamics untouched. Success fell from 70.2\% to 47.5\% for baseline PPO,
+from 91.1\% to 70.1\% for PPO12, and from 27.1\% to 22.2\% for Q. Higher retained success and
+smaller absolute degradation are distinct criteria, and opposite individual-seed shifts (e.g.,
+PPO seed~2718 gaining $+8.0$ pp while seed~314 lost $-37.0$ pp) prevent universal claims.
 
-\subsection{An alternative explanation}
-\noindent\textit{[Record a plausible alternative and how it could be distinguished.]}
+\subsection*{A claim that goes beyond the evidence}
+A tempting overstatement from the 90.2\% PPO12 score is ``PPO12 generalises reliably to
+unfamiliar operating conditions.'' That claim exceeds our evidence: even under a single
+fixed 32$\times$32 object-feature obstruction with intact maze geometry, PPO12 dropped 21.0
+percentage points and failed 29.9\% of episodes (and baseline PPO failed 52.5\%). A defensible
+statement is: the tested PPO workflows retain higher mean success than Q under this fixed local
+obstruction, without establishing pixel-perception robustness, unseen-map transfer or deployment safety.
 
-\subsection{Comparison with the submitted predictions}
-% Refer to the original Part 1 answer without changing it. Record the team's
-% resulting interpretation and any actual follow-up decision.
-\noindent\textit{[Compare the reviewed evidence with the initial predictions.]}
+\subsection*{A competing explanation}
+Two mechanisms required distinguishing competing explanations. First, PPO12's early lead at
+65,536 interactions could have reflected noise from 10 development episodes; our 50-episode
+fresh diagnostic (\texttt{3142fac3111db314}) ruled out pure episode noise (29.6\% for 12-epoch
+PPO vs.\ 5.6\% for Q and 0\% for 6-epoch PPO), showing rollout reuse drives the early reversal.
+Second, zero-entropy PPO's cap-level gain (64\% vs.\ 36\% on development) could reflect argmax
+concentration rather than a uniformly superior policy distribution. On 50 fresh paired episodes,
+the zero-entropy advantage narrowed from $+20.0$ pp under argmax (66.4\% vs.\ 46.4\%) to
+$+14.0$ pp under sampling (57.2\% vs.\ 43.2\%), with lower action entropy (0.426 vs.\ 0.624 nats).
+Thus execution mode accounts for part—but not all—of the cap-level gain, while seed~2718 still
+reversed under argmax.
+
+\subsection*{Comparison with submitted predictions}
+Original Part~1 predictions remain unchanged with dated annotations attached. The predicted early
+Q advantage held against 6-epoch PPO in B but was reversed by 12-epoch PPO and in A. Larger Q
+seed variation held in B but not in A or C. Stochasticity lowered mean PPO success ($-9.8$ pp)
+while leaving Q's mean unchanged (masking paired swings from $-73$ to $+44$ pp), and the common-pool
+ghost probe showed only a 1.9 pp A-to-B PPO shift, leaving safer routes unestablished. Setting~C
+shortened wins but reduced mean success and widened PPO SD. Same-state probes failed to support
+State~1, could not verify State~2's precise-timer premise, and directly contradicted State~3
+(PPO chose RIGHT 98.7\%, not LEFT). Accordingly, our initial preference for PPO becomes strictly
+conditional on simulation use.
+
+\subsection*{Initial priority rankings and group negotiation}
+Table~\ref{tab:priorities} records each member's initial ranking of failure avoidance (F),
+robustness to change (R), explainability (E) and time efficiency (T).
+
+\begin{table}[H]\centering\small
+\begin{tabular}{ll}\toprule
+Member & Initial priority order\\\midrule
+Fredrik & $F>R>E>T$\\
+Johan   & $R>F>T>E$\\
+Elling  & $F>E>R>T$\\
+Mats    & $F>R>T>E$\\
+\bottomrule\end{tabular}
+\caption{Initial priority rankings reported by each team member before negotiation.}
+\label{tab:priorities}
+\end{table}
+
+The negotiated final order was $F>R>E>T$. Three members placed failure avoidance first; Johan
+initially ranked robustness first because of incomplete observations, weighing the paired D
+degradation heavily ($-22.7$ pp for baseline PPO, $-21.0$ pp for PPO12). Keeping $F$ and $R$
+above $E$ and $T$ reflected the group's consensus on avoiding failures under change. Fredrik and
+Elling ranked explainability above time efficiency, whereas Johan and Mats ranked time efficiency
+higher. We broke this tie using failure avoidance: in Part~4, 11 of 12 collision alternatives
+still lost a life within 64 decisions (e.g., SF2/491 and TF2/756), and only TF2/941 avoided loss.
+Being able to inspect whether an intervention actually prevents failure mattered more than minor
+runtime savings, placing $E$ third and $T$ fourth. This ordering anchors Part~6: PPO12 is best for
+further B simulation, but neither workflow is adequately supported for consequential autonomous
+operation or unfamiliar environments.

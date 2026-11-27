@@ -2,23 +2,133 @@
 \section{Inspect what aggregate scores hide}
 \label{sec:episodes}
 
-\subsection{Episode selection}
-% Select ten RECORDED episodes: 3 typical successes, 3 typical failures,
-% 2 surprising successes and 2 surprising failures. Justify typicality using
-% the outcome distributions and explain the surprise criterion before interpretation.
-% Record episode ID, source run/configuration, setting, agent and evaluation seed.
-\noindent\textit{[Identify the ten episodes and justify their selection.]}
+\subsection{Episode selection and replay protocol}
+From frozen Setting~B (\texttt{054b0e6b63381969}), we selected ten episodes (Table~\ref{tab:part4-cases}):
+typical cases (TS1--TS3, TF1--TF3) had the modal ending and smallest IQR-scaled distance to group
+median score/length; surprising cases added the shortest win (SS1--SS2) and closest failure (SF1--SF2)
+in Q and PPO12. Native Gymnasium replays verified exact RAM/score/ending parity, rendered complete RGB
+frames (Figures~\ref{fig:TS1}--\ref{fig:SF2}), and ran real one-step and 64-step counterfactual replays.
+Bold numbers give zero-indexed steps, parentheses show chosen Q-values or PPO probabilities, and
+$\dagger$ marks decisions followed by a life loss within 30 steps. All five actions were available.
 
-\subsection{Three important decisions per episode}
-% Annotate THREE decisions in EACH of the ten selected episodes (30 in total).
-% For each decision include: state and available actions; chosen action and actual
-% Q-values or policy probabilities; observed transition and outcome; alternative
-% action, what might have happened, and what remains uncertain.
-% Use compact inline tables or trace figures with source run/episode/step IDs.
-% Do not invent counterfactual transitions or probabilities absent from the traces.
-\noindent\textit{[Insert the recorded decision annotations.]}
+\begin{table}[H]
+\centering\small
+\begin{tabular}{@{}lllrrrrl@{}}
+\toprule
+ID & Category & Agent & Train seed & Eval.\ seed & Score & Length & Group median (pts/len) \\
+\midrule
+TS1 & Typical success & Q     &   29 & 1360085 & 2000 & 626 & 2000 / 626 \\
+TS2 & Typical success & PPO6  & 2718 & 1360061 & 2000 & 602 & 2000 / 602 \\
+TS3 & Typical success & PPO12 &  101 & 1360133 & 2000 & 463 & 2000 / 465 \\
+TF1 & Typical failure & Q     &   29 & 1360129 & 1380 & 705 & 1380 / 713 \\
+TF2 & Typical failure & PPO6  & 2718 & 1360021 & 1690 & 963 & 1750 / 959 \\
+TF3 & Typical failure & PPO12 &  314 & 1360160 & 1730 & 727 & 1715 / 726 \\
+SS1 & Surprising success & Q     &  314 & 1360093 & 3430 & 248 & 2000 / 626 \\
+SS2 & Surprising success & PPO12 &   17 & 1360116 & 3290 & 198 & 2000 / 465 \\
+SF1 & Surprising failure & Q     & 2718 & 1360025 & 1990 & 999 & 1380 / 713 \\
+SF2 & Surprising failure & PPO12 &   17 & 1360033 & 1990 & 775 & 1715 / 726 \\
+\bottomrule
+\end{tabular}
+\caption{Ten selected frozen Setting~B episodes (\texttt{part4/part3\_B\_054b0e6b63381969}). Population wins/failures: 313/687 (Q), 702/298 (PPO6), 902/98 (PPO12).}
+\label{tab:part4-cases}
+\end{table}
 
-\subsection{What aggregate results miss}
-% Use specific inspected episodes to distinguish poor decisions from unlucky
-% transitions and explain at least one limitation of the aggregate scores.
-\noindent\textit{[Explain the limitation using episode evidence.]}
+\subsection{Annotated decisions and native frames}
+
+\noindent\begin{minipage}{\linewidth}\noindent\textbf{TS1} (Q, Figure~\ref{fig:TS1}).
+\textbf{166} (0.79) NOOP caught a ghost (+200); alt.\ L halted (+0).
+\textbf{437$^\dagger$} (0.08) U entered a pinch (loss in 22); alt.\ R still moved up and lost a life.
+\textbf{625} (0.81) L moved down for the winning pellet (+10); D matched.\par\centering
+\includegraphics[width=.92\linewidth]{Images/part4_TS1.pdf}
+\captionof{figure}{TS1 native frames before each reviewed action (Table~\ref{tab:part4-cases}).}\label{fig:TS1}\end{minipage}\par\smallskip
+
+\noindent\begin{minipage}{\linewidth}\noindent\textbf{TS2} (PPO6, Figure~\ref{fig:TS2}).
+\textbf{154} (0.93) U took a power pellet and ghost (+250); alt.\ D scored +50.
+\textbf{464} (0.37) D moved left into a ghost/pellet (+210); alt.\ R moved away (+0).
+\textbf{601} (0.86) L took the winning pellet (+10); alt.\ R reversed (+0).\par\centering
+\includegraphics[width=.92\linewidth]{Images/part4_TS2.pdf}
+\captionof{figure}{TS2 native frames before each reviewed action (Table~\ref{tab:part4-cases}).}\label{fig:TS2}\end{minipage}\par\smallskip
+
+\noindent\begin{minipage}{\linewidth}\noindent\textbf{TS3} (PPO12, Figure~\ref{fig:TS3}).
+\textbf{116} (0.93) U took a power pellet (+50); alt.\ D also scored +50.
+\textbf{302} (0.95) D caught a ghost (+200); alt.\ U reversed (+0).
+\textbf{462} (0.71) L hit target (+10); alt.\ R moved left (+0).\par\centering
+\includegraphics[width=.92\linewidth]{Images/part4_TS3.pdf}
+\captionof{figure}{TS3 native frames before each reviewed action (Table~\ref{tab:part4-cases}).}\label{fig:TS3}\end{minipage}\par\smallskip
+
+\noindent\begin{minipage}{\linewidth}\noindent\textbf{TF1} (Q, Figure~\ref{fig:TF1}).
+\textbf{390} (1.05) NOOP took a ghost/pellet (+210); alt.\ R reversed (+0).
+\textbf{417$^\dagger$} (0.11) D approached a ghost (loss in 20); alt.\ U reversed yet still lost a life.
+\textbf{685$^\dagger$} (0.48) R moved up (+10) before game over; alt.\ L matched.\par\centering
+\includegraphics[width=.92\linewidth]{Images/part4_TF1.pdf}
+\captionof{figure}{TF1 native frames before each reviewed action (Table~\ref{tab:part4-cases}).}\label{fig:TF1}\end{minipage}\par\smallskip
+
+\noindent\begin{minipage}{\linewidth}\noindent\textbf{TF2} (PPO6, Figure~\ref{fig:TF2}).
+\textbf{159$^\dagger$} (0.53) U turned into a ghost (loss in 20); alt.\ L stayed yet lost a life.
+\textbf{756$^\dagger$} (0.45) L moved up (sticky/alignment) to loss; alt.\ D stayed yet lost a life.
+\textbf{941$^\dagger$} (0.64) D hit game over; alt.\ U reversed and \emph{avoided} loss over all 22 remaining steps.\par\centering
+\includegraphics[width=.92\linewidth]{Images/part4_TF2.pdf}
+\captionof{figure}{TF2 native frames before each reviewed action (Table~\ref{tab:part4-cases}).}\label{fig:TF2}\end{minipage}\par\smallskip
+
+\noindent\begin{minipage}{\linewidth}\noindent\textbf{TF3} (PPO12, Figure~\ref{fig:TF3}).
+\textbf{189} (0.76) L caught a ghost (+400); alt.\ D matched (+400).
+\textbf{419$^\dagger$} (0.39) R closed on a ghost (loss in 24); alt.\ U branched up yet still lost a life.
+\textbf{706$^\dagger$} (0.57) R hit game over; alt.\ L reversed yet still hit game over.\par\centering
+\includegraphics[width=.92\linewidth]{Images/part4_TF3.pdf}
+\captionof{figure}{TF3 native frames before each reviewed action (Table~\ref{tab:part4-cases}).}\label{fig:TF3}\end{minipage}\par\smallskip
+
+\noindent\begin{minipage}{\linewidth}\noindent\textbf{SS1} (Q, Figure~\ref{fig:SS1}).
+\textbf{116} (0.96) NOOP took a power pellet (+50); alt.\ U matched.
+\textbf{177} (1.11) U caught a ghost (+400); alt.\ L matched.
+\textbf{247} (0.92) NOOP scored +1,600 (3,430 total); alt.\ L reversed (+0).\par\centering
+\includegraphics[width=.92\linewidth]{Images/part4_SS1.pdf}
+\captionof{figure}{SS1 native frames before each reviewed action (Table~\ref{tab:part4-cases}).}\label{fig:SS1}\end{minipage}\par\smallskip
+
+\noindent\begin{minipage}{\linewidth}\noindent\textbf{SS2} (PPO12, Figure~\ref{fig:SS2}).
+\textbf{108} (0.85) D took a power pellet (+50); alt.\ U matched.
+\textbf{160} (0.62) R caught a ghost (+400); alt.\ U matched.
+\textbf{197} (0.68) L scored +1,600 (3,290 in 198 steps); alt.\ R still moved left (+1,600).\par\centering
+\includegraphics[width=.92\linewidth]{Images/part4_SS2.pdf}
+\captionof{figure}{SS2 native frames before each reviewed action (Table~\ref{tab:part4-cases}).}\label{fig:SS2}\end{minipage}\par\smallskip
+
+\noindent\begin{minipage}{\linewidth}\noindent\textbf{SF1} (Q, Figure~\ref{fig:SF1}).
+\textbf{171} (0.99) U moved right for a ghost (+400); alt.\ D matched.
+\textbf{416$^\dagger$} (0.51) NOOP continued into collision; alt.\ U reversed yet lost a life.
+\textbf{978$^\dagger$} (0.43) L moved up to game over at 1,990; alt.\ U matched.\par\centering
+\includegraphics[width=.92\linewidth]{Images/part4_SF1.pdf}
+\captionof{figure}{SF1 native frames before each reviewed action (Table~\ref{tab:part4-cases}).}\label{fig:SF1}\end{minipage}\par\smallskip
+
+\noindent\begin{minipage}{\linewidth}\noindent\textbf{SF2} (PPO12, Figure~\ref{fig:SF2}).
+\textbf{396} (0.88) R caught a ghost/pellet (+210); alt.\ L missed (+0).
+\textbf{491$^\dagger$} (0.95) D continued as power cleared (loss in 22); alt.\ U reversed yet lost a life.
+\textbf{752$^\dagger$} (0.96) R took a pellet (+10) to 1,990 before game over; alt.\ L reversed (+0) yet still hit game over.\par\centering
+\includegraphics[width=.92\linewidth]{Images/part4_SF2.pdf}
+\captionof{figure}{SF2 native frames before each reviewed action (Table~\ref{tab:part4-cases}).}\label{fig:SF2}\end{minipage}\par\smallskip
+
+\subsection{Counterfactual continuations and aggregate limits}
+Substituting the alternative once and replaying recorded inputs for up to 64 steps
+(Table~\ref{tab:continuations}) avoided life loss in only 1 of 12 collision cases (TF2/941).
+Open-loop replays cannot capture an adapting policy, yet show that collisions alone do not
+separate poor actions from trapped states. Aggregate rates also mask 1,600-point ghost chains
+behind short wins (SS1/SS2), 1,990-point near-misses counted as full failures (SF1/SF2), and
+sticky/alignment command-motion mismatches (TF2/756).
+
+\begin{table}[H]\centering\small
+\begin{tabular}{@{}lllccr@{}}\toprule
+Case/step & Chosen $\to$ Alt. & 1-step alt.\ move & Orig.\ lost life & Alt.\ lost life & Window\\\midrule
+TS1/437 & U $\to$ R & up & Yes & Yes & 64\\
+TF1/417 & D $\to$ U & up & Yes & Yes & 64\\
+TF1/685 & R $\to$ L & up & Yes & Yes & 20\\
+TF2/159 & U $\to$ L & stayed & Yes & Yes & 64\\
+TF2/756 & L $\to$ D & stayed & Yes & Yes & 64\\
+TF2/941 & D $\to$ U & up & Yes & \textbf{No} & 22\\
+TF3/419 & R $\to$ U & up & Yes & Yes & 64\\
+TF3/706 & R $\to$ L & left & Yes & Yes & 21\\
+SF1/416 & N $\to$ U & up & Yes & Yes & 64\\
+SF1/978 & L $\to$ U & up & Yes & Yes & 21\\
+SF2/491 & D $\to$ U & up & Yes & Yes & 64\\
+SF2/752 & R $\to$ L & left & Yes & Yes & 23\\\bottomrule
+\end{tabular}
+\caption{Matched native counterfactual replays (\texttt{part4/part3\_B\_054b0e6b63381969/continuations.csv}) for all 12 decisions followed by a life loss within 30 steps. Window is $\min(64,\text{remaining steps})$.}
+\label{tab:continuations}
+\end{table}

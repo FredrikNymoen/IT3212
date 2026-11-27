@@ -1,6 +1,41 @@
 # Assignment 4 report
 
-The current Part 2 combines the original five-seed A/B/C measurements in
+## Unified November 26 revision (clarification-compliant)
+
+All primary Part 2 (Settings A, B, C and D) and Part 3/4 experiments in the
+current report run in **one consistent computing environment** (AMD Ryzen 5
+7500F CPU, Windows 11, Python 3.13.7, Gymnasium 1.4.0, ALE 0.12.1, PyTorch
+2.15.0+cpu, Stable-Baselines3 2.9.2), following `clarification-assingment4.pdf`:
+
+- **Setting D** uses paired 32×32 observation obstruction (`x in [16,48), y in [24,56)`)
+  on 200 fresh seeds (`1600000--1600199`) with zero further training.
+- **Part 3** combines the 7 three-value sweeps (`e8c0c6a8f4071325`, `PPO12 = 90.2 ± 8.0%`)
+  with both the early-learning diagnostic (`3142fac3111db314`) and the frozen
+  argmax-vs-sampled zero-entropy diagnostic (`results/assignment4/part3_extras/exec_diagnostic`).
+- **Part 4** renders complete native RGB frames (`Images/part4_TS1.pdf`--`part4_SF2.pdf`)
+  and runs real 1-step and matched 64-decision counterfactual replays in Gymnasium.
+
+### One-sequence reproduction commands (from repository root)
+
+```powershell
+# 1. Unified Part 2 (Settings A/C training+eval, Setting D paired obstruction, A/B ghost probe)
+python notebooks/assignment4/run_unified_part2.py --stage all --workers 10
+
+# 2. Part 3 execution diagnostic, train-eval rank checks, same-state probes, and figures
+python notebooks/assignment4/run_part3_extras.py --stage all --workers 10
+
+# 3. Part 4 native RGB frames and 1-step / 64-step counterfactual replays
+python notebooks/assignment4/run_part4_replays_and_frames.py
+
+# 4. Verify word limits (<=2,000 brief / <=1,000 review), LaTeX refs, figures, and source hashes
+python notebooks/assignment4/verify_final_report.py
+```
+
+---
+
+## Historical notes (November 22--23)
+
+The earlier Part 2 combined the original five-seed A/B/C measurements in
 [the November 22 guide](../../notebooks/assignment4/three_hour/README.md) with
 [the November 23 frozen-transfer evaluation](../../notebooks/assignment4/transfer_evaluation/README.md).
 Ordinary single-table Q-learning (`gamma995`) and PPO (`stable`) use training
@@ -41,7 +76,7 @@ do not rewrite the predictions after seeing results.
 
 | Part | File | Content |
 |---|---|---|
-| 1 | `Sections/01_predictions.tex` | Original prediction sheet and optional later annotations |
+| 1 | `Sections/01_predictions.tex` and `Sections/01_prediction_annotations.tex` | Original prediction sheet and subsequent evidence annotations |
 | 2 | `Sections/02_learning_settings.tex` | Environment/protocol, settings A--D, measured comparison |
 | 3 | `Sections/03_mechanisms.tex` | Controlled experiments, prediction check and diagnostic |
 | 4 | `Sections/04_episode_inspection.tex` | Ten selected episodes, three decisions per episode and aggregate limitations |
@@ -118,12 +153,30 @@ MsPacMan. Part 2's code and reproduction instructions are in
 Part 2 uses score-based rewards in A/B, as the team confirmed was agreed with
 the instructor, with a step penalty added in C. The latest curve is `Images/part2_learning_curves_20261122.png`; it shows
 unsmoothed development success and variation across five newly trained agents.
-No report PDF or ZIP snapshot is rebuilt. Part 3--6 placeholders remain;
-five seeds in Part 2 alone do not complete Part 3's controlled mechanism study.
-Part 5 must record an actual team review. Original predictions are unchanged.
+No report PDF or ZIP snapshot is rebuilt. Parts 3, 4 and 6 use the frozen-test
+records and documented replays below. Part 5 is reserved for the actual team
+review. Original predictions are unchanged.
 Fresh evaluation seeds do not make the previously inspected D layout an
 independent new domain. Prior cumulative search was unequal and is disclosed;
 this study gives both methods the same new candidate/interaction allowance.
+
+## Parts 3 and 4 records
+
+The Part 3 notebook and experiment records identify study
+`e8c0c6a8f4071325` and frozen test `054b0e6b63381969`. Part 4 reuses
+ten of those frozen-test episodes with their original models and seeds.
+From the repository root, use the original Part 3 interpreter and
+a fresh output directory to reproduce the selection and traces.
+
+```powershell
+python notebooks/assignment4/inspect_part4.py --source results/assignment4/part3/study/e8c0c6a8f4071325/held_out_054b0e6b63381969 --output results/assignment4/part4/reproduced
+```
+
+The report's replay archive is `results/assignment4/part4/part3_B_054b0e6b63381969`.
+Its selection manifest records the distributions, case IDs and original outcomes.
+The ten NPZ traces contain observations, RAM, rewards, actions and all five
+Q-values or PPO probabilities per decision. `reviewed_decisions.csv` indexes
+the 30 decisions in the report.
 
 ## Submission components and limits
 

@@ -2,24 +2,36 @@
 \section{Make three recommendations}
 \label{sec:recommendations}
 
-% For EACH situation include: approach/configuration and justification; TWO pieces
-% of experimental evidence with source run IDs; ONE observed weakness; a condition
-% that would change the recommendation; ONE further experiment before use beyond
-% simulation. It is acceptable to recommend neither agent if evidence is insufficient.
+\paragraph{Rapid classroom demonstration.}
+Use Setting~B Q-learning ($\alpha=.15$, $\gamma=.995$, $\epsilon_{\mathrm{end}}=.05$) with a
+prepared replay. Evidence: (1) Q trains in 3.8\,min ($225.5\pm 17.9$\,s) and led 6-epoch PPO at
+65,536 steps (5.6\% vs.\ 0\%, \texttt{3142fac3111db314}); (2) table entries directly explain
+choices (TS1/166: NOOP 0.79 vs.\ LEFT 0.00, +200; TS1/437: near-zero pinch values). Weakness:
+68.7\% failure rate. Switch to frozen PPO12 (90.2\%) if live target completion takes priority.
+Before non-simulation classroom use, pilot whether students accurately explain Q-value ties on
+unseen replays.
 
-\subsection{Rapid classroom demonstration}
-% Short training time; behaviour must be explainable.
-\noindent\textit{[Recommendation, two supporting results, weakness, reversal condition and next experiment.]}
+\paragraph{Repeated operation in uncertainty.}
+Recommend \emph{neither} workflow for consequential autonomous deployment; for further B
+simulation, use Part~3's \textbf{PPO12} ($2\times$ LR, 12 epochs) without C's penalty. Evidence:
+(1) PPO12 achieved $90.2\pm 8.0\%$ success (9.8\% failure) vs.\ 70.2\% baseline PPO and 31.3\% Q
+(Table~\ref{tab:part3-heldout}); (2) C's penalty cut baseline PPO by 3.6\,pp and widened SD to
+26.3\,pp, opposing $F>R>E>T$. Weakness: the weakest PPO12 seed still failed 22.5\% of episodes,
+and SF2 failed at 1,990 points. Reverse only when fresh retrainings stay within a prespecified
+failure bound. Before deployment, test controlled action latencies, hazard severity and human
+overrides on a hardware-in-the-loop testbed.
 
-\subsection{Repeated operation in uncertainty}
-% Failures matter more than taking additional steps.
-\noindent\textit{[Recommendation, two supporting results, weakness, reversal condition and next experiment.]}
+\paragraph{Operation after an environment change.}
+Recommend \emph{neither} workflow for unfamiliar conditions. Evidence: (1) under D's fixed
+32$\times$32 obstruction, baseline PPO fell 22.7\,pp ($70.2\%\to 47.5\%$) and PPO12 fell 21.0\,pp
+($91.1\%\to 70.1\%$, 29.9\% failure); (2) Q dropped less ($-4.9$\,pp) but still failed 77.8\%
+(Table~\ref{tab:robustness-pairs}). Weakness: one small blind spot unpredictably redirects seeds.
+Reverse only if locked policies meet required reliability across multiple independent shifts.
+Before transfer, test unseen obstruction locations, variable dropout durations and pixel
+perception on a protected testbed.
 
-\subsection{Operation after an environment change}
-% Reliability under unfamiliar conditions matters. Use the transfer evidence.
-\noindent\textit{[Recommendation, two supporting results, weakness, reversal condition and next experiment.]}
-
-\subsection{Scope of the conclusions}
-% Separate findings specific to this implementation/environment from broader
-% learning principles. Do not claim that either algorithm is universally superior.
-\noindent\textit{[State what the evidence supports and where it stops.]}
+\paragraph{Scope and broader principles.}
+Results reflect RAM-derived features, sticky dynamics and a 262,144-step cap, not universal
+algorithm superiority. Broader principles illustrated are that directional function approximation
+scales better than coarse tabular aliasing, rollout reuse governs PPO's early sample efficiency,
+and high source-domain success does not certify observation robustness.

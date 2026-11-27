@@ -7,7 +7,9 @@
 \usepackage[a4paper,margin=25mm]{geometry}
 \usepackage{microtype}
 \usepackage{graphicx}
+\usepackage{caption}
 \usepackage{booktabs,tabularx}
+\usepackage{float}
 \usepackage{amsmath,amssymb}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}
@@ -16,22 +18,22 @@
 \renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}}
 
 \title{IT3212 -- Assignment 4\\Reinforcement Learning}
-\author{\textit{[Author names or candidate numbers]}}
-\date{\textit{[Final submission date]}}
+\author{Fredrik, Johan, Elling and Mats}
+\date{26 November 2026}
 
 \begin{document}
 \maketitle
 \noindent\textbf{Team option:} MsPacMan
 
-% This is a combined writing document, not a claim that all submission records
-% are complete. The brief separately requests predictions, an evidence brief,
-% a review record, code/experiment records and an AI-assistance record.
-% Evidence-brief working layout: Parts 2, 3, 4 and 6, at most 2,000 words
-% excluding tables and figure captions. Part 5: review record, at most 1,000 words.
-% To prepare separate documents, retain the corresponding input lines below.
-% Each section sets its original Part number, so numbering survives extraction.
+% Combined working document matching the brief's submission components:
+% - Prediction sheet + annotations: Part 1 (01_predictions + 01_prediction_annotations)
+% - Evidence brief (max 2,000 words excl. tables & figure captions): Parts 2, 3, 4, 6
+% - Review record (max 1,000 words): Part 5
+% - AI-assistance record (mandatory, ungraded): ai_assistance.tex
+% To compile any deliverable separately, keep only its corresponding \input lines.
 
 \input{Sections/01_predictions.tex}
+\input{Sections/01_prediction_annotations.tex}
 \input{Sections/02_learning_settings.tex}
 \input{Sections/03_mechanisms.tex}
 \input{Sections/04_episode_inspection.tex}

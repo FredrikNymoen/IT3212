@@ -449,3 +449,55 @@ from one penalty magnitude. The verifier checks the registered search counts,
 development seeds, native defaults, arithmetic, all numerical tables and
 source/model fingerprints. Original predictions and all measured outcomes
 remain unchanged; no training, new evaluation or model selection was performed.
+
+\medskip
+\noindent\textbf{Part 3 experiment implementation.}
+Codex proposed controlled Setting~B variations around fresh Q-learning and
+PPO controls and implemented a separate frozen-policy diagnostic that varies
+sticky-action probability. Engineering checks exercised all nine configurations
+with a 2,048-interaction budget and verified the evaluation traces against
+episode lengths and native scores. Both baseline checkpoints matched the
+readable Part~2 implementations bit for bit at that budget. The smoke runs
+checked the code path, and the assessed experiment requires the full five-seed
+configuration. Interpretation and prediction annotations follow that run.
+
+\medskip
+\noindent\textbf{Part 3 experiment notebook and report draft -- 26 November 2026.}
+Codex proposed the one-factor sweeps and a diagnostic using early frozen
+checkpoints on fresh episodes. The user ran the experiments with the
+prepared notebook. Codex checked the development selections and the
+diagnostic and final-test summaries against episode logs and checkpoint
+hashes. It recovered one completed PPO run after a Windows directory
+rename error by verifying the saved files and moving the result folder.
+The draft reports the measured outcomes and relates the early-learning
+diagnostic to the original prediction.
+
+\medskip
+\noindent\textbf{Episode inspection and recommendations -- 26 November 2026.}
+Codex proposed distribution-based episode selection and wrote the replay
+script. It reproduced ten frozen test episodes with the original checkpoints
+and seeds, verified their recorded outcomes and inspected thirty decisions.
+The report labels alternative moves as hypotheses. Codex drafted the three
+recommendations from the measured learning, transfer and replay evidence.
+
+\medskip
+\noindent\textbf{Unified environment rerun, clarified Setting~D, extra diagnostics and report consolidation -- 26 November 2026.}
+Following the assignment clarification (\texttt{clarification-assingment4.pdf}), the AI assistant
+implemented three standalone scripts without altering any previously hashed source files:
+(1) \texttt{run\_unified\_part2.py} to train and evaluate Settings~A and~C on the same
+AMD Ryzen~5 7500F / PyTorch~2.15.0 host as Part~3 (reusing the untouched Part~3 Setting~B baseline),
+run the clarified Setting~D paired 32$\times$32 observation-obstruction study (200 paired seeds
+1600000--1600199 across Q, baseline PPO and PPO12, verified for 1,600 identical native transitions),
+and run the post-hoc A-vs-B ghost-approach probe;
+(2) \texttt{run\_part3\_extras.py} to run the frozen argmax-vs-sampled zero-entropy diagnostic
+(50 paired seeds 1700000--1700049), training-return vs.\ evaluation-success rank checks,
+same-state prediction probes on 6,306 recorded B states, and generate the multi-panel figures
+(\texttt{part2\_all\_settings.png}, \texttt{part3\_mechanism\_curves.png}); and
+(3) \texttt{run\_part4\_replays\_and\_frames.py} to render native RGB screenshots for all ten
+Part~4 episodes and execute real 1-step and 64-decision counterfactual replays in Gymnasium.
+Two Setting~A PPO directories hit a transient Windows folder-rename lock after writing
+\texttt{completed.json} and were recovered after verifying completion; a retry wrapper was added
+for subsequent runs. All report sections (Parts~1 annotations, 2, 3, 4, 5 and 6) were consolidated
+to match the unified logs, and Part~5 incorporates the team's actual priority rankings and negotiation
+for team verification. Every numerical table, figure and word count was verified programmatically
+against the recorded CSV/JSON logs in \texttt{results/assignment4/}.

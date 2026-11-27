@@ -57,6 +57,11 @@ predictions. No DQN implementation or results are imported.
 | Matched search and A/B/C training/evaluation | [three_hour](three_hour/README.md) |
 | Frozen transfer evaluation with explicit censoring | [transfer_evaluation](transfer_evaluation/README.md) |
 | Current report/analysis validation | [report_review](report_review/README.md) |
+| Part 3 mechanism experiments and diagnostic | [part3](part3/README.md) |
+| Unified Part 2 A/C/D runner (clarification-compliant) | [run_unified_part2.py](run_unified_part2.py) |
+| Part 3 mechanism notebook, sweeps and extra diagnostics | [03_part3_mechanisms.ipynb](03_part3_mechanisms.ipynb), [part3_experiments.py](part3_experiments.py), [run_part3_extras.py](run_part3_extras.py) |
+| Part 4 episode inspection, RGB frames and counterfactual replays | [inspect_part4.py](inspect_part4.py), [run_part4_replays_and_frames.py](run_part4_replays_and_frames.py) |
+| Final report verification (word limits, refs, figures, hashes) | [verify_final_report.py](verify_final_report.py) |
 | Common notebook, evidence overview and native recorded-episode viewer | [synthesis](synthesis/README.md) |
 | Report sources and submission limits | [Report guide](../../reports/assignment4/README.md) |
 
@@ -85,5 +90,5 @@ Earlier notebooks, failed variants, one-off migration/recovery helpers and
 unused figures were removed from the working tree after being preserved in
 Git commit `714c0cb`. See [ARCHIVE.md](ARCHIVE.md). Numerical results and exact
 source snapshots remain in their original ignored results directories.
-Parts3--6 still require their own experiments, episode analysis and real human
-review; the current Part2 report is not the complete assignment submission.
+Use the Part 3 runner for the mechanism experiments. Parts 4--6 cover episode
+analysis, human review and recommendations.

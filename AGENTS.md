@@ -17,6 +17,13 @@ implementation choices, and update this file when new briefs or repository struc
 
 ## Repository structure and conventions
 
+- `notebooks/assignment4/part3/` runs separate Setting B mechanism comparisons
+  with fresh controls, five matched training seeds per configuration, frozen
+  final checkpoints and a fresh-seed sticky-action diagnostic. See its README
+  for the one-factor contrasts, evidence exports and diagnostic procedure.
+  The Part 2 records and original Part 1 predictions remain the source
+  material for their respective sections.
+
 ### Active layout after the 23 November repository cleanup
 
 The current Assignment4 entry points are documented in `notebooks/assignment4/README.md`:

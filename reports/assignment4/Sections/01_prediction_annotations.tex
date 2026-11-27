@@ -1,0 +1,50 @@
+\subsection*{Annotations after the experiments, 26 November 2026}
+
+\begin{description}
+  \item[Early learning (conditionally supported / contradicted depending on configuration).]
+  In Part~2 at 65,536 interactions, development success favoured PPO in A (20\% vs.\ 0\%)
+  but Q-learning in B (10\% vs.\ 6\%) and C (8\% vs.\ 4\%). In Part~3's fresh 50-episode
+  early diagnostic (\texttt{3142fac3111db314}), Q reached 5.6\% against 0\% for 6-epoch
+  PPO (2$\times$ LR), but 12-epoch PPO reached 29.6\%, showing that any early Q advantage
+  depends on PPO's update reuse rather than holding universally.
+
+  \item[Variation across seeds (conditionally supported).]
+  Supported in setting~B (success SD 21.0 pp for Q vs.\ 16.1 pp for baseline PPO and
+  8.0 pp for selected PPO12; Tables~\ref{tab:outcomes} and~\ref{tab:part3-heldout}),
+  but contradicted in deterministic setting~A (PPO SD 44.7 vs.\ Q 39.5) and setting~C
+  (PPO SD 26.3 vs.\ Q 16.0).
+
+  \item[Stochastic transitions (contradicted at the mean level; safer-route claim unsupported).]
+  From A to B, mean PPO success fell by 9.8 percentage points while Q's mean stayed flat
+  at 31.3\% (hiding paired seed swings from $-73.0$ to $+44.0$ pp), contradicting the
+  predicted larger mean Q drop. On identical near-ghost observations (Table~\ref{tab:matched-actions}),
+  A and B models behaved very similarly (52.5\% vs.\ 54.4\% ghost approach for PPO;
+  26.8\% vs.\ 29.7\% for Q), so aggregate outcomes do not establish safer routes.
+
+  \item[Step penalty (partially supported; size dependence untested).]
+  In C, mean successful episode length shortened for both Q (632 to 620) and PPO (597 to 488),
+  while mean success dropped modestly ($-2.5$ pp for Q, $-3.6$ pp for PPO) and PPO seed SD
+  widened from 16.1 to 26.3 pp (Tables~\ref{tab:outcomes} and~\ref{tab:costs}). Because only
+  one penalty magnitude (0.1 points/step) was tested, the predicted dose dependence remains open.
+
+  \item[Training return and evaluation (partially supported).]
+  Training-return and evaluation-success ranks correlated positively in five of six A/B/C
+  cohorts (Spearman $\rho$ from $+0.30$ to $+1.00$), but negatively in B PPO ($\rho=-0.10$),
+  and the training leader was the evaluation leader in only three of six cohorts. Across
+  Part~3 B configurations, mean training returns (899 Q, 1,114 PPO control, 1,540 PPO12)
+  matched the frozen success ordering (31.3\%, 70.2\%, 90.2\%).
+
+  \item[Initial recommendation (supported conditionally, qualified by robustness).]
+  PPO clearly outperformed Q-learning in settings A, B and C under the shared interaction
+  budget, and PPO12 reached 90.2\% in B. However, paired observation obstruction in D
+  reduced PPO from 70.2\% to 47.5\% and PPO12 from 91.1\% to 70.1\% (Table~\ref{tab:robustness-pairs}),
+  so PPO is recommended only for further simulation, not consequential autonomous deployment.
+
+  \item[Three predicted state differences (unsupported or contradicted).]
+  Same-state probes on 6,306 recorded B states found only six states matching State~1
+  (Q: 40.0\% RIGHT / 33.3\% UP; baseline PPO: 53.3\% UP / 36.7\% RIGHT; PPO12: 46.7\% RIGHT),
+  too few to establish a systematic split. State~2 could not be verified because RAM~116 is a
+  capped proxy rather than an edible-duration countdown. On 109 states matching State~3,
+  PPO chose RIGHT 98.7\% (PPO12 95.6\%) and LEFT under 1\%, directly contradicting the
+  prediction that PPO would bypass the nearby pellet for the larger left cluster.
+\end{description}
